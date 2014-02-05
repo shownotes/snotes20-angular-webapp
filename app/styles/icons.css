@@ -1,0 +1,88 @@
+/******************/
+/*** Shownot.es ***/
+/**** Ver. 2.0 ****/
+/******************/
+
+/* General */
+@font-face { font-family: 'icomoon'; src:url('../fonts/icomoon.eot'); src:url('../fonts/icomoon.eot?#iefix') format('embedded-opentype'), url('../fonts/icomoon.woff') format('woff'), url('../fonts/icomoon.ttf') format('truetype'), url('../fonts/icomoon.svg#icomoon') format('svg'); font-weight: normal; font-style: normal; }
+[class^="icon-"], [class*=" icon-"] { font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; }
+
+/* Icon List */
+.icon-bullhorn:before {
+    content: "\e600";
+}
+.icon-plus:before {
+    content: "\e601";
+}
+.icon-pencil:before {
+    content: "\e602";
+}
+.icon-connection:before {
+    content: "\e604";
+}
+.icon-podcast:before {
+    content: "\e603";
+}
+.icon-bubble:before {
+    content: "\e605";
+}
+.icon-envelope:before {
+    content: "\e606";
+}
+.icon-users:before {
+    content: "\e607";
+}
+.icon-user:before {
+    content: "\e608";
+}
+.icon-search:before {
+    content: "\e609";
+}
+.icon-wrench:before {
+    content: "\e60a";
+}
+.icon-cog:before {
+    content: "\e60b";
+}
+.icon-remove:before {
+    content: "\e60c";
+}
+.icon-remove2:before {
+    content: "\e60d";
+}
+.icon-minus:before {
+    content: "\e60e";
+}
+.icon-close:before {
+    content: "\e60f";
+}
+.icon-checkmark:before {
+    content: "\e610";
+}
+.icon-arrow-right:before {
+    content: "\e611";
+}
+.icon-arrow-left:before {
+    content: "\e612";
+}
+.icon-arrow-up:before {
+    content: "\e613";
+}
+.icon-arrow-down:before {
+    content: "\e614";
+}
+.icon-feed:before {
+    content: "\e615";
+}
+.icon-github:before {
+    content: "\e616";
+}
+.icon-loop:before {
+    content: "\e617";
+}
+.icon-earth:before {
+    content: "\e618";
+}
+.icon-link:before {
+    content: "\e619";
+}

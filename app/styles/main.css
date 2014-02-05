@@ -1,0 +1,105 @@
+/******************/
+/*** Shownot.es ***/
+/**** Ver. 2.0 ****/
+/******************/
+
+/* Fonts */
+@font-face { font-family: 'FiraSans'; font-style: normal; font-weight: normal; src: url('../fonts/FiraSans-Regular.eot'); src: url('../fonts/FiraSans-Regular.eot?#iefix') format('embedded-opentype'), url('../fonts/FiraSans-Regular.woff') format('woff'); }
+@font-face { font-family: 'FiraSans'; font-style: italic; font-weight: normal; src: url('../fonts/FiraSans-RegularItalic.eot'); src: url('../fonts/FiraSans-RegularItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/FiraSans-RegularItalic.woff') format('woff'); }
+@font-face { font-family: 'FiraSans'; font-style: normal; font-weight: bold; src: url('../fonts/FiraSans-Bold.eot'); src: url('../fonts/FiraSans-Bold.eot?#iefix') format('embedded-opentype'), url('../fonts/FiraSans-Bold.woff') format('woff'); }
+@font-face { font-family: 'FiraSans'; font-style: italic; font-weight: bold; src: url('../fonts/FiraSans-BoldItalic.eot'); src: url('../fonts/FiraSans-BoldItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/FiraSans-BoldItalic.woff') format('woff'); }
+
+/* General */
+* { margin: 0; padding: 0; border: 0; font-family: 'FiraSans'; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+::selection { background: #FF8468; color: #2F2D27; text-shadow: none; }
+::-moz-selection { background: #FF8468;	color: #2F2D27; text-shadow: none; }
+h1, h2, h3 { font-weight: bold; }
+h1 { font-size: 32px; }
+h2 { font-size: 24px; }
+h3 { font-size: 18px; }
+p { line-height: 1.4em; }
+hr { border: 0; border-top: 2px solid #FFE3A4; }
+table { font-size: 14px; width: 100%; border-collapse: collapse; border-spacing: 0; }
+tr { }
+td, th { height: 37px; width: 200px; padding-right: 8px; border-bottom: 2px solid #444038; }
+th { color: #444038; text-align: left; }
+.left { float: left; }
+.right { float: right; }
+.center { text-align: center; }
+
+/* Inputs */
+form { font-size: 0; position: relative; }
+input[type='text'], input[type='password'] { background-color: #2F2D27; color: #FFE3A4; font-size: 14px; width: 164px; height: 37px; padding: 0 16px; display: inline-block; border: 2px solid #444038; }
+input:focus { outline: none; }
+input[type='text']:focus, input[type='password']:focus { background-color: #292722; }
+input[type='submit'], button { background-color: #292722; color: #FF8468; font-size: 14px; font-weight: bold; /* text-shadow: 1px 1px 0px #7A4135; */ text-align: center; display: inline-block; width: 100px; padding: 8px 0; border: 2px solid #444038; }
+input[type='submit']:hover, input[type='submit']:focus, button:hover, button:focus { background-color: #444038; cursor: pointer; }
+input[type='submit'].login { border-right: none; }
+::-webkit-input-placeholder { color: #FFE3A4; }
+:-moz-placeholder { color: #FFE3A4; }
+::-moz-placeholder { color: #FFE3A4; }
+:-ms-input-placeholder { color: #FFE3A4; }
+input::-ms-clear { display: none; }
+
+/* Links */
+a:link, a:visited { color: #FF8468; text-decoration: none; /* text-shadow: 1px 1px 0px #7A4135; */ }
+h1 a:hover, .sidebar p a:hover, .item h2 a:hover, .item p a:hover { color: #F9B377; }
+
+/* Body */
+body { background-color: #FFE3A4; color: #2F2D27; font-size: 0;  margin: 0 5%; }
+body > div { width: auto; padding: 0 32px; margin: 0 auto; }
+
+/* Header */
+.top { background-color: #2F2D27; color: #444038; position: relative; padding: 0 32px; margin-top: 32px; overflow: hidden; border-bottom: 2px solid #444038; }
+.top h1 { background: url('../images/logo.svg') no-repeat 142px -8px; display: inline-block; width: 200px; padding: 16px 32px 16px 0; border-right: 2px solid #444038; }
+.nav-top { list-style-type: none; display: inline-block; margin-left: 16px; }
+.nav-top li { font-size: 24px; display: inline-block; }
+.nav-top li a { padding: 4px 16px; }
+.nav-top li:not(:last-child) a { border-right: 2px solid #444038; }
+.nav-top li a:hover { color: #F9B377; }
+.nav-top li a.active { font-weight: bold; }
+
+/* Content Wrapper */
+.content { background-color: #2F2D27; color: #FFE3A4; position: relative; overflow: hidden; }
+
+/* Sidebar */
+.sidebar { font-size: 14px; width: 200px; position: relative; }
+.sidebar p { margin: 16px 0; }
+.sidebar ul { list-style-type: none; }
+.sidebar li a { display: block; padding: 8px; border-bottom: 2px solid #444038; }
+.sidebar li:first-child a { border-top: 2px solid #444038; }
+.sidebar li a:hover { background-color: #444038; }
+.account input[type='text'], .account input[type='password'] { border-bottom: none; }
+.lostpass { font-size: 14px; position: absolute; top: 52px; right: 8px; }
+.usermenu li span { margin-right: 8px; }
+
+/* Main Content */
+.wrapper { min-height: 343px; margin-left: 232px; border-left: 2px solid #444038;  }
+.wrapper > *:last-child { padding-bottom: 16px; }
+.item { padding-top: 16px; margin-left: 32px; }
+.item:not(:last-child) { border-bottom: 2px solid #444038; }
+.item p { font-size: 14px; padding-bottom: 16px; }
+.meta { font-size: 14px; color: #444038; margin: 4px 0 16px 0; }
+.load { width: 120px; }
+.load span { margin-right: 8px; }
+.pagination button:first-child {  border-right: none; }
+.pagination button:first-child span { margin-right: 8px; }
+.pagination button:last-child span { margin-left: 8px; }
+
+/* Pad List */
+.padlist { margin: 16px 0; }
+.padlist tr:not(:first-child):hover { background-color: #292722; }
+.padlist tr > *:first-child { padding-left: 16px; }
+.padlist tr > *:last-child { text-align: right; width: 100px; padding-right: 0; }
+.padlist tr > td:nth-child(2) { font-weight: bold; }
+.padlist button { text-align: left; height: 41px; width: 130px; position: relative; border-top: none; border-bottom: none; }
+.padlist button > span { margin: 0 8px; }
+
+/* Footer */
+.footer { padding: 16px 32px; margin-bottom: 32px; overflow: hidden; position: relative; border-bottom: 2px solid #444038; }
+.footer a { color: #7A4135; text-shadow: none; text-decoration: underline; }
+.footer a:hover { text-decoration: none; }
+.footer .left a, .footer .right { font-size: 14px; }
+.FlattrButton, .twitter-follow-button { padding-right: 8px; }
+
+/* Responsive */
