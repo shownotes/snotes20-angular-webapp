@@ -9,7 +9,6 @@ angular.module('snotes20App')
     $scope.register = function () {
       if(!$rootScope.modeRegister) {
         $rootScope.modeRegister = true;
-        $scope.$broadcast("registerStarted")
       } else {
         // send to server..
         $rootScope.modeRegister = false;
