@@ -35,11 +35,11 @@
     <div class="top">
         <h1><a href="#">Shownot.es</a></h1>
         <ul class="nav-top">
-            <li><a ng-href="/" class="active">Start</a></li>
-            <li><a ng-href="/archive">Archiv</a></li>
-            <li><a ng-href="/about">Über uns</a></li>
-            <li><a ng-href="/help">Hilfe</a></li>
-            <li><a ng-href="/news">Blog</a></li>
+            <li><a ng-href="/" active-link="active">Start</a></li>
+            <li><a ng-href="/archive" active-link="active">Archiv</a></li>
+            <li><a ng-href="/about" active-link="active">Über uns</a></li>
+            <li><a ng-href="/help" active-link="active">Hilfe</a></li>
+            <li><a ng-href="/news" active-link="active">Blog</a></li>
         </ul>
     </div>
 
@@ -77,6 +77,7 @@
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/LoginController.js"></script>
     <script src="scripts/controllers/MainController.js"></script>
+    <script src="scripts/directives/activeLink.js"></script>
     <script src="scripts/directives/focusOn.js"></script>
     <!-- endbuild -->
 </body>
