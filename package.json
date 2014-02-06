@@ -1,7 +1,9 @@
 {
   "name": "snotes20",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "connect-modrewrite": "~0.5.11"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-autoprefixer": "~0.4.0",
