@@ -11,7 +11,6 @@ module.exports = function (grunt) {
 
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
-  var modRewrite = require('connect-modrewrite');
 
 
   // Time how long tasks take. Can help when optimizing build times
@@ -71,12 +70,18 @@ module.exports = function (grunt) {
         options: {
           open: true,
           middleware: function (connect, options) {
-            // http://stackoverflow.com/a/20553608/2486196
+            // based on http://stackoverflow.com/a/20553608/2486196
             var middlewares = [];
             var directory = options.directory || options.base[options.base.length - 1];
 
             // enable Angular's HTML5 mode
-            middlewares.push(modRewrite(['!\\.\\w+$ / [L]']));
+            middlewares.push(function (req, res, next) {
+              if(!require('fs').existsSync(directory + req.url.split('?')[0])) {
+                res.setHeader('Location', '/');
+                req.url = '/';
+              }
+              next();
+            });
 
             if (!Array.isArray(options.base)) {
               options.base = [options.base];
