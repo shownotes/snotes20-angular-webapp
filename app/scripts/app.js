@@ -7,7 +7,7 @@ angular.module('snotes20App').config(['$routeProvider',
     $routeProvider.
       when('/', {
         templateUrl: 'views/main.html',
-      //  controller: 'PhoneListCtrl'
+        controller: 'MainController'
       }).
       when('/about', {
         templateUrl: 'views/about.html',
