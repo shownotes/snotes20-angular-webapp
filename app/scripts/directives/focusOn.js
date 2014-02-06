@@ -1,10 +1,13 @@
 'use strict';
 
 angular.module('snotes20App').directive('focusOn', function() {
-  return function($scope, elem, attr) {
-    $scope.$watch('modeRegister', function(e) {
-      if($scope.modeRegister)
-        elem[0].focus();
-    });
+  return {
+    restrict: 'A',
+    link: function (scope, element, attr) {
+      scope.$watch(attr.focusOn, function(e) {
+        if(scope[attr.focusOn])
+          element[0].focus();
+      });
+    }
   };
 });
