@@ -7,11 +7,11 @@ angular.module('snotes20App')
     };
 
     $scope.register = function () {
-      if(!$rootScope.modeRegister) {
-        $rootScope.modeRegister = true;
+      if(!$scope.modeRegister) {
+        $scope.modeRegister = true;
       } else {
         // send to server..
-        $rootScope.modeRegister = false;
+        $scope.modeRegister = false;
       }
     };
 
