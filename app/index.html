@@ -43,21 +43,12 @@
     </div>
 
     <div class="content">
-        <div class="sidebar left">
-
-            <p>
-                Eingeloggt als: <strong>quimoniz</strong><br />
-                Gruppen: <strong>orga</strong>, <strong>ts</strong>
-            </p>
-            <ul class="usermenu">
-                <li><a href="#"><span class="icon-user"></span>Profil bearbeiten</a></li>
-                <li><a href="#"><span class="icon-wrench"></span>Administration</a></li>
-                <li><a href="#"><span class="icon-close"></span>Ausloggen</a></li>
-            </ul>
-
+        <div class="sidebar left" ng-include="'views/sidebar.html'">
         </div>
 
-        <div class="container wrapper"><div class="item" ng-view></div></div>
+        <div class="container wrapper">
+            <div class="item" ng-view></div>
+        </div>
     </div>
 
     <div class="footer">
@@ -83,7 +74,9 @@
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/LoginController.js"></script>
     <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/directives/focusOn.js"></script>
     <!-- endbuild -->
 </body>
 </html>
