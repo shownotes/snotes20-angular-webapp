@@ -38,6 +38,7 @@
   },
   "main": {
     "list": {
+      "title": "Live-Sendungen:",
       "starttime": "Startzeit",
       "podcast": "Podcast",
       "number": "Nummer",
