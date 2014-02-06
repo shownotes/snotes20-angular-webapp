@@ -1,8 +1,9 @@
-# Apache Configuration File
 
-# (!) Using `.htaccess` files slows down Apache, therefore, if you have access
-# to the main server config file (usually called `httpd.conf`), you should add
-# this logic there: http://httpd.apache.org/docs/current/howto/htaccess.html.
+# uberspace apache conf
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . /index.html [L]
 
 # ##############################################################################
 # # CROSS-ORIGIN RESOURCE SHARING (CORS)                                       #
