@@ -17,4 +17,16 @@ angular.module('snotes20App')
         exists: true
       }
     ];
+
+    $scope.loadMorePads = function () {
+      for (var i = 0; i < 5; i++) {
+
+        $scope.pads.push({
+          time: new Date(),
+          podcast: "Einschlafen",
+          name: "einschlafen-" + ~~(Math.random() * 100),
+          exists: true
+        });
+      }
+    };
   });
