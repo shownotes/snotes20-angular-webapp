@@ -1,25 +1,25 @@
 <div  ng-controller="LoginController">
     <div ng-show="!$root.isLoggedIn">
-        <p>Die kollaborative Plattform zum Crowdsourcing von Sendungsnotizen. <a href="#">Mehr <span class="icon-arrow-right"></span></a></p>
+        <p translate="sidebar.login.info"></p>
         <form class="account">
-            <input type="text" placeholder="Benutzername" value="" title="Gib deinen Benutzernamen ein" focus-on="modeRegister" />
-            <input type="text" placeholder="E-Mail-Adresse" value="" title="Gib deine E-Mail-Adresse" ng-show="modeRegister" />
-            <input type="password" placeholder="Passwort" value="" title="Gib dein Passwort ein" />
-            <a href="#" class="lostpass" title="Passwort vergessen?">?</a>
-            <input type="password" placeholder="Passwort (Wdh.)" value="" title="Wiederhole dein Passwort" ng-show="modeRegister" />
-            <input type="submit" class="login" value="Einloggen" ng-click="login()" />
-            <input type="submit" class="register" value="Registrieren" ng-click="register()" />
+            <input type="text" placeholder="{{ 'sidebar.login.username' | translate }}" value="" title="{{ 'sidebar.login.username.title' | translate }}" focus-on="modeRegister" />
+            <input type="text" placeholder="{{ 'sidebar.login.email' | translate }}" value="" title="{{ 'sidebar.login.email.title' | translate }}" ng-show="modeRegister" />
+            <input type="password" placeholder="{{ 'sidebar.login.password' | translate }}" value="" title="{{ 'sidebar.login.password.title' | translate }}" />
+            <a href="#" class="lostpass" title="{{ 'sidebar.login.lostpassword' | translate }}">?</a>
+            <input type="password" placeholder="{{ 'sidebar.login.passwordrepeat' | translate }}" value="" title="{{ 'sidebar.login.passwordrepeat.title' | translate }}" ng-show="modeRegister" />
+            <input type="submit" class="login" value="{{ 'sidebar.login.login' | translate }}" ng-click="login()" />
+            <input type="submit" class="register" value="{{ 'sidebar.login.register' | translate }}" ng-click="register()" />
         </form>
     </div>
     <div ng-show="$root.isLoggedIn">
         <p>
-            Eingeloggt als: <strong>quimoniz</strong><br />
-            Gruppen: <strong>orga</strong>, <strong>ts</strong>
+            <span translate="sidebar.status.loggedInAs"></span> <strong>quimoniz</strong><br />
+            <span translate="sidebar.status.groups"></span> <strong>orga</strong>, <strong>ts</strong>
         </p>
         <ul class="usermenu">
-            <li><a href="#"><span class="icon-user"></span>Profil bearbeiten</a></li>
-            <li><a href="#"><span class="icon-wrench"></span>Administration</a></li>
-            <li><a ng-click="logout()"><span class="icon-close"></span>Ausloggen</a></li>
+            <li><a href="#"><span class="icon-user"></span><span translate="sidebar.status.menu.editProfile"></span></a></li>
+            <li><a href="#"><span class="icon-wrench"></span><span translate="sidebar.status.menu.admin"></span></a></li>
+            <li><a ng-click="logout()"><span class="icon-close"></span><span translate="sidebar.status.menu.logout"></span></a></li>
         </ul>
     </div>
 </div>

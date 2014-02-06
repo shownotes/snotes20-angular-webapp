@@ -1,0 +1,51 @@
+{
+  "layout": {
+    "menu": {
+      "start": "Start",
+      "archive": "Archiv",
+      "aboutUs": "Über uns",
+      "help": "Hilfe"
+    },
+    "footer": {
+      "copyright": "Alle Text-Inhalte unterliegen der <a href='http://creativecommons.org/publicdomain/zero/1.0/deed.de' rel='license'>CC0-Lizenz.</a>"
+    }
+  },
+  "sidebar": {
+    "login": {
+      "info": "Die kollaborative Plattform zum Crowdsourcing von Sendungsnotizen. <a href='/about'>Mehr <span class='icon-arrow-right'></span></a>",
+      "username": "Benutzername",
+      "username.title": "Gib deinen Benutzernamen ein",
+      "email": "E-Mail-Adresse",
+      "email.title": "Gib deine E-Mail-Adresse",
+      "password": "Passwort",
+      "password.title": "Gib dein Passwort ein",
+      "lostpassword": "Passwort vergessen?",
+      "passwordrepeat": "Passwort (Wdh.)",
+      "passwordrepeat.title": "Wiederhole dein Passwort",
+      "login": "Einloggen",
+      "register": "Registrieren"
+
+    },
+    "status": {
+      "loggedInAs": "Eingeloggt als:",
+      "groups": "Gruppen:",
+      "menu": {
+        "editProfile": "Profil bearbeiten",
+        "admin": "Administration",
+        "logout": "Ausloggen"
+      }
+    }
+  },
+  "main": {
+    "list": {
+      "starttime": "Startzeit",
+      "podcast": "Podcast",
+      "number": "Nummer",
+      "btn": {
+        "create": "Erstellen",
+        "open": "Mitschreiben"
+      },
+      "loadmore": "Mehr laden"
+    }
+  }
+}

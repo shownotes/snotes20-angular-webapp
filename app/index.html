@@ -35,10 +35,10 @@
     <div class="top">
         <h1><a href="#">Shownot.es</a></h1>
         <ul class="nav-top">
-            <li><a ng-href="/" active-link="active">Start</a></li>
-            <li><a ng-href="/archive" active-link="active">Archiv</a></li>
-            <li><a ng-href="/about" active-link="active">Über uns</a></li>
-            <li><a ng-href="/help" active-link="active">Hilfe</a></li>
+            <li><a ng-href="/" active-link="active" translate="layout.menu.start"></a></li>
+            <li><a ng-href="/archive" active-link="active" translate="layout.menu.archive"></a></li>
+            <li><a ng-href="/about" active-link="active" translate="layout.menu.aboutUs"></a></li>
+            <li><a ng-href="/help" active-link="active" translate="layout.menu.help"></a></li>
         </ul>
     </div>
 
@@ -57,7 +57,7 @@
             <a href="https://twitter.com/DieShownotes" class="twitter-follow-button" data-show-count="false" data-lang="de">Auf Twitter folgen</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
             <a href='https://alpha.app.net/shownotes' class='adn-button' target='_blank' data-type='follow' data-width='295' data-height='20' data-user-id='@shownotes' data-show-username='1' rel='me'>Auf App.net folgen</a><script>(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='//d2zh9g63fcvyrq.cloudfront.net/adn.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'adn-button-js'));</script>
         </p>
-        <p class="right">Alle Text-Inhalte unterliegen der <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.de" rel="license">CC0-Lizenz.</a></p>
+        <p class="right" translate="layout.footer.copyright"></p>
     </div>
 
     <!--[if lt IE 9]>
@@ -69,6 +69,8 @@
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

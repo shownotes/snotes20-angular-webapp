@@ -1,9 +1,9 @@
 <h2>Live-Sendungen:</h2>
 <table class="padlist">
     <tr>
-        <th>Startzeit</th>
-        <th>Podcast</th>
-        <th>Nummer</th>
+        <th translate="main.list.starttime"></th>
+        <th translate="main.list.podcast"></th>
+        <th translate="main.list.number"></th>
         <th></th>
     </tr>
 
@@ -12,9 +12,9 @@
         <td>{{ pad.podcast }}</td>
         <td>{{ pad.name }}</td>
         <td>
-            <button ng-show="!pad.exists"><span class="icon-plus"></span>Erstellen</button>
-            <button ng-show="pad.exists"><span class="icon-pencil"></span>Mitschreiben</button>
+            <button ng-show="!pad.exists"><span class="icon-plus"></span><span translate="main.list.btn.create"></span></button>
+            <button ng-show="pad.exists"><span class="icon-pencil"></span><span translate="main.list.btn.open"></span></button>
         </td>
     </tr>
 </table>
-<button class="load" ng-click="loadMorePads()"><span class="icon-loop"></span>Mehr laden</button>
+<button class="load" ng-click="loadMorePads()"><span class="icon-loop"></span><span translate="main.list.loadmore"></span></button>

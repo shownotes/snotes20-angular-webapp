@@ -1,10 +1,17 @@
 'use strict';
 
-angular.module('snotes20App', ['ngRoute']);
+angular.module('snotes20App', ['ngRoute', 'pascalprecht.translate']);
 
-angular.module('snotes20App').config(['$routeProvider', '$locationProvider',
-  function($routeProvider, $locationProvider) {
+angular.module('snotes20App').config(['$routeProvider', '$locationProvider', '$translateProvider',
+  function($routeProvider, $locationProvider, $translateProvider) {
+    $translateProvider.useStaticFilesLoader({
+      prefix: 'l10n/locale-',
+      suffix: '.json'
+    });
+    $translateProvider.preferredLanguage('de');
+
     $locationProvider.html5Mode(true);
+
     $routeProvider.
       when('/', {
         templateUrl: 'views/main.html',
