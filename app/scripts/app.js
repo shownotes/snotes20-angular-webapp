@@ -10,9 +10,14 @@ angular.module('snotes20App').config(['$routeProvider', '$locationProvider',
         templateUrl: 'views/main.html',
         controller: 'MainController'
       }).
+      when('/archive', {
+        templateUrl: 'views/archive.html'
+      }).
       when('/about', {
-        templateUrl: 'views/about.html',
-      //  controller: 'PhoneDetailCtrl'
+        templateUrl: 'views/about.html'
+      }).
+      when('/help', {
+        templateUrl: 'views/help.html'
       }).
       otherwise({
         redirectTo: '/'
