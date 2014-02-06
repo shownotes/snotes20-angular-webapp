@@ -97,7 +97,7 @@ body > div { width: auto; padding: 0 32px; margin: 0 auto; }
 
 /* Footer */
 .footer { padding: 16px 32px; margin-bottom: 32px; overflow: hidden; position: relative; border-bottom: 2px solid #444038; }
-.footer a { color: #7A4135; text-shadow: none; text-decoration: underline; }
+.footer a { color: #7A4135; text-decoration: underline; }
 .footer a:hover { text-decoration: none; }
 .footer .left a, .footer .right { font-size: 14px; }
 .FlattrButton, .twitter-follow-button { padding-right: 8px; }
