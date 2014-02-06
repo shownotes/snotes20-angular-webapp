@@ -5,15 +5,15 @@ angular.module('snotes20App')
     $scope.pads = [
       {
         time: new Date(),
-        podcast: "Einschlafen",
-        name: "einschlafen-123",
+        podcast: 'Einschlafen',
+        name: 'einschlafen-123',
         exists: false
       },
 
       {
         time: new Date(),
-        podcast: "Einschlafen",
-        name: "einschlafen-123",
+        podcast: 'Einschlafen',
+        name: 'einschlafen-123',
         exists: true
       }
     ];
@@ -23,8 +23,8 @@ angular.module('snotes20App')
 
         $scope.pads.push({
           time: new Date(),
-          podcast: "Einschlafen",
-          name: "einschlafen-" + ~~(Math.random() * 100),
+          podcast: 'Einschlafen',
+          name: 'einschlafen-' + Math.round(Math.random() * 100),
           exists: true
         });
       }
