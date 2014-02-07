@@ -12,6 +12,34 @@ module.exports = function (grunt) {
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
+  function connectAngularMiddleware (connect, options) {
+    // based on http://stackoverflow.com/a/20553608/2486196
+    var middlewares = [];
+    var directory = options.directory || options.base[options.base.length - 1];
+
+    // enable Angular's HTML5 mode
+    middlewares.push(function (req, res, next) {
+      if(!require('fs').existsSync(directory + req.url.split('?')[0])) {
+        res.setHeader('Location', '/');
+        req.url = '/';
+      }
+      next();
+    });
+
+    if (!Array.isArray(options.base)) {
+      options.base = [options.base];
+    }
+    options.base.forEach(function(base) {
+      // Serve static files.
+      middlewares.push(connect.static(base));
+    });
+
+    // Make directory browse-able.
+    middlewares.push(connect.directory(directory));
+
+    return middlewares;
+  }
+
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
@@ -69,33 +97,7 @@ module.exports = function (grunt) {
       livereload: {
         options: {
           open: true,
-          middleware: function (connect, options) {
-            // based on http://stackoverflow.com/a/20553608/2486196
-            var middlewares = [];
-            var directory = options.directory || options.base[options.base.length - 1];
-
-            // enable Angular's HTML5 mode
-            middlewares.push(function (req, res, next) {
-              if(!require('fs').existsSync(directory + req.url.split('?')[0])) {
-                res.setHeader('Location', '/');
-                req.url = '/';
-              }
-              next();
-            });
-
-            if (!Array.isArray(options.base)) {
-              options.base = [options.base];
-            }
-            options.base.forEach(function(base) {
-              // Serve static files.
-              middlewares.push(connect.static(base));
-            });
-
-            // Make directory browse-able.
-            middlewares.push(connect.directory(directory));
-
-            return middlewares;
-          },
+          middleware: connectAngularMiddleware,
           base: [
             '.tmp',
             '<%= yeoman.app %>'
@@ -115,7 +117,8 @@ module.exports = function (grunt) {
       simple: {
         options: {
           keepalive: true,
-          base: '<%= yeoman.app %>'
+          middleware: connectAngularMiddleware,
+          base: [ '<%= yeoman.app %>' ]
         }
       },
       dist: {
