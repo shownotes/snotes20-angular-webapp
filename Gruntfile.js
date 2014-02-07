@@ -112,6 +112,12 @@ module.exports = function (grunt) {
           ]
         }
       },
+      simple: {
+        options: {
+          keepalive: true,
+          base: '<%= yeoman.app %>'
+        }
+      },
       dist: {
         options: {
           base: '<%= yeoman.dist %>'
@@ -368,6 +374,8 @@ module.exports = function (grunt) {
       'watch'
     ]);
   });
+
+  grunt.registerTask('simpleserve', [ 'connect:simple' ]);
 
   grunt.registerTask('server', function () {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
