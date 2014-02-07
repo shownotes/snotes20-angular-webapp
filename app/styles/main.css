@@ -93,7 +93,7 @@ body > div { width: auto; padding: 0 32px; margin: 0 auto; }
 .padlist tr > *:last-child { text-align: right; width: 100px; padding-right: 0; }
 .padlist tr > td:nth-child(2) { font-weight: bold; }
 .padlist button { text-align: left; height: 41px; width: 130px; position: relative; border-top: none; border-bottom: none; }
-.padlist button > span { margin: 0 8px; }
+.padlist button > span[class^="icon-"]:first-child { margin: 0 8px; }
 
 /* Footer */
 .footer { padding: 16px 32px; margin-bottom: 32px; overflow: hidden; position: relative; border-bottom: 2px solid #444038; }
