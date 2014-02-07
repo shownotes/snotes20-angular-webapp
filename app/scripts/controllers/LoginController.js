@@ -1,9 +1,23 @@
 'use strict';
 
 angular.module('snotes20App')
-  .controller('LoginController', function ($scope, $rootScope) {
+  .controller('LoginController', function ($scope, $rootScope, LoginService) {
     $scope.login = function () {
-      $rootScope.isLoggedIn = true;
+      var username = $scope.username;
+      var password = $scope.password;
+
+      LoginService.login(username, password).then(
+        function (user)
+        {
+          $rootScope.user = user;
+          $scope.username = "";
+          $scope.password = "";
+        },
+        function ()
+        {
+          $rootScope.user = null;
+        }
+      );
     };
 
     $scope.register = function () {
@@ -16,6 +30,9 @@ angular.module('snotes20App')
     };
 
     $scope.logout = function () {
-      $rootScope.isLoggedIn = false;
+      LoginService.logout().then(
+        function () { $rootScope.user = null; },
+        function () { }
+      );
     };
   });

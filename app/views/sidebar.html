@@ -1,20 +1,20 @@
 <div  ng-controller="LoginController">
-    <div ng-show="!$root.isLoggedIn">
+    <div ng-show="!$root.user">
         <p translate="sidebar.login.info"></p>
         <form class="account">
-            <input type="text" placeholder="{{ 'sidebar.login.username' | translate }}" value="" title="{{ 'sidebar.login.username.title' | translate }}" focus-on="modeRegister" />
-            <input type="text" placeholder="{{ 'sidebar.login.email' | translate }}" value="" title="{{ 'sidebar.login.email.title' | translate }}" ng-show="modeRegister" />
-            <input type="password" placeholder="{{ 'sidebar.login.password' | translate }}" value="" title="{{ 'sidebar.login.password.title' | translate }}" />
+            <input ng-model="username" type="text" placeholder="{{ 'sidebar.login.username' | translate }}" value="" title="{{ 'sidebar.login.username.title' | translate }}" focus-on="modeRegister" />
+            <input ng-model="email" type="text" placeholder="{{ 'sidebar.login.email' | translate }}" value="" title="{{ 'sidebar.login.email.title' | translate }}" ng-show="modeRegister" />
+            <input ng-model="password" type="password" placeholder="{{ 'sidebar.login.password' | translate }}" value="" title="{{ 'sidebar.login.password.title' | translate }}" />
             <a href="#" class="lostpass" title="{{ 'sidebar.login.lostpassword' | translate }}">?</a>
-            <input type="password" placeholder="{{ 'sidebar.login.passwordrepeat' | translate }}" value="" title="{{ 'sidebar.login.passwordrepeat.title' | translate }}" ng-show="modeRegister" />
+            <input ng-model="password2" type="password" placeholder="{{ 'sidebar.login.passwordrepeat' | translate }}" value="" title="{{ 'sidebar.login.passwordrepeat.title' | translate }}" ng-show="modeRegister" />
             <input type="submit" class="login" value="{{ 'sidebar.login.login' | translate }}" ng-click="login()" />
             <input type="submit" class="register" value="{{ 'sidebar.login.register' | translate }}" ng-click="register()" />
         </form>
     </div>
-    <div ng-show="$root.isLoggedIn">
+    <div ng-show="$root.user">
         <p>
-            <span translate="sidebar.status.loggedInAs"></span> <strong>quimoniz</strong><br />
-            <span translate="sidebar.status.groups"></span> <strong>orga</strong>, <strong>ts</strong>
+            <span translate="sidebar.status.loggedInAs"></span> <strong>{{ $root.user.name }}</strong><br />
+            <span translate="sidebar.status.groups"></span> <ul><li ng-repeat="group in $root.user.groups">{{ group.longname }}</li></ul>
         </p>
         <ul class="usermenu">
             <li><a href="#"><span class="icon-user"></span><span translate="sidebar.status.menu.editProfile"></span></a></li>

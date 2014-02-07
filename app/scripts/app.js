@@ -1,8 +1,14 @@
 'use strict';
 
-angular.module('snotes20App', ['ngRoute', 'pascalprecht.translate']);
+angular.module('snotes20App', ['ngRoute', 'ngCookies', 'pascalprecht.translate']);
 
-angular.module('snotes20App').config(['$routeProvider', '$locationProvider', '$translateProvider',
+/**
+ * A promise object provided by angular.
+ * @external Promise
+ * @see {@link http://docs.angularjs.org/api/ng.$q}
+ */
+
+angular.module('snotes20App').config(
   function($routeProvider, $locationProvider, $translateProvider) {
     $translateProvider.useStaticFilesLoader({
       prefix: 'l10n/locale-',
@@ -29,4 +35,12 @@ angular.module('snotes20App').config(['$routeProvider', '$locationProvider', '$t
       otherwise({
         redirectTo: '/'
       });
-  }]);
+  });
+
+angular.module('snotes20App')
+  .run(function($rootScope, LoginService) {
+    LoginService.checkLogin().then(
+      function (user) { $rootScope.user = user; },
+      function () { $rootScope.user = null; }
+    );
+  });
