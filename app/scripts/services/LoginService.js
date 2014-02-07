@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('snotes20App')
   .service('LoginService', function ($q, $cookies, $rootScope) {
 
@@ -13,7 +15,7 @@ angular.module('snotes20App')
 
       deferred.resolve({
         name: username,
-        groups: [ { longname: "team" }, { longname: "ts" } ]
+        groups: [ { longname: 'team' }, { longname: 'ts' } ]
       });
 
       return deferred.promise;
@@ -25,7 +27,7 @@ angular.module('snotes20App')
       if($cookies.login) {
         deferred.resolve({
           name: $cookies.login,
-          groups: [ { longname: "team" }, { longname: "ts" } ]
+          groups: [ { longname: 'team' }, { longname: 'ts' } ]
         });
       } else {
         deferred.reject(false);

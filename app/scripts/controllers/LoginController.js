@@ -2,6 +2,14 @@
 
 angular.module('snotes20App')
   .controller('LoginController', function ($scope, $rootScope, LoginService) {
+
+    $scope.reset = function () {
+      $scope.username = '';
+      $scope.email = '';
+      $scope.password = '';
+      $scope.password2 = '';
+    };
+
     $scope.login = function () {
       var username = $scope.username;
       var password = $scope.password;
@@ -10,8 +18,7 @@ angular.module('snotes20App')
         function (user)
         {
           $rootScope.user = user;
-          $scope.username = "";
-          $scope.password = "";
+          $scope.reset();
         },
         function ()
         {
