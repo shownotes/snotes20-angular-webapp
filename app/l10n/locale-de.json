@@ -1,13 +1,12 @@
 {
   "layout": {
     "menu": {
-      "start": "Start",
       "archive": "Archiv",
-      "aboutUs": "Über uns",
+      "aboutUs": "Über&nbsp;uns",
       "help": "Hilfe"
     },
     "footer": {
-      "copyright": "Alle Text-Inhalte unterliegen der <a href='http://creativecommons.org/publicdomain/zero/1.0/deed.de' rel='license'>CC0-Lizenz.</a>"
+      "copyright": "Alle Sendungsnotizen unterliegen der <a href='http://creativecommons.org/publicdomain/zero/1.0/deed.de' rel='license'>CC0-Lizenz.</a>"
     }
   },
   "sidebar": {
@@ -27,7 +26,7 @@
 
     },
     "status": {
-      "loggedInAs": "Eingeloggt als:",
+      "greeting": "Willkommen,",
       "groups": "Gruppen:",
       "menu": {
         "editProfile": "Profil bearbeiten",

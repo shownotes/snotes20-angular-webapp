@@ -39,7 +39,7 @@
     </div>
     <div ng-show="$root.user">
         <p class="userstatus">
-            {{'sidebar.status.loggedInAs'|translate}} <strong>{{ $root.user.name }}</strong><br />
+            {{'sidebar.status.greeting'|translate}} <strong>{{ $root.user.name }}</strong>.<br />
             {{'sidebar.status.groups'|translate}} <ul><li ng-repeat="group in $root.user.groups">{{ group.longname }}</li></ul>
         </p>
         <ul class="usermenu">

@@ -4,86 +4,89 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
   <head>
-    <title>Shownot.es</title>
+	<title>Shownot.es</title>
 
-    <meta charset="utf-8" />
+	<meta charset="utf-8" />
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <meta name="author" content="Shownot.es Team" />
-    <meta name="description" content="Die kollaborative Plattform zum Crowdsourcing von Sendungsnotizen." />
-    <meta name="keywords" content="podcast, podcasting, shownotes, sendungsnotizen, crowdsourcing, helfer, mithelfen, live, schreiben, etherpad, showpad" />
-    <meta name="robots" content="index,follow" />
+	<meta name="author" content="Shownot.es Team" />
+	<meta name="description" content="Die kollaborative Plattform zum Crowdsourcing von Sendungsnotizen." />
+	<meta name="keywords" content="podcast, podcasting, shownotes, sendungsnotizen, crowdsourcing, helfer, mithelfen, live, schreiben, etherpad, showpad" />
+	<meta name="robots" content="index,follow" />
 
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css styles/vendor.css -->
-      <link rel="stylesheet" href="bower_components/angular/angular-csp.css">
-    <!-- bower:css -->
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css({.tmp,app}) styles/main.css -->
-      <link rel="stylesheet" href="styles/main.css">
-      <link rel="stylesheet" href="styles/icons.css">
-    <!-- endbuild -->
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<!-- build:css styles/vendor.css -->
+	  <link rel="stylesheet" href="bower_components/angular/angular-csp.css">
+	<!-- bower:css -->
+	<!-- endbower -->
+	<!-- endbuild -->
+	<!-- build:css({.tmp,app}) styles/main.css -->
+	  <link rel="stylesheet" href="styles/main.css">
+	  <link rel="stylesheet" href="styles/icons.css">
+	<!-- endbuild -->
   </head>
   <body ng-app="snotes20App">
-    <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+	<!--[if lt IE 7]>
+	  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
 
-    <div class="top">
-        <h1><a href="#">Shownot.es</a></h1>
-        <ul class="nav-top">
-            <li><a ng-href="/" active-link="active" translate="layout.menu.start"></a></li>
-            <li><a ng-href="/archive" active-link="active" translate="layout.menu.archive"></a></li>
-            <li><a ng-href="/about" active-link="active" translate="layout.menu.aboutUs"></a></li>
-            <li><a ng-href="/help" active-link="active" translate="layout.menu.help"></a></li>
-        </ul>
-    </div>
+	<div class="top">
+		<ul class="nav-top">
+			<li><h1><a href="/">Shownot.es</a></h1></li>
+			<li>
+				<ul>
+					<li><a ng-href="/archive" active-link="active" translate="layout.menu.archive"></a></li>
+					<li><a ng-href="/about" active-link="active" translate="layout.menu.aboutUs"></a></li>
+					<li><a ng-href="/help" active-link="active" translate="layout.menu.help"></a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
 
-    <div class="content">
-        <div class="sidebar left" ng-include="'views/sidebar.html'">
-        </div>
+	<div class="content">
+		<div class="sidebar left" ng-include="'views/sidebar.html'">
+		</div>
 
-        <div class="container wrapper">
-            <div class="item" ng-view></div>
-        </div>
-    </div>
+		<div class="container wrapper">
+			<div class="item" ng-view></div>
+		</div>
+	</div>
 
-    <div class="footer">
-        <p class="left">
-            <a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://shownot.es/"></a>
-            <a href="https://twitter.com/DieShownotes" class="twitter-follow-button" data-show-count="false" data-lang="de">Auf Twitter folgen</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-            <a href='https://alpha.app.net/shownotes' class='adn-button' target='_blank' data-type='follow' data-width='295' data-height='20' data-user-id='@shownotes' data-show-username='1' rel='me'>Auf App.net folgen</a><script>(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='//d2zh9g63fcvyrq.cloudfront.net/adn.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'adn-button-js'));</script>
-        </p>
-        <p class="right" translate="layout.footer.copyright"></p>
-    </div>
+	<div class="footer">
+		<p class="left">
+			<a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://shownot.es/"></a>
+			<a href="https://twitter.com/DieShownotes" class="twitter-follow-button" data-show-count="false" data-lang="de">Auf Twitter folgen</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+			<a href='https://alpha.app.net/shownotes' class='adn-button' target='_blank' data-type='follow' data-width='295' data-height='20' data-user-id='@shownotes' data-show-username='1' rel='me'>Auf App.net folgen</a><script>(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='//d2zh9g63fcvyrq.cloudfront.net/adn.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'adn-button-js'));</script>
+		</p>
+		<p class="right" translate="layout.footer.copyright"></p>
+	</div>
 
-    <!--[if lt IE 9]>
-    <script src="bower_components/es5-shim/es5-shim.js"></script>
-    <script src="bower_components/json3/lib/json3.min.js"></script>
-    <![endif]-->
+	<!--[if lt IE 9]>
+	<script src="bower_components/es5-shim/es5-shim.js"></script>
+	<script src="bower_components/json3/lib/json3.min.js"></script>
+	<![endif]-->
 
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-translate/angular-translate.js"></script>
-    <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
+	<!-- build:js scripts/vendor.js -->
+	<!-- bower:js -->
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-route/angular-route.js"></script>
+	<script src="bower_components/angular-translate/angular-translate.js"></script>
+	<script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+	<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+	<!-- endbower -->
+	<!-- endbuild -->
 
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/LoginController.js"></script>
-    <script src="scripts/controllers/MainController.js"></script>
+	<!-- build:js({.tmp,app}) scripts/scripts.js -->
+	<script src="scripts/app.js"></script>
+	<script src="scripts/controllers/LoginController.js"></script>
+	<script src="scripts/controllers/MainController.js"></script>
 
-    <script src="scripts/services/LoginService.js"></script>
+	<script src="scripts/services/LoginService.js"></script>
 
-    <script src="scripts/directives/activeLink.js"></script>
-    <script src="scripts/directives/focusOn.js"></script>
-    <!-- endbuild -->
+	<script src="scripts/directives/activeLink.js"></script>
+	<script src="scripts/directives/focusOn.js"></script>
+	<!-- endbuild -->
 </body>
 </html>
