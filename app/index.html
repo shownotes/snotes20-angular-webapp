@@ -48,9 +48,9 @@
 			<li>
 				<h1>
 					<a href="/">Shownot.es</a>
-					<span><a href="#" title="{{ 'layout.menu.toggle' | translate }}"><span class="icon-menu"></span></a></span>
+					<span><a ng-click="menu.open = !menu.open" ng-init="menu.open = false" href="#" title="{{ 'layout.menu.toggle' | translate }}"><span class="icon-menu"></span></a></span>
 				</h1>
-				<ul>
+				<ul ng-class="{ open: menu.open }">
 					<li><a ng-href="/archive" active-link="active" translate="layout.menu.archive"></a></li>
 					<li><a ng-href="/about" active-link="active" translate="layout.menu.aboutUs"></a></li>
 					<li><a ng-href="/help" active-link="active" translate="layout.menu.help"></a></li>
