@@ -32,6 +32,9 @@ angular.module('snotes20App').config(
       when('/help', {
         templateUrl: 'views/help.html'
       }).
+      when('/contact', {
+        templateUrl: 'views/contact.html'
+      }).
       otherwise({
         redirectTo: '/'
       });
