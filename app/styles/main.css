@@ -66,7 +66,7 @@ body > div { padding: 0 32px; margin: 0 auto; }
 .nav-top h1>span { float: right; }
 .nav-top>li>ul { vertical-align: middle; display: inline-block; }
 .nav-top>li>ul:before,
-.nav-top>li>ul:after { display: table; content: ' '; clear: both;*/ }
+.nav-top>li>ul:after { display: table; content: ' '; clear: both; }
 .nav-top>li>ul>li { display: table-cell; width: 1%; font-size: 24px; }
 .nav-top>li>ul>li a { background-color: #292722; text-align: center; display: block; padding: 20px 32px; }
 .nav-top>li>ul>li a:hover { background-color: #444038; }
@@ -151,36 +151,3 @@ body > div { padding: 0 32px; margin: 0 auto; }
 	.account .login, .account .register { width: 50%; }
 	.wrapper { margin-left: -32px; border-left: none; }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
