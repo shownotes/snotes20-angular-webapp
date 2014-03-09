@@ -1,0 +1,76 @@
+.sidebar {
+     font-size: 14px;
+     width: 200px;
+     position: relative;
+ }
+
+.account ul {
+    list-style-type: none;
+}
+
+.account li a {
+    display: block;
+    padding: 8px;
+    border-bottom: 2px solid #444038;
+}
+
+.account li:first-child a {
+    border-top: 2px solid #444038;
+}
+
+.account li a:hover {
+    background-color: #444038;
+    cursor: pointer;
+}
+
+.auth input[type='text'],
+.auth input[type='password'],
+.auth input[type='submit'] {
+    width: 100%;
+    display: block;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.auth p {
+    margin: 16px 0;
+}
+
+.auth input.noborder {
+    border-bottom: none;
+}
+
+.forgotpw span {
+    font-size: 14px;
+    display: block;
+}
+
+.lostpass {
+    font-size: 14px;
+    position: absolute;
+    top: 52px;
+    right: 8px;
+}
+
+.login a,
+.register a {
+    font-size: 14px;
+}
+
+.usermenu li span {
+    margin-right: 8px;
+}
+
+@media (max-width: 924px) {
+    .sidebar {
+        width: 100%;
+        padding: 0 32px 16px 32px;
+        margin: auto 0 16px -32px;
+        border-bottom: 2px solid #444038;
+    }
+
+    .auth > * {
+        width: 50%;
+    }
+}

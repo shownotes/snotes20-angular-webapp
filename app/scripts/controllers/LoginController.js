@@ -4,11 +4,27 @@ angular.module('snotes20App')
   .controller('LoginController', function ($scope, $rootScope, LoginService) {
 
     $scope.reset = function () {
-      $scope.username = '';
-      $scope.email = '';
-      $scope.password = '';
-      $scope.password2 = '';
+      $scope.login = {
+        username: '',
+        password: ''
+      };
+
+      $scope.register = {
+        username: '',
+        email: '',
+        password: '',
+        password2: ''
+      };
+
+      $scope.forgotpw = {
+        username: '',
+        email: ''
+      };
+
+      $scope.mode = 'login';
     };
+
+    $scope.reset();
 
     $scope.login = function () {
       var username = $scope.username;
@@ -28,11 +44,11 @@ angular.module('snotes20App')
     };
 
     $scope.register = function () {
-      if(!$scope.modeRegister) {
-        $scope.modeRegister = true;
+      if($scope.mode === 'register') {
+        $scope.mode = 'register';
       } else {
         // send to server..
-        $scope.modeRegister = false;
+        $scope.mode = 'login';
       }
     };
 

@@ -1,43 +1,80 @@
-<div  ng-controller="LoginController">
-    <div ng-show="!$root.user">
-        <p translate="sidebar.login.info"></p>
-        <form class="account">
+<div ng-controller="LoginController">
+    <div ng-show="!$root.user" class="auth">
+        <p translate="sidebar.auth.info"></p>
+        <form class="login" ng-show="mode === 'login'">
+            <input ng-model="login.username"
+                   class="noborder"
+                   type="text"
+                   placeholder="{{ 'sidebar.auth.username' | translate }}"
+                   title="{{ 'sidebar.auth.username.title' | translate }}">
+
+            <input ng-model="login.password"
+                   class="noborder"
+                   type="password"
+                   placeholder="{{ 'sidebar.auth.password' | translate }}"
+                   title="{{ 'sidebar.auth.password.title' | translate }}">
+
+            <a href="#"
+               class="lostpass"
+               title="{{ 'sidebar.auth.login.lostpassword' | translate }}"
+               ng-click="mode = 'forgotpw'">?</a>
+
+            <input type="submit"
+                   value="{{ 'sidebar.auth.login.submit' | translate }}"
+                   ng-click="login()">
+
+            <a href="#" ng-click="mode = 'register'">{{ 'sidebar.auth.login.register' | translate }}</a>
+        </form>
+
+        <form class="register" ng-show="mode === 'register'">
+            <input ng-model="register.username"
+                   type="text"
+                   placeholder="{{ 'sidebar.auth.username' | translate }}"
+                   title="{{ 'sidebar.login.username.title' | translate }}">
+
+            <input ng-model="register.email"
+                   type="text"
+                   placeholder="{{ 'sidebar.auth.email' | translate }}"
+                   title="{{ 'sidebar.auth.email.title' | translate }}">
+
+            <input ng-model="register.password"
+                   type="password"
+                   placeholder="{{ 'sidebar.auth.password' | translate }}"
+                   title="{{ 'sidebar.auth.password.title' | translate }}">
+
+            <input ng-model="register.password2"
+                   type="password"
+                   placeholder="{{ 'sidebar.auth.register.passwordrepeat' | translate }}"
+                   title="{{ 'sidebar.auth.register.passwordrepeat.title' | translate }}">
+
+            <input type="submit"
+                   value="{{ 'sidebar.auth.register.submit' | translate }}"
+                   ng-click="register()">
+
+            <a href="#" ng-click="mode = 'login'">{{ 'sidebar.auth.register.login' | translate }}</a>
+        </form>
+
+        <form class="forgotpw" ng-show="mode === 'forgotpw'">
             <input ng-model="username"
                    type="text"
-                   placeholder="{{ 'sidebar.login.username' | translate }}"
-                   title="{{ 'sidebar.login.username.title' | translate }}"
-                   focus-on="modeRegister">
+                   placeholder="{{ 'sidebar.auth.username' | translate }}"
+                   title="{{ 'sidebar.auth.username.title' | translate }}">
+
+            <span>{{ 'sidebar.auth.forgotpw.or' | translate }}</span>
 
             <input ng-model="email"
+                   class="noborder"
                    type="text"
-                   placeholder="{{ 'sidebar.login.email' | translate }}"
-                   title="{{ 'sidebar.login.email.title' | translate }}"
-                   ng-show="modeRegister">
+                   placeholder="{{ 'sidebar.auth.email' | translate }}"
+                   title="{{ 'sidebar.auth.email.title' | translate }}">
 
-            <input ng-model="password"
-                   type="password"
-                   placeholder="{{ 'sidebar.login.password' | translate }}"
-                   title="{{ 'sidebar.login.password.title' | translate }}">
-
-            <a href="#" class="lostpass" title="{{ 'sidebar.login.lostpassword' | translate }}">?</a>
-
-            <input ng-model="password2"
-                   type="password"
-                   placeholder="{{ 'sidebar.login.passwordrepeat' | translate }}"
-                   title="{{ 'sidebar.login.passwordrepeat.title' | translate }}"
-                   ng-show="modeRegister">
-
-            <input type="submit"
-                   class="login"
-                   value="{{ 'sidebar.login.login' | translate }}"
-                   ng-click="login()">
             <input type="submit"
                    class="register"
-                   value="{{ 'sidebar.login.register' | translate }}"
-                   ng-click="register()">
+                   value="{{ 'sidebar.auth.forgotpw.submit' | translate }}"
+                   ng-click="forgot()">
         </form>
     </div>
-    <div ng-show="$root.user">
+    <div ng-show="$root.user" class="account">
         <p class="userstatus">
             {{'sidebar.status.greeting'|translate}} <strong>{{ $root.user.name }}</strong>.<br />
             {{'sidebar.status.groups'|translate}} <ul><li ng-repeat="group in $root.user.groups">{{ group.longname }}</li></ul>

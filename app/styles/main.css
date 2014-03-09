@@ -37,7 +37,6 @@ input[type='submit']:hover,
 input[type='submit']:focus,
 button:hover,
 button:focus { background-color: #444038; cursor: pointer; }
-input[type='submit'].login { border-right: none; }
 ::-webkit-input-placeholder { color: #FFE3A4; }
 :-moz-placeholder { color: #FFE3A4; }
 ::-moz-placeholder { color: #FFE3A4; }
@@ -74,18 +73,6 @@ body > div { padding: 0 32px; margin: 0 auto; }
 
 /* Content Wrapper */
 .content { background-color: #2F2D27; color: #FFE3A4; position: relative; overflow: hidden; }
-
-/* Sidebar */
-.sidebar { font-size: 14px; width: 200px; position: relative; }
-.sidebar p { margin: 16px 0; }
-.sidebar ul { list-style-type: none; }
-.sidebar li a { display: block; padding: 8px; border-bottom: 2px solid #444038; }
-.sidebar li:first-child a { border-top: 2px solid #444038; }
-.sidebar li a:hover { background-color: #444038; cursor: pointer; }
-.account input[type='text'],
-.account input[type='password'] { border-bottom: none; }
-.lostpass { font-size: 14px; position: absolute; top: 52px; right: 8px; }
-.usermenu li span { margin-right: 8px; }
 
 /* Main Content */
 .wrapper { min-height: 343px; margin-left: 232px; border-left: 2px solid #444038;  }
@@ -155,9 +142,5 @@ body > div { padding: 0 32px; margin: 0 auto; }
 	}
 	.nav-top>li>ul>li { display: block; width: auto; }
 	.nav-top>li>ul>li a { border-right: none; border-bottom: 2px solid #444038; }
-	.sidebar { width: 100%; padding: 0 32px 16px 32px; margin: auto 0 16px -32px; border-bottom: 2px solid #444038; }
-	.account input[type='text'],
-	.account input[type='password'] { width: 100%; display: block; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
-	.account .login, .account .register { width: 50%; }
 	.wrapper { margin-left: -32px; border-left: none; }
 }

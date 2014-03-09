@@ -12,20 +12,29 @@
     }
   },
   "sidebar": {
-    "login": {
+    "auth": {
       "info": "Die kollaborative Plattform zum Crowdsourcing von Sendungsnotizen. <a href='/about'>Mehr&nbsp;<span class='icon-arrow-right'></span></a>",
       "username": "Benutzername",
       "username.title": "Gib deinen Benutzernamen ein",
-      "email": "E-Mail-Adresse",
-      "email.title": "Gib deine E-Mail-Adresse",
       "password": "Passwort",
       "password.title": "Gib dein Passwort ein",
-      "lostpassword": "Passwort vergessen?",
-      "passwordrepeat": "Passwort (Wdh.)",
-      "passwordrepeat.title": "Wiederhole dein Passwort",
-      "login": "Einloggen",
-      "register": "Registrieren"
-
+      "email": "E-Mail-Adresse",
+      "email.title": "Gib deine E-Mail-Adresse",
+      "login": {
+        "register": "Registrieren",
+        "lostpassword": "Passwort vergessen?",
+        "submit": "Einloggen"
+      },
+      "register": {
+        "submit": "Registrieren",
+        "passwordrepeat": "Passwort (Wdh.)",
+        "passwordrepeat.title": "Wiederhole dein Passwort",
+        "login": "Login"
+      },
+      "forgotpw": {
+        "or": "oder",
+        "submit": "E-Mail senden"
+      }
     },
     "status": {
       "greeting": "Willkommen,",
