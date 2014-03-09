@@ -1,76 +1,104 @@
 .sidebar {
-     font-size: 14px;
-     width: 200px;
-     position: relative;
- }
+	 font-size: 14px;
+	 width: 200px;
+	 position: relative;
+}
+
+.sidebar p {
+	margin: 16px 0;
+}
 
 .account ul {
-    list-style-type: none;
+	list-style-type: none;
 }
 
 .account li a {
-    display: block;
-    padding: 8px;
-    border-bottom: 2px solid #444038;
+	display: block;
+	padding: 8px;
+	border-bottom: 2px solid #444038;
 }
 
-.account li:first-child a {
-    border-top: 2px solid #444038;
+.account>li:first-child a {
+	border-top: 2px solid #444038;
 }
 
 .account li a:hover {
-    background-color: #444038;
-    cursor: pointer;
+	background-color: #444038;
+	cursor: pointer;
 }
 
 .auth input[type='text'],
 .auth input[type='password'],
-.auth input[type='submit'] {
-    width: 100%;
-    display: block;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.auth p {
-    margin: 16px 0;
+.auth input[type='submit']
+.auth button {
+	width: 100%;
+	display: block;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .auth input.noborder {
-    border-bottom: none;
+	border-bottom: none;
 }
 
-.forgotpw span {
-    font-size: 14px;
-    display: block;
+.forgotpw button {
+	width: 100%;
 }
 
 .lostpass {
-    font-size: 14px;
-    position: absolute;
-    top: 52px;
-    right: 8px;
+	font-size: 14px;
+	position: absolute;
+	top: 50px;
+	right: 8px;
 }
 
 .login a,
 .register a {
-    font-size: 14px;
+	font-size: 14px;
 }
 
-.usermenu li span {
-    margin-right: 8px;
+.login button:last-child,
+.register button:last-child {
+	border-left: 0;
+}
+
+.usermenu>li>a {
+	font-weight: bold;
+}
+
+.usermenu li a span {
+	margin-right: 8px;
+}
+
+.usermenu li ul {
+	border-bottom: 2px solid #444038;
+}
+
+.usermenu li li {
+	padding-left: 22px;
+}
+
+.usermenu li li a {
+	border-top: none;
+}
+
+.usermenu li li:last-child a {
+	border-bottom: none;
 }
 
 @media (max-width: 924px) {
-    .sidebar {
-        width: 100%;
-        padding: 0 32px 16px 32px;
-        margin: auto 0 16px -32px;
-        border-bottom: 2px solid #444038;
-    }
-
-    .auth > * {
-        width: 50%;
-    }
+	.sidebar {
+		width: 100%;
+		padding: 0 32px 16px 32px;
+		margin: auto 0 16px -32px;
+		border-bottom: 2px solid #444038;
+	}
+	.login button,
+	.register button {
+		width: 50%;
+	}
+	.forgotpw button {
+		width: 100%;
+	}
 }

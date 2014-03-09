@@ -1,62 +1,73 @@
 {
   "layout": {
-    "menu": {
-      "archive": "Archiv",
-      "aboutUs": "Über",
-      "help": "Hilfe",
-      "contact": "Kontakt",
-      "toggle": "Menü ein-/ausblenden"
-    },
-    "footer": {
-      "copyright": "Alle Sendungsnotizen unterliegen der <a href='http://creativecommons.org/publicdomain/zero/1.0/deed.de' rel='license'>CC0-Lizenz</a>."
-    }
+	"menu": {
+	  "archive": "Archiv",
+	  "aboutUs": "Über",
+	  "help": "Hilfe",
+	  "contact": "Kontakt",
+	  "toggle": "Menü ein-/ausblenden"
+	},
+	"footer": {
+	  "copyright": "Alle Sendungsnotizen stehen unter der <a href='http://creativecommons.org/publicdomain/zero/1.0/deed.de' rel='license' title='CC0 1.0 Universell (Public Domain Dedication)'>CC0-Lizenz</a>."
+	}
   },
   "sidebar": {
-    "auth": {
-      "info": "Die kollaborative Plattform zum Crowdsourcing von Sendungsnotizen. <a href='/about'>Mehr&nbsp;<span class='icon-arrow-right'></span></a>",
-      "username": "Benutzername",
-      "username.title": "Gib deinen Benutzernamen ein",
-      "password": "Passwort",
-      "password.title": "Gib dein Passwort ein",
-      "email": "E-Mail-Adresse",
-      "email.title": "Gib deine E-Mail-Adresse",
-      "login": {
-        "register": "Registrieren",
-        "lostpassword": "Passwort vergessen?",
-        "submit": "Einloggen"
-      },
-      "register": {
-        "submit": "Registrieren",
-        "passwordrepeat": "Passwort (Wdh.)",
-        "passwordrepeat.title": "Wiederhole dein Passwort",
-        "login": "Login"
-      },
-      "forgotpw": {
-        "or": "oder",
-        "submit": "E-Mail senden"
-      }
-    },
-    "status": {
-      "greeting": "Willkommen,",
-      "groups": "Gruppen:",
-      "menu": {
-        "editProfile": "Profil bearbeiten",
-        "admin": "Administration",
-        "logout": "Ausloggen"
-      }
-    }
+	"auth": {
+	  "info": "Die kollaborative Plattform zum Crowdsourcing von Sendungsnotizen. <a href='/about'>Mehr&nbsp;<span class='icon-arrow-right'></span></a>",
+	  "username": "Benutzername",
+	  "username.title": "Gib deinen Benutzernamen ein",
+	  "password": "Passwort",
+	  "password.title": "Gib dein Passwort ein",
+	  "email": "E-Mail-Adresse",
+	  "email.optional": "oder E-Mail-Adresse",
+	  "email.title": "Gib deine E-Mail-Adresse",
+	  "login": {
+		"register": "Registrieren",
+		"lostpassword": "Passwort vergessen?",
+		"submit": "Einloggen"
+	  },
+	  "register": {
+		"submit": "Registrieren",
+		"passwordrepeat": "Passwort (Wdh.)",
+		"passwordrepeat.title": "Wiederhole dein Passwort",
+		"login": "Login"
+	  },
+	  "forgotpw": {
+		"submit": "Passwort zurücksetzen"
+	  }
+	},
+	"status": {
+	  "greeting": "Willkommen,",
+	  "groups": "Gruppen:",
+	  "menu": {
+	  	"profile": {
+			"edit": "Profil bearbeiten",
+			"email": "E-Mail-Adresse ändern",
+			"password": "Passwort ändern"
+	 	},
+	 	"admin": {
+			"dashboard": "Administration",
+			"users": "Mitglieder",
+			"docs": "Dokumente",
+			"groups": "Gruppen",
+			"template": "Vorlage"
+		 },
+			"logout": "Ausloggen"
+	 	}
+	}
   },
   "main": {
-    "list": {
-      "title": "Live-Sendungen:",
-      "starttime": "Startzeit",
-      "podcast": "Podcast",
-      "number": "Nummer",
-      "btn": {
-        "create": "Erstellen",
-        "open": "Mitschreiben"
-      },
-      "loadmore": "Mehr laden"
-    }
+	"list": {
+	  "title": "Live-Sendungen:",
+	  "hint": "Hier siehst du, welche Podcast-Aufzeichnungen wann beginnen. Um live bei den Sendungsnotizen zu helfen, drücke entweder auf <strong>Erstellen</strong> oder <strong>Mitschreiben</strong>. <a href='/help'>Hast du noch Fragen?</a>",
+	  "starttime": "Startzeit",
+	  "podcast": "Podcast",
+	  "number": "Nummer",
+	  "btn": {
+		"create": "Erstellen",
+		"open": "Mitschreiben"
+	  },
+	  "loadmore": "Mehr laden"
+	}
   }
 }
