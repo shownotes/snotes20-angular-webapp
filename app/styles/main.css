@@ -14,6 +14,7 @@
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizelegibility;
 }
 
 ::selection {
@@ -131,10 +132,6 @@ button {
 input[type='submit']:hover,
 input[type='submit']:focus,
 button:hover,
-button:focus {
-	background-color: #444038;
-}
-
 button:focus {
 	background-color: #444038;
 	cursor: pointer;
@@ -471,5 +468,10 @@ body > div {
 	.wrapper {
 		margin-left: -32px;
 		border-left: none;
+	}
+
+	.padlist tr > th:nth-child(2),
+	.padlist tr > td:nth-child(2) {
+		display: none;
 	}
 }

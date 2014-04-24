@@ -33,7 +33,8 @@
 				"login": "Login"
 			},
 			"forgotpw": {
-				"submit": "Passwort zurücksetzen"
+				"submit": "Passwort zurücksetzen",
+				"back": "Zurück"
 			}
 		},
 		"status": {
@@ -62,7 +63,7 @@
 			"hint": "Hier siehst du, welche Podcast-Aufzeichnungen wann beginnen. Um live bei den Sendungsnotizen zu helfen, drücke entweder auf <strong>Erstellen</strong> oder <strong>Mitschreiben</strong>. <a href='/help'>Hast du noch Fragen?</a>",
 			"starttime": "Startzeit",
 			"podcast": "Podcast",
-			"number": "Nummer",
+			"number": "Kürzel",
 			"btn": {
 				"create": "Erstellen",
 				"open": "Mitschreiben"

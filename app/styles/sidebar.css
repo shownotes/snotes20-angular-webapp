@@ -45,6 +45,9 @@
 .forgotpw button {
 	width: 100%;
 }
+.forgotpw button:last-child {
+	border-top: 0;
+}
 
 .lostpass {
 	font-size: 14px;
