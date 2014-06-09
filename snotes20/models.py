@@ -23,7 +23,7 @@ class Source(models.Model):
 class Importable(models.Model):
     id = models.AutoField(primary_key=True)
     source = models.ForeignKey(Source)
-    sourceID = models.IntegerField(null=True)
+    source_id = models.IntegerField(null=True, db_index=True)
 
 
 TYPE_PODCAST = 'POD'
@@ -38,7 +38,7 @@ TYPE_CHOICES = (
 
 
 class Podcast(Importable):
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, db_index=True)
     creator = models.ForeignKey(User, null=True)
     title = models.CharField(max_length=150)
     description = models.TextField()
