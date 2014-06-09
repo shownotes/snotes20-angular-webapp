@@ -1,7 +1,7 @@
 from .AbstractDataSource import AbstractDataSource
 from datetime import datetime
 import hoerapi
-import snotes20.models as models
+import snotes20.models.podcast as models
 
 
 class HoersuppeDataSource(AbstractDataSource):
