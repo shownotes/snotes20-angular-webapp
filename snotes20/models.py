@@ -15,15 +15,12 @@ SOURCE_CHOICES = (
 )
 
 
-class Source(models.Model):
-    name = models.CharField(max_length=100, primary_key=True, choices=SOURCE_CHOICES)
-    description = models.CharField(max_length=50)
-
-
 class Importable(models.Model):
-    id = models.AutoField(primary_key=True)
-    source = models.ForeignKey(Source)
+    source = models.CharField(max_length=100, choices=SOURCE_CHOICES, db_index=True)
     source_id = models.IntegerField(null=True, db_index=True)
+
+    class Meta:
+        abstract = True
 
 
 TYPE_PODCAST = 'POD'
@@ -38,6 +35,7 @@ TYPE_CHOICES = (
 
 
 class Podcast(Importable):
+    id = models.AutoField(primary_key=True)
     slug = models.SlugField(unique=True, db_index=True)
     creator = models.ForeignKey(User, null=True)
     title = models.CharField(max_length=150)
@@ -56,6 +54,7 @@ class Podcast(Importable):
 
 
 class Episode(Importable):
+    id = models.AutoField(primary_key=True)
     podcast = models.ForeignKey(Podcast)
     creator = models.ForeignKey(User, null=True)
     number = models.CharField(max_length=10, null=True)
