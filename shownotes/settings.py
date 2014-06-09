@@ -77,6 +77,26 @@ DATABASES = {
     }
 }
 
+# Logging
+# https://docs.djangoproject.com/en/1.7/topics/logging/
+
+LOGGING = {
+    'version': 1,
+    'handlers': {
+        'console':{
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'snotes20.management.commands.importexternal': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
