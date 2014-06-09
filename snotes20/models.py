@@ -51,6 +51,9 @@ class Podcast(Importable):
     createDate = models.DateTimeField()
     document = models.OneToOneField(Document, null=True)
 
+    def __str__(self):
+        return "Podcast " + self.slug
+
 
 class Episode(Importable):
     podcast = models.ForeignKey(Podcast)
@@ -62,3 +65,6 @@ class Episode(Importable):
     type=models.CharField(max_length=100, choices=TYPE_CHOICES)
     createDate = models.DateTimeField(),
     stream = models.CharField(max_length=100, null=True)
+
+    def __str__(self):
+        return "Episode {} (nr: {}, pod: {})".format(self.id, self.number, self.podcast_id)
