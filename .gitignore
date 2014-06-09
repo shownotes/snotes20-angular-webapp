@@ -1,0 +1,9 @@
+# IDEs
+.idea
+
+# virtualenv
+venv
+__pycache__
+
+# django dev
+db.sqlite3
