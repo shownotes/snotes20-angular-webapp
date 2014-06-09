@@ -46,8 +46,7 @@ class Podcast(Importable):
     type = models.CharField(max_length=3, choices=TYPE_CHOICES)
     deleted = models.BooleanField(default=False)
     approved= models.BooleanField(default=False)
-    createDate = models.DateTimeField()
-    document = models.OneToOneField(Document, null=True)
+    create_date = models.DateTimeField()
 
     def __str__(self):
         return "Podcast " + self.slug
@@ -60,10 +59,11 @@ class Episode(Importable):
     number = models.CharField(max_length=10, null=True)
     episodeurl = models.URLField(null=True)
     date = models.DateTimeField()
-    canceled= models.BooleanField(default=False)
-    type=models.CharField(max_length=100, choices=TYPE_CHOICES)
-    createDate = models.DateTimeField(),
+    canceled = models.BooleanField(default=False)
+    type = models.CharField(max_length=100, choices=TYPE_CHOICES)
+    create_date = models.DateTimeField()
     stream = models.CharField(max_length=100, null=True)
+    document = models.OneToOneField(Document, null=True)
 
     def __str__(self):
         return "Episode {} (nr: {}, pod: {})".format(self.id, self.number, self.podcast_id)
