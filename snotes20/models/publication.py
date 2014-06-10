@@ -1,8 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from .podcast import Episode
-from .state import DocumentState
+from snotes20.models import Episode, DocumentState
 
 
 class Publication(models.Model):
