@@ -33,6 +33,7 @@ class HoersuppeDataSource(AbstractDataSource):
                 chat=data.chat_url,
                 type=type,
                 create_date=datetime.now(),
+                import_date=datetime.now(),
                 source=cls.shortname,
                 source_id=data.id
             ))
@@ -56,6 +57,7 @@ class HoersuppeDataSource(AbstractDataSource):
                 canceled=False,
                 type=podcast.type,
                 create_date=datetime.now(),
+                import_date=datetime.now(),
                 stream=ep.streamurl,
                 source=cls.shortname,
                 source_id=ep.id,

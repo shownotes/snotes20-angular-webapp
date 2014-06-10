@@ -15,6 +15,7 @@ SOURCE_CHOICES = (
 class Importable(models.Model):
     source = models.CharField(max_length=100, choices=SOURCE_CHOICES, db_index=True)
     source_id = models.IntegerField(null=True, db_index=True)
+    import_date = models.DateTimeField()
 
     class Meta:
         abstract = True
