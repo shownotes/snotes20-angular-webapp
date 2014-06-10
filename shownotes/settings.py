@@ -37,10 +37,12 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'snotes20',
 )
 
 MIDDLEWARE_CLASSES = (
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -53,6 +55,12 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'shownotes.urls'
 
 WSGI_APPLICATION = 'shownotes.wsgi.application'
+
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost',
+    'localhost:9000',
+)
 
 REST_FRAMEWORK = {
     # Use hyperlinked styles by default.
