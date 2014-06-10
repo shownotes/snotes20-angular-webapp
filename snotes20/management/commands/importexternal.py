@@ -25,32 +25,32 @@ def import_from_source(source):
     logger.info("downloading Podcasts")
     podcasts = source.get_podcasts()
 
-    with transaction.atomic():
-        logger.info("importing Podcasts")
-        import_thing(source, podcasts, podcast_merger, models.Podcast.objects)
+    logger.info("importing Podcasts")
+    import_thing(source, podcasts, podcast_merger, models.Podcast.objects)
 
-        logger.info("downloading Episodes")
-        yesterday = (datetime.date.today() - datetime.timedelta(1))
-        tomorrow = (datetime.date.today() + datetime.timedelta(1))
-        episodes = source.get_episodes(yesterday, tomorrow)
+    logger.info("downloading Episodes")
+    yesterday = (datetime.date.today() - datetime.timedelta(1))
+    tomorrow = (datetime.date.today() + datetime.timedelta(1))
+    episodes = source.get_episodes(yesterday, tomorrow)
 
-        logger.info("importing Episodes")
-        import_thing(source, episodes, episode_merger, models.Episode.objects.filter(document=None))
+    logger.info("importing Episodes")
+    import_thing(source, episodes, episode_merger, models.Episode.objects.filter(document=None))
 
 
 def import_thing(source, data, merger, oqry):
-    for entry in data:
-        qry = oqry.filter(source_id=entry.source_id).filter(source=source.shortname)
+    with transaction.atomic():
+        for entry in data:
+            qry = oqry.filter(source_id=entry.source_id).filter(source=source.shortname)
 
-        if qry.exists():
-            dbentry = qry.get()
-            logger.debug("updating {}".format(dbentry))
-            entry.id = dbentry.id
-            merger(dbentry, entry)
-            entry.save()
-        else:
-            logger.debug("creating {}".format(entry))
-            entry.save()
+            if qry.exists():
+                dbentry = qry.get()
+                logger.debug("updating {}".format(dbentry))
+                entry.id = dbentry.id
+                merger(dbentry, entry)
+                entry.save()
+            else:
+                logger.debug("creating {}".format(entry))
+                entry.save()
 
 
 class Command(BaseCommand):
