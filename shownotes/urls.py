@@ -29,9 +29,17 @@ class SoonEpisodeViewSet(viewsets.ViewSet):
         raise MethodNotAllowed('GET')
 
 
+class DocumentViewSet(viewsets.ModelViewSet):
+    serializer_class = serializers.DocumentSerializer
+    queryset = models.Document.objects.all()
+
+    def list(self, request, *args, **kwargs):
+        raise MethodNotAllowed('GET')
+
 
 router = routers.DefaultRouter()
 router.register(r'soonepisodes', SoonEpisodeViewSet, base_name='sonnepisodes')
+router.register(r'documents', DocumentViewSet, base_name='documents')
 
 
 
