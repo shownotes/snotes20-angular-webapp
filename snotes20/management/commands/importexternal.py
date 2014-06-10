@@ -1,23 +1,31 @@
-from django.core.management.base import BaseCommand, CommandError
 import logging
 import datetime
 
+from django.core.management.base import BaseCommand, CommandError
+from django.db import transaction
+
 from snotes20.datasources import sources
 import snotes20.models as models
+
 
 logger = logging.getLogger(__name__)
 
 
 def import_from_source(source):
-    logger.info("importing Podcasts")
+    logger.info("downloading Podcasts")
     podcasts = source.get_podcasts()
-    import_thing(source, podcasts, models.Podcast.objects)
 
-    logger.info("importing Episodes")
+    logger.info("downloading Episodes")
     yesterday = (datetime.date.today() - datetime.timedelta(1))
     tomorrow = (datetime.date.today() + datetime.timedelta(1))
     episodes = source.get_episodes(yesterday, tomorrow)
-    import_thing(source, episodes, models.Episode.objects.filter(document=None))
+
+    with transaction.atomic():
+        logger.info("importing Podcasts")
+        import_thing(source, podcasts, models.Podcast.objects)
+
+        logger.info("importing Episodes")
+        import_thing(source, episodes, models.Episode.objects.filter(document=None))
 
 
 def import_thing(source, data, oqry):
