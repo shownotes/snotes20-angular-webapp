@@ -2,3 +2,4 @@ djangorestframework
 django-cors-headers
 markdown
 django-filter
+hoerapi
