@@ -1,13 +1,37 @@
+import datetime
+
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+
 from rest_framework import viewsets, routers
+from rest_framework.decorators import link
+from rest_framework.response import Response
+from rest_framework.exceptions import MethodNotAllowed
 
-#class UserViewSet(viewsets.ModelViewSet):
-#    model = User
 
-# Routers provide an easy way of automatically determining the URL conf.
+import snotes20.models as models
+import snotes20.serializers as serializers
+
+
+class SoonEpisodeViewSet(viewsets.ViewSet):
+
+    def list(self, request):
+        today =  datetime.date.today()
+        yesterday = (today - datetime.timedelta(1))
+
+        episodes = models.Episode.objects.filter(date__gt=yesterday)\
+                                 .filter(date__lt=today)\
+                                 .order_by('date')[:10]
+
+        return Response(serializers.EpisodeSerializer(episodes).data)
+
+    def retrieve(self, request, pk=None):
+        raise MethodNotAllowed('GET')
+
+
+
 router = routers.DefaultRouter()
-#router.register(r'users', UserViewSet)
+router.register(r'soonepisodes', SoonEpisodeViewSet, base_name='sonnepisodes')
 
 
 
