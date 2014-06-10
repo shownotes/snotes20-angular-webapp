@@ -10,15 +10,15 @@ class Publication(models.Model):
     episode = models.ForeignKey(Episode)
     creator = models.ForeignKey(User)
     state = models.ForeignKey(DocumentState, unique=True)
-    preliminary = models.BooleanField()
-    comment = models.CharField()
+    preliminary = models.BooleanField(default=False)
+    comment = models.CharField(max_length=250)
 
 
 class PublicationRequest(models.Model):
     id = models.AutoField(primary_key=True)
-    publication = models.ForeignKey(Publication, null=True)
+    publication = models.OneToOneField(Publication, null=True)
     episode = models.ForeignKey(Episode)
     requester = models.ForeignKey(User)
     state = models.ForeignKey(DocumentState, unique=True)
-    preliminary = models.BooleanField()
-    comment = models.CharField()
+    preliminary = models.BooleanField(default=False)
+    comment = models.CharField(max_length=250)
