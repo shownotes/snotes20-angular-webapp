@@ -8,10 +8,12 @@
  * Controller of the snotes30App
  */
 angular.module('snotes30App')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MainCtrl', function ($scope, Restangular) {
+    $scope.episodes = [];
+
+    Restangular.all('soonepisodes').getList().then(
+      function (episodes) {
+        $scope.episodes = episodes;
+      }
+    );
   });
