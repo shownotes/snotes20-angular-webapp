@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -12,7 +14,7 @@ EDITOR_CHOICES = (
 class Document(models.Model):
     name = models.CharField(primary_key=True, max_length=25)
     editor = models.CharField(max_length=3, choices=EDITOR_CHOICES)
-    create_date = models.DateTimeField()
+    create_date = models.DateTimeField(default=datetime.now)
     creator = models.ForeignKey(User, null=True)
 
 

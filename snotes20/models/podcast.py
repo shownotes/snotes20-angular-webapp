@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 from django.contrib.auth.models import User
 from .document import Document
@@ -44,7 +46,7 @@ class Podcast(Importable):
     type = models.CharField(max_length=3, choices=TYPE_CHOICES)
     deleted = models.BooleanField(default=False)
     approved= models.BooleanField(default=False)
-    create_date = models.DateTimeField()
+    create_date = models.DateTimeField(default=datetime.now)
 
     def __str__(self):
         return "Podcast " + self.slug
@@ -59,7 +61,7 @@ class Episode(Importable):
     date = models.DateTimeField()
     canceled = models.BooleanField(default=False)
     type = models.CharField(max_length=100, choices=TYPE_CHOICES)
-    create_date = models.DateTimeField()
+    create_date = models.DateTimeField(default=datetime.now)
     stream = models.CharField(max_length=100, null=True)
     document = models.OneToOneField(Document, null=True)
 
