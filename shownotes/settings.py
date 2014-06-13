@@ -105,6 +105,16 @@ LOGGING = {
     },
 }
 
+EDITORS = {
+    'ep': {
+      "type": "etherpad",
+      "humanName": "Etherpad",
+      "secret": "",
+      "userurl": "https://ep.shownot.es/p/",
+      "apiurl": "https://ep.shownot.es/sapi/"
+    }
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
