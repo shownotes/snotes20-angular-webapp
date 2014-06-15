@@ -1,10 +1,12 @@
 from django.db import models
 
+from uuidfield import UUIDField
+
 from .DocumentState import DocumentState
 
 
 class OSFDocumentState(DocumentState):
-    id = models.AutoField(primary_key=True)
+    id = UUIDField(primary_key=True, auto=True)
     notes = models.OneToOneField(OSFNote)
 
 

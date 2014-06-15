@@ -2,6 +2,9 @@ from datetime import datetime
 
 from django.db import models
 from django.contrib.auth.models import User
+
+from uuidfield import UUIDField
+
 from .document import Document
 
 
@@ -35,8 +38,8 @@ TYPE_CHOICES = (
 
 
 class Podcast(Importable):
-    id = models.AutoField(primary_key=True)
     slug = models.SlugField(unique=True, db_index=True)
+    id = UUIDField(primary_key=True, auto=True)
     creator = models.ForeignKey(User, null=True)
     title = models.CharField(max_length=150)
     description = models.TextField()
@@ -53,7 +56,7 @@ class Podcast(Importable):
 
 
 class Episode(Importable):
-    id = models.AutoField(primary_key=True)
+    id = UUIDField(primary_key=True, auto=True)
     podcast = models.ForeignKey(Podcast)
     creator = models.ForeignKey(User, null=True)
     number = models.CharField(max_length=10, null=True)

@@ -3,3 +3,4 @@ django-cors-headers
 markdown
 django-filter
 hoerapi
+django-uuidfield

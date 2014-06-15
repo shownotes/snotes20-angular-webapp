@@ -3,6 +3,8 @@ from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
 
+from uuidfield import UUIDField
+
 
 EDITOR_ETHERPAD  = 'EP'
 
@@ -23,20 +25,20 @@ class ChatMessageIssuer(models.Model):
 
 
 class ChatMessage(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = UUIDField(primary_key=True, auto=True)
     document = models.ForeignKey(Document)
     issuer = models.ForeignKey(ChatMessageIssuer)
     message = models.CharField(max_length=200)
 
 
 class Podcaster(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = UUIDField(primary_key=True, auto=True)
     uri = models.URLField(unique=True, db_index=True)
     name = models.CharField(max_length=30)
 
 
 class DocumentMetaData(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = UUIDField(primary_key=True, auto=True)
     document = models.ForeignKey(Document)
     podcasters = models.ManyToManyField(Podcaster)
 
