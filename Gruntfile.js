@@ -18,14 +18,24 @@ module.exports = function (grunt) {
   function connectAngularMiddleware (connect, options) {
     // based on http://stackoverflow.com/a/20553608/2486196
     var middlewares = [];
-    var directory = options.directory || options.base[options.base.length - 1];
 
     // enable Angular's HTML5 mode
     middlewares.push(function (req, res, next) {
-      if(!require('fs').existsSync(directory + req.url.split('?')[0])) {
+      var exists = false;
+      var file = req.url.split('?')[0];
+
+      for(var i = 0; i < options.base.length; i++) {
+        if(require('fs').existsSync(options.base[i] + file)) {
+          exists = true;
+          break;
+        }
+      }
+
+      if(!exists) {
         res.setHeader('Location', '/');
         req.url = '/';
       }
+
       next();
     });
 
@@ -36,9 +46,6 @@ module.exports = function (grunt) {
       // Serve static files.
       middlewares.push(connect.static(base));
     });
-
-    // Make directory browse-able.
-    middlewares.push(connect.directory(directory));
 
     return middlewares;
   }
