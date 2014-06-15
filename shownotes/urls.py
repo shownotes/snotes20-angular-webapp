@@ -4,6 +4,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.shortcuts import get_object_or_404
 from django.db.transaction import atomic
+from django.contrib.auth import authenticate, login, logout
 
 from rest_framework import viewsets, routers, generics
 from rest_framework.decorators import link
@@ -11,12 +12,42 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.exceptions import MethodNotAllowed, APIException
 from rest_framework.reverse import reverse
+from rest_framework.permissions import IsAuthenticated
 
 import snotes20.models as models
 import snotes20.serializers as serializers
 
 
+router = routers.DefaultRouter()
+
+
+class AuthViewSet(viewsets.ViewSet):
+    permission_classes = ()
+
+    def create(self, request):
+        username = request.DATA['username']
+        password = request.DATA['password']
+
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return Response(status=200)
+            else:
+                return Response(status=401)
+        else:
+            return Response(status=401)
+
+    def destroy(self, request, pk=None):
+        logout(request)
+        return Response(status=200)
+
+router.register(r'auth', AuthViewSet, base_name='auth')
+
+
 class SoonEpisodeViewSet(viewsets.ViewSet):
+    permission_classes = (IsAuthenticated,)
 
     def list(self, request):
         today =  datetime.date.today()
@@ -40,7 +71,6 @@ class DocumentViewSet(viewsets.ModelViewSet):
         raise MethodNotAllowed('GET')
 
 
-router = routers.DefaultRouter()
 router.register(r'soonepisodes', SoonEpisodeViewSet, base_name='sonnepisode')
 router.register(r'documents', DocumentViewSet, base_name='document')
 
