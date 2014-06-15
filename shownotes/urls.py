@@ -12,7 +12,6 @@ from rest_framework.response import Response
 from rest_framework.exceptions import MethodNotAllowed, APIException
 from rest_framework.reverse import reverse
 
-
 import snotes20.models as models
 import snotes20.serializers as serializers
 
