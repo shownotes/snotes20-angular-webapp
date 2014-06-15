@@ -20,6 +20,9 @@ angular
   .config(function ($routeProvider, $locationProvider, RestangularProvider) {
     $routeProvider
       .when('/', {
+        templateUrl: 'views/styleguide.html'
+      })
+      .when('/main', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })

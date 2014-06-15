@@ -1,40 +1,119 @@
-<!doctype html>
-<html class="no-js">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <base href="/">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css styles/vendor.css -->
-    <!-- bower:css -->
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-  </head>
-  <body ng-app="snotes30App">
-    <!-- Add your site or application content here -->
-    <div ng-view=""></div>
+<!DOCTYPE html>
+<html lang="de">
 
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
-    <script src="bower_components/restangular/dist/restangular.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
+<head>
 
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/main.js"></script>
-    <!-- endbuild -->
+  <title>Shownot.es</title>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+  <link type="text/plain" rel="author" href="humans.txt" />
+  <meta name="description" content="" />
+  <base href="/">
+
+  <!--<link rel="shortcut icon" type="image/x-icon" href="" />-->
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/fira/fira.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+
+  <script type="text/javascript">
+  /* <![CDATA[ */
+  (function() {
+    var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+    t.parentNode.insertBefore(s, t);
+  })();
+  /* ]]> */
+  </script>
+
+</head>
+
+<body ng-app="snotes30App">
+
+  <div class="container">
+
+    <section class="sidebar">
+
+      <header>
+        <h1><a href="#">Shownot.es</a></h1>
+      </header>
+
+      <p>Die kollaborative Plattform für Sendungsnotizen. <a href="#">Bitte was?</a></p>
+
+      <nav class="account">
+        <ul>
+          <li title="Mein Account">
+            <label class="toggle" for="toggle-form"><span class="icon-user"></span><span class="caption">Mein Account</span></label>
+            <input type="checkbox" id="toggle-form" />
+            <form>
+              <div class="input">
+                <input type="text" placeholder="Benutzername" value="" title="Gib deinen Benutzernamen ein" required />
+                <input type="text" placeholder="E-Mail-Adresse" value="" title="Gib deine E-Mail-Adresse" required />
+                <input type="password" placeholder="Passwort" value="" title="Gib dein Passwort ein" required />
+                <input type="password" placeholder="Passwort (Wdh.)" value="" title="Wiederhole dein Passwort" required />
+              </div>
+              <div class="button">
+                <input type="submit" value="Einloggen" />
+                <input type="submit" value="Registrieren" />
+              </div>
+            </form>
+          </li>
+        </ul>
+      </nav>
+
+      <nav class="menu">
+        <ul>
+          <li title="Administration"><a href="#"><span class="icon-settings"></span><span class="caption">Administration</span></a></li>
+          <li title="Sendungen"><a href="#"><span class="icon-podcast"></span><span class="caption">Sendungen</span></a></li>
+          <li title="Häufig gestellte Fragen"><a href="#"><span class="icon-info"></span><span class="caption">Häufig gestellte Fragen</span></a></li>
+          <li title="Community"><a href="#"><span class="icon-bubbles"></span><span class="caption">Community</span></a></li>
+        </ul>
+      </nav>
+
+      <footer>
+        <p>Alle Inhalte stehen, soweit nicht anders vermerkt, unter der <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.de" rel="license">CC0-Lizenz</a>.</p>
+        <!-- <p>shownot.es wird betrieben und weiterentwickelt vom Shownotes e.V.</p> -->
+        <!-- <nav>
+          <ul>
+            <li><a href="#">Spenden</a></li>
+            <li><a href="#">Datenschutz</a></li>
+            <li><a href="#">Impressum</a></li>
+          </ul>
+        </nav> -->
+        <a class="FlattrButton" style="display:none;" href="http://shownot.es/"></a>
+      </footer>
+
+    </section>
+
+    <section class="content" ng-view=""></section>
+
+  </div>
+
+  <!-- build:js scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+  <script src="bower_components/restangular/dist/restangular.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:js({.tmp,app}) scripts/scripts.js -->
+  <script src="scripts/app.js"></script>
+  <script src="scripts/controllers/main.js"></script>
+  <!-- endbuild -->
+
 </body>
 </html>
