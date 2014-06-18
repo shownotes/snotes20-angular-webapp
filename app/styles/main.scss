@@ -108,8 +108,7 @@ $icomoondirectory: '../fonts';
   font-style: normal;
 }
 *[class^="icon-"],
-*[class*=" icon-"],
-.toggle:hover:before {
+*[class*=" icon-"] {
   font-family: 'icomoon';
   speak: none;
   font-style: normal;
@@ -395,8 +394,13 @@ nav label:hover {
 nav a:active {
   box-shadow: inset 0 0 0.5em rgba(0, 0, 0, .1);
 }
-nav label:hover:before {
-  content: '\e60f';
+nav .toggle {
+  position: relative;
+}
+nav .toggle:hover .arrow {
+  display: block !important;
+}
+nav .arrow {
   color: #eee;
   font-size: 2em;
   position: absolute;

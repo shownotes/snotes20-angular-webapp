@@ -40,7 +40,7 @@
 
   <div class="container">
 
-    <section class="sidebar">
+    <section class="sidebar" ng-controller="SidebarController">
 
       <header>
         <h1><a href="#">Shownot.es</a></h1>
@@ -51,8 +51,11 @@
       <nav class="account">
         <ul>
           <li title="Mein Account">
-            <label class="toggle" for="toggle-form"><span class="icon-user"></span><span class="caption">Mein Account</span></label>
-            <input type="checkbox" id="toggle-form" />
+            <label class="toggle" for="toggle-form">
+              <span class="arrow" ng-class="{true: 'icon-arrow-up', false: 'icon-arrow-down'}[loginform.isDown]" ng-show="loginform.isDown"></span>
+              <span class="icon-user"></span><span class="caption">Mein Account</span>
+            </label>
+            <input type="checkbox" id="toggle-form" ng-model="loginform.isDown" />
             <form>
               <div class="input">
                 <input type="text" placeholder="Benutzername" value="" title="Gib deinen Benutzernamen ein" required />
@@ -113,6 +116,7 @@
   <!-- build:js({.tmp,app}) scripts/scripts.js -->
   <script src="scripts/app.js"></script>
   <script src="scripts/controllers/main.js"></script>
+  <script src="scripts/controllers/sidebar.js"></script>
   <!-- endbuild -->
 
 </body>
