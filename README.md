@@ -3,7 +3,7 @@
 ## Setup
 
 ```
-$ npm install -g bower grunt
+$ npm install -g bower grunt grunt-cli
 $ gem install compass
 $ cd snotes20
 $ npm install
