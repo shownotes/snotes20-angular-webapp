@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 
 from uuidfield import UUIDField
 
@@ -40,7 +40,7 @@ TYPE_CHOICES = (
 class Podcast(Importable):
     slug = models.SlugField(unique=True, db_index=True)
     id = UUIDField(primary_key=True, auto=True)
-    creator = models.ForeignKey(User, null=True)
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)
     title = models.CharField(max_length=150)
     description = models.TextField()
     url = models.URLField()
@@ -58,7 +58,7 @@ class Podcast(Importable):
 class Episode(Importable):
     id = UUIDField(primary_key=True, auto=True)
     podcast = models.ForeignKey(Podcast)
-    creator = models.ForeignKey(User, null=True)
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)
     number = models.CharField(max_length=10, null=True)
     episodeurl = models.URLField(null=True)
     date = models.DateTimeField()

@@ -56,7 +56,6 @@ ROOT_URLCONF = 'shownotes.urls'
 
 WSGI_APPLICATION = 'shownotes.wsgi.application'
 
-
 CORS_ORIGIN_WHITELIST = (
     'localhost',
     'localhost:9000',
@@ -138,3 +137,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AUTH_USER_MODEL = 'snotes20.NUser'

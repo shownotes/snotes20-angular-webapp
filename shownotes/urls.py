@@ -16,63 +16,15 @@ from rest_framework.permissions import IsAuthenticated
 
 import snotes20.models as models
 import snotes20.serializers as serializers
+import snotes20.views as views
 
 
 router = routers.DefaultRouter()
 
-
-class AuthViewSet(viewsets.ViewSet):
-    permission_classes = ()
-
-    def create(self, request):
-        username = request.DATA['username']
-        password = request.DATA['password']
-
-        user = authenticate(username=username, password=password)
-
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return Response(status=200)
-            else:
-                return Response(status=401)
-        else:
-            return Response(status=401)
-
-    def destroy(self, request, pk=None):
-        logout(request)
-        return Response(status=200)
-
-router.register(r'auth', AuthViewSet, base_name='auth')
-
-
-class SoonEpisodeViewSet(viewsets.ViewSet):
-    permission_classes = (IsAuthenticated,)
-
-    def list(self, request):
-        today =  datetime.date.today()
-        yesterday = (today - datetime.timedelta(1))
-
-        episodes = models.Episode.objects.filter(date__gt=yesterday)\
-                                 .filter(date__lt=today)\
-                                 .order_by('date')[:10]
-
-        return Response(serializers.EpisodeSerializer(episodes).data)
-
-    def retrieve(self, request, pk=None):
-        raise MethodNotAllowed('GET')
-
-
-class DocumentViewSet(viewsets.ModelViewSet):
-    serializer_class = serializers.DocumentSerializer
-    queryset = models.Document.objects.all()
-
-    def list(self, request, *args, **kwargs):
-        raise MethodNotAllowed('GET')
-
-
-router.register(r'soonepisodes', SoonEpisodeViewSet, base_name='sonnepisode')
-router.register(r'documents', DocumentViewSet, base_name='document')
+router.register(r'auth', views.AuthViewSet, base_name='auth')
+router.register(r'users', views.UserViewSet, base_name='users')
+router.register(r'soonepisodes', views.SoonEpisodeViewSet, base_name='sonnepisode')
+router.register(r'documents', views.DocumentViewSet, base_name='document')
 
 
 class UnprocessableEntity(APIException):

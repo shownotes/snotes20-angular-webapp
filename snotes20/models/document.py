@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 
 from uuidfield import UUIDField
 
@@ -17,11 +17,11 @@ class Document(models.Model):
     name = models.CharField(primary_key=True, max_length=25)
     editor = models.CharField(max_length=3, choices=EDITOR_CHOICES)
     create_date = models.DateTimeField(default=datetime.now)
-    creator = models.ForeignKey(User, null=True)
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)
 
 
 class ChatMessageIssuer(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
 
 
 class ChatMessage(models.Model):
