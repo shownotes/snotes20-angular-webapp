@@ -22,6 +22,10 @@ angular
       .when('/', {
         templateUrl: 'views/styleguide.html'
       })
+      .when('/profile', {
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileCtrl'
+      })
       .when('/main', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
