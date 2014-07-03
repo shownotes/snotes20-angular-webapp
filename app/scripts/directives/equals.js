@@ -6,7 +6,9 @@ angular.module('snotes30App').directive('equals', function() {
     restrict: 'A', // only activate on element attribute
     require: '?ngModel', // get a hold of NgModelController
     link: function(scope, elem, attrs, ngModel) {
-      if(!ngModel) return; // do nothing if no ng-model
+      if(!ngModel) {
+        return; // do nothing if no ng-model
+      }
 
       var visible = true;
 
@@ -16,7 +18,7 @@ angular.module('snotes30App').directive('equals', function() {
       });
 
       // observe the other value and re-validate on change
-      attrs.$observe('equals', function (val) {
+      attrs.$observe('equals', function () {
         validate();
       });
 
@@ -36,5 +38,5 @@ angular.module('snotes30App').directive('equals', function() {
         ngModel.$setValidity('equals', val1 === val2 || !visible);
       };
     }
-  }
+  };
 });
