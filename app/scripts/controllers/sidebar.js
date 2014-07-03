@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('SidebarController', function ($scope, AuthenticationService) {
+  .controller('SidebarController', function ($scope, $cookies, AuthenticationService) {
 
     $scope.loginform = {
       isDown: false,
@@ -9,6 +9,10 @@ angular.module('snotes30App')
     };
 
     $scope.errors = {};
+
+    AuthenticationService.getStatus().then(function (user) {
+      $scope.currentUser = user;
+    });
 
     function flipFormMode() {
       $scope.loginform.mode = $scope.loginform.mode === 'login' ? 'register' : 'login';
@@ -24,9 +28,14 @@ angular.module('snotes30App')
 
     function doLogin() {
       AuthenticationService.login(
-        $scope.username,
-        $scope.password
-      );
+        $scope.user.username,
+        $scope.user.password
+      ).then(function () {
+        $scope.currentUser = {
+          username: $scope.user.username
+        };
+        $scope.user = null;
+      });
     }
 
     $scope.register = function () {
@@ -39,10 +48,15 @@ angular.module('snotes30App')
 
     function doRegister() {
       AuthenticationService.register(
-        $scope.username,
-        $scope.email,
-        $scope.password
+        $scope.user.username,
+        $scope.user.email,
+        $scope.user.password
       );
     }
 
+    $scope.logout = function () {
+      AuthenticationService.logout().then(function () {
+        $scope.currentUser = null;
+      });
+    };
   });

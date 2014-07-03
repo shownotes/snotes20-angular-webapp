@@ -48,7 +48,7 @@
 
 			<p>Die kollaborative Plattform für Sendungsnotizen. <a href="#">Was ist das?</a></p>
 
-			<nav class="account">
+			<nav class="account" ng-show="!currentUser">
 				<ul>
 					<li>
 						<label class="toggle" for="toggle-form">
@@ -100,6 +100,10 @@
 						</form>
 					</li>
 				</ul>
+			</nav>
+
+			<nav class="account" ng-show="currentUser">
+				<input type="button" value="Ausloggen" ng-click="logout()" />
 			</nav>
 
 			<nav class="menu">

@@ -33,4 +33,13 @@ angular
     $locationProvider.html5Mode(true);
 
     RestangularProvider.setBaseUrl('http://127.0.0.1:8000/');
+    RestangularProvider.setRequestSuffix('/');
+    RestangularProvider.setDefaultHttpFields({
+      withCredentials: true
+    });
+  })
+  .run(function ($cookies, Restangular) {
+    Restangular.addFullRequestInterceptor(function(element, operation, what, url, headers, query) {
+      headers['X-CSRFToken'] = $cookies.csrftoken;
+    });
   });
