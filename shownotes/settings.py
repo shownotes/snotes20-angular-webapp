@@ -61,6 +61,8 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:9000',
 )
 
+CORS_ALLOW_CREDENTIALS = True
+
 REST_FRAMEWORK = {
     # Use hyperlinked styles by default.
     # Only used if the `serializer_class` attribute is not set on a view.
