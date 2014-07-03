@@ -7,6 +7,12 @@ from rest_framework import viewsets, status
 class AuthViewSet(viewsets.ViewSet):
     permission_classes = ()
 
+    def list(self, request):
+        if request.user.is_authenticated():
+            return Response(status=200)
+        else:
+            return Response(status=401)
+
     def create(self, request):
         username = request.DATA['username']
         password = request.DATA['password']
