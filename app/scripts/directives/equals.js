@@ -8,6 +8,8 @@ angular.module('snotes30App').directive('equals', function() {
     link: function(scope, elem, attrs, ngModel) {
       if(!ngModel) return; // do nothing if no ng-model
 
+      var visible = true;
+
       // watch own value and re-validate on change
       scope.$watch(attrs.ngModel, function() {
         validate();
@@ -18,13 +20,20 @@ angular.module('snotes30App').directive('equals', function() {
         validate();
       });
 
+      if(attrs.ngShow) {
+        scope.$watch(attrs.ngShow, function () {
+          visible = scope.$eval(attrs.ngShow);
+          validate();
+        });
+      }
+
       var validate = function() {
         // values
         var val1 = ngModel.$viewValue;
         var val2 = attrs.equals;
 
         // set validity
-        ngModel.$setValidity('equals', val1 === val2);
+        ngModel.$setValidity('equals', val1 === val2 || !visible);
       };
     }
   }
