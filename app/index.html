@@ -42,11 +42,11 @@
 				<ul>
 					<li>
 						<label class="toggle" for="toggle-form">
-							<span class="arrow" ng-class="{true: 'icon-arrow-up', false: 'icon-arrow-down'}[loginform.isDown]" ng-show="loginform.isDown"></span>
+							<span class="arrow" ng-class="{true: 'icon-arrow-up', false: 'icon-arrow-down'}[loginform.status === 'down']" ng-show="loginform.status === 'down'"></span>
 							<span class="icon-user"></span><span class="caption">Mein Account</span>
 						</label>
-						<input type="checkbox" id="toggle-form" ng-model="loginform.isDown" />
-						<form>
+						<input type="checkbox" id="toggle-form" ng-model="login.isDown" />
+						<form name="loginform.frm" novalidate>
 							<div class="form-input">
 								<input type="text"
 											 ng-model="user.username"
@@ -57,10 +57,10 @@
 								<input type="text"
 											 ng-model="user.email"
 											 ng-show="loginform.mode == 'register'"
+											 ng-required="loginform.mode == 'register'"
 											 placeholder="E-Mail-Adresse"
 											 value=""
-											 title="Gib deine E-Mail-Adresse"
-											 required />
+											 title="Gib deine E-Mail-Adresse" />
 								<input type="password"
 											 ng-model="user.password"
 											 placeholder="Passwort"
@@ -70,11 +70,11 @@
 								<input type="password"
 											 ng-model="user.password2"
 											 ng-show="loginform.mode == 'register'"
+											 ng-required="loginform.mode == 'register'"
 											 placeholder="Passwort (Wdh.)"
 											 equals="{{user.password}}"
 											 value=""
-											 title="Wiederhole dein Passwort"
-											 required />
+											 title="Wiederhole dein Passwort" />
 							</div>
 							<div class="form-check" ng-show="loginform.mode == 'register'">
 								<input type="checkbox"

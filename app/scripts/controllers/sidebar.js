@@ -4,7 +4,7 @@ angular.module('snotes30App')
   .controller('SidebarController', function ($scope, $cookies, AuthenticationService) {
 
     $scope.loginform = {
-      isDown: false,
+      status: 'up',
       mode: 'login'
     };
 
@@ -18,12 +18,20 @@ angular.module('snotes30App')
       $scope.loginform.mode = $scope.loginform.mode === 'login' ? 'register' : 'login';
     }
 
-    $scope.login = function () {
-      if($scope.loginform.mode === 'register') {
+    function handleLoginRegister (mode, func) {
+      if($scope.loginform.mode !== mode) {
         flipFormMode();
-      } else {
-        doLogin();
+      } else if($scope.loginform.frm.$valid) {
+        func();
       }
+    }
+
+    $scope.login = function () {
+      handleLoginRegister('login', doLogin);
+    };
+
+    $scope.register = function () {
+      handleLoginRegister('register', doRegister);
     };
 
     function doLogin() {
@@ -37,14 +45,6 @@ angular.module('snotes30App')
         $scope.user = null;
       });
     }
-
-    $scope.register = function () {
-      if($scope.loginform.mode === 'login') {
-        flipFormMode();
-      } else {
-        doRegister();
-      }
-    };
 
     function doRegister() {
       AuthenticationService.register(
