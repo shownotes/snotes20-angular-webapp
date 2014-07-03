@@ -43,67 +43,65 @@
 }
 
 /* Typeface */
-$firadirectory: '/fonts/fira';
+$fontDirectory: '/fonts';
 
 @font-face {
 	font-family: 'FiraSans';
 	font-style: normal;
 	font-weight: normal;
-	src: url('#{$firadirectory}/eot/FiraSans-Regular.eot');
-	src: url('#{$firadirectory}/eot/FiraSans-Regular.eot?#iefix') format('embedded-opentype'),
-			 url('#{$firadirectory}/woff/FiraSans-Regular.woff') format('woff');
+	src: url('#{$fontDirectory}/fira/fira/eot/FiraSans-Regular.eot');
+	src: url('#{$fontDirectory}/fira/eot/FiraSans-Regular.eot?#iefix') format('embedded-opentype'),
+			 url('#{$fontDirectory}/fira/woff/FiraSans-Regular.woff') format('woff');
 }
 @font-face {
 	font-family: 'FiraSans';
 	font-style: italic;
 	font-weight: normal;
-	src: url('#{$firadirectory}/eot/FiraSans-RegularItalic.eot');
-	src: url('#{$firadirectory}/eot/FiraSans-RegularItalic.eot?#iefix') format('embedded-opentype'),
-			 url('#{$firadirectory}/woff/FiraSans-RegularItalic.woff') format('woff');
+	src: url('#{$fontDirectory}/fira/eot/FiraSans-RegularItalic.eot');
+	src: url('#{$fontDirectory}/fira/eot/FiraSans-RegularItalic.eot?#iefix') format('embedded-opentype'),
+			 url('#{$fontDirectory}/fira/woff/FiraSans-RegularItalic.woff') format('woff');
 }
 @font-face {
 	font-family: 'FiraSans';
 	font-style: normal;
 	font-weight: bold;
-	src: url('#{$firadirectory}/eot/FiraSans-Bold.eot');
-	src: url('#{$firadirectory}/eot/FiraSans-Bold.eot?#iefix') format('embedded-opentype'),
-			 url('#{$firadirectory}/woff/FiraSans-Bold.woff') format('woff');
+	src: url('#{$fontDirectory}/fira/eot/FiraSans-Bold.eot');
+	src: url('#{$fontDirectory}/fira/eot/FiraSans-Bold.eot?#iefix') format('embedded-opentype'),
+			 url('#{$fontDirectory}/fira/woff/FiraSans-Bold.woff') format('woff');
 }
 @font-face {
 	font-family: 'FiraSans';
 	font-style: italic;
 	font-weight: bold;
-	src: url('#{$firadirectory}/eot/FiraSans-BoldItalic.eot');
-	src: url('#{$firadirectory}/eot/FiraSans-BoldItalic.eot?#iefix') format('embedded-opentype'),
-			 url('#{$firadirectory}/woff/FiraSans-BoldItalic.woff') format('woff');
+	src: url('#{$fontDirectory}/fira/eot/FiraSans-BoldItalic.eot');
+	src: url('#{$fontDirectory}/fira/eot/FiraSans-BoldItalic.eot?#iefix') format('embedded-opentype'),
+			 url('#{$fontDirectory}/fira/woff/FiraSans-BoldItalic.woff') format('woff');
 }
 @font-face {
 	font-family: 'FiraMono';
 	font-style: normal;
 	font-weight: normal;
-	src: url('#{$firadirectory}/eot/FiraMono-Regular.eot');
-	src: url('#{$firadirectory}/eot/FiraMono-Regular.eot?#iefix') format('embedded-opentype'),
-			 url('#{$firadirectory}/woff/FiraMono-Regular.woff') format('woff');
+	src: url('#{$fontDirectory}/fira/eot/FiraMono-Regular.eot');
+	src: url('#{$fontDirectory}/fira/eot/FiraMono-Regular.eot?#iefix') format('embedded-opentype'),
+			 url('#{$fontDirectory}/fira/woff/FiraMono-Regular.woff') format('woff');
 }
 @font-face {
 	font-family: 'FiraMono';
 	font-style: normal;
 	font-weight: bold;
-	src: url('#{$firadirectory}/eot/FiraMono-Bold.eot');
-	src: url('#{$firadirectory}/eot/FiraMono-Bold.eot?#iefix') format('embedded-opentype'),
-			 url('#{$firadirectory}/woff/iraMono-Bold.woff') format('woff');
+	src: url('#{$fontDirectory}/fira/eot/FiraMono-Bold.eot');
+	src: url('#{$fontDirectory}/fira/eot/FiraMono-Bold.eot?#iefix') format('embedded-opentype'),
+			 url('#{$fontDirectory}/fira/woff/iraMono-Bold.woff') format('woff');
 }
 
 /* Icons */
-$icomoondirectory: '../fonts';
-
 @font-face {
 	font-family: 'icomoon';
-	src: url('#{$icomoondirectory}/icomoon.eot?-osx5jv');
-	src: url('#{$icomoondirectory}/icomoon.eot?#iefix-osx5jv') format('embedded-opentype'),
-			 url('#{$icomoondirectory}/icomoon.woff?-osx5jv') format('woff'),
-			 url('#{$icomoondirectory}/icomoon.ttf?-osx5jv') format('truetype'),
-			 url('#{$icomoondirectory}/icomoon.svg?-osx5jv#icomoon') format('svg');
+	src: url('#{$fontDirectory}/icomoon/icomoon.eot?-osx5jv');
+	src: url('#{$fontDirectory}/icomoon/icomoon.eot?#iefix-osx5jv') format('embedded-opentype'),
+			 url('#{$fontDirectory}/icomoon/icomoon.woff?-osx5jv') format('woff'),
+			 url('#{$fontDirectory}/icomoon/icomoon.ttf?-osx5jv') format('truetype'),
+			 url('#{$fontDirectory}/icomoon/icomoon.svg?-osx5jv#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
