@@ -84,8 +84,8 @@
 								<label for="checkrules">Ich akzeptiere die <a href="#">Regeln</a>.</label>
 							</div>
 							<div class="form-button">
-								<input type="button" value="Einloggen" ng-click="login()" />
-								<input type="button" value="Registrieren" ng-click="register()" />
+								<input type="{{loginform.mode === 'register' ? 'button' : 'submit'}}" value="Einloggen" ng-click="login()" />
+								<input type="{{loginform.mode === 'login' ? 'button' : 'submit'}}" value="Registrieren" ng-click="register()" />
 							</div>
 						</form>
 					</li>
