@@ -7,6 +7,10 @@ Website: kaikubasta.de
 Twitter: @kaikubasta
 Location: Berlin, Germany
 
+Frontend developer (Angular), backend developer: luto
+Website: luto.at
+Location: Vienna, Austria
+
 # THANKS
 
 Fira Sans & Fira Mono typeface: Erik Spiekermann, Ralph du Carrois, Mozilla
