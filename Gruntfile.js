@@ -371,6 +371,19 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
+        }, {
+          cwd: '<%= yeoman.app %>/bower_components/fira',
+          dest: '<%= yeoman.dist %>/fonts/fira',
+          expand: true,
+          src: [ '**/*.{eot,otf,ttf,woff}', ]
+        }]
+      },
+      fonts: {
+        files: [{
+          cwd: '<%= yeoman.app %>/bower_components/fira',
+          dest: '.tmp/fonts/fira',
+          expand: true,
+          src: [ '**/*.{eot,otf,ttf,woff}', ]
         }]
       },
       styles: {
@@ -413,6 +426,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'copy:fonts',
       'wiredep',
       'concurrent:server',
       'autoprefixer',
