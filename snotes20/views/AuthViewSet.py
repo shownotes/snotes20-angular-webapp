@@ -9,7 +9,7 @@ class AuthViewSet(viewsets.ViewSet):
 
     def list(self, request):
         if request.user.is_authenticated():
-            return Response(status=200)
+            return Response(data={'user': {'username': request.user.username}}, status=200)
         else:
             return Response(status=401)
 
