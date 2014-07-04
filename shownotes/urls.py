@@ -9,8 +9,8 @@ router = routers.DefaultRouter()
 
 router.register(r'auth', views.AuthViewSet, base_name='auth')
 router.register(r'users', views.UserViewSet, base_name='users')
-router.register(r'soonepisodes', views.SoonEpisodeViewSet, base_name='sonnepisode')
-router.register(r'documents', views.DocumentViewSet, base_name='document')
+router.register(r'soonepisodes', views.SoonEpisodeViewSet, base_name='sonnepisodes')
+router.register(r'documents', views.DocumentViewSet, base_name='documents')
 
 urlpatterns = patterns('',
     url(r'^', include(router.urls)),
