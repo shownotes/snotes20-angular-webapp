@@ -17,7 +17,7 @@ class Document(models.Model):
     name = models.CharField(primary_key=True, max_length=25)
     editor = models.CharField(max_length=3, choices=EDITOR_CHOICES)
     create_date = models.DateTimeField(default=datetime.now)
-    creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
 
     def __str__(self):
         try:

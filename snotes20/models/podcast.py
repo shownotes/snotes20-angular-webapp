@@ -19,8 +19,8 @@ SOURCE_CHOICES = (
 
 class Importable(models.Model):
     source = models.CharField(max_length=100, choices=SOURCE_CHOICES, db_index=True)
-    source_id = models.IntegerField(null=True, db_index=True)
-    import_date = models.DateTimeField()
+    source_id = models.IntegerField(null=True, blank=True, db_index=True)
+    import_date = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         abstract = True
@@ -40,12 +40,12 @@ TYPE_CHOICES = (
 class Podcast(Importable):
     slug = models.SlugField(unique=True, db_index=True)
     id = UUIDField(primary_key=True, auto=True)
-    creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
     title = models.CharField(max_length=150)
     description = models.TextField()
     url = models.URLField()
-    stream = models.CharField(max_length=100, null=True)
-    chat = models.CharField(max_length=100, null=True)
+    stream = models.CharField(max_length=100, null=True, blank=True)
+    chat = models.CharField(max_length=100, null=True, blank=True)
     type = models.CharField(max_length=3, choices=TYPE_CHOICES)
     deleted = models.BooleanField(default=False)
     approved= models.BooleanField(default=False)
@@ -58,15 +58,15 @@ class Podcast(Importable):
 class Episode(Importable):
     id = UUIDField(primary_key=True, auto=True)
     podcast = models.ForeignKey(Podcast)
-    creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)
-    number = models.CharField(max_length=10, null=True)
-    episodeurl = models.URLField(null=True)
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
+    number = models.CharField(max_length=10, null=True, blank=True)
+    episodeurl = models.URLField(null=True, blank=True)
     date = models.DateTimeField()
     canceled = models.BooleanField(default=False)
     type = models.CharField(max_length=100, choices=TYPE_CHOICES)
     create_date = models.DateTimeField(default=datetime.now)
-    stream = models.CharField(max_length=100, null=True)
-    document = models.OneToOneField(Document, null=True, unique=True)
+    stream = models.CharField(max_length=100, null=True, blank=True)
+    document = models.OneToOneField(Document, null=True, blank=True, unique=True)
 
     def __str__(self):
         return "Episode {} (nr: {}, pod: {})".format(self.id, self.number, self.podcast.slug)
