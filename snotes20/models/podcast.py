@@ -69,4 +69,4 @@ class Episode(Importable):
     document = models.OneToOneField(Document, null=True)
 
     def __str__(self):
-        return "Episode {} (nr: {}, pod: {})".format(self.id, self.number, self.podcast_id)
+        return "Episode {} (nr: {}, pod: {})".format(self.id, self.number, self.podcast.slug)

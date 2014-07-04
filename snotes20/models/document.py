@@ -19,6 +19,14 @@ class Document(models.Model):
     create_date = models.DateTimeField(default=datetime.now)
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)
 
+    def __str__(self):
+        try:
+            epi = str(self.episode)
+        except:
+            epi = "no episode"
+
+        return "Document {} ({})".format(self.name, epi)
+
 
 class ChatMessageIssuer(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
