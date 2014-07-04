@@ -66,7 +66,7 @@ class Episode(Importable):
     type = models.CharField(max_length=100, choices=TYPE_CHOICES)
     create_date = models.DateTimeField(default=datetime.now)
     stream = models.CharField(max_length=100, null=True)
-    document = models.OneToOneField(Document, null=True)
+    document = models.OneToOneField(Document, null=True, unique=True)
 
     def __str__(self):
         return "Episode {} (nr: {}, pod: {})".format(self.id, self.number, self.podcast.slug)
