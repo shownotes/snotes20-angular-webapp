@@ -10,6 +10,10 @@ class PodcastAdmin(admin.ModelAdmin):
 class EpisodeAdmin(admin.ModelAdmin):
     pass
 
+@admin.register(models.Document)
+class DocumentAdmin(admin.ModelAdmin):
+    pass
+
 @admin.register(models.Publication)
 class PublicationAdmin(admin.ModelAdmin):
     pass
