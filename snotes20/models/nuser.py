@@ -31,3 +31,19 @@ class NUser(AbstractBaseUser, PermissionsMixin):
 
     def email_user(self, subject, message, from_email=None, **kwargs):
         send_mail(subject, message, from_email, [self.email], **kwargs)
+
+
+class NUserSocialType(models.Model):
+    name = models.SlugField(primary_key=True)
+    human_name = models.CharField(max_length=20)
+    description = models.CharField(max_length=100)
+    icon = models.CharField(max_length=10)
+
+
+class NUserSocial(models.Model):
+    user = models.ForeignKey(NUser, db_index=True, related_name="socials")
+    type = models.ForeignKey(NUserSocialType, db_index=True)
+    value = models.CharField(max_length=20)
+
+    class Meta:
+        unique_together = ('user', 'type')
