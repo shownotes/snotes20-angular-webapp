@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('ProfileCtrl', function ($scope, Restangular) {
+  .controller('UserProfileCtrl', function ($scope, Restangular) {
     $scope.user = {
       username: 'Gurkenluto'
     };

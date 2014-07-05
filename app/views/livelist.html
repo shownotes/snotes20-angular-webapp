@@ -1,0 +1,7 @@
+<div ng-repeat="ep in episodes">
+  {{ ep.podcast.title }}
+  {{ ep.date }}
+  <input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
+  <input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
+  <hr>
+</div>
