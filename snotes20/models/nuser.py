@@ -1,8 +1,15 @@
+import random
+
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, UserManager
 from django.db import models
 from django.core.mail import send_mail
 from django.core import validators
 from django.utils import timezone
+from django.core.validators import RegexValidator
+
+
+def get_random_color():
+    return hex(random.getrandbits(28))[2:8].upper()
 
 
 class NUser(AbstractBaseUser, PermissionsMixin):
@@ -13,6 +20,9 @@ class NUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField('is_staff', default=False)
     is_active = models.BooleanField('is_active', default=True)
     date_joined = models.DateTimeField('date_joined', default=timezone.now)
+    date_login = models.DateTimeField('date_login', null=True)
+    color = models.CharField(max_length=6, default=get_random_color,
+                             validators=[RegexValidator(regex='^[A-F0-9]{6}$', message='No color', code='nocolor')])
 
     objects = UserManager()
 
@@ -39,11 +49,21 @@ class NUserSocialType(models.Model):
     description = models.CharField(max_length=100)
     icon = models.CharField(max_length=10)
 
+    def __str__(self):
+        return self.human_name
+
+    class Meta:
+        verbose_name = "Social Type"
+
 
 class NUserSocial(models.Model):
     user = models.ForeignKey(NUser, db_index=True, related_name="socials")
     type = models.ForeignKey(NUserSocialType, db_index=True)
     value = models.CharField(max_length=20)
 
+    def __str__(self):
+        return self.type.human_name + "(" + self.value + ")"
+
     class Meta:
         unique_together = ('user', 'type')
+        verbose_name = "Social"
