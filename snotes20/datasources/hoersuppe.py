@@ -1,9 +1,12 @@
 from datetime import datetime
+import logging
 
 import hoerapi
 
 from .AbstractDataSource import AbstractDataSource
 import snotes20.models.podcast as models
+
+logger = logging.getLogger(__name__)
 
 
 class HoersuppeDataSource(AbstractDataSource):
@@ -51,7 +54,11 @@ class HoersuppeDataSource(AbstractDataSource):
         episodes = []
 
         for ep in h_episodes:
-            podcast = models.Podcast.objects.get(slugs__slug=ep.podcast)
+            try:
+                podcast = models.Podcast.objects.get(slugs__slug=ep.podcast)
+            except models.Podcast.DoesNotExist:
+                logger.warn("can't import episode %s: podcast '%s' not found!", ep.id, ep.podcast)
+                continue
 
             episodes.append(models.Episode(
                 podcast=podcast,
