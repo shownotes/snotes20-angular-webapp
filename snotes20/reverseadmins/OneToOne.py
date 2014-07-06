@@ -10,8 +10,9 @@ class ReverseOneToOneAdminForm(forms.ModelForm):
         else:
             initial = {}
 
-        for rel in self.rels:
-            initial[rel] = getattr(kwargs['instance'], rel, None)
+        if 'instance' in kwargs:
+            for rel in self.rels:
+                initial[rel] = getattr(kwargs['instance'], rel, None)
 
         kwargs['initial'] = initial
         super(ReverseOneToOneAdminForm, self).__init__(*args, **kwargs)
