@@ -28,9 +28,11 @@ class ReverseOneToOneAdmin(admin.ModelAdmin):
                 other = form.cleaned_data[name]
                 setattr(obj, name, other)
             else:
-                other = obj.episode
-                setattr(other, rname, None)
+                other = getattr(obj, name, None)
+                if other is not None:
+                    setattr(other, rname, None)
 
-            other.save()
+            if other is not None:
+                other.save()
 
         admin.ModelAdmin.save_model(self, request, obj, forms, change)
