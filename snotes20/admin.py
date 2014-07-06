@@ -148,10 +148,6 @@ class NUserAdmin(UserAdmin):
     form = NUserChangeForm
     add_form = NUserCreationForm
 
-@admin.register(models.NUserSocial)
-class NUserSocialAdmin(admin.ModelAdmin):
-    pass
-
 @admin.register(models.NUserSocialType)
 class NUserSocialTypeAdmin(admin.ModelAdmin):
     pass
