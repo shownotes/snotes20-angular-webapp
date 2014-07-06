@@ -39,13 +39,14 @@ class NUserSocialInline(admin.StackedInline):
     extra = 0
 
 
-
-class MyUserChangeForm(UserChangeForm):
+class NUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
         model = models.NUser
 
 
-class MyUserCreationForm(UserCreationForm):
+class NUserCreationForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+
     class Meta(UserCreationForm.Meta):
         model = models.NUser
 
@@ -57,21 +58,33 @@ class MyUserCreationForm(UserCreationForm):
             return username
         raise forms.ValidationError(self.error_messages['duplicate_username'])
 
-
+    def save(self, commit=True):
+        user = super(NUserCreationForm, self).save(commit=False)
+        user.email = self.cleaned_data["email"]
+        if commit:
+            user.save()
+        return user
 
 UserAdmin.fieldsets = (
-    UserAdmin.fieldsets[0],
+    (UserAdmin.fieldsets[0][0], {'fields': ('username', 'password', 'migrated')}),
     (UserAdmin.fieldsets[1][0], {'fields': ('email', 'color')}),
     (UserAdmin.fieldsets[2][0], {'fields': ('groups',)}),
     UserAdmin.fieldsets[3],
 )
 UserAdmin.list_display = ('username', 'email', 'is_staff')
+UserAdmin.readonly_fields = ('migrated',)
+UserAdmin.add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('username', 'email', 'password1', 'password2'),
+        }),
+    )
 
 @admin.register(models.NUser)
 class NUserAdmin(UserAdmin):
     inlines = [NUserSocialInline,]
-    form = MyUserChangeForm
-    add_form = MyUserCreationForm
+    form = NUserChangeForm
+    add_form = NUserCreationForm
 
 @admin.register(models.NUserSocial)
 class NUserSocialAdmin(admin.ModelAdmin):

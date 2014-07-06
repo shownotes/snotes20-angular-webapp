@@ -24,6 +24,9 @@ class NUser(AbstractBaseUser, PermissionsMixin):
     color = models.CharField(max_length=6, default=get_random_color,
                              validators=[RegexValidator(regex='^[A-F0-9]{6}$', message='No color', code='nocolor')])
 
+    migrated = models.BooleanField(default=True)
+    old_password = models.CharField(max_length=100, null=True, blank=True, default=None)
+
     objects = UserManager()
 
     USERNAME_FIELD = 'username'
