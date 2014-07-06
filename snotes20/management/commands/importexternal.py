@@ -50,10 +50,13 @@ def import_from_source(source):
 
             if epqry.exists():
                 dbep = epqry.get()
-                logger.debug("updating {}".format(dbep))
 
-                episode.id = dbep.id
-                episode.save()
+                if getattr(dbep, 'document', None) is None:
+                    logger.debug("updating {}".format(dbep))
+                    episode.id = dbep.id
+                    episode.save()
+                else:
+                    logger.debug("skipped {}".format(dbep))
             else:
                 logger.debug("creating {}".format(episode))
                 episode.save()
