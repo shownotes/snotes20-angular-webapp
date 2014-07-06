@@ -75,3 +75,7 @@ class HoersuppeDataSource(AbstractDataSource):
             ))
 
         return episodes
+
+    @classmethod
+    def get_deleted_episodes(cls):
+        return [ep.event_id for ep in hoerapi.get_deleted()]

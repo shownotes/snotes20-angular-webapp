@@ -61,6 +61,12 @@ def import_from_source(source):
                 logger.debug("creating {}".format(episode))
                 episode.save()
 
+    logger.info("deleting Episodes which have been deleted at source")
+    src_deleted = source.get_deleted_episodes()
+    qry = models.Episode.objects.filter(source_id__in=src_deleted)
+    logger.info("%i Episodes", qry.count())
+    qry.delete()
+
     logger.info("deleting old Episodes")
     today = datetime.datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
     qry = models.Episode.objects.filter(date__lt=today).filter(document=None)
