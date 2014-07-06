@@ -7,7 +7,25 @@ import snotes20.reverseadmins as reverse
 
 @admin.register(models.Podcast)
 class PodcastAdmin(admin.ModelAdmin):
-    pass
+    fieldsets = (
+        (None, {
+            'fields': ('slug', 'title', 'description', 'url', 'type')
+        }),
+        ('Live', {
+            'fields': ('stream', 'chat')
+        }),
+        ('Validity', {
+            'fields': ('deleted', 'approved')
+        }),
+        ('Import', {
+            'classes': ('collapse',),
+            'fields': ('source', 'source_id', 'import_date')
+        }),
+        ('Creation', {
+            'classes': ('collapse',),
+            'fields': ('creator', 'create_date')
+        }),
+    )
 
 @admin.register(models.Episode)
 class EpisodeAdmin(admin.ModelAdmin):
