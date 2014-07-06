@@ -15,7 +15,7 @@ class HoersuppeDataSource(AbstractDataSource):
 
     @classmethod
     def get_podcasts(cls):
-        h_podcastlist = hoerapi.get_podcasts()[:0]
+        h_podcastlist = hoerapi.get_podcasts()
         podcasts = []
 
         for pod in h_podcastlist:
