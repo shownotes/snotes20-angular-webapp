@@ -43,6 +43,7 @@ def import_from_source(source):
     tomorrow = (datetime.date.today() + datetime.timedelta(1))
     episodes = source.get_episodes(datetime.date.today(), tomorrow)
 
+    logger.info("importing Episodes")
     with transaction.atomic():
         for episode in episodes:
             epqry = models.Episode.objects.filter(source_id=episode.source_id).filter(source=source.shortname)
@@ -60,6 +61,11 @@ def import_from_source(source):
                 logger.debug("creating {}".format(episode))
                 episode.save()
 
+    logger.info("deleting old Episodes")
+    today = datetime.datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+    qry = models.Episode.objects.filter(date__lt=today).filter(document=None)
+    logger.info("%i Episodes", qry.count())
+    qry.delete()
 
 class Command(BaseCommand):
     args = ''
