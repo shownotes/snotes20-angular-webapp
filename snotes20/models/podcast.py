@@ -19,7 +19,7 @@ SOURCE_CHOICES = (
 
 class Importable(models.Model):
     source = models.CharField(max_length=100, choices=SOURCE_CHOICES, db_index=True)
-    source_id = models.IntegerField(null=True, blank=True, db_index=True)
+    source_id = models.IntegerField(null=True, blank=True, verbose_name="ID at source", db_index=True)
     import_date = models.DateTimeField(null=True, blank=True)
 
     class Meta:
@@ -60,7 +60,7 @@ class Episode(Importable):
     podcast = models.ForeignKey(Podcast)
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
     number = models.CharField(max_length=10, null=True, blank=True)
-    episodeurl = models.URLField(null=True, blank=True)
+    episode_url = models.URLField(verbose_name="Episode URL", null=True, blank=True)
     date = models.DateTimeField()
     canceled = models.BooleanField(default=False)
     type = models.CharField(max_length=100, choices=TYPE_CHOICES)

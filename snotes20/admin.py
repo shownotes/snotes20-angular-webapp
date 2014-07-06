@@ -11,7 +11,22 @@ class PodcastAdmin(admin.ModelAdmin):
 
 @admin.register(models.Episode)
 class EpisodeAdmin(admin.ModelAdmin):
-    pass
+    fieldsets = (
+        (None, {
+            'fields': ('podcast', 'number', 'type', 'episode_url')
+        }),
+        ('Live', {
+            'fields': (('date', 'canceled'), 'stream', 'document')
+        }),
+        ('Import', {
+            'classes': ('collapse',),
+            'fields': ('source', 'source_id', 'import_date')
+        }),
+        ('Creation', {
+            'classes': ('collapse',),
+            'fields': ('creator', 'create_date')
+        }),
+    )
 
 class DocumentAdminForm(reverse.ReverseOneToOneAdminForm):
     rels = ('episode',)
