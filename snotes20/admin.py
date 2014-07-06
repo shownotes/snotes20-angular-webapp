@@ -1,12 +1,31 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin, UserChangeForm, UserCreationForm
 import django.forms as forms
+import django.db.models as dmodels
 
 import snotes20.models as models
 import snotes20.reverseadmins as reverse
 
+class PodcastSlugInline(admin.TabularInline):
+    model = models.PodcastSlug
+    extra = 0
+
+class EpisodeInline(admin.TabularInline):
+    model = models.Episode
+    extra = 0
+    fields = ('date', 'number', 'episode_url', 'type', 'document')
+
+    formfield_overrides = {
+        dmodels.CharField: {'widget': forms.TextInput(attrs={'size': '20'})},
+        dmodels.URLField: {'widget': forms.TextInput(attrs={'size': '20'})},
+    }
+
 @admin.register(models.Podcast)
 class PodcastAdmin(admin.ModelAdmin):
+    inlines = [PodcastSlugInline, EpisodeInline]
+
+    search_fields = ('slugs__slug', 'source_id', 'title', 'url')
+    readonly_fields = ('slug',)
     fieldsets = (
         (None, {
             'fields': ('slug', 'title', 'description', 'url', 'type')

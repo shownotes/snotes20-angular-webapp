@@ -38,7 +38,6 @@ TYPE_CHOICES = (
 
 
 class Podcast(Importable):
-    slug = models.SlugField(unique=True, db_index=True)
     id = UUIDField(primary_key=True, auto=True)
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
     title = models.CharField(max_length=150)
@@ -52,8 +51,26 @@ class Podcast(Importable):
     create_date = models.DateTimeField(default=datetime.now)
 
     def __str__(self):
-        return "Podcast " + self.slug
+        try:
+            return "Podcast " + self.slug
+        except models.ObjectDoesNotExist:
+            return "Podcast no slug!"
 
+    @property
+    def slug(self):
+        return str(self.slugs.latest())
+
+
+class PodcastSlug(models.Model):
+    podcast = models.ForeignKey(Podcast, related_name="slugs")
+    slug = models.SlugField(unique=True, db_index=True)
+    date_added = models.DateTimeField(default=datetime.now)
+
+    def __str__(self):
+        return self.slug
+
+    class Meta:
+        get_latest_by = 'date_added'
 
 class Episode(Importable):
     id = UUIDField(primary_key=True, auto=True)
