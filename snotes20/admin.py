@@ -27,8 +27,18 @@ class PodcastAdmin(admin.ModelAdmin):
         }),
     )
 
+class PublicationInline(admin.StackedInline):
+    model = models.Publication
+    extra = 0
+    fields = ('creator', ('comment', 'preliminary'), 'state')
+    readonly_fields = ('state',)
+
+    def has_add_permission(self, request):
+        return False
+
 @admin.register(models.Episode)
 class EpisodeAdmin(admin.ModelAdmin):
+    inlines = (PublicationInline,)
     fieldsets = (
         (None, {
             'fields': ('podcast', 'number', 'type', 'episode_url')
