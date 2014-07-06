@@ -87,3 +87,8 @@ class Episode(Importable):
 
     def __str__(self):
         return "Episode {} (nr: {}, pod: {})".format(self.id, self.number, self.podcast.slug)
+
+    def save(self, *args, **kwargs):
+        if not self.number:
+            self.number = None
+        super(Episode, self).save(*args, **kwargs)
