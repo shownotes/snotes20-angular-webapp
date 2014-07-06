@@ -77,7 +77,7 @@ class PublicationRequestAdmin(admin.ModelAdmin):
     pass
 
 
-class NUserSocialInline(admin.StackedInline):
+class NUserSocialInline(admin.TabularInline):
     model = models.NUserSocial
     extra = 0
 
@@ -112,7 +112,7 @@ UserAdmin.fieldsets = (
     (UserAdmin.fieldsets[0][0], {'fields': ('username', 'password', 'migrated')}),
     (UserAdmin.fieldsets[1][0], {'fields': ('email', 'color')}),
     (UserAdmin.fieldsets[2][0], {'fields': ('groups',)}),
-    UserAdmin.fieldsets[3],
+    (UserAdmin.fieldsets[3][0], {'fields': (('date_login', 'date_joined'),)})
 )
 UserAdmin.list_display = ('username', 'email', 'is_staff')
 UserAdmin.readonly_fields = ('migrated',)
