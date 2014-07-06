@@ -40,9 +40,8 @@ def import_from_source(source):
                 slug.save()
 
     logger.info("downloading Episodes")
-    yesterday = (datetime.date.today() - datetime.timedelta(1))
     tomorrow = (datetime.date.today() + datetime.timedelta(1))
-    episodes = source.get_episodes(yesterday, tomorrow)
+    episodes = source.get_episodes(datetime.date.today(), tomorrow)
 
     with transaction.atomic():
         for episode in episodes:
