@@ -52,7 +52,7 @@ class Podcast(Importable):
 
     def __str__(self):
         try:
-            return "Podcast " + self.slug
+            return "Podcast {} ({})".format(self.title, self.slug)
         except models.ObjectDoesNotExist:
             return "Podcast no slug!"
 
@@ -86,7 +86,7 @@ class Episode(Importable):
     document = models.OneToOneField(Document, null=True, blank=True, unique=True)
 
     def __str__(self):
-        return "Episode {} (nr: {}, pod: {})".format(self.id, self.number, self.podcast.slug)
+        return "Episode {}-{} ({})".format(self.podcast.slug, self.number or 'NoNumberYet', self.date)
 
     def save(self, *args, **kwargs):
         if not self.number:
