@@ -34,6 +34,9 @@ angular
         templateUrl: 'views/user/profile.html',
         controller: 'UserProfileCtrl'
       })
+      .when('/profile/:user', {
+        templateUrl: 'views/profile.html',
+      })
       .when('/user/upgrade', {
         templateUrl: 'views/user/upgrade.html',
         controller: 'UserUpgradeCtrl'
