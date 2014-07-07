@@ -6,6 +6,9 @@ from django.core.mail import send_mail
 from django.core import validators
 from django.utils import timezone
 from django.core.validators import RegexValidator
+from django.template import Context
+from django.template.loader import render_to_string
+from django.conf import settings
 
 
 def get_random_color():
@@ -44,6 +47,22 @@ class NUser(AbstractBaseUser, PermissionsMixin):
 
     def email_user(self, subject, message, from_email=None, **kwargs):
         send_mail(subject, message, from_email, [self.email], **kwargs)
+
+    def add_email_token(self, email):
+        pass
+
+    def email_user_activation(self, lang, token):
+        options = settings.EMAILS['activation']
+        siteurl = settings.SITEURL
+
+        c = Context({
+            'username': self.username,
+            'token': token,
+            'siteurl': siteurl
+        })
+
+        text_content = render_to_string('activation_' + lang + '.txt', c)
+        self.email_user(options['subject'][lang], text_content, from_email=options['from'])
 
 
 class NUserSocialType(models.Model):

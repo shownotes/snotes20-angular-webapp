@@ -120,6 +120,27 @@ EDITORS = {
     }
 }
 
+SITEURL = "http://localhost:8000/"
+
+EMAILS = {
+    'activation': {
+        'subject': {
+            'en': 'shownot.es account activation',
+            'de': 'shownot.es Kontoaktivierung',
+        },
+        'from': 'noreply@shownot.es'
+    },
+}
+
+EMAIL_HOST = ''
+EMAIL_PORT = 587
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = True
+
+TEMPLATE_DIRS = (
+    BASE_DIR + '/snotes20/emailtemplates/',
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
