@@ -2,9 +2,10 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin, UserChangeForm, UserCreationForm
 import django.forms as forms
 import django.db.models as dmodels
+from django.core.urlresolvers import reverse
 
 import snotes20.models as models
-import snotes20.reverseadmins as reverse
+from snotes20.reverseadmins import ReverseOneToOneAdmin, ReverseOneToOneAdminForm
 
 class PodcastSlugInline(admin.TabularInline):
     model = models.PodcastSlug
@@ -75,7 +76,7 @@ class EpisodeAdmin(admin.ModelAdmin):
         }),
     )
 
-class DocumentAdminForm(reverse.ReverseOneToOneAdminForm):
+class DocumentAdminForm(ReverseOneToOneAdminForm):
     rels = ('episode',)
     episode = forms.ModelChoiceField(queryset=models.Episode.objects.all(), required=False)
 
@@ -83,7 +84,7 @@ class DocumentAdminForm(reverse.ReverseOneToOneAdminForm):
         model = models.Document
 
 @admin.register(models.Document)
-class DocumentAdmin(reverse.ReverseOneToOneAdmin):
+class DocumentAdmin(ReverseOneToOneAdmin):
     form = DocumentAdminForm
     rels = (('episode', 'document'),)
 
@@ -151,3 +152,43 @@ class NUserAdmin(UserAdmin):
 @admin.register(models.NUserSocialType)
 class NUserSocialTypeAdmin(admin.ModelAdmin):
     pass
+
+
+
+class ImporterJobLogInline(admin.StackedInline):
+    model = models.ImporterJobLog
+    extra = 0
+
+    fields = ('name', ('created', 'deleted', 'skipped', 'updated'), 'runtime', ('starttime', 'endtime'), ('succeeded', 'error'))
+    readonly_fields = ('runtime',)
+
+@admin.register(models.ImporterDatasourceLog)
+class ImporterDatasourceLogAdmin(admin.ModelAdmin):
+    inlines = [ImporterJobLogInline]
+
+    fields = ('runtime', ('starttime', 'endtime'), 'succeeded', 'log', 'source')
+    readonly_fields = ('runtime', 'succeeded')
+
+
+class ImporterDatasourceLogInline(admin.TabularInline):
+    model = models.ImporterDatasourceLog
+    fields = ('source', 'succeeded', 'object_link')
+    readonly_fields = ('source', 'succeeded', 'object_link')
+    list_select_related = True
+    extra = 0
+    can_delete = False
+
+    def object_link(self, obj):
+        url = reverse('admin:snotes20_importerdatasourcelog_change', args=(obj.pk,))
+        tag = '<a href="{}">Show source log</a>'.format(url)
+        return tag
+
+    object_link.allow_tags = True
+    object_link.short_description = ''
+
+@admin.register(models.ImporterLog)
+class ImporterLogAdmin(admin.ModelAdmin):
+    fields = ('runtime', ('starttime', 'endtime'))
+    readonly_fields = ('runtime',)
+    inlines = [ImporterDatasourceLogInline]
+

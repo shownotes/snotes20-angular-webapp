@@ -1,5 +1,7 @@
 import logging
-import datetime
+from datetime import datetime, timedelta
+import traceback
+import sys
 
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
@@ -11,9 +13,12 @@ import snotes20.models as models
 logger = logging.getLogger(__name__)
 
 
-def import_from_source(source):
+def job_update_podcasts(source):
     logger.info("downloading Podcasts")
     podcasts = source.get_podcasts()
+
+    created = 0
+    updated = 0
 
     logger.info("importing Podcasts")
 
@@ -33,15 +38,25 @@ def import_from_source(source):
                 slug.podcast = podcast
                 if not models.PodcastSlug.objects.filter(slug=slug.slug).exists():
                     slug.save()
+
+                updated += 1
             else:
                 logger.debug("creating {}".format(slug))
                 podcast.save()
                 slug.podcast = podcast
                 slug.save()
+                created += 1
 
+    return created, 0, 0, updated
+
+def job_update_episodes(source):
     logger.info("downloading Episodes")
-    tomorrow = (datetime.date.today() + datetime.timedelta(1))
-    episodes = source.get_episodes(datetime.date.today(), tomorrow)
+    tomorrow = (datetime.today() + timedelta(1))
+    episodes = source.get_episodes(datetime.today(), tomorrow)
+
+    created = 0
+    skipped = 0
+    updated = 0
 
     logger.info("importing Episodes")
     with transaction.atomic():
@@ -55,30 +70,106 @@ def import_from_source(source):
                     logger.debug("updating {}".format(dbep))
                     episode.id = dbep.id
                     episode.save()
+                    updated += 1
                 else:
                     logger.debug("skipped {}".format(dbep))
+                    skipped += 1
             else:
                 logger.debug("creating {}".format(episode))
+                created += 1
                 episode.save()
 
-    logger.info("deleting Episodes which have been deleted at source")
-    src_deleted = source.get_deleted_episodes()
+    return created, 0, skipped, updated
+
+def job_delete_deleted_episodes(source):
+    yesterday = (datetime.today() - timedelta(1))
+    src_deleted = source.get_deleted_episodes(yesterday)
     qry = models.Episode.objects.filter(source_id__in=src_deleted)
-    logger.info("%i Episodes", qry.count())
+    deleted = qry.count()
+    logger.info("%i Episodes", deleted)
     qry.delete()
 
-    logger.info("deleting old Episodes")
-    today = datetime.datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+    return 0, deleted, 0, 0
+
+def job_delete_old_episodes(source):
+    today = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
     qry = models.Episode.objects.filter(date__lt=today).filter(document=None)
-    logger.info("%i Episodes", qry.count())
+    deleted = qry.count()
+    logger.info("%i Episodes", deleted)
     qry.delete()
+
+    return 0, deleted, 0, 0
+
+jobs = []
+
+def add_job(job):
+    name = job.__name__[3:].replace('_', ' ')
+    jobs.append((name, job))
+
+add_job(job_update_podcasts)
+add_job(job_update_episodes)
+add_job(job_delete_deleted_episodes)
+add_job(job_delete_old_episodes)
+
+
+def import_from_source(source):
+    srcLog = models.ImporterDatasourceLog()
+    jobLogs = []
+
+    srcLog.start()
+
+    for name, job in jobs:
+        jobLog = models.ImporterJobLog()
+        jobLog.name = name
+
+        jobLog.start()
+
+        try:
+            jobLog.created,\
+                jobLog.deleted,\
+                jobLog.skipped,\
+                jobLog.updated = job(source)
+
+            jobLog.succeeded = True
+        except Exception:
+            jobLog.succeeded = False
+
+            exc_type, exc_value, exc_traceback = sys.exc_info()
+            jobLog.error = "".join(traceback.format_exception(exc_type, exc_value, exc_traceback))
+
+        jobLog.stop()
+        jobLogs.append(jobLog)
+
+    srcLog.stop()
+
+    return srcLog, jobLogs
+
 
 class Command(BaseCommand):
     args = ''
     help = 'Updates all external datasources'
 
     def handle(self, *args, **options):
+        log = models.ImporterLog()
+        srcLogs = []
+
+        log.start()
+
         logger.info("importing from external sources")
         for source in sources:
             logger.info("import from {}".format(source.name))
-            import_from_source(source)
+            srcLog = import_from_source(source)
+            srcLog[0].source = source.shortname
+            srcLogs.append(srcLog)
+
+        log.stop()
+
+        log.save()
+
+        for srcLog, jobLogs in srcLogs:
+            srcLog.log = log
+            srcLog.save()
+
+            for jobLog in jobLogs:
+                jobLog.source = srcLog
+                jobLog.save()

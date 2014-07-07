@@ -15,5 +15,5 @@ class AbstractDataSource:
 
     @classmethod
     @abstractmethod
-    def get_deleted_episodes(cls):
+    def get_deleted_episodes(cls, date_start):
         pass

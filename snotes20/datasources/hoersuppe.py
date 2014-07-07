@@ -21,8 +21,6 @@ class HoersuppeDataSource(AbstractDataSource):
         for pod in h_podcastlist:
             data = hoerapi.get_podcast_data(pod.slug)
 
-            type = None
-
             if data.rundfunk:
                 type = models.TYPE_RADIO
             else:
@@ -77,5 +75,5 @@ class HoersuppeDataSource(AbstractDataSource):
         return episodes
 
     @classmethod
-    def get_deleted_episodes(cls):
-        return [ep.event_id for ep in hoerapi.get_deleted()]
+    def get_deleted_episodes(cls, date_start):
+        return [ep.event_id for ep in hoerapi.get_deleted(dateStart=date_start)]
