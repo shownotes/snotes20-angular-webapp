@@ -41,7 +41,7 @@ angular
         templateUrl: 'views/user/upgrade.html',
         controller: 'UserUpgradeCtrl'
       })
-      .when('/user/activate', {
+      .when('/user/activate/:token', {
         templateUrl: 'views/user/activate.html',
         controller: 'UserActivateCtrl'
       })
