@@ -115,8 +115,8 @@ EDITORS = {
       "type": "etherpad",
       "humanName": "Etherpad",
       "secret": "",
-      "userurl": "https://ep.shownot.es/p/",
-      "apiurl": "https://ep.shownot.es/sapi/"
+      "userurl": "http://localhost:9001/p",
+      "apiurl": "http://localhost:9001/api"
     }
 }
 

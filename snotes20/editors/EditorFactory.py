@@ -15,9 +15,9 @@ class EditorFactory:
         cache = EditorFactory._editorCache
 
         if name not in cache:
-            config = settings.editor.get(name, None)
+            config = settings.EDITORS.get(name, None)
 
-            if name == 'etherpad':
+            if name == 'ep':
                 instance = EtherpadEditor(config)
             else:
                 raise UnknownEditorException()

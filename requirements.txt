@@ -4,3 +4,4 @@ markdown
 django-filter
 hoerapi
 django-uuidfield
+etherpad_lite

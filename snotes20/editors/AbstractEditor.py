@@ -6,10 +6,10 @@ class AbstractEditor:
     def __init__(self, config):
         self.secret = config['secret']
         self.userurl = config['userurl']
-        self.apiurl = config['apiturl']
+        self.apiurl = config['apiurl']
 
     @abstractmethod
-    def get_session(self, user):
+    def get_session(self, document, user):
         pass
   
     @abstractmethod
@@ -21,13 +21,13 @@ class AbstractEditor:
         pass
 
     @abstractmethod
-    def create_document(self, docname):
+    def create_document(self, document):
         pass
 
     @abstractmethod
-    def delete_document(self, docname):
+    def delete_document(self, document):
         pass
 
     @abstractmethod
-    def set_document_text(self, docname, text):
+    def set_document_text(self, document, text):
         pass
