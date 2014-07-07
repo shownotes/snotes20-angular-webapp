@@ -1,1 +1,71 @@
-<h1>{{user.username}}</h1>
+<h2>{{user.username}} <span>war zuletzt vor 1 Stunde online</span></h2>
+<h3>Administrator</h3>
+
+<p>Hallo, ich bin Gurkenluto und fleißiger Shownoter seit 1857! Am liebsten höre ich CRE, NSFW und WRINT. Wenn ihr meine Arbeit mögt, dürft ihr mich gerne flattern! Meinen Account findet ihr unten ;)</p>
+
+<ul class="profile">
+	<li data-social="Webseite"><a href="https://luto.at" title="Webseite von {{user.username}}">luto.at</a></li>
+	<li data-social="Flattr"><a href="#" title="{{user.username}} auf Flattr">flattrluto</a></li>
+	<li data-social="Twitter"><a href="#" title="{{user.username}} auf Twitter">twitterluto</a></li>
+	<li data-social="App.net"><a href="#" title="{{user.username}} auf App.net">adnluto</a></li>
+</ul>
+
+<hr />
+
+<a href="#">Profil bearbeiten</a>
+
+<hr />
+
+<h2>Profil bearbeiten</h2>
+
+<p>Hallo {{user.username}}! Das hier ist dein persönliches Profil &mdash; fühl dich wie zu Hause.</p>
+
+<p>Deine Farbe im Editor:</p>
+
+<hr />
+
+<h3>Beschreibung</h3>
+
+<p>Diese Angabe ist öffentlich einsehbar.</p>
+
+<form class="profile-edit">
+	<textarea placeholder="Erzähl uns etwas über dich. Was ist dein Lieblings-Podcast?"></textarea>
+	<input type="submit" value="Beschreibung ändern" />
+</form>
+
+<hr />
+
+<h3>Verknüpfungen</h3>
+
+<p>Diese Angaben sind öffentlich einsehbar.</p>
+
+<form class="profile-edit">
+	<input type="text" value="" placeholder="Webseite" />
+	<input type="text" value="" placeholder="Flattr" />
+	<input type="text" value="" placeholder="App.net" />
+	<input type="text" value="" placeholder="Twitter" />
+	<input type="submit" value="Verknüpfungen speichern" />
+</form>
+
+<hr />
+
+<h3>E-Mail-Adresse bearbeiten</h3>
+
+<p>Deine aktuelle E-Mail-Adresse ist <strong>luto@shownot.es</strong>. Sie wird nicht veröffentlicht.</p>
+
+<form class="profile-edit">
+	<input type="email" value="" placeholder="Neue E-Mail-Adresse" required />
+	<input type="password" value="" placeholder="Aktuelles Passwort bestätigen" required />
+	<input type="submit" value="E-Mail-Adresse ändern" />
+</form>
+
+<hr />
+
+<h3>Passwort bearbeiten</h3>
+
+<form class="profile-edit">
+	<input type="password" value="" placeholder="Aktuelles Passwort bestätigen" required />
+	<input type="password" value="" placeholder="Neues Passwort" required />
+	<input type="password" value="" placeholder="Neues Passwort wiederholen" required />
+	<input type="submit" value="Passwort ändern" />
+</form>
