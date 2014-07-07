@@ -9,6 +9,7 @@
     "angular-animate": "1.2.16",
     "angular-route": "1.2.16",
     "fira": "~0.1.0",
+    "angular-spectrum-colorpicker": "1.0.13",
     "restangular": "~1.4.0"
   },
   "devDependencies": {
