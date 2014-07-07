@@ -15,6 +15,7 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
+    'angularSpectrumColorpicker',
     'restangular'
   ])
   .config(function ($routeProvider, $locationProvider, RestangularProvider) {
