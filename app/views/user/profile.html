@@ -2,59 +2,60 @@
 
 <p>Hallo {{user.username}}! Das hier ist dein persönliches Profil &mdash; fühl dich wie zu Hause.</p>
 
-<hr />
 
-<h3>Beschreibung & Farbe</h3>
+<div class="form-wrapper">
+	<h3>Beschreibung & Farbe</h3>
 
-<p>Diese Angaben sind öffentlich einsehbar.</p>
+	<p>Diese Angaben sind öffentlich einsehbar.</p>
 
-<form class="profile-edit">
-	<textarea placeholder="Erzähl uns etwas über dich. Was ist dein Lieblings-Podcast?" ng-model="user.bio"></textarea>
+	<form class="profile-edit">
+		<textarea placeholder="Erzähl etwas über dich. Was ist dein Lieblings-Podcast?" ng-model="user.bio"></textarea>
 
-	<p>Deine Farbe im Editor:
-		<spectrum-colorpicker ng-model="user.color" format="hex"></spectrum-colorpicker>
-	</p>
+		<p>Deine Farbe im Editor:
+			<spectrum-colorpicker ng-model="user.color" format="hex"></spectrum-colorpicker>
+		</p>
 
-	<input type="submit" value="Änderungen ändern" ng-click="saveBioColor()" />
-</form>
+		<input type="submit" value="Änderungen speichern" ng-click="saveBioColor()" />
+	</form>
+</div>
 
-<hr />
+<div class="form-wrapper">
+	<h3>Verknüpfungen</h3>
 
-<h3>Verknüpfungen</h3>
+	<p>Diese Angaben sind öffentlich einsehbar.</p>
 
-<p>Diese Angaben sind öffentlich einsehbar.</p>
+	<form class="profile-edit">
+		<input type="text" value="" placeholder="Webseite" ng-model="user.socials['website']" />
+		<input type="text" value="" placeholder="Flattr" ng-model="user.socials['flattr']" />
+		<input type="text" value="" placeholder="App.net" ng-model="user.socials['appnet']" />
+		<input type="text" value="" placeholder="Twitter" ng-model="user.socials['twitter']" />
+		<input type="submit" value="Verknüpfungen speichern" ng-click="saveSocials()" />
+	</form>
+</div>
 
-<form class="profile-edit">
-	<input type="text" value="" placeholder="Webseite" ng-model="user.socials['website']" />
-	<input type="text" value="" placeholder="Flattr" ng-model="user.socials['flattr']" />
-	<input type="text" value="" placeholder="App.net" ng-model="user.socials['appnet']" />
-	<input type="text" value="" placeholder="Twitter" ng-model="user.socials['twitter']" />
-	<input type="submit" value="Verknüpfungen speichern" ng-click="saveSocials()" />
-</form>
+<div class="form-wrapper">
+	<h3>E-Mail-Adresse bearbeiten</h3>
 
-<hr />
+	<p>Deine aktuelle E-Mail-Adresse lautet <strong>{{user.email}}</strong>. Sie wird nicht veröffentlicht.</p>
 
-<h3>E-Mail-Adresse bearbeiten</h3>
+	<form class="profile-edit">
+		<input type="email" value="" placeholder="Neue E-Mail-Adresse" required ng-model="changemail.email" />
+		<input type="password" value="" placeholder="Aktuelles Passwort bestätigen" required ng-model="changemail.password" />
+		<div ng-show="changemail.success">Deine E-Mail-Adresse wurde erfolgreich geändert.</div>
+		<div ng-show="changemail.fail">Bitte überprüfe noch einmal deine Angaben.</div>
+		<input type="submit" value="E-Mail-Adresse ändern" ng-click="changeMail()" />
+	</form>
+</div>
 
-<p>Deine aktuelle E-Mail-Adresse ist <strong>{{user.email}}</strong>. Sie wird nicht veröffentlicht.</p>
+<div class="form-wrapper">
+	<h3>Passwort bearbeiten</h3>
 
-<form class="profile-edit">
-	<input type="email" value="" placeholder="Neue E-Mail-Adresse" required ng-model="changemail.email" />
-	<input type="password" value="" placeholder="Aktuelles Passwort bestätigen" required ng-model="changemail.password" />
-	<input type="submit" value="E-Mail-Adresse ändern" ng-click="changeMail()" />
-	<div ng-show="changemail.success">Gespeichert.</div>
-	<div ng-show="changemail.fail">Fail.</div>
-</form>
-
-<hr />
-
-<h3>Passwort bearbeiten</h3>
-
-<form class="profile-edit">
-	<input type="password" value="" placeholder="Aktuelles Passwort bestätigen" required ng-model="pwchange.password" />
-	<input type="password" value="" placeholder="Neues Passwort" required ng-model="pwchange.newpassword" />
-	<input type="password" value="" placeholder="Neues Passwort wiederholen" required ng-model="pwchange.newpassword2" ng-equals="{{pwchange.newpassword}}" />
-	<input type="submit" value="Passwort ändern" ng-click="changePassword()" />
-	<div ng-show="pwchange.success">Gespeichert.</div>
-	<div ng-show="pwchange.fail">Fail.</div>
-</form>
+	<form class="profile-edit">
+		<input type="password" value="" placeholder="Aktuelles Passwort bestätigen" required ng-model="pwchange.password" />
+		<input type="password" value="" placeholder="Neues Passwort" required ng-model="pwchange.newpassword" />
+		<input type="password" value="" placeholder="Neues Passwort wiederholen" required ng-model="pwchange.newpassword2" ng-equals="{{pwchange.newpassword}}" />
+		<div ng-show="changemail.success">Dein Passwort wurde erfolgreich geändert.</div>
+		<div ng-show="changemail.fail">Bitte überprüfe noch einmal deine Angaben.</div>
+		<input type="submit" value="Passwort ändern" ng-click="changePassword()" />
+	</form>
+</div>

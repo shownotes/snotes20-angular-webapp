@@ -1,24 +1,22 @@
 <h2>Die neue Plattform</h2>
 <h3>Wie aufregend!</h3>
 
-<p>Hey! Wie du siehst, hat sich hier einiges verändert.</p>
+<p>Hallo {{user.username}}! Wie du siehst, hat sich hier einiges verändert.</p>
 
 <p>Da du bereits beim alten <em>ShowPad</em> einen Account hattest, möchten wir dich bitten, dein Passwort aus Sicherheitsgründen zu ändern und unsere neuen <a href="/rules">Regeln</a> zu akzeptieren.</p>
 
-<hr />
+<div class="form-wrapper">
+	<h3>Profil aktualisieren</h3>
 
-<h3>Profil aktualisieren</h3>
-
-<form class="profile-edit">
-	<input type="password" value="" placeholder="Neues Passwort" />
-	<input type="password" value="" placeholder="Neues Passwort bestätigen" />
-	<div class="form-check">
-		<input id="checkrules-upgrade" type="checkbox" value="checkrules" required />
-		<label for="checkrules-upgrade">Ich akzeptiere die <a href="/rules">Regeln</a>.</label>
-	</div>
-	<input type="submit" value="Änderungen speichern" />
-</form>
-
-<hr />
+	<form class="profile-edit">
+		<input type="password" value="" placeholder="Neues Passwort" />
+		<input type="password" value="" placeholder="Neues Passwort bestätigen" />
+		<div class="form-check">
+			<input id="checkrules-upgrade" type="checkbox" value="checkrules" required />
+			<label for="checkrules-upgrade">Ich akzeptiere die <a href="/rules">Regeln</a>.</label>
+		</div>
+		<input type="submit" value="Änderungen speichern" />
+	</form>
+</div>
 
 <p>Bei Unklarheiten kannst du einen Blick auf die <a href="#">häufig gestellten Fragen</a> werfen.</p>

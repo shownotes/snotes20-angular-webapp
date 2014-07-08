@@ -244,7 +244,8 @@ input:not([type="search"])::-ms-clear {
 	display: none;
 }
 input,
-textarea {
+textarea,
+.form-button a {
 	font-size: 1em;
 	display: block;
 	width: 100%;
@@ -273,7 +274,9 @@ textarea:focus {
 }
 input[type='button'],
 input[type='submit'],
-button {
+button,
+.form-button a:link,
+.form-button a:visited {
 	background-color: #40a662;
 	color: #fefefe;
 	font-size: 1em;
@@ -290,14 +293,18 @@ input[type='button']:focus,
 input[type='submit']:hover,
 input[type='submit']:focus,
 button:hover,
-button:focus {
+button:focus,
+.form-button a:hover,
+.form-button a:focus {
 	background-color: #007369;
 	cursor: pointer;
 	outline: none;
 }
 input[type='button']:active,
 input[type='submit']:active,
-button:active {
+button:active,
+.form-button a:active {
+	text-decoration: none;
 	position: relative;
 	top: 1px;
 	outline: none;
@@ -424,6 +431,17 @@ nav span[class*=" icon-"] {
 	display: inline-block;
 	vertical-align: middle;
 }
+nav .caption {
+	width: 12em;
+	display: inline-block;
+	vertical-align: middle;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+nav.account .caption {
+	width: 10em;
+}
 
 /* Sidebar Form */
 nav li > input,
@@ -464,6 +482,11 @@ nav li > input:checked + form {
 .form-button > *:last-child {
 	margin-left: 1em;
 }
+.form-button a:link,
+.form-button a:visited {
+	text-align: center;
+}
+
 /* Main Content */
 .content {
 	width: 100%;
@@ -490,6 +513,19 @@ nav li > input:checked + form {
 .content li > ol {
 	margin-top: 0;
 }
+.form-wrapper {
+	background-color: #eee;
+	padding: 1em 2em;
+	border-radius: .4em;
+}
+.form-wrapper h3,
+.form-wrapper p {
+	margin-bottom: 1em;
+}
+.form-wrapper input:not([type="button"]):not([type="submit"]),
+.form-wrapper textarea {
+	background-color: #fefefe;
+}
 
 /* User profiles */
 ul.profile {
@@ -512,7 +548,7 @@ ul.profile li:before {
 	max-width: 15em;
 }
 .profile-edit textarea {
-	height: 6em;
+	height: 7em;
 }
 
 /* Styleguide */
