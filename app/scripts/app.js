@@ -49,6 +49,10 @@ angular
       .when('/user/registration', {
         templateUrl: 'views/user/regcomplete.html'
       })
+      .when('/user/pwreset/:username/:token', {
+        templateUrl: 'views/user/pwreset.html',
+        controller: 'UserPwResetCtrl'
+      })
       .when('/user/activate/:username/:token', {
         templateUrl: 'views/user/activate.html',
         controller: 'UserActivateCtrl'
