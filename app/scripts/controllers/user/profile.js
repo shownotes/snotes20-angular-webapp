@@ -13,8 +13,13 @@ angular.module('snotes30App')
     reloadMe();
 
     $scope.saveBioColor = function () {
+      var color = $scope.user.color;
+
+      if(color[0] === "#")
+        color = color.substr(1).toUpperCase();
+
       me.patch({
-        'color': $scope.user.color.substr(1).toUpperCase(),
+        'color': color,
         'bio': $scope.user.bio
       }).then(reloadMe);
     };
