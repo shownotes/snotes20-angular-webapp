@@ -438,12 +438,12 @@ nav li > input:checked + form {
 	padding: 0 2em 1em 2em;
 	margin: 0 auto;
 }
-.account .form-input > * {
+.form-input > * {
 	flex: 1 100%;
 	margin-bottom: 1em;
 }
-.account .form-check,
-.account .form-button {
+.form-check,
+.form-button {
 	display: -webkit-box;
 	display: -moz-box;
 	display: -ms-flexbox;
@@ -452,14 +452,16 @@ nav li > input:checked + form {
 	-webkit-flex-flow: row;
 	flex-direction: row;
 }
-.account .form-check > * {
+.form-check > * {
 	width: auto;
+}
+.account .form-check > * {
 	margin-bottom: 1em;
 }
-.account .form-check > input {
+.form-check > input {
 	margin-right: 1em;
 }
-.account .form-button > *:last-child {
+.form-button > *:last-child {
 	margin-left: 1em;
 }
 /* Main Content */
