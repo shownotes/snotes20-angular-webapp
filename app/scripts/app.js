@@ -49,7 +49,7 @@ angular
       .when('/user/registration', {
         templateUrl: 'views/user/regcomplete.html'
       })
-      .when('/user/activate/:token', {
+      .when('/user/activate/:username/:token', {
         templateUrl: 'views/user/activate.html',
         controller: 'UserActivateCtrl'
       })
