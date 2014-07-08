@@ -1,5 +1,11 @@
+# deps
 node_modules
+app/bower_components
+
+# build
 dist
 .tmp
 .sass-cache
-app/bower_components
+
+# IDE
+.idea
