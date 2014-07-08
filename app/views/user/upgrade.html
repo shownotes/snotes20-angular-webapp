@@ -9,13 +9,13 @@
 	<h3>Profil aktualisieren</h3>
 
 	<form class="profile-edit">
-		<input type="password" value="" placeholder="Neues Passwort" />
-		<input type="password" value="" placeholder="Neues Passwort bestätigen" />
+		<input type="password" value="" placeholder="Neues Passwort" ng-model="upgrade.password" />
+		<input type="password" value="" placeholder="Neues Passwort bestätigen" ng-model="upgrade.password2" equals="{{upgrade.password}}" />
 		<div class="form-check">
-			<input id="checkrules-upgrade" type="checkbox" value="checkrules" required />
+			<input id="checkrules-upgrade" type="checkbox" value="checkrules" ng-model="upgrade.rules" required />
 			<label for="checkrules-upgrade">Ich akzeptiere die <a href="/rules">Regeln</a>.</label>
 		</div>
-		<input type="submit" value="Änderungen speichern" />
+		<input type="submit" value="Änderungen speichern" ng-click="doUpgrade()" />
 	</form>
 </div>
 
