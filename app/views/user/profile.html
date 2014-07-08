@@ -25,11 +25,11 @@
 <p>Diese Angaben sind öffentlich einsehbar.</p>
 
 <form class="profile-edit">
-	<input type="text" value="" placeholder="Webseite" />
-	<input type="text" value="" placeholder="Flattr" />
-	<input type="text" value="" placeholder="App.net" />
-	<input type="text" value="" placeholder="Twitter" />
-	<input type="submit" value="Verknüpfungen speichern" />
+	<input type="text" value="" placeholder="Webseite" ng-model="user.socials['website']" />
+	<input type="text" value="" placeholder="Flattr" ng-model="user.socials['flattr']" />
+	<input type="text" value="" placeholder="App.net" ng-model="user.socials['appnet']" />
+	<input type="text" value="" placeholder="Twitter" ng-model="user.socials['twitter']" />
+	<input type="submit" value="Verknüpfungen speichern" ng-click="saveSocials()" />
 </form>
 
 <hr />

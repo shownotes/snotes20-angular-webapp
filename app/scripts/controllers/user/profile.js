@@ -46,5 +46,9 @@ angular.module('snotes30App')
       }).then(reloadMe);
     };
 
-
+    $scope.saveSocials = function () {
+      me.patch({
+        'socials': $scope.user.socials
+      }).then(reloadMe);
+    };
   });
