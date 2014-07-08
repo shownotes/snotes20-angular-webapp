@@ -10,10 +10,10 @@
 	<p>{{user.bio}}</p>
 
 	<ul class="profile">
-		<li data-social="Webseite"><a href="https://luto.at" title="Webseite von {{user.username}}">luto.at</a></li>
-		<li data-social="Flattr"><a href="#" title="{{user.username}} auf Flattr">flattrluto</a></li>
-		<li data-social="Twitter"><a href="#" title="{{user.username}} auf Twitter">twitterluto</a></li>
-		<li data-social="App.net"><a href="#" title="{{user.username}} auf App.net">adnluto</a></li>
+		<li data-social="Webseite" ng-show="user.socials['website']"><a href="https://luto.at" title="Webseite von {{user.username}}">{{user.socials['website']}}</a></li>
+		<li data-social="Flattr" ng-show="user.socials['flattr']"><a href="#" title="{{user.username}} auf Flattr">{{user.socials['flattr']}}</a></li>
+		<li data-social="Twitter" ng-show="user.socials['twitter']"><a href="#" title="{{user.username}} auf Twitter">{{user.socials['twitter']}}</a></li>
+		<li data-social="App.net" ng-show="user.socials['appnet']"><a href="#" title="{{user.username}} auf App.net">{{user.socials['appnet']}}</a></li>
 	</ul>
 
 	<div ng-show="user.username == currentUser.username">
