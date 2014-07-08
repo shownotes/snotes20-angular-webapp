@@ -74,6 +74,11 @@ class NUserSocialType(models.Model):
     def __str__(self):
         return self.human_name
 
+    def save(self, *args, **kwargs):
+        if not self.icon:
+            self.icon = None
+        super(NUserSocialType, self).save(*args, **kwargs)
+
     class Meta:
         verbose_name = "Social Type"
 
