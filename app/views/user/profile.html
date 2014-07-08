@@ -54,8 +54,8 @@
 		<input type="password" value="" placeholder="Aktuelles Passwort bestätigen" required ng-model="pwchange.password" />
 		<input type="password" value="" placeholder="Neues Passwort" required ng-model="pwchange.newpassword" />
 		<input type="password" value="" placeholder="Neues Passwort wiederholen" required ng-model="pwchange.newpassword2" ng-equals="{{pwchange.newpassword}}" />
-		<div ng-show="changemail.success">Dein Passwort wurde erfolgreich geändert.</div>
-		<div ng-show="changemail.fail">Bitte überprüfe noch einmal deine Angaben.</div>
+		<div ng-show="pwchange.success">Dein Passwort wurde erfolgreich geändert.</div>
+		<div ng-show="pwchange.fail">Bitte überprüfe noch einmal deine Angaben.</div>
 		<input type="submit" value="Passwort ändern" ng-click="changePassword()" />
 	</form>
 </div>
