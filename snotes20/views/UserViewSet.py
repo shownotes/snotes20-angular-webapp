@@ -60,7 +60,8 @@ class UserViewSet(viewsets.ViewSet):
             raise PermissionDenied()
 
         # Change color or bio
-        del request.DATA['password']
+        if 'password' in request.DATA:
+            del request.DATA['password']
 
         serialized = NUserSerializer(user, data=request.DATA, partial=True)
 
