@@ -13,6 +13,6 @@ class PodcastSerializer(ModelSerializer):
 class EpisodeSerializer(ModelSerializer):
     class Meta:
         model = Episode
-        fields = ('id', 'podcast', 'creator', 'number', 'episodeurl', 'date', 'canceled',
+        fields = ('id', 'podcast', 'creator', 'number', 'episode_url', 'date', 'canceled',
                   'type', 'create_date', 'stream', 'document')
         depth = 1
