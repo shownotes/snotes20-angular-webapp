@@ -4,8 +4,6 @@ angular.module('snotes30App')
   .controller('UserProfileCtrl', function ($scope, Restangular) {
     var me = Restangular.one('users', 'me');
 
-    $scope.user = { };
-
     var reloadMe = function () {
       me.get().then(function (user) {
         $scope.user = user;
@@ -20,4 +18,28 @@ angular.module('snotes30App')
         'bio': $scope.user.bio
       }).then(reloadMe);
     };
+
+    $scope.changeMail = function () {
+      me.patch({
+        'email': $scope.changemail.email,
+        'password': $scope.changemail.password
+      }).then(function () {
+        $scope.changemail = { success: true };
+      }, function () {
+        $scope.changemail = { fail: true };
+      }).then(reloadMe);
+    };
+
+    $scope.changePassword = function () {
+      me.patch({
+        'password': $scope.pwchange.password,
+        'newpassword': $scope.pwchange.newpassword
+      }).then(function () {
+        $scope.pwchange = { success: true };
+      }, function () {
+        $scope.pwchange = { fail: true };
+      }).then(reloadMe);
+    };
+
+
   });

@@ -39,9 +39,11 @@
 <p>Deine aktuelle E-Mail-Adresse ist <strong>{{user.email}}</strong>. Sie wird nicht veröffentlicht.</p>
 
 <form class="profile-edit">
-	<input type="email" value="" placeholder="Neue E-Mail-Adresse" required />
-	<input type="password" value="" placeholder="Aktuelles Passwort bestätigen" required />
-	<input type="submit" value="E-Mail-Adresse ändern" />
+	<input type="email" value="" placeholder="Neue E-Mail-Adresse" required ng-model="changemail.email" />
+	<input type="password" value="" placeholder="Aktuelles Passwort bestätigen" required ng-model="changemail.password" />
+	<input type="submit" value="E-Mail-Adresse ändern" ng-click="changeMail()" />
+	<div ng-show="changemail.success">Gespeichert.</div>
+	<div ng-show="changemail.fail">Fail.</div>
 </form>
 
 <hr />
@@ -49,8 +51,10 @@
 <h3>Passwort bearbeiten</h3>
 
 <form class="profile-edit">
-	<input type="password" value="" placeholder="Aktuelles Passwort bestätigen" required />
-	<input type="password" value="" placeholder="Neues Passwort" required />
-	<input type="password" value="" placeholder="Neues Passwort wiederholen" required />
-	<input type="submit" value="Passwort ändern" />
+	<input type="password" value="" placeholder="Aktuelles Passwort bestätigen" required ng-model="pwchange.password" />
+	<input type="password" value="" placeholder="Neues Passwort" required ng-model="pwchange.newpassword" />
+	<input type="password" value="" placeholder="Neues Passwort wiederholen" required ng-model="pwchange.newpassword2" ng-equals="{{pwchange.newpassword}}" />
+	<input type="submit" value="Passwort ändern" ng-click="changePassword()" />
+	<div ng-show="pwchange.success">Gespeichert.</div>
+	<div ng-show="pwchange.fail">Fail.</div>
 </form>
