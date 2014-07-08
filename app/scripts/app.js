@@ -54,7 +54,7 @@ angular
         controller: 'UserActivateCtrl'
       })
       .otherwise({
-        redirectTo: '/'
+        templateUrl: '404.html'
       });
 
     $locationProvider.html5Mode(true);
