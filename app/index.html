@@ -49,12 +49,15 @@
 						<input type="checkbox" id="toggle-form" ng-model="loginform.status" ng-true-value="down" ng-false-value="up"  />
 						<form name="loginform.frm" novalidate>
 							<div class="form-input">
+								<div ng-show="loginform.errors.loginfailed">Das hat nicht geklappt.</div>
+								<form-error errors="loginform.errors.username"></form-error>
 								<input type="text"
 											 ng-model="user.username"
 											 placeholder="Benutzername"
 											 value=""
 											 title="Gib deinen Benutzernamen ein"
 											 required />
+								<form-error errors="loginform.errors.email"></form-error>
 								<input type="email"
 											 ng-model="user.email"
 											 ng-show="loginform.mode == 'register'"
@@ -62,6 +65,7 @@
 											 placeholder="E-Mail-Adresse"
 											 value=""
 											 title="Gib deine E-Mail-Adresse" />
+								<form-error errors="loginform.errors.password"></form-error>
 								<input type="password"
 											 ng-model="user.password"
 											 placeholder="Passwort"
@@ -148,6 +152,7 @@
 	<script src="scripts/controllers/sidebar.js"></script>
 	<script src="scripts/services/authentication.js"></script>
 	<script src="scripts/directives/equals.js"></script>
+	<script src="scripts/directives/formerror.js"></script>
 
 	<script src="scripts/controllers/user/profile.js"></script>
 

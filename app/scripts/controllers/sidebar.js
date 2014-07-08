@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('SidebarController', function ($scope, $cookies, AuthenticationService) {
+  .controller('SidebarController', function ($scope, $cookies, $location, AuthenticationService) {
 
     $scope.loginform = {
       status: 'up',
@@ -43,6 +43,8 @@ angular.module('snotes30App')
           username: $scope.user.username
         };
         $scope.user = null;
+      }, function (errors) {
+        $scope.loginform.errors = { 'loginfailed': true };
       });
     }
 
@@ -51,7 +53,12 @@ angular.module('snotes30App')
         $scope.user.username,
         $scope.user.email,
         $scope.user.password
-      );
+      ).then(function () {
+        flipFormMode();
+        $location.url('/user/registration');
+      }, function (errors) {
+        $scope.loginform.errors = errors.data;
+      });
     }
 
     $scope.logout = function () {
