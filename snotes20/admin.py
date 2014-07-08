@@ -102,6 +102,11 @@ class NUserSocialInline(admin.TabularInline):
     extra = 0
 
 
+class NUserEmailTokenInline(admin.TabularInline):
+    model = models.NUserEmailToken
+    extra = 0
+
+
 class NUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
         model = models.NUser
@@ -129,7 +134,7 @@ class NUserCreationForm(UserCreationForm):
         return user
 
 UserAdmin.fieldsets = (
-    (UserAdmin.fieldsets[0][0], {'fields': ('username', 'password', 'migrated')}),
+    (UserAdmin.fieldsets[0][0], {'fields': ('username', 'password', 'migrated', 'is_active')}),
     (UserAdmin.fieldsets[1][0], {'fields': ('email', 'color')}),
     (UserAdmin.fieldsets[2][0], {'fields': ('groups',)}),
     (UserAdmin.fieldsets[3][0], {'fields': (('date_login', 'date_joined'),)})
@@ -145,7 +150,7 @@ UserAdmin.add_fieldsets = (
 
 @admin.register(models.NUser)
 class NUserAdmin(UserAdmin):
-    inlines = [NUserSocialInline,]
+    inlines = [NUserSocialInline, NUserEmailTokenInline]
     form = NUserChangeForm
     add_form = NUserCreationForm
 

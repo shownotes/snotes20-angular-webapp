@@ -21,7 +21,10 @@ class UserViewSet(viewsets.ViewSet):
                 username=serialized.init_data['username'],
                 password=serialized.init_data['password']
             )
-            user.email_user_activation('en', 'asdasd')
+            token = user.add_email_token(user.email)
+            user.email_user_activation('en', token.token)
+            user.is_active = False;
+            user.save()
             return Response(None, status=status.HTTP_201_CREATED)
         else:
             return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)

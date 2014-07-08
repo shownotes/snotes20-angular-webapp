@@ -21,7 +21,7 @@ class NUser(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField('email', unique=True)
     is_staff = models.BooleanField('is_staff', default=False)
-    is_active = models.BooleanField('is_active', default=True)
+    is_active = models.BooleanField('is_active', default=False)
     date_joined = models.DateTimeField('date_joined', default=timezone.now)
     date_login = models.DateTimeField('date_login', null=True)
     color = models.CharField(max_length=6, default=get_random_color,
@@ -50,7 +50,10 @@ class NUser(AbstractBaseUser, PermissionsMixin):
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
     def add_email_token(self, email):
-        pass
+        token = '%030x' % random.randrange(16**30)
+        email_token = NUserEmailToken(user=self, email=email, token=token)
+        email_token.save()
+        return email_token
 
     def email_user_activation(self, lang, token):
         options = settings.EMAILS['activation']
@@ -64,6 +67,15 @@ class NUser(AbstractBaseUser, PermissionsMixin):
 
         text_content = render_to_string('activation_' + lang + '.txt', c)
         self.email_user(options['subject'][lang], text_content, from_email=options['from'])
+
+
+class NUserEmailToken(models.Model):
+    user = models.ForeignKey(NUser, related_name='email_tokens')
+    email = models.EmailField(unique=True)
+    token = models.CharField(max_length=30)
+
+    class Meta:
+        verbose_name = "Email token"
 
 
 class NUserSocialType(models.Model):
