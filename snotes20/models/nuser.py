@@ -69,8 +69,7 @@ class NUser(AbstractBaseUser, PermissionsMixin):
 class NUserSocialType(models.Model):
     name = models.SlugField(primary_key=True)
     human_name = models.CharField(max_length=20)
-    description = models.CharField(max_length=100)
-    icon = models.CharField(max_length=10)
+    icon = models.CharField(max_length=10, null=True, blank=True)
 
     def __str__(self):
         return self.human_name
