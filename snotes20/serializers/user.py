@@ -28,11 +28,12 @@ class NUserSerializer(serializers.ModelSerializer):
 
         self._socials = []
 
-        instance = kargs[0]
-        self.data['socials'] = {}
+        if len(kargs) > 0:
+            instance = kargs[0]
+            self.data['socials'] = {}
 
-        for social in instance.socials.all():
-            self.data['socials'][social.type.name] = social.value
+            for social in instance.socials.all():
+                self.data['socials'][social.type.name] = social.value
 
     def restore_fields(self, data, files):
         reverted_data = super(NUserSerializer, self).restore_fields(data, files)
