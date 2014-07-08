@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('SidebarController', function ($scope, $cookies, $location, AuthenticationService) {
+  .controller('SidebarController', function ($scope, $cookies, $location, AuthenticationService, Restangular) {
 
     $scope.loginform = {
       status: 'up',
@@ -64,6 +64,12 @@ angular.module('snotes30App')
     $scope.logout = function () {
       AuthenticationService.logout().then(function () {
         $scope.currentUser = null;
+      });
+    };
+
+    $scope.requestPwReset = function () {
+      Restangular.one('users', $scope.user.username).customPOST({}, 'request_pw_reset').then(function () {
+        $scope.pwresetdone = true;
       });
     };
   });
