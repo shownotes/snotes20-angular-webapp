@@ -20,7 +20,7 @@ class NUserSocialSerializer(serializers.ModelSerializer):
 
 
 class NUserSerializer(serializers.ModelSerializer):
-    socials = NUserSocialSerializer(many=True)
+    socials = NUserSocialSerializer(many=True, required=False)
 
     class Meta:
         model = get_user_model()
