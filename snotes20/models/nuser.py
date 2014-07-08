@@ -29,6 +29,7 @@ class NUser(AbstractBaseUser, PermissionsMixin):
 
     migrated = models.BooleanField(default=True)
     old_password = models.CharField(max_length=100, null=True, blank=True, default=None)
+    bio = models.CharField(max_length=400, null=True, blank=True)
 
     objects = UserManager()
 

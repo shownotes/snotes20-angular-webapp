@@ -31,3 +31,15 @@ class UserViewSet(viewsets.ViewSet):
         data = NUserSerializer(request.user).data
         data['password'] = None
         return Response(data)
+
+    def partial_update(self, request, pk=None):
+        if pk != "me" or not request.user.is_authenticated():
+            raise PermissionDenied()
+
+        serialized = NUserSerializer(request.user, data=request.DATA, partial=True)
+
+        if serialized.is_valid():
+            serialized.save()
+            return Response(status=status.HTTP_202_ACCEPTED)
+        else:
+            return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)

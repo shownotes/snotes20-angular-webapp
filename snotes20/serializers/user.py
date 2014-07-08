@@ -21,7 +21,8 @@ class NUserSocialSerializer(serializers.ModelSerializer):
 
 class NUserSerializer(serializers.ModelSerializer):
     socials = NUserSocialSerializer(many=True, required=False)
+    bio = serializers.CharField(required=False)
 
     class Meta:
         model = get_user_model()
-        fields = ('username', 'email', 'password', 'color', 'date_joined', 'groups', 'socials')
+        fields = ('username', 'email', 'password', 'color', 'date_joined', 'groups', 'socials', 'bio')
