@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login, logout, get_user_model
-from django.db import transaction
+from django.shortcuts import get_object_or_404
 
 from rest_framework.response import Response
 from rest_framework import viewsets, status
@@ -27,12 +27,26 @@ class UserViewSet(viewsets.ViewSet):
             return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def retrieve(self, request, pk=None):
-        if pk != "me" or not request.user.is_authenticated():
-            raise PermissionDenied()
+        if pk == "me":
+            if not request.user.is_authenticated():
+                raise PermissionDenied()
 
-        data = NUserSerializer(request.user).data
-        data['password'] = None
-        return Response(data)
+            data = NUserSerializer(request.user).data
+            data['password'] = None
+            return Response(data)
+        else:
+            user = get_object_or_404(NUser, username=pk)
+            data = NUserSerializer(user).data
+
+            return Response({
+                'username': data['username'],
+                'role': 'admin' if data['is_staff'] else 'user',
+                'bio': data['bio'],
+                'color': data['color'],
+                'date_joined': data['date_joined'],
+                'date_login': data['date_login'],
+                'socials': data['socials'],
+            })
 
     def partial_update(self, request, pk=None):
         user = request.user

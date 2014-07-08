@@ -25,4 +25,4 @@ class NUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ('username', 'email', 'password', 'color', 'date_joined', 'groups', 'socials', 'bio')
+        fields = ('username', 'email', 'password', 'color', 'date_joined', 'date_login', 'is_staff', 'groups', 'socials', 'bio')
