@@ -2,19 +2,20 @@
 
 <p>Hallo {{user.username}}! Das hier ist dein persönliches Profil &mdash; fühl dich wie zu Hause.</p>
 
-<p>Deine Farbe im Editor:</p>
-
-<spectrum-colorpicker ng-model="yourFancyModel"></spectrum-colorpicker>
-
 <hr />
 
-<h3>Beschreibung</h3>
+<h3>Beschreibung & Farbe</h3>
 
 <p>Diese Angabe ist öffentlich einsehbar.</p>
 
 <form class="profile-edit">
-	<textarea placeholder="Erzähl uns etwas über dich. Was ist dein Lieblings-Podcast?"></textarea>
-	<input type="submit" value="Beschreibung ändern" />
+	<textarea placeholder="Erzähl uns etwas über dich. Was ist dein Lieblings-Podcast?" ng-model="user.bio"></textarea>
+
+	<p>Deine Farbe im Editor:
+		<spectrum-colorpicker ng-model="user.color" format="hex"></spectrum-colorpicker>
+	</p>
+
+	<input type="submit" value="Änderungen ändern" ng-click="saveBioColor()" />
 </form>
 
 <hr />
