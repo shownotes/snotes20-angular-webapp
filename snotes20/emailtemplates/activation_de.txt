@@ -1,7 +1,7 @@
 Hallo {{ username }}!
 
 Um dein Shownot.es-Konto zu aktivieren, klicke bitte auf folgenden Link:
-{{ siteurl }}/activate/{{ token }}
+{{ siteurl }}/user/activate/{{ username }}/{{ token }}
 
 Danke!
 

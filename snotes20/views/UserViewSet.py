@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import viewsets, status
 from rest_framework.exceptions import PermissionDenied
+from rest_framework.decorators import action
 
 from snotes20.serializers import NUserSerializer
 from snotes20.models import NUser, NUserSocial, NUserSocialType
@@ -23,11 +24,22 @@ class UserViewSet(viewsets.ViewSet):
             )
             token = user.add_email_token(user.email)
             user.email_user_activation('en', token.token)
-            user.is_active = False;
+            user.is_active = False
             user.save()
             return Response(None, status=status.HTTP_201_CREATED)
         else:
             return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(methods=['POST'])
+    def activate(self, request, pk=None):
+        try:
+            token = request.DATA['token']
+            user = NUser.objects.get(username=pk)
+            token_obj = user.check_email_token(token)
+            user.apply_token(token_obj)
+            return Response(status=status.HTTP_202_ACCEPTED)
+        except:
+            raise PermissionDenied()
 
     def retrieve(self, request, pk=None):
         if pk == "me":

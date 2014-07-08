@@ -55,6 +55,15 @@ class NUser(AbstractBaseUser, PermissionsMixin):
         email_token.save()
         return email_token
 
+    def check_email_token(self, token):
+        return self.email_tokens.get(token=token)
+
+    def apply_token(self, token_obj):
+        self.email = token_obj.email
+        self.is_active = True
+        token_obj.delete()
+        self.save()
+
     def email_user_activation(self, lang, token):
         options = settings.EMAILS['activation']
         siteurl = settings.SITEURL
