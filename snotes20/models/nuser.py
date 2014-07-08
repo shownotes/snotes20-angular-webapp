@@ -75,7 +75,7 @@ class NUser(AbstractBaseUser, PermissionsMixin):
         })
 
         text_content = render_to_string('activation_' + lang + '.txt', c)
-        self.email_user(options['subject'][lang], text_content, from_email=options['from'])
+        self.email_user(options['subject'][lang], text_content)
 
 
 class NUserEmailToken(models.Model):

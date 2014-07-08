@@ -127,10 +127,11 @@ EMAILS = {
         'subject': {
             'en': 'shownot.es account activation',
             'de': 'shownot.es Kontoaktivierung',
-        },
-        'from': 'noreply@shownot.es'
+        }
     },
 }
+
+DEFAULT_FROM_EMAIL = 'noreply@shownot.es'
 
 EMAIL_HOST = ''
 EMAIL_PORT = 587
