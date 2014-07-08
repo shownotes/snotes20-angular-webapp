@@ -30,6 +30,7 @@ class NUser(AbstractBaseUser, PermissionsMixin):
     migrated = models.BooleanField(default=True)
     old_password = models.CharField(max_length=100, null=True, blank=True, default=None)
     bio = models.CharField(max_length=400, default='', blank=True)
+    pw_reset_token = models.CharField(max_length=30, null=True, blank=True)
 
     objects = UserManager()
 
@@ -40,6 +41,13 @@ class NUser(AbstractBaseUser, PermissionsMixin):
         verbose_name = 'user'
         verbose_name_plural = 'users'
 
+    def save(self, *args, **kwargs):
+        if not self.pw_reset_token:
+            self.pw_reset_token = None
+        if not self.old_password:
+            self.old_password = None
+        super(NUser, self).save(*args, **kwargs)
+
     def get_full_name(self):
         return ""
 
@@ -48,6 +56,18 @@ class NUser(AbstractBaseUser, PermissionsMixin):
 
     def email_user(self, subject, message, from_email=None, **kwargs):
         send_mail(subject, message, from_email, [self.email], **kwargs)
+
+    def _email_user_template(self, tpl, context, lang):
+        options = settings.EMAILS[tpl]
+        siteurl = settings.SITEURL
+
+        context['username'] = self.username
+        context['siteurl'] = siteurl
+
+        c = Context(context)
+
+        text_content = render_to_string(tpl + '_' + lang + '.txt', c)
+        self.email_user(options['subject'][lang], text_content)
 
     def add_email_token(self, email):
         token = '%030x' % random.randrange(16**30)
@@ -58,25 +78,33 @@ class NUser(AbstractBaseUser, PermissionsMixin):
     def check_email_token(self, token):
         return self.email_tokens.get(token=token)
 
-    def apply_token(self, token_obj):
+    def apply_email_token(self, token_obj):
         self.email = token_obj.email
         self.is_active = True
         token_obj.delete()
         self.save()
 
     def email_user_activation(self, lang, token):
-        options = settings.EMAILS['activation']
-        siteurl = settings.SITEURL
+        ctx = { 'token': token }
+        self._email_user_template('activation', ctx, lang)
 
-        c = Context({
-            'username': self.username,
-            'token': token,
-            'siteurl': siteurl
-        })
+    def set_pw_reset_token(self):
+        token = '%030x' % random.randrange(16**30)
+        self.pw_reset_token = token
+        self.save()
 
-        text_content = render_to_string('activation_' + lang + '.txt', c)
-        self.email_user(options['subject'][lang], text_content)
+    def check_pw_reset_token(self, token):
+        return self.pw_reset_token is not None and token is not None and self.pw_reset_token == token
 
+    def apply_pw_reset_token(self, password):
+        print(password)
+        self.pw_reset_token = None
+        self.set_password(password)
+        self.save()
+
+    def email_pw_reset(self, lang):
+        ctx = {'token': self.pw_reset_token}
+        self._email_user_template('pwreset', ctx, lang)
 
 class NUserEmailToken(models.Model):
     user = models.ForeignKey(NUser, related_name='email_tokens')

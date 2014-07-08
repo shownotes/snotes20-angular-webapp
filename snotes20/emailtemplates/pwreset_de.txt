@@ -1,0 +1,8 @@
+Hallo {{ username }}!
+
+Du oder jemand der sich für dich ausgibt hat auf shownot.es ein neues Password angefordert. Um dein Passwort zu ändern, klicke bitte auf folgenden Link:
+{{ siteurl }}/user/pwreset/{{ username }}/{{ token }}
+
+Wenn du diese E-Mail nicht angefordert hast, kannst du sie einfach ignorieren.
+
+- shownot.es

@@ -129,6 +129,12 @@ EMAILS = {
             'de': 'shownot.es Kontoaktivierung',
         }
     },
+    'pwreset': {
+        'subject': {
+            'en': 'shownot.es password reset',
+            'de': 'shownot.es Passwortreset',
+        }
+    }
 }
 
 DEFAULT_FROM_EMAIL = 'noreply@shownot.es'

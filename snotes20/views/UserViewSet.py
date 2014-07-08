@@ -36,10 +36,32 @@ class UserViewSet(viewsets.ViewSet):
             token = request.DATA['token']
             user = NUser.objects.get(username=pk)
             token_obj = user.check_email_token(token)
-            user.apply_token(token_obj)
+            user.apply_email_token(token_obj)
             return Response(status=status.HTTP_202_ACCEPTED)
         except:
             raise PermissionDenied()
+
+    @action(methods=['POST'])
+    def request_pw_reset(self, request, pk=None):
+        try:
+            user = NUser.objects.get(username=pk)
+            user.set_pw_reset_token()
+            user.email_pw_reset('en')
+        except:
+            pass
+        return Response(status=status.HTTP_200_OK)
+
+    @action(methods=['POST'])
+    def pw_reset(self, request, pk=None):
+        try:
+            token = request.DATA['token']
+            password = request.DATA['password']
+            user = NUser.objects.get(username=pk)
+            if user.check_pw_reset_token(token):
+                user.apply_pw_reset_token(password)
+        except:
+            pass
+        return Response(status=status.HTTP_200_OK)
 
     def retrieve(self, request, pk=None):
         if pk == "me":
