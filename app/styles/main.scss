@@ -444,12 +444,8 @@ nav.account .caption {
 }
 
 /* Sidebar Form */
-nav li > input,
-nav li > form {
+nav li > input {
 	display: none;
-}
-nav li > input:checked + form {
-	display: block;
 }
 .account form {
 	background-color: #fefefe;

@@ -10,8 +10,8 @@ angular.module('snotes30App')
 
     $scope.errors = {};
 
-    AuthenticationService.getStatus().then(function (user) {
-      $scope.currentUser = user;
+    AuthenticationService.getStatus().then(function (rtn) {
+      $scope.currentUser = rtn.user;
     });
 
     function flipFormMode() {
