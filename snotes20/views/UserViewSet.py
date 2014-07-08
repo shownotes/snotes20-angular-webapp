@@ -1,10 +1,12 @@
 from django.contrib.auth import authenticate, login, logout, get_user_model
+from django.db import transaction
 
 from rest_framework.response import Response
 from rest_framework import viewsets, status
 from rest_framework.exceptions import PermissionDenied
 
 from snotes20.serializers import NUserSerializer
+from snotes20.models import NUser, NUserSocial, NUserSocialType
 
 
 class UserViewSet(viewsets.ViewSet):
@@ -33,10 +35,34 @@ class UserViewSet(viewsets.ViewSet):
         return Response(data)
 
     def partial_update(self, request, pk=None):
-        if pk != "me" or not request.user.is_authenticated():
+        user = request.user
+        if pk != "me" or not user.is_authenticated():
             raise PermissionDenied()
 
-        serialized = NUserSerializer(request.user, data=request.DATA, partial=True)
+        pwok = ('password' in request.DATA and user.check_password(request.DATA['password']))
+
+        # Change password
+        if 'newpassword' in request.DATA:
+            if not pwok:
+                raise PermissionDenied()
+            else:
+                newpw = request.DATA['newpassword']
+                user.set_password(newpw)
+                user.save()
+
+                auth_user = authenticate(username=user.username, password=newpw)
+                login(request, auth_user)
+
+                return Response(status=status.HTTP_202_ACCEPTED)
+
+        # Change email
+        if 'email' in request.DATA and not pwok:
+            raise PermissionDenied()
+
+        # Change color or bio
+        del request.DATA['password']
+
+        serialized = NUserSerializer(user, data=request.DATA, partial=True)
 
         if serialized.is_valid():
             serialized.save()
