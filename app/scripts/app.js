@@ -28,6 +28,9 @@ angular
         templateUrl: 'views/document.html',
         controller: 'DocumentCtrl'
       })
+      .when('/rules', {
+        templateUrl: 'views/rules.html'
+      })
       .when('/styleguide', {
         templateUrl: 'views/styleguide.html'
       })

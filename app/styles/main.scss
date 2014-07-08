@@ -529,6 +529,11 @@ ul.profile li:before {
 	width: 10em;
 }
 
+/* Misc */
+.rules > *:not(:last-child) {
+	margin-bottom: 1em;
+}
+
 /* Footer */
 footer {
 	color: #999;
