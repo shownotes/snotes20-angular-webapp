@@ -35,7 +35,7 @@ angular.module('snotes30App')
     };
 
     function doLogin() {
-      AuthenticationService.login(
+      $scope.loginform.promise = AuthenticationService.login(
         $scope.user.username,
         $scope.user.password
       ).then(function () {
@@ -49,7 +49,7 @@ angular.module('snotes30App')
     }
 
     function doRegister() {
-      AuthenticationService.register(
+      $scope.loginform.promise = AuthenticationService.register(
         $scope.user.username,
         $scope.user.email,
         $scope.user.password

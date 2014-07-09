@@ -10,6 +10,7 @@
     "angular-route": "1.2.16",
     "fira": "~0.1.0",
     "angular-spectrum-colorpicker": "1.0.13",
+    "angular-busy": "~4.1.0",
     "restangular": "~1.4.0"
   },
   "devDependencies": {

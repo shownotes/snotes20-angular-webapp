@@ -16,6 +16,7 @@ angular
     'ngRoute',
     'ngSanitize',
     'angularSpectrumColorpicker',
+    'cgBusy',
     'restangular'
   ])
   .config(function ($routeProvider, $locationProvider, RestangularProvider) {
@@ -81,4 +82,11 @@ angular
     Restangular.addFullRequestInterceptor(function(element, operation, what, url, headers, query) {
       headers['X-CSRFToken'] = $cookies.csrftoken;
     });
+  })
+  .value('cgBusyDefaults',{
+    message:'Doing magic!',
+    backdrop: true,
+    templateUrl: 'views/loading.html',
+    delay: 200,
+    minDuration: 50
   });

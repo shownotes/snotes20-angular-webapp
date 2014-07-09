@@ -17,6 +17,7 @@
 	<!-- bower:css -->
 	<link rel="stylesheet" href="bower_components/fira/fira.css" />
 	<link rel="stylesheet" href="bower_components/spectrum/spectrum.css" />
+	<link rel="stylesheet" href="bower_components/angular-busy/dist/angular-busy.css" />
 	<!-- endbower -->
 	<!-- endbuild -->
 	<!-- build:css(.tmp) styles/main.css -->
@@ -50,53 +51,55 @@
 						</label>
 						<input type="checkbox" id="toggle-form" ng-model="loginform.status" ng-true-value="down" ng-false-value="up" />
 
-						<form name="loginform.frm" ng-show="!currentUser && loginform.status === 'down'" novalidate>
-							<div class="form-input">
-								<div ng-show="loginform.errors.loginfailed">Hast du dein <a href="#" ng-click="requestPwReset()">Passwort vergessen</a>?</div>
-								<div ng-show="pwresetdone">Überprüfe dein Mail-Postfach.</div>
-								<form-error errors="loginform.errors.username"></form-error>
-								<input type="text"
-											 ng-model="user.username"
-											 placeholder="Benutzername"
-											 value=""
-											 title="Gib deinen Benutzernamen ein"
-											 required />
-								<form-error errors="loginform.errors.email"></form-error>
-								<input type="email"
-											 ng-model="user.email"
-											 ng-show="loginform.mode == 'register'"
-											 ng-required="loginform.mode == 'register'"
-											 placeholder="E-Mail-Adresse"
-											 value=""
-											 title="Gib deine E-Mail-Adresse" />
-								<form-error errors="loginform.errors.password"></form-error>
-								<input type="password"
-											 ng-model="user.password"
-											 placeholder="Passwort"
-											 value=""
-											 title="Gib dein Passwort ein"
-											 required />
-								<input type="password"
-											 ng-model="user.password2"
-											 ng-show="loginform.mode == 'register'"
-											 ng-required="loginform.mode == 'register'"
-											 placeholder="Passwort wiederholen"
-											 equals="{{user.password}}"
-											 value=""
-											 title="Wiederhole dein Passwort" />
-							</div>
-							<div class="form-check" ng-show="loginform.mode == 'register'">
-								<input type="checkbox"
-											 id="checkrules"
-											 value="checkrules"
-											 required />
-								<label for="checkrules">Ich akzeptiere die <a href="/rules">Regeln</a>.</label>
-							</div>
-							<div class="form-button">
-								<input type="{{loginform.mode === 'register' ? 'button' : 'submit'}}" value="Einloggen" ng-click="login()" />
-								<input type="{{loginform.mode === 'login' ? 'button' : 'submit'}}" value="Registrieren" ng-click="register()" />
-							</div>
-						</form>
+						<div cg-busy="loginform.promise">
+							<form name="loginform.frm" ng-show="!currentUser && loginform.status === 'down'" novalidate>
+								<div class="form-input">
+									<div ng-show="loginform.errors.loginfailed">Hast du dein <a href="#" ng-click="requestPwReset()">Passwort vergessen</a>?</div>
+									<div ng-show="pwresetdone">Überprüfe dein Mail-Postfach.</div>
+									<form-error errors="loginform.errors.username"></form-error>
+									<input type="text"
+												 ng-model="user.username"
+												 placeholder="Benutzername"
+												 value=""
+												 title="Gib deinen Benutzernamen ein"
+												 required />
+									<form-error errors="loginform.errors.email"></form-error>
+									<input type="email"
+												 ng-model="user.email"
+												 ng-show="loginform.mode == 'register'"
+												 ng-required="loginform.mode == 'register'"
+												 placeholder="E-Mail-Adresse"
+												 value=""
+												 title="Gib deine E-Mail-Adresse" />
+									<form-error errors="loginform.errors.password"></form-error>
+									<input type="password"
+												 ng-model="user.password"
+												 placeholder="Passwort"
+												 value=""
+												 title="Gib dein Passwort ein"
+												 required />
+									<input type="password"
+												 ng-model="user.password2"
+												 ng-show="loginform.mode == 'register'"
+												 ng-required="loginform.mode == 'register'"
+												 placeholder="Passwort wiederholen"
+												 equals="{{user.password}}"
+												 value=""
+												 title="Wiederhole dein Passwort" />
+								</div>
+								<div class="form-check" ng-show="loginform.mode == 'register'">
+									<input type="checkbox"
+												 id="checkrules"
+												 value="checkrules"
+												 required />
+									<label for="checkrules">Ich akzeptiere die <a href="/rules">Regeln</a>.</label>
+								</div>
+								<div class="form-button">
+									<input type="{{loginform.mode === 'register' ? 'button' : 'submit'}}" value="Einloggen" ng-click="login()" />
+									<input type="{{loginform.mode === 'login' ? 'button' : 'submit'}}" value="Registrieren" ng-click="register()" />
+								</div>
+							</form>
+						</div>
 
 						<form ng-show="currentUser && loginform.status === 'down'">
 							<div class="form-button">
@@ -163,6 +166,7 @@
 	<script src="bower_components/angular-route/angular-route.js"></script>
 	<script src="bower_components/spectrum/spectrum.js"></script>
 	<script src="bower_components/angular-spectrum-colorpicker/dist/angular-spectrum-colorpicker.js"></script>
+	<script src="bower_components/angular-busy/dist/angular-busy.js"></script>
 	<script src="bower_components/lodash/dist/lodash.compat.js"></script>
 	<script src="bower_components/restangular/dist/restangular.js"></script>
 	<!-- endbower -->
