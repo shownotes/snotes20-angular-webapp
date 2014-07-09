@@ -1,2 +1,16 @@
-new pw: <input ng-model="password">
-<input type="submit" ng-click="sendPwReset()">
+<h2>Passwortreset</h2>
+<h3>Fooo</h3>
+
+<p>Hallo {{user.username}}!</p>
+
+<p>Bla foo bla bla</p>
+
+<div class="form-wrapper">
+	<h3>Passwort ändern</h3>
+
+	<form class="profile-edit">
+		<input type="password" value="" placeholder="Neues Passwort" ng-model="pwreset.password" />
+		<input type="password" value="" placeholder="Neues Passwort bestätigen" ng-model="pwreset.password2" equals="{{upgrade.password}}" />
+		<input type="submit" value="Änderungen speichern" ng-click="doPwReset()" />
+	</form>
+</div>

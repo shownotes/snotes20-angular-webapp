@@ -7,7 +7,7 @@ angular.module('snotes30App')
       var data = {
         username: $routeParams.username,
         token: $routeParams.token,
-        password: $scope.password
+        password: $scope.pwreset.password
       };
 
       Restangular.one('users', data.username).customPOST(data, 'pw_reset').then(function () {
