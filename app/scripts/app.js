@@ -19,7 +19,7 @@ angular
     'cgBusy',
     'restangular'
   ])
-  .config(function ($routeProvider, $locationProvider, RestangularProvider) {
+  .config(function ($routeProvider, $locationProvider, $httpProvider, RestangularProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/livelist.html',
@@ -77,6 +77,18 @@ angular
       element.document.create_date = Date(element.document.create_date);
       return element;
     });
+
+    function delayHttp() {
+      $httpProvider.responseInterceptors.push(["$q", "$timeout", function ($q, $timeout) {
+        return function (promise) {
+          var defer = $q.defer();
+          $timeout(function () { promise.then(defer.resolve, defer.reject); }, 700);
+          return defer.promise;
+        };
+      }]);
+    }
+
+    //delayHttp();
   })
   .run(function ($cookies, Restangular) {
     Restangular.addFullRequestInterceptor(function(element, operation, what, url, headers, query) {

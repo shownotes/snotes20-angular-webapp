@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('UserPwResetCtrl', function ($scope, $routeParams, Restangular) {
+  .controller('UserPwResetCtrl', function ($scope, $routeParams, Restangular, actionStatusGlueService) {
 
     $scope.sendPwReset = function () {
       var data = {
@@ -10,10 +10,10 @@ angular.module('snotes30App')
         password: $scope.pwreset.password
       };
 
-      Restangular.one('users', data.username).customPOST(data, 'pw_reset').then(function () {
-        $scope.success = true;
-      }, function () {
-        $scope.success = false;
-      })
+      var stat = actionStatusGlueService.fac($scope.pwreset);
+
+      Restangular.one('users', data.username)
+                 .customPOST(data, 'pw_reset')
+                 .then(stat.resolve, stat.reject).finally(stat.reset());
     };
   });

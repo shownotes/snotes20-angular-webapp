@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('UserProfileCtrl', function ($scope, Restangular) {
+  .controller('UserProfileCtrl', function ($scope, Restangular, actionStatusGlueService) {
     var me = Restangular.one('users', 'me');
 
     var reloadMe = function () {
@@ -10,7 +10,15 @@ angular.module('snotes30App')
       });
     };
 
+    var patchMe = function (obj, statobj) {
+      var stat = actionStatusGlueService.fac(statobj);
+      me.patch(obj).then(stat.resolve, stat.reject).then(reloadMe).finally(stat.reset());
+    };
+
     reloadMe();
+
+    $scope.colorbio = {};
+    $scope.socials = {};
 
     $scope.saveBioColor = function () {
       var color = $scope.user.color;
@@ -18,37 +26,29 @@ angular.module('snotes30App')
       if(color[0] === "#")
         color = color.substr(1).toUpperCase();
 
-      me.patch({
+      patchMe({
         'color': color,
         'bio': $scope.user.bio
-      }).then(reloadMe);
-    };
-
-    $scope.changeMail = function () {
-      me.patch({
-        'email': $scope.changemail.email,
-        'password': $scope.changemail.password
-      }).then(function () {
-        $scope.changemail = { success: true };
-      }, function () {
-        $scope.changemail = { fail: true };
-      }).then(reloadMe);
-    };
-
-    $scope.changePassword = function () {
-      me.patch({
-        'password': $scope.pwchange.password,
-        'newpassword': $scope.pwchange.newpassword
-      }).then(function () {
-        $scope.pwchange = { success: true };
-      }, function () {
-        $scope.pwchange = { fail: true };
-      }).then(reloadMe);
+      }, $scope.colorbio);
     };
 
     $scope.saveSocials = function () {
-      me.patch({
+      patchMe({
         'socials': $scope.user.socials
-      }).then(reloadMe);
+      }, $scope.socials);
+    };
+
+    $scope.changeMail = function () {
+      patchMe({
+        'email': $scope.changemail.email,
+        'password': $scope.changemail.password
+      }, $scope.changemail);
+    };
+
+    $scope.changePassword = function () {
+      patchMe({
+        'password': $scope.pwchange.password,
+        'newpassword': $scope.pwchange.newpassword
+      }, $scope.pwchange);
     };
   });

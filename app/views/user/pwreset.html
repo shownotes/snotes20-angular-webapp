@@ -11,6 +11,9 @@
 	<form class="profile-edit">
 		<input type="password" value="" placeholder="Neues Passwort" ng-model="pwreset.password" />
 		<input type="password" value="" placeholder="Neues Passwort bestätigen" ng-model="pwreset.password2" equals="{{upgrade.password}}" />
-		<input type="submit" value="Änderungen speichern" ng-click="doPwReset()" />
+		<input type="submit" value="Änderungen speichern" ng-click="sendPwReset()" />
+		<action-status success-text="Dein Passwort wurde erfolgreich geändert."
+					   fail-text="Bitte überprüfe noch einmal deine Angaben."
+					   active="pwreset.active" status="pwreset.status"></action-status>
 	</form>
 </div>
