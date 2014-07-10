@@ -1,21 +1,32 @@
-# humanstxt.org
+### shownot.es credits ###
 
 # TEAM
 
-Frontend developer: Kai Kubasta
-Website: kaikubasta.de
-Twitter: @kaikubasta
-Location: Berlin, Germany
+	Frontend developer (AngularJS), backend developer: luto
+	Website: luto.at
+	Location: Vienna, Austria
 
-Frontend developer (Angular), backend developer: luto
-Website: luto.at
-Location: Vienna, Austria
+	Frontend developer, web designer: Kai Kubasta
+	Website: kaikubasta.de
+	Twitter: @kaikubasta
+	Location: Berlin, Germany
 
 # THANKS
 
-Fira Sans & Fira Mono typeface: Erik Spiekermann, Ralph du Carrois, Mozilla
+	Logo designer: Sven Sedivy
+	Website: graphorama.de
+	Twitter: @graphorama
+
+	Fira Sans & Fira Mono typeface: Erik Spiekermann, Ralph du Carrois, Mozilla
+
+	Etherpad
+	Website: etherpad.org
 
 # SITE
 
-Language: German
-Standards: HTML5, CSS3
+	Doctype: HTML5
+	Language: German
+	Frontend: HTML5, CSS3, JavaScript (AngularJS)
+	Backend: Python (Django)
+
+# humanstxt.org

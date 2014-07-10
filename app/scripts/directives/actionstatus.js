@@ -15,7 +15,7 @@ angular.module('snotes30App').directive('actionStatus', function() {
     },
     template: '<div class="actionStatus" ng-show="active">'
             +   '<div class="success" ng-show="status === true">{{successText}}</div>'
-            +   '<div class="success" ng-show="status === false">{{failText}}</div>'
+            +   '<div class="fail" ng-show="status === false">{{failText}}</div>'
             +   '<div class="success" ng-show="status === null"><div class="progress small"></div> {{loadingText}}</div>'
             + '</div>'
   };
