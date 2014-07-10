@@ -28,7 +28,7 @@ class NUser(AbstractBaseUser, PermissionsMixin):
                              validators=[RegexValidator(regex='^[A-F0-9]{6}$', message='No color', code='nocolor')])
 
     migrated = models.BooleanField(default=True)
-    old_password = models.CharField(max_length=100, null=True, blank=True, default=None)
+    old_password = models.CharField(max_length=500, null=True, blank=True, default=None)
     bio = models.CharField(max_length=400, default='', blank=True)
     pw_reset_token = models.CharField(max_length=30, null=True, blank=True)
 

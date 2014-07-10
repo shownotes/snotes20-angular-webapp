@@ -110,6 +110,8 @@ LOGGING = {
     },
 }
 
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend', 'snotes20.showpadauth.ShowPadBackend')
+
 EDITORS = {
     'ep': {
       "type": "etherpad",
