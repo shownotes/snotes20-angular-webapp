@@ -563,6 +563,23 @@ ul.profile li:before {
 	width: 10em;
 }
 
+/* Importer Logs */
+.importerlog {
+  table {
+    td {
+      vertical-align: top;
+      border: 3px solid #eee;
+    }
+  }
+
+  .succeeded {
+    background-color: #00AF00;
+  }
+  .failed {
+    background-color: #AF0000;
+  }
+}
+
 /* Misc */
 .rules > *:not(:last-child) {
 	margin-bottom: 1em;

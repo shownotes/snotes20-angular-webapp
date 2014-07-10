@@ -58,6 +58,10 @@ angular
         templateUrl: 'views/user/activate.html',
         controller: 'UserActivateCtrl'
       })
+      .when('/admin/importstatus', {
+        templateUrl: 'views/admin/importstatus.html',
+        controller: 'ImportStatusCtrl'
+      })
       .otherwise({
         templateUrl: '404.html'
       });
@@ -75,6 +79,27 @@ angular
       element.date = Date(element.date);
       element.podcast.create_date = Date(element.podcast.create_date);
       element.document.create_date = Date(element.document.create_date);
+      return element;
+    });
+
+    RestangularProvider.addElementTransformer('importerlogs', false, function(element) {
+      function patchTimeAttrs(obj) {
+        obj.starttime = new Date(obj.starttime);
+        obj.endtime = new Date(obj.endtime);
+      }
+
+      patchTimeAttrs(element);
+
+      for(var i = 0; i < element.sources.length; i++) {
+        var source = element.sources[i];
+        patchTimeAttrs(source);
+
+        for(var j = 0; j < source.jobs.length; j++) {
+          var job = source.jobs[i];
+          patchTimeAttrs(job);
+        }
+      }
+
       return element;
     });
 

@@ -1,0 +1,49 @@
+<div ng-repeat="log in logs" class="importerlog">
+	<h2>Import: {{log.starttime | date: 'mediumDate'}}</h2>
+	<p>
+		Starttime: {{log.starttime | date : 'short'}}<br>
+		Endtime: {{log.endtime | date : 'short'}}<br>
+		Duration: {{log.runtime}}<br>
+	</p>
+
+	<table>
+		<tbody>
+			<tr ng-repeat="source in log.sources"  ng-class="{failed: !source.succeeded, succeeded: source.succeeded}">
+				<td>{{source.source}}</td>
+				<td>
+					{{source.endtime | date : 'short'}}<br>
+					{{source.starttime | date : 'short'}}<br>
+					{{log.runtime}}
+				</td>
+				<td>
+					<table ng-class="{failed: !source.succeeded, succeeded: source.succeeded}">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Startzeit</th>
+								<th>Endzeit</th>
+								<th>Lautzeit</th>
+								<th>Erstellt</th>
+								<th>Gelöscht</th>
+								<th>Übersprungen</th>
+								<th>Aktualisiert</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="job in source.jobs">
+								<td>{{job.name}}</td>
+								<td>{{job.starttime | date : 'short'}}</td>
+								<td>{{job.endtime | date : 'short'}}</td>
+								<td>{{job.runtime}}</td>
+								<td>{{job.created}}</td>
+								<td>{{job.deleted}}</td>
+								<td>{{job.skipped}}</td>
+								<td>{{job.updated}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
