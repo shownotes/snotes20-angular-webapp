@@ -20,6 +20,12 @@ angular.module('snotes30App')
       return auth.customGET('');
     };
 
+    this.injectMe = function (scope) {
+      this.getStatus().then(function (rtn) {
+        scope.currentUser = rtn.user;
+      });
+    };
+
     this.register = function (username, email, password) {
       return users.post({
         username: username,

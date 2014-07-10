@@ -10,9 +10,7 @@ angular.module('snotes30App')
 
     $scope.errors = {};
 
-    AuthenticationService.getStatus().then(function (rtn) {
-      $scope.currentUser = rtn.user;
-    });
+    AuthenticationService.injectMe($scope);
 
     function flipFormMode() {
       $scope.loginform.mode = $scope.loginform.mode === 'login' ? 'register' : 'login';
@@ -38,11 +36,14 @@ angular.module('snotes30App')
       $scope.loginform.promise = AuthenticationService.login(
         $scope.user.username,
         $scope.user.password
-      ).then(function () {
+      ).then(function (user) {
         $scope.currentUser = {
           username: $scope.user.username
         };
         $scope.user = null;
+        if(!user.migrated) {
+          $location.url('/user/upgrade');
+        }
       }, function (errors) {
         $scope.loginform.errors = { 'loginfailed': true };
       });
