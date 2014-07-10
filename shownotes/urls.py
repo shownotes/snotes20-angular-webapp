@@ -11,6 +11,7 @@ router.register(r'auth', views.AuthViewSet, base_name='auth')
 router.register(r'users', views.UserViewSet, base_name='users')
 router.register(r'soonepisodes', views.SoonEpisodeViewSet, base_name='sonnepisodes')
 router.register(r'documents', views.DocumentViewSet, base_name='documents')
+router.register(r'importerlogs', views.ImporterLogViewSet, base_name='importerlogs')
 
 urlpatterns = patterns('',
     url(r'^', include(router.urls)),
