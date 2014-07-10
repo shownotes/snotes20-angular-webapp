@@ -59,9 +59,10 @@ class UserViewSet(viewsets.ViewSet):
             user = NUser.objects.get(username=pk)
             if user.check_pw_reset_token(token):
                 user.apply_pw_reset_token(password)
+                return Response(status=status.HTTP_200_OK)
         except:
             pass
-        return Response(status=status.HTTP_200_OK)
+        raise PermissionDenied()
 
     def retrieve(self, request, pk=None):
         if pk == "me":
