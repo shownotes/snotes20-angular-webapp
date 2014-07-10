@@ -9,6 +9,7 @@ from django.core.validators import RegexValidator
 from django.template import Context
 from django.template.loader import render_to_string
 from django.conf import settings
+from django.contrib.auth import login, authenticate
 
 
 def get_random_color():
@@ -48,11 +49,34 @@ class NUser(AbstractBaseUser, PermissionsMixin):
             self.old_password = None
         super(NUser, self).save(*args, **kwargs)
 
+    def is_authenticated_raw(self):
+        return super(NUser, self).is_authenticated()
+
+    def is_authenticated(self):
+        return self.is_authenticated_raw() and self.migrated
+
     def get_full_name(self):
         return ""
 
     def get_short_name(self):
         return ""
+
+    def migrate(self, password, request=None):
+        if request is None:
+            self.set_password(password)
+        else:
+            self.set_password_keep_session(request, password)
+
+        self.migrated = True
+        self.old_password = None
+        self.save()
+
+    def set_password_keep_session(self, request, raw_password):
+        self.set_password(raw_password)
+        self.save()
+
+        auth_user = authenticate(username=self.username, password=raw_password)
+        login(request, auth_user)
 
     def email_user(self, subject, message, from_email=None, **kwargs):
         send_mail(subject, message, from_email, [self.email], **kwargs)

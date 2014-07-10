@@ -3,12 +3,13 @@ from django.contrib.auth import authenticate, login, logout
 from rest_framework.response import Response
 from rest_framework import viewsets, status
 
+import snotes20.models as models
 
 class AuthViewSet(viewsets.ViewSet):
     permission_classes = ()
 
     def list(self, request):
-        if request.user.is_authenticated():
+        if request.user.is_authenticated() or request.user is models.NUser and request.user.is_authenticated_raw():
             return Response(data={'user': {'username': request.user.username}}, status=200)
         else:
             return Response(status=401)
@@ -22,7 +23,7 @@ class AuthViewSet(viewsets.ViewSet):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return Response(status=200)
+                return Response(data={'migrated': user.migrated}, status=200)
             else:
                 return Response(status=401)
         else:
