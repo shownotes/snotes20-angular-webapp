@@ -51,8 +51,8 @@
 						</label>
 						<input type="checkbox" id="toggle-form" ng-model="loginform.status" ng-true-value="down" ng-false-value="up" />
 
-						<div cg-busy="loginform.promise">
-							<form name="loginform.frm" ng-show="!currentUser && loginform.status === 'down'" novalidate>
+						<div>
+							<form cg-busy="loginform.promise" name="loginform.frm" ng-show="!currentUser && loginform.status === 'down'" novalidate>
 								<div class="form-input">
 									<div ng-show="loginform.errors.loginfailed">Hast du dein <a href="#" ng-click="requestPwReset()">Passwort vergessen</a>?</div>
 									<div ng-show="pwresetdone">Überprüfe dein Mail-Postfach.</div>

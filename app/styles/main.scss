@@ -692,12 +692,13 @@ footer p:not(:last-child) {
 	}
 	.account form {
 		padding: 2em;
+		min-width: 20em;
 		position: absolute;
 		border-left: none;
 		border-top-right-radius: .4em;
 		border-bottom-right-radius: .4em;
 		box-shadow: .25em .25em 1em rgba(0,0,0,.5);
-		z-index: 1337;
+		z-index: 1000;
 	}
 	.account .button {
 		-webkit-flex-flow: column;
