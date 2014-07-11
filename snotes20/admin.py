@@ -47,6 +47,11 @@ class PodcastAdmin(admin.ModelAdmin):
         }),
     )
 
+@admin.register(models.ChatMessage)
+class ChatMessageAdmin(admin.ModelAdmin):
+    pass
+
+
 class PublicationInline(admin.StackedInline):
     model = models.Publication
     extra = 0

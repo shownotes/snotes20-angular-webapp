@@ -28,14 +28,22 @@ class Document(models.Model):
         return "Document {} ({})".format(self.name, epi)
 
 
+CHAT_MSG_ISSUER_USER = 'USR'
+
+CHAT_MSG_ISSUER_CHOICES = (
+    (CHAT_MSG_ISSUER_USER, 'User'),
+)
+
+
 class ChatMessageIssuer(models.Model):
+    type = models.CharField(max_length=3, choices=CHAT_MSG_ISSUER_CHOICES)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
 
 
 class ChatMessage(models.Model):
     id = UUIDField(primary_key=True, auto=True)
     document = models.ForeignKey(Document)
-    issuer = models.ForeignKey(ChatMessageIssuer)
+    issuer = models.ForeignKey(ChatMessageIssuer, unique=True)
     message = models.CharField(max_length=200)
 
 
