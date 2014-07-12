@@ -1,10 +1,24 @@
 import hmac
 import hashlib
-import os
 import struct
+
+from django.contrib.auth.backends import ModelBackend
 
 import snotes20.models as models
 
+
+class NModelBackend(ModelBackend):
+
+    def authenticate(self, username=None, password=None, **kwargs):
+        # don't allow any non-migrated users to auth with ModelBackend
+        try:
+            user = models.NUser.objects.get(username=username)
+            if not user.migrated:
+                return None
+        except models.NUser.DoesNotExist:
+            return None
+
+        return super(NModelBackend, self).authenticate(username, password, **kwargs)
 
 
 class ShowPadBackend(object):

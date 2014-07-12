@@ -110,7 +110,7 @@ LOGGING = {
     },
 }
 
-AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend', 'snotes20.showpadauth.ShowPadBackend')
+AUTHENTICATION_BACKENDS = ('snotes20.showpadauth.NModelBackend', 'snotes20.showpadauth.ShowPadBackend')
 
 EDITORS = {
     'ep': {
