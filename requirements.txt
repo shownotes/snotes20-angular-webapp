@@ -3,5 +3,5 @@ django-cors-headers
 markdown
 django-filter
 hoerapi
-django-uuidfield
+https://github.com/luto/django-uuidfield/archive/python3.zip
 etherpad_lite
