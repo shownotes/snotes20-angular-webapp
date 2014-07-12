@@ -24,7 +24,7 @@ class NUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField('is_staff', default=False)
     is_active = models.BooleanField('is_active', default=False)
     date_joined = models.DateTimeField('date_joined', default=timezone.now)
-    date_login = models.DateTimeField('date_login', null=True)
+    date_login = models.DateTimeField('date_login', null=True, blank=True)
     color = models.CharField(max_length=6, default=get_random_color,
                              validators=[RegexValidator(regex='^[A-F0-9]{6}$', message='No color', code='nocolor')])
 

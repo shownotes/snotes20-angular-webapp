@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth import authenticate, login, logout
 
 from rest_framework.response import Response
@@ -23,6 +25,8 @@ class AuthViewSet(viewsets.ViewSet):
         if user is not None:
             if user.is_active:
                 login(request, user)
+                user.login_time = datetime.now()
+                user.save()
                 return Response(data={'migrated': user.migrated}, status=200)
             else:
                 return Response(status=401)
