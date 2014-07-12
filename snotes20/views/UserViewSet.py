@@ -6,15 +6,15 @@ from rest_framework import viewsets, status
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.decorators import action
 
-from snotes20.serializers import NUserSerializer
-from snotes20.models import NUser, NUserSocial, NUserSocialType
+from snotes20.serializers import NUserRegisterSerializer
+from snotes20.models import NUser
 
 
 class UserViewSet(viewsets.ViewSet):
     permission_classes = ()
 
     def create(self, request):
-        serialized = NUserSerializer(data=request.DATA)
+        serialized = NUserRegisterSerializer(data=request.DATA)
 
         if serialized.is_valid():
             user = get_user_model().objects.create_user(
