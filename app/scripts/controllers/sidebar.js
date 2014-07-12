@@ -17,6 +17,8 @@ angular.module('snotes30App')
     }
 
     function handleLoginRegister (mode, func) {
+      $scope.loginform.errors = [];
+      
       if($scope.loginform.mode !== mode) {
         flipFormMode();
       } else if($scope.loginform.frm.$valid) {
