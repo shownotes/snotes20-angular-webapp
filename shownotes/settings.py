@@ -111,6 +111,7 @@ LOGGING = {
 }
 
 AUTHENTICATION_BACKENDS = ('snotes20.showpadauth.NModelBackend', 'snotes20.showpadauth.ShowPadBackend')
+PASSWORD_HASHERS = ( 'snotes20.showpadauth.NPBKDF2PasswordHasher', )
 
 EDITORS = {
     'ep': {

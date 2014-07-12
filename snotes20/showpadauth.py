@@ -3,8 +3,13 @@ import hashlib
 import struct
 
 from django.contrib.auth.backends import ModelBackend
+from django.contrib.auth.hashers import PBKDF2PasswordHasher
 
 import snotes20.models as models
+
+
+class NPBKDF2PasswordHasher(PBKDF2PasswordHasher):
+    iterations = 500000
 
 
 class NModelBackend(ModelBackend):
