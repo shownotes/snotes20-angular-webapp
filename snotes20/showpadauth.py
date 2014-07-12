@@ -104,24 +104,14 @@ def pbkdf2(digestmod, password: 'bytes', salt, count, dk_length) -> 'bytes':
     return dk[:dk_length]
 
 
-"""
-def test():
-    pw = bytearray("shie9EiSh0", 'ascii')
+def testHashing():
+    raw_password = bytearray("shie9EiSh0", 'ascii')
     salt = bytearray('1957b4c6bbe0fc157a32f36db442addbe46f1d8ce0f68822095dfedddca8519b058d30731f9fe37de96d949c3681d00d6d7eb6e7724c8174770010f26854f0fd855f768666bdedafdd4360882d722f2b39aee5ac7d03491c3050e8db81979caa78090f1c2407d4d1e00228f7191252aa572d7440076c4612f695baa0d4e6d2d8', 'ascii')
-
-    str_hash = "7ecae6459b6178cb67190c0885f3074bcbe3e1a50e470b249eb30df855615f72"
-    hash1 = bytearray.fromhex(str_hash)
-
+    hash1 = bytearray.fromhex("7ecae6459b6178cb67190c0885f3074bcbe3e1a50e470b249eb30df855615f72")
     iterations = 92141
 
-    hash2 = pbkdf2(hashlib.sha1, pw, salt, iterations, 32)
-    print("")
-    print(hash1)
-    print(len(hash1))
-    print(hash2)
-    print(len(hash2))
-    print(hash1 == hash2)
-    return hash == hash2
+    hash2 = pbkdf2(hashlib.sha1, raw_password, salt, iterations, 32)
 
-test()
-"""
+    assert hash1 == hash2
+
+testHashing()
