@@ -36,8 +36,6 @@
 
 			<header>
 				<h1><a href="#"><img src="images/shownotes-logo.svg" alt="shownot.es" /></a></h1>
-
-				<p>Die kollaborative Plattform für Sendungsnotizen. <a href="#">Was ist das?</a></p>
 			</header>
 
 			<nav class="account">
@@ -54,8 +52,6 @@
 						<div>
 							<form cg-busy="loginform.promise" name="loginform.frm" ng-show="!currentUser && loginform.status === 'down'" novalidate>
 								<div class="form-input">
-									<div ng-show="loginform.errors.loginfailed">Hast du dein <a href="#" ng-click="requestPwReset()">Passwort vergessen</a>?</div>
-									<div ng-show="pwresetdone">Überprüfe dein Mail-Postfach.</div>
 									<form-error errors="loginform.errors.username"></form-error>
 									<input type="text"
 												 ng-model="user.username"
@@ -94,6 +90,8 @@
 												 required />
 									<label for="checkrules">Ich akzeptiere die <a href="/rules">Regeln</a>.</label>
 								</div>
+								<div class="pwreset" ng-show="loginform.errors.loginfailed">Hast du dein <a href="#" ng-click="requestPwReset()">Passwort vergessen</a>?</div>
+									<div ng-show="pwresetdone">Überprüfe dein Mail-Postfach.</div>
 								<div class="form-button">
 									<input type="{{loginform.mode === 'register' ? 'button' : 'submit'}}" value="Einloggen" ng-click="login()" />
 									<input type="{{loginform.mode === 'login' ? 'button' : 'submit'}}" value="Registrieren" ng-click="register()" />
@@ -125,7 +123,7 @@
 					</li>
 					<li title="Häufig gestellte Fragen">
 						<a href="#">
-							<span class="icon-info"></span><span class="caption">Häufig gestellte Fragennnnnn</span>
+							<span class="icon-info"></span><span class="caption">Häufig gestellte Fragen</span>
 						</a>
 					</li>
 					<li title="Community">

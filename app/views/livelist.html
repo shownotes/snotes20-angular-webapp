@@ -1,7 +1,119 @@
-<div ng-repeat="ep in episodes">
-  {{ ep.podcast.title }}
-  {{ ep.date }}
-  <input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
-  <input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
-  <hr>
+<h2>Die kollaborative Plattform für Sendungsnotizen</h2>
+<h3>Metadaten-Crowdsourcing</h3>
+
+<div class="box-wrapper">
+	<p>Hier siehst du, welche Podcast-Aufzeichnungen wann beginnen. Um live bei den Sendungsnotizen zu helfen, klicke auf <strong>Erstellen</strong> oder <strong>Mitschreiben</strong>. <a href='/help'>Hast du noch Fragen?</a></p>
 </div>
+
+<table class="padlist">
+	<tr>
+		<th>Startzeit</th>
+		<th>Podcast</th>
+		<th>Kürzel</th>
+		<th></th>
+	</tr>
+	<tr>
+		<td>13.07.2014, 13:37</td>
+		<td>Einschlafen Podcast</td>
+		<td>einschlafen-123</td>
+		<td>
+			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
+			<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
+		</td>
+	</tr>
+	<tr>
+		<td>13.07.2014, 13:37</td>
+		<td>Einschlafen Podcast</td>
+		<td>einschlafen-123</td>
+		<td>
+			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
+			<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
+		</td>
+	</tr>
+	<tr>
+		<td>13.07.2014, 13:37</td>
+		<td>Einschlafen Podcast</td>
+		<td>einschlafen-123</td>
+		<td>
+			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
+			<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
+		</td>
+	</tr>
+	<tr>
+		<td>13.07.2014, 13:37</td>
+		<td>Einschlafen Podcast</td>
+		<td>einschlafen-123</td>
+		<td>
+			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
+			<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
+		</td>
+	</tr>
+	<tr>
+		<td>13.07.2014, 13:37</td>
+		<td>Einschlafen Podcast</td>
+		<td>einschlafen-123</td>
+		<td>
+			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
+			<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
+		</td>
+	</tr>
+	<tr>
+		<td>13.07.2014, 13:37</td>
+		<td>Einschlafen Podcast</td>
+		<td>einschlafen-123</td>
+		<td>
+			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
+			<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
+		</td>
+	</tr>
+	<tr>
+		<td>13.07.2014, 13:37</td>
+		<td>Einschlafen Podcast</td>
+		<td>einschlafen-123</td>
+		<td>
+			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
+			<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
+		</td>
+	</tr>
+	<tr>
+		<td>13.07.2014, 13:37</td>
+		<td>Einschlafen Podcast</td>
+		<td>einschlafen-123</td>
+		<td>
+			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
+			<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
+		</td>
+	</tr>
+	<tr>
+		<td>13.07.2014, 13:37</td>
+		<td>Einschlafen Podcast</td>
+		<td>einschlafen-123</td>
+		<td>
+			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
+			<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
+		</td>
+	</tr>
+	<tr>
+		<td>13.07.2014, 13:37</td>
+		<td>Einschlafen Podcast</td>
+		<td>einschlafen-123</td>
+		<td>
+			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
+			<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
+		</td>
+	</tr>
+</table>
+
+<button class="load" ng-click="loadMorePads()"><span class="icon-loop"></span>Mehr laden</button>
+
+<p>Die Termine stammen aus dem <a href="http://hoersuppe.de/kalender/">Hörsuppe-Kalender</a>.</p>
+
+<!--
+<div ng-repeat="ep in episodes">
+	{{ ep.podcast.title }}
+	{{ ep.date }}
+	<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
+	<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
+	<hr />
+</div>
+-->
