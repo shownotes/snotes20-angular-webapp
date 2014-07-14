@@ -10,11 +10,12 @@ import snotes20.serializers as serializers
 
 class SoonEpisodeViewSet(viewsets.ViewSet):
     def list(self, request):
-        today =  datetime.date.today()
+        today = datetime.datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
         yesterday = (today - datetime.timedelta(1))
+        tomorrow = (today + datetime.timedelta(1))
 
         episodes = models.Episode.objects.filter(date__gt=yesterday)\
-                                 .filter(date__lt=today)\
+                                 .filter(date__lt=tomorrow)\
                                  .order_by('date')[:10]
 
         return Response(serializers.EpisodeSerializer(episodes).data)
