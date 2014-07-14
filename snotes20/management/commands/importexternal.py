@@ -103,7 +103,7 @@ def job_delete_old_episodes(source):
 jobs = []
 
 def add_job(job):
-    name = job.__name__[3:].replace('_', ' ')
+    name = job.__name__[4:].replace('_', ' ')
     jobs.append((name, job))
 
 add_job(job_update_podcasts)
@@ -125,6 +125,7 @@ def import_from_source(source):
         jobLog.start()
 
         try:
+            print("Job: " + name)
             jobLog.created,\
                 jobLog.deleted,\
                 jobLog.skipped,\
