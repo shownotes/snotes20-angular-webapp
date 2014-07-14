@@ -12,94 +12,18 @@
 		<th>Kürzel</th>
 		<th></th>
 	</tr>
-	<tr>
-		<td>13.07.2014, 13:37</td>
-		<td>Einschlafen Podcast</td>
-		<td>einschlafen-123</td>
+	<tr ng-repeat="ep in episodes">
+		<td>{{ ep.date | date : 'short' }}</td>
+		<td>{{ ep.podcast.title }}</td>
+		<td>{{ ep.number || 'noch keines' }}</td>
 		<td>
 			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
 			<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
 		</td>
 	</tr>
-	<tr>
-		<td>13.07.2014, 13:37</td>
-		<td>Einschlafen Podcast</td>
-		<td>einschlafen-123</td>
-		<td>
-			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
-			<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
-		</td>
-	</tr>
-	<tr>
-		<td>13.07.2014, 13:37</td>
-		<td>Einschlafen Podcast</td>
-		<td>einschlafen-123</td>
-		<td>
-			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
-			<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
-		</td>
-	</tr>
-	<tr>
-		<td>13.07.2014, 13:37</td>
-		<td>Einschlafen Podcast</td>
-		<td>einschlafen-123</td>
-		<td>
-			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
-			<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
-		</td>
-	</tr>
-	<tr>
-		<td>13.07.2014, 13:37</td>
-		<td>Einschlafen Podcast</td>
-		<td>einschlafen-123</td>
-		<td>
-			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
-			<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
-		</td>
-	</tr>
-	<tr>
-		<td>13.07.2014, 13:37</td>
-		<td>Einschlafen Podcast</td>
-		<td>einschlafen-123</td>
-		<td>
-			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
-			<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
-		</td>
-	</tr>
-	<tr>
-		<td>13.07.2014, 13:37</td>
-		<td>Einschlafen Podcast</td>
-		<td>einschlafen-123</td>
-		<td>
-			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
-			<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
-		</td>
-	</tr>
-	<tr>
-		<td>13.07.2014, 13:37</td>
-		<td>Einschlafen Podcast</td>
-		<td>einschlafen-123</td>
-		<td>
-			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
-			<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
-		</td>
-	</tr>
-	<tr>
-		<td>13.07.2014, 13:37</td>
-		<td>Einschlafen Podcast</td>
-		<td>einschlafen-123</td>
-		<td>
-			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
-			<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
-		</td>
-	</tr>
-	<tr>
-		<td>13.07.2014, 13:37</td>
-		<td>Einschlafen Podcast</td>
-		<td>einschlafen-123</td>
-		<td>
-			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
-			<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
+	<tr ng-show="episodes.length == 0">
+		<td colspan="4" class="nopodcasts">
+			Derzeit sind keine Sendungen eingetragen.
 		</td>
 	</tr>
 </table>
@@ -107,13 +31,3 @@
 <button class="load" ng-click="loadMorePads()"><span class="icon-loop"></span>Mehr laden</button>
 
 <p>Die Termine stammen aus dem <a href="http://hoersuppe.de/kalender/">Hörsuppe-Kalender</a>.</p>
-
-<!--
-<div ng-repeat="ep in episodes">
-	{{ ep.podcast.title }}
-	{{ ep.date }}
-	<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
-	<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
-	<hr />
-</div>
--->

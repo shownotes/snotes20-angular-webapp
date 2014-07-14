@@ -75,10 +75,11 @@ angular
     });
 
     RestangularProvider.addElementTransformer('soonepisodes', false, function(element) {
-      element.create_date = Date(element.create_date);
-      element.date = Date(element.date);
-      element.podcast.create_date = Date(element.podcast.create_date);
-      element.document.create_date = Date(element.document.create_date);
+      element.create_date = new Date(element.create_date);
+      element.date = new Date(element.date);
+      element.podcast.create_date = new Date(element.podcast.create_date);
+      if(element.document)
+        element.document.create_date = new Date(element.document.create_date);
       return element;
     });
 
