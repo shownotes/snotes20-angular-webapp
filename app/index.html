@@ -6,7 +6,7 @@
 	<title>shownot.es</title>
 
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link type="text/plain" rel="author" href="humans.txt" />
 	<meta name="description" content="" />
 	<base href="/">
@@ -49,7 +49,7 @@
 						</label>
 						<input type="checkbox" id="toggle-form" ng-model="loginform.status" ng-true-value="down" ng-false-value="up" />
 
-						<div>
+						<div class="account-wrapper">
 							<form cg-busy="loginform.promise" name="loginform.frm" ng-show="!currentUser && loginform.status === 'down'" novalidate>
 								<div class="form-input">
 									<form-error errors="loginform.errors.username"></form-error>
