@@ -668,26 +668,27 @@ nav li > input {
 
 /* Chat */
 .chat {
-	width: 20%;
-	height: 100vh;
-	overflow-x: scroll;
+	position: fixed;
+	right: 0;
+	top: 0;
+	bottom: 0;
 }
-.chat p {
+.chat > .messages {
+	height: calc(100% - 70px);
+	overflow-y: scroll;
+}
+.chat > .messages > p {
 	font-size: .8em;
 	padding: .25em;
 }
-.chat p:last-of-type {
-	margin-bottom: 5.625em;
-}
-.chat time {
+.chat > .messages > time {
 	float: right;
 	padding: .25em;
 	opacity: .5;
 }
 .chat-input {
+	height: 70px;
 	background-color: #fefefe;
-	position: fixed;
-	bottom: 0;
 	box-shadow: 0.5em -0.5em .5em 0.1em rgba(0, 0, 0, 0.3);
 }
 .chat-input > * {
