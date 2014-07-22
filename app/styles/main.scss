@@ -51,7 +51,7 @@ $fontDirectory: '/fonts';
 	font-family: 'FiraSans';
 	font-style: normal;
 	font-weight: normal;
-	src: url('#{$fontDirectory}/fira/fira/eot/FiraSans-Regular.eot');
+	src: url('#{$fontDirectory}/fira/eot/FiraSans-Regular.eot');
 	src: url('#{$fontDirectory}/fira/eot/FiraSans-Regular.eot?#iefix') format('embedded-opentype'),
 			 url('#{$fontDirectory}/fira/woff/FiraSans-Regular.woff') format('woff');
 }
