@@ -48,7 +48,7 @@ class HoersuppeDataSource(AbstractDataSource):
 
     @classmethod
     def get_episodes(cls, date_start, date_end):
-        h_episodes = hoerapi.get_live(dateStart=date_start, dateEnd=date_end)
+        h_episodes = hoerapi.get_live(count=20, dateStart=date_start, dateEnd=date_end)
         episodes = []
 
         for ep in h_episodes:

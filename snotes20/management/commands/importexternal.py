@@ -51,7 +51,7 @@ def job_update_podcasts(source):
 
 def job_update_episodes(source):
     logger.info("downloading Episodes")
-    tomorrow = (datetime.today() + timedelta(1))
+    tomorrow = (datetime.today() + timedelta(2))
     episodes = source.get_episodes(datetime.today(), tomorrow)
 
     created = 0
