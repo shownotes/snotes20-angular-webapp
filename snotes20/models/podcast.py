@@ -83,7 +83,7 @@ class Episode(Importable):
     type = models.CharField(max_length=100, choices=TYPE_CHOICES)
     create_date = models.DateTimeField(default=datetime.now)
     stream = models.CharField(max_length=100, null=True, blank=True)
-    document = models.OneToOneField(Document, null=True, blank=True, unique=True)
+    document = models.OneToOneField(Document, null=True, blank=True, unique=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return "Episode {}-{} ({})".format(self.podcast.slug, self.number or 'NoNumberYet', self.date)
