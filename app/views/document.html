@@ -24,7 +24,9 @@
 
 			<div class="shownotes-meta">
 
-				<p><strong>Podcaster</strong>: Tim Pritlove, Holger Klein</p>
+				<p><strong>Podcaster</strong>:
+					<span ng-repeat="podcaster in doc.meta.podcasters">{{podcaster.name}}</span>
+				</p>
 				<form class="podcaster">
 					<input type="text" value="" placeholder="Name" />
 					<input class="small" type="submit" value="Hinzufügen" />
@@ -34,7 +36,9 @@
 
 				<form class="shownoter">
 					<input type="submit" value="+" />
-					<p><strong>Shownoter:</strong> Kai, luto, Evita, vale, timpritlove</p>
+					<p><strong>Shownoter:</strong>
+						<span ng-repeat="shownoter in doc.meta.shownoters">{{shownoter}}</span>
+					</p>
 				</form>
 
 			</div>
