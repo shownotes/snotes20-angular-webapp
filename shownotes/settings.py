@@ -131,6 +131,12 @@ EMAILS = {
             'de': 'shownot.es Kontoaktivierung',
         }
     },
+    'newmail_confirmation': {
+        'subject': {
+            'en': 'shownot.es email confirmation',
+            'de': 'shownot.es Emailbestätigung',
+        }
+    },
     'pwreset': {
         'subject': {
             'en': 'shownot.es password reset',

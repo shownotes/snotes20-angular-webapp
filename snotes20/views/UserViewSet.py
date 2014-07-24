@@ -1,12 +1,13 @@
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.shortcuts import get_object_or_404
+from django.db import transaction
 
 from rest_framework.response import Response
 from rest_framework import viewsets, status
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.decorators import action
 
-from snotes20.serializers import NUserRegisterSerializer
+from snotes20.serializers import NUserRegisterSerializer, NUserSerializer
 from snotes20.models import NUser
 
 
@@ -104,26 +105,37 @@ class UserViewSet(viewsets.ViewSet):
         user = request.user
         if pk != "me" or not user.is_authenticated():
             raise PermissionDenied()
+        if 'action' not in request.QUERY_PARAMS:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        action = request.QUERY_PARAMS['action']
+        data = request.DATA
 
         pwok = ('password' in request.DATA and user.check_password(request.DATA['password']))
 
-        # Change password
-        if 'newpassword' in request.DATA:
-            if not pwok:
-                raise PermissionDenied()
-            else:
-                user.set_password_keep_session(request, request.DATA['newpassword'])
-                return Response(status=status.HTTP_202_ACCEPTED)
+        if action == 'colorbio':
+            data = {'color': data['color'], 'bio': data['bio'] }
+        elif action == 'socials':
+            data = {'socials': data['socials']}
+        elif action == 'email':
+            if not pwok: raise PermissionDenied()
 
-        # Change email
-        if 'email' in request.DATA and not pwok:
-            raise PermissionDenied()
+            email = data['email']
 
-        # Change color or bio
-        if 'password' in request.DATA:
-            del request.DATA['password']
+            with transaction.atomic():
+                token = user.add_email_token(email).token
+                user.email_new_mail_confirmation('de', token, email)
+                user.save()
 
-        serialized = NUserSerializer(user, data=request.DATA, partial=True)
+            return Response(status=status.HTTP_202_ACCEPTED)
+        elif action == 'password':
+            if not pwok: raise PermissionDenied()
+            user.set_password_keep_session(request, data['newpassword'])
+            return Response(status=status.HTTP_202_ACCEPTED)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        serialized = NUserSerializer(user, data=data, partial=True)
 
         if serialized.is_valid():
             serialized.save()

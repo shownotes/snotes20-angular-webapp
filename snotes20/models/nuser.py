@@ -78,10 +78,12 @@ class NUser(AbstractBaseUser, PermissionsMixin):
         auth_user = authenticate(username=self.username, password=raw_password)
         login(request, auth_user)
 
-    def email_user(self, subject, message, from_email=None, **kwargs):
-        send_mail(subject, message, from_email, [self.email], **kwargs)
+    def email_user(self, subject, message, from_email=None, recipient=None, **kwargs):
+        if recipient is None:
+            recipient = self.email
+        send_mail(subject, message, from_email, [recipient], **kwargs)
 
-    def _email_user_template(self, tpl, context, lang):
+    def _email_user_template(self, tpl, context, lang, recipient=None):
         options = settings.EMAILS[tpl]
         siteurl = settings.SITEURL
 
@@ -91,7 +93,7 @@ class NUser(AbstractBaseUser, PermissionsMixin):
         c = Context(context)
 
         text_content = render_to_string(tpl + '_' + lang + '.txt', c)
-        self.email_user(options['subject'][lang], text_content)
+        self.email_user(options['subject'][lang], text_content, recipient=recipient)
 
     def add_email_token(self, email):
         token = '%030x' % random.randrange(16**30)
@@ -112,13 +114,19 @@ class NUser(AbstractBaseUser, PermissionsMixin):
         ctx = { 'token': token }
         self._email_user_template('activation', ctx, lang)
 
+    def email_new_mail_confirmation(self, lang, token, email):
+        ctx = { 'token': token }
+        self._email_user_template('newmail_confirmation', ctx, lang, recipient=email)
+
     def set_pw_reset_token(self):
         token = '%030x' % random.randrange(16**30)
         self.pw_reset_token = token
         self.save()
 
     def check_pw_reset_token(self, token):
-        return self.pw_reset_token is not None and token is not None and self.pw_reset_token == token
+        return self.pw_reset_token is not None and\
+               token is not None and\
+               self.pw_reset_token == token
 
     def apply_pw_reset_token(self, password):
         print(password)
