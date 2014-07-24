@@ -8,7 +8,7 @@ angular.module('snotes30App')
       $scope.doc = doc;
       DocumentService.getEditor(doc.editor).then(function (editor) {
         $scope.editor = editor;
-        $scope.docurl = $sce.trustAsResourceUrl(editor.url + '/' + doc.name);
+        $scope.docurl = $sce.trustAsResourceUrl(editor.url + '/' + doc.urlname);
       })
     }, function () {
       alert('gibts nicht');
