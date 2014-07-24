@@ -81,6 +81,14 @@ class EpisodeAdmin(admin.ModelAdmin):
         }),
     )
 
+@admin.register(models.Podcaster)
+class PodcasterAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(models.DocumentMetaData)
+class DocumentMetaAdmin(admin.ModelAdmin):
+    pass
+
 class DocumentAdminForm(ReverseOneToOneAdminForm):
     rels = ('episode',)
     episode = forms.ModelChoiceField(queryset=models.Episode.objects.all(), required=False)

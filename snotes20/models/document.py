@@ -5,6 +5,8 @@ from django.conf import settings
 
 from uuidfield import UUIDField
 
+from .state.DocumentState import DocumentMetaData
+
 
 EDITOR_ETHERPAD  = 'EP'
 
@@ -18,6 +20,7 @@ class Document(models.Model):
     editor = models.CharField(max_length=3, choices=EDITOR_CHOICES)
     create_date = models.DateTimeField(default=datetime.now)
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
+    meta = models.ForeignKey(DocumentMetaData)
 
     def __str__(self):
         try:
@@ -42,20 +45,6 @@ class ChatMessageIssuer(models.Model):
 
 class ChatMessage(models.Model):
     id = UUIDField(primary_key=True, auto=True)
-    document = models.ForeignKey(Document)
-    issuer = models.ForeignKey(ChatMessageIssuer, unique=True)
+    document = models.ForeignKey(Document, related_name='messages')
+    issuer = models.OneToOneField(ChatMessageIssuer)
     message = models.CharField(max_length=200)
-
-
-class Podcaster(models.Model):
-    id = UUIDField(primary_key=True, auto=True)
-    uri = models.URLField(unique=True, db_index=True)
-    name = models.CharField(max_length=30)
-
-
-class DocumentMetaData(models.Model):
-    id = UUIDField(primary_key=True, auto=True)
-    document = models.ForeignKey(Document)
-    podcasters = models.ManyToManyField(Podcaster)
-
-
