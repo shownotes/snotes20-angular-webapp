@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('LiveListCtrl', function ($scope, $location, Restangular) {
+  .controller('LiveListCtrl', function ($scope, $location, Restangular, DocumentService) {
     $scope.episodes = [];
 
     Restangular.all('soonepisodes').getList().then(
@@ -15,6 +15,8 @@ angular.module('snotes30App')
     };
 
     $scope.create = function (ep) {
-      $location.path('/doc/' + ep.document.name);
+      DocumentService.createFromEpisode(ep).then(function (doc) {
+        $location.path('/doc/' + doc.name);
+      });
     };
   });
