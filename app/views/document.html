@@ -6,10 +6,16 @@
 
 			<div class="document-meta">
 
-				<h2>Not Safe For Work <span>{{name}}</span></h2>
-				<h3>16.07.2014, 13:37 Uhr</h3>
+				<div ng-show="doc.episode">
+					<h2>Pocast: {{doc.episode.podcast.title}} <span ng-show="doc.episode.number">, {{doc.episode.number}}</span></h2>
+					<h3>{{doc.episode.date | date : 'medium'}}</h3>
+				</div>
 
-				<form class="sighting">
+				<div ng-show="!doc.episode">
+					<h2>{{doc.name}}</h2>
+				</div>
+
+				<form class="sighting" ng-show="false">
 					<input type="submit" value="Version sichten" />
 					<!-- <input type="submit" value="Sichtung beantragen" /> -->
 				</form>
@@ -35,8 +41,8 @@
 
 		</div>
 
-		<div class="editor" style="background-color: #eee">
-			Etherpad
+		<div class="editor" ng-show="editor">
+			<iframe src="{{docurl}}"></iframe>
 		</div>
 
 	</div>
