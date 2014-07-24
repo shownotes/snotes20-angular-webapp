@@ -30,6 +30,9 @@ class EtherpadEditor(AbstractEditor):
         group = self._get_groupid_for_document(document)
         return group + "$" + document.name
 
+    def get_urlname_for_document(self, document):
+        return self._get_padid_for_document(document)
+
     def generate_session(self, document, user):
         tomorrow = datetime.today() + timedelta(days=1)
         author = self._get_authorid_for_user(user)

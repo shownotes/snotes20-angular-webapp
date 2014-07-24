@@ -9,6 +9,10 @@ class AbstractEditor:
         self.apiurl = config['apiurl']
 
     @abstractmethod
+    def get_urlname_for_document(self, document):
+        pass
+
+    @abstractmethod
     def get_session(self, document, user):
         pass
   

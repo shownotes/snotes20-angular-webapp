@@ -6,9 +6,11 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.decorators import action
 
 import snotes20.serializers as serializers
 import snotes20.models as models
+import snotes20.editors as editors
 
 def create_doc_from_episode(request):
     if 'episode' not in request.DATA:
@@ -37,9 +39,9 @@ def create_doc_from_episode(request):
 def get_doc_impl(document):
     if document is not None:
         data = serializers.DocumentSerializer(instance=document)
-        return Response(data.data)
+        return document, Response(data.data)
     else:
-        return Response(None, status=status.HTTP_404_NOT_FOUND)
+        return None, Response(None, status=status.HTTP_404_NOT_FOUND)
 
 
 def get_doc_by_episode(request, pk=None):
@@ -70,9 +72,21 @@ class DocumentViewSet(viewsets.ViewSet):
         type = request.QUERY_PARAMS.get('type')
 
         if type == 'byepisode':
-            return get_doc_by_episode(request)
+            doc, resp = get_doc_by_episode(request)
         else:
-            return get_doc(request, pk)
+            doc, resp = get_doc(request, pk)
+
+        if resp.status_code == 200 and request.user.is_authenticated():
+            editor = editors.EditorFactory.get_editor(doc.editor)
+            urlname = editor.get_urlname_for_document(doc)
+
+            resp.data['urlname'] = urlname
+
+            session_id = editor.generate_session(doc, request.user)
+            resp.set_cookie('sessionID', session_id)
+
+        return resp
+
 
     #def list(self, request):
     #    pass
