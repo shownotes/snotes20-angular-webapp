@@ -9,7 +9,7 @@ import snotes20.models as models
 
 
 class NPBKDF2PasswordHasher(PBKDF2PasswordHasher):
-    iterations = 500000
+    iterations = 200000
 
 
 class NModelBackend(ModelBackend):
