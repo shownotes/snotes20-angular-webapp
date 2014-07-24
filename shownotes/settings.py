@@ -115,10 +115,8 @@ AUTHENTICATION_BACKENDS = ('snotes20.showpadauth.NModelBackend', 'snotes20.showp
 PASSWORD_HASHERS = ( 'snotes20.showpadauth.NPBKDF2PasswordHasher', )
 
 EDITORS = {
-    'ep': {
-      "type": "etherpad",
-      "humanName": "Etherpad",
-      "secret": "",
+    'EP': {
+      "secret": "b3a108640c0f0b679143b9ff930aa42e02831bb93d62ba0f25312ee22fd15dcc",
       "userurl": "http://localhost:9001/p",
       "apiurl": "http://localhost:9001/api"
     }

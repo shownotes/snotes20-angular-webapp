@@ -3,3 +3,4 @@ from .UserViewSet import UserViewSet
 from .DocumentViewSet import DocumentViewSet
 from .SoonEpisodeViewSet import SoonEpisodeViewSet
 from .ImporterLogs import ImporterLogViewSet
+from .EditorViewSet import EditorViewSet

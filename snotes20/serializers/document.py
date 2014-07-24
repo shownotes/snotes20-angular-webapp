@@ -1,11 +1,12 @@
 from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField
 
 from snotes20.models import Document
+from snotes20.serializers import EpisodeSerializer
 
 
 class DocumentSerializer(ModelSerializer):
-    episode = PrimaryKeyRelatedField(required=False)
+    episode = EpisodeSerializer()
 
     class Meta:
         model = Document
-        fields = ('name', 'editor', 'create_date', 'creator', 'episode')
+        fields = ('name', 'editor', 'create_date', 'episode')
