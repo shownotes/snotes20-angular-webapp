@@ -10,9 +10,12 @@ angular.module('snotes30App')
       });
     };
 
-    var patchMe = function (obj, statobj) {
+    var patchMe = function (obj, statobj, action) {
       var stat = actionStatusGlueService.fac(statobj);
-      me.patch(obj).then(stat.resolve, stat.reject).then(reloadMe).finally(stat.reset());
+      me.patch(obj, { action: action })
+        .then(stat.resolve, stat.reject)
+        .then(reloadMe)
+        .finally(stat.reset());
     };
 
     reloadMe();
@@ -29,26 +32,26 @@ angular.module('snotes30App')
       patchMe({
         'color': color,
         'bio': $scope.user.bio
-      }, $scope.colorbio);
+      }, $scope.colorbio, 'colorbio');
     };
 
     $scope.saveSocials = function () {
       patchMe({
         'socials': $scope.user.socials
-      }, $scope.socials);
+      }, $scope.socials, 'socials');
     };
 
     $scope.changeMail = function () {
       patchMe({
         'email': $scope.changemail.email,
         'password': $scope.changemail.password
-      }, $scope.changemail);
+      }, $scope.changemail, 'email');
     };
 
     $scope.changePassword = function () {
       patchMe({
         'password': $scope.pwchange.password,
         'newpassword': $scope.pwchange.newpassword
-      }, $scope.pwchange);
+      }, $scope.pwchange, 'password');
     };
   });

@@ -1,10 +1,21 @@
 <h2>E-Mail-Bestätigung</h2>
 <h3>Hinweis</h3>
-<p ng-show="success">
-	Vielen Dank, dein Account wurde freigeschaltet.<br />
-	Du kannst dich nun unter <em>&bdquo;Mein Account&ldquo;</em> einloggen.
-</p>
-<p ng-show="!success">
-  Dein Account konnte nicht freigeschalten werden.<br />
-  Bitte melde dich bei uns.
-</p>
+<div ng-show="mode == 'account'">
+	<p ng-show="success">
+		Vielen Dank, dein Account wurde freigeschaltet.<br />
+		Du kannst dich nun unter <em>&bdquo;Mein Account&ldquo;</em> einloggen.
+	</p>
+	<p ng-show="!success">
+		Dein Account konnte nicht freigeschalten werden.<br />
+		Bitte melde dich bei uns.
+	</p>
+</div>
+<div ng-show="mode == 'email'">
+	<p ng-show="success">
+		Deine E-Mail-Adresse wurde geändert.
+	</p>
+	<p ng-show="!success">
+		Deine E-Mail-Adresse konnte nicht geändert werden.<br />
+		Bitte melde dich bei uns.
+	</p>
+</div>

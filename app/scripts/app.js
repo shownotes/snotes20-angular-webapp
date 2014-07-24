@@ -58,6 +58,10 @@ angular
         templateUrl: 'views/user/activate.html',
         controller: 'UserActivateCtrl'
       })
+      .when('/user/confirm/:username/:token', {
+        templateUrl: 'views/user/activate.html',
+        controller: 'UserActivateCtrl'
+      })
       .when('/admin/importstatus', {
         templateUrl: 'views/admin/importstatus.html',
         controller: 'ImportStatusCtrl'
