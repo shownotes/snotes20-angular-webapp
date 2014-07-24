@@ -7,18 +7,27 @@
 			<div class="document-meta">
 
 				<div ng-show="doc.episode">
-					<h2>Pocast: {{doc.episode.podcast.title}} <span ng-show="doc.episode.number">, {{doc.episode.number}}</span></h2>
-					<h3>{{doc.episode.date | date : 'medium'}}</h3>
+					<h2>{{doc.episode.podcast.title}}</h2>
+					<h3><span ng-show="doc.episode.number">Episode {{doc.episode.number}},</span> {{doc.episode.date | date : 'medium'}}</h3>
 				</div>
 
 				<div ng-show="!doc.episode">
 					<h2>{{doc.name}}</h2>
 				</div>
 
-				<form class="sighting" ng-show="false">
-					<input type="submit" value="Version sichten" />
-					<!-- <input type="submit" value="Sichtung beantragen" /> -->
-				</form>
+				<div class="document-actions">
+
+					<form class="shownoter">
+						<input type="submit" value="Als Helfer eintragen" />
+						<!-- <input type="submit" value="Du bist eingetragen" disabled /> -->
+					</form>
+
+					<form class="sighting" ng-show="false">
+						<input type="submit" value="Version sichten" />
+						<!-- <input type="submit" value="Sichtung beantragen" /> -->
+					</form>
+
+				</div>
 
 			</div>
 
@@ -32,15 +41,6 @@
 					<input class="small" type="submit" value="Hinzufügen" />
 				</form>
 
-				<hr />
-
-				<form class="shownoter">
-					<input type="submit" value="+" />
-					<p><strong>Shownoter:</strong>
-						<span ng-repeat="shownoter in doc.meta.shownoters">{{shownoter}}</span>
-					</p>
-				</form>
-
 			</div>
 
 		</div>
@@ -52,71 +52,70 @@
 	</div>
 
 	<div class="chat">
-		<div class="messages">
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Nein!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Doch!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Oh!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Nein!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Doch!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Oh!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Nein!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Doch!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Oh!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Nein!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Doch!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Oh!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Nein!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Doch!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Oh!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Nein!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Doch!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Oh!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
-			<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
-			<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
-		</div>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Nein!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Doch!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Oh!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Nein!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Doch!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Oh!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Nein!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Doch!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Oh!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Nein!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Doch!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Oh!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Nein!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Doch!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Oh!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Nein!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Doch!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Oh!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Nein!</p>
+		<p style="background-color: #fff8e3"><time>13:37</time><strong>luto:</strong> Doch!</p>
+		<p style="background-color: #c7e6f7"><time>13:37</time><strong>Kai:</strong> Oh!</p>
+
 		<form class="chat-input">
 			<input type="text" value="" placeholder="Nachricht" />
 			<input type="submit" value="Senden" />

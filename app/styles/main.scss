@@ -212,10 +212,9 @@ pre {
 	white-space: pre-wrap;
 	padding: 1em;
 }
-/* Chrome fix */
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
 	pre {
-		word-break: break-all;
+		word-break: break-all; /* Chrome fix */
 	}
 }
 hr {
@@ -336,6 +335,18 @@ button:active,
 	outline: none;
 	box-shadow: inset 0 -1px 0 rgba(0,0,0,.2);
 }
+input[type='button']:disabled,
+input[type='submit']:disabled,
+input[type='button']:disabled:hover,
+input[type='submit']:disabled:hover,
+input[type='button']:disabled:active,
+input[type='submit']:disabled:active {
+	background-color: #eee;
+	color: #999;
+	cursor: default;
+	top: 0;
+	box-shadow: inset 0 -3px 0 rgba(0,0,0,.3);
+}
 button span {
 	margin-right: .5em;
 }
@@ -390,6 +401,7 @@ body {
 	box-shadow: 0 .25em 1em rgba(0,0,0,.8);
 	min-width: 20em;
 	max-width: 20em;
+	z-index: 1337;
 }
 .sidebar > *:not(:first-child):not(:last-child) {
 	margin-bottom: 2em;
@@ -631,18 +643,35 @@ nav li > input {
 	display: flex;
 	-webkit-flex-flow: row;
 	flex-direction: row;
-	margin-bottom: 2em;
+	margin-bottom: 1em;
 }
 .document-header > * {
 	width: 50%;
-	padding-right: 2em;
+}
+.document-meta {
+	padding-right: 1em;
 }
 .document-meta h2+h3 {
-	margin-top: 0;
-	margin-bottom: 1em;
+	margin: 0 0 1em 0;
 }
-.sighting {
-	margin-bottom: 1em;
+.document-actions {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row;
+	flex-direction: row;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+.document-actions > * {
+	flex: 1 0 auto;
+	margin: 0 1em 1em 0;
+}
+.shownotes-meta {
+	padding-right: 2em;
 }
 .podcaster {
 	display: -webkit-box;
@@ -654,16 +683,16 @@ nav li > input {
 	flex-direction: row;
 }
 .podcaster {
-	margin-top: 1em;
+	margin: 1em 0;
 }
 .podcaster > *:last-child {
 	margin-left: 1em;
 	width: auto;
 	min-width: 7em;
 }
-.shownoter input {
-	float: right;
-	width: auto;
+.editor {
+	background-color: #eee; /* debug */
+	margin-left: -2em;
 }
 .editor > iframe {
   width: 100%;
@@ -672,28 +701,27 @@ nav li > input {
 
 /* Chat */
 .chat {
-	position: fixed;
-	right: 0;
-	top: 0;
-	bottom: 0;
+	width: 20%;
+	height: 100vh;
+	overflow-x: scroll;
 }
-.chat > .messages {
-	height: calc(100% - 70px);
-	overflow-y: scroll;
-}
-.chat > .messages > p {
+.chat p {
 	font-size: .8em;
 	padding: .25em;
 }
-.chat > .messages > p > time {
+.chat p:last-of-type {
+	margin-bottom: 5.625em;
+}
+.chat time {
 	float: right;
 	padding: .25em;
 	opacity: .5;
 }
 .chat-input {
-	height: 70px;
 	background-color: #fefefe;
 	box-shadow: 0.5em -0.5em .5em 0.1em rgba(0, 0, 0, 0.3);
+	position: fixed;
+	bottom: 0;
 }
 .chat-input > * {
 	border-radius: 0;
