@@ -22,6 +22,13 @@ class Document(models.Model):
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
     meta = models.ForeignKey(DocumentMetaData)
 
+    def save(self, *kargs, **kwargs):
+        if self.meta_id is None:
+            meta = DocumentMetaData()
+            meta.save()
+            self.meta = meta
+        super(Document, self).save(*kargs, **kwargs)
+
     def __str__(self):
         try:
             epi = str(self.episode)
