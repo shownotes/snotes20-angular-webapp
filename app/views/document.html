@@ -18,8 +18,8 @@
 				<div class="document-actions">
 
 					<form class="shownoter">
-						<input type="submit" value="Als Helfer eintragen" />
-						<!-- <input type="submit" value="Du bist eingetragen" disabled /> -->
+						<input type="submit" value="Als Helfer eintragen" ng-show="!isShownoter()" ng-click="addShownoter()" />
+						<input type="submit" value="Du bist eingetragen" ng-show="isShownoter()" ng-click="delShownoter()" />
 					</form>
 
 					<form class="sighting" ng-show="false">
