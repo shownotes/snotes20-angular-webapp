@@ -93,7 +93,7 @@ def job_delete_deleted_episodes(source):
 
 def job_delete_old_episodes(source):
     today = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
-    qry = models.Episode.objects.filter(date__lt=today).filter(document=None)
+    qry = models.Episode.objects.filter(date__lt=today).filter(document__isnull=True)
     deleted = qry.count()
     logger.info("%i Episodes", deleted)
     qry.delete()
