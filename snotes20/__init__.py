@@ -1,4 +1,4 @@
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 
 import snotes20.models as models
 import snotes20.editors as editors
@@ -16,4 +16,4 @@ def editor_delete_doc(sender, instance, **kwargs):
 
 
 post_save.connect(editor_create_doc, sender=models.Document, dispatch_uid='editor_create_doc')
-post_save.connect(editor_delete_doc, sender=models.Document, dispatch_uid='editor_delete_doc')
+post_delete.connect(editor_delete_doc, sender=models.Document, dispatch_uid='editor_delete_doc')
