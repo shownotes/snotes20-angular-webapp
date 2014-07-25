@@ -61,10 +61,10 @@ $ python manage.py migrate
 ```
 
 ## email
-You need an SMTP server to send registration-emails. Configure your connection details in `shownotes/settings.py` (`EMAIL_*`).
+You need an SMTP server to send registration-emails. Configure your connection details in `shownotes/local_settings.py` (`EMAIL_*`).
 
 ## etherpad (not yet)
-You need a running etherpad instance. Once this is done, configure the API-secret in `shownotes/settings.py`.
+You need a running etherpad instance. Once this is done, configure the API-secret in `shownotes/local_settings.py`.
 
 ```
 $ git clone git@github.com:ether/etherpad-lite.git
