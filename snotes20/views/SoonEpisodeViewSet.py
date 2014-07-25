@@ -1,5 +1,7 @@
 import datetime
 
+from django.db.models import Q
+
 from rest_framework import viewsets
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.response import Response
@@ -14,8 +16,7 @@ class SoonEpisodeViewSet(viewsets.ViewSet):
         yesterday = (today - datetime.timedelta(1))
         tomorrow = (today + datetime.timedelta(2))
 
-        episodes = models.Episode.objects.filter(date__gt=yesterday)\
-                                 .filter(date__lt=tomorrow)\
+        episodes = models.Episode.objects.filter(Q(date__lt=tomorrow) & (Q(date__gt=today) | Q(date__gt=yesterday) & Q(document__isnull=False)))\
                                  .order_by('date')[:10]
 
         return Response(serializers.EpisodeSerializer(episodes).data)
