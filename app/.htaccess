@@ -50,32 +50,6 @@
     </FilesMatch>
 </IfModule>
 
-
-# ##############################################################################
-# # ERRORS                                                                     #
-# ##############################################################################
-
-# ------------------------------------------------------------------------------
-# | 404 error prevention for non-existing redirected folders                   |
-# ------------------------------------------------------------------------------
-
-# Prevent Apache from returning a 404 error for a rewrite if a directory
-# with the same name does not exist.
-# http://httpd.apache.org/docs/current/content-negotiation.html#multiviews
-# http://www.webmasterworld.com/apache/3808792.htm
-
-Options -MultiViews
-
-# ------------------------------------------------------------------------------
-# | Custom error messages / pages                                              |
-# ------------------------------------------------------------------------------
-
-# You can customize what Apache returns to the client in case of an error (see
-# http://httpd.apache.org/docs/current/mod/core.html#errordocument), e.g.:
-
-ErrorDocument 404 /404.html
-
-
 # ##############################################################################
 # # INTERNET EXPLORER                                                          #
 # ##############################################################################
@@ -198,62 +172,34 @@ AddDefaultCharset utf-8
 # | Rewrite engine                                                             |
 # ------------------------------------------------------------------------------
 
-# Turning on the rewrite engine and enabling the `FollowSymLinks` option is
+# Turning on the rewrite engine and enabling the `SymLinksIfOwnerMatch` option is
 # necessary for the following directives to work.
 
-# If your web host doesn't allow the `FollowSymlinks` option, you may need to
-# comment it out and use `Options +SymLinksIfOwnerMatch` but, be aware of the
-# performance impact: http://httpd.apache.org/docs/current/misc/perf-tuning.html#symlinks
-
-# Also, some cloud hosting services require `RewriteBase` to be set:
-# http://www.rackspace.com/knowledge_center/frequently-asked-question/why-is-mod-rewrite-not-working-on-my-site
-
 <IfModule mod_rewrite.c>
-    Options +FollowSymlinks
-  # Options +SymLinksIfOwnerMatch
+    Options +SymLinksIfOwnerMatch
     RewriteEngine On
-  # RewriteBase /
+    RewriteBase /
 </IfModule>
 
 # ------------------------------------------------------------------------------
-# | Suppressing / Forcing the "www." at the beginning of URLs                  |
+# | Always serve index.html for non-existant URLs                              |
 # ------------------------------------------------------------------------------
 
-# The same content should never be available under two different URLs especially
-# not with and without "www." at the beginning. This can cause SEO problems
-# (duplicate content), therefore, you should choose one of the alternatives and
-# redirect the other one.
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . /index.html [L]
 
-# By default option 1 (no "www.") is activated:
-# http://no-www.org/faq.php?q=class_b
+# ------------------------------------------------------------------------------
+# | Suppressing the "www." at the beginning of URLs                            |
+# ------------------------------------------------------------------------------
 
-# If you'd prefer to use option 2, just comment out all the lines from option 1
-# and uncomment the ones from option 2.
-
-# IMPORTANT: NEVER USE BOTH RULES AT THE SAME TIME!
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Option 1: rewrite www.example.com → example.com
+# rewrite www.example.com → example.com
 
 <IfModule mod_rewrite.c>
     RewriteCond %{HTTPS} !=on
     RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
     RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
 </IfModule>
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Option 2: rewrite example.com → www.example.com
-
-# Be aware that the following might not be a good idea if you use "real"
-# subdomains for certain parts of your website.
-
-# <IfModule mod_rewrite.c>
-#    RewriteCond %{HTTPS} !=on
-#    RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
-#    RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
-# </IfModule>
 
 
 # ##############################################################################
@@ -526,18 +472,4 @@ FileETag None
 #        AddOutputFilterByType INCLUDES text/css
 #        SetOutputFilter INCLUDES
 #    </FilesMatch>
-# </IfModule>
-
-# ------------------------------------------------------------------------------
-# | Persistent connections                                                     |
-# ------------------------------------------------------------------------------
-
-# Allow multiple requests to be sent over the same TCP connection:
-# http://httpd.apache.org/docs/current/en/mod/core.html#keepalive.
-
-# Enable if you serve a lot of static content but, be aware of the
-# possible disadvantages!
-
-# <IfModule mod_headers.c>
-#    Header set Connection Keep-Alive
 # </IfModule>
