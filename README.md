@@ -13,6 +13,39 @@ $ python manage.py migrate
 $ python manage.py createsuperuser
 ```
 
+## Settings
+Create a `./shownotes/local_settings.py`-file and put something like the following in it.
+```
+SECRET_KEY = ''
+
+# if this is a development-config
+DEBUG = True
+TEMPLATE_DEBUG = True
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost',
+    'localhost:9000',
+)
+
+EDITORS = {
+    'EP': {
+      "secret": "fooooo",
+      "userurl": "http://localhost:9001/p",
+      "apiurl": "http://localhost:9001/api"
+    }
+}
+
+SITEURL = "http://localhost:9000"
+
+DEFAULT_FROM_EMAIL = 'noreply@localhost'
+
+EMAIL_HOST = 'mail.goooogle.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'user'
+EMAIL_HOST_PASSWORD = 'password'
+EMAIL_USE_TLS = True
+```
+
 ## dev server
 To start the development server at http://127.0.0.1:8000/ execute:
 ```

@@ -7,3 +7,6 @@ __pycache__
 
 # django dev
 db.sqlite3
+
+# settings
+shownotes/local_settings.py

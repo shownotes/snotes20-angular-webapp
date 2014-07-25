@@ -17,12 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'cspb_$m_j2xreqj5qte8&&qt2_)lii7xcazrsg6hwf3m6b=w6!'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-TEMPLATE_DEBUG = True
+SECRET_KEY = ''
 
 ALLOWED_HOSTS = []
 
@@ -55,11 +50,6 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'shownotes.urls'
 
 WSGI_APPLICATION = 'shownotes.wsgi.application'
-
-CORS_ORIGIN_WHITELIST = (
-    'localhost',
-    'localhost:9000',
-)
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -113,15 +103,7 @@ LOGGING = {
 AUTHENTICATION_BACKENDS = ('snotes20.showpadauth.NModelBackend', 'snotes20.showpadauth.ShowPadBackend')
 PASSWORD_HASHERS = ( 'snotes20.showpadauth.NPBKDF2PasswordHasher', )
 
-EDITORS = {
-    'EP': {
-      "secret": "b3a108640c0f0b679143b9ff930aa42e02831bb93d62ba0f25312ee22fd15dcc",
-      "userurl": "http://localhost:9001/p",
-      "apiurl": "http://localhost:9001/api"
-    }
-}
-
-SITEURL = "http://localhost:8000"
+SITEURL = ""
 
 EMAILS = {
     'activation': {
@@ -144,7 +126,7 @@ EMAILS = {
     }
 }
 
-DEFAULT_FROM_EMAIL = 'noreply@shownot.es'
+DEFAULT_FROM_EMAIL = ''
 
 EMAIL_HOST = ''
 EMAIL_PORT = 587
@@ -176,3 +158,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'snotes20.NUser'
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
