@@ -13,13 +13,13 @@
 
 # THANKS
 
-	Logo designer: Sven Sedivy
+	Logo design: Sven Sedivy
 	Website: graphorama.de
 	Twitter: @graphorama
 
-	Fira Sans & Fira Mono typeface: Erik Spiekermann, Ralph du Carrois, Mozilla
+	Fira typeface: Erik Spiekermann, Ralph du Carrois, Mozilla
 
-	Etherpad
+	Etherpad: Etherpad Foundation
 	Website: etherpad.org
 
 # SITE
