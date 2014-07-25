@@ -46,6 +46,9 @@ angular.module('snotes30App')
         if(!user.migrated) {
           $location.url('/user/upgrade');
         }
+        if($location.url().indexOf('/user/activate') === 0) {
+          $location.url('/');
+        }
       }, function (errors) {
         $scope.loginform.errors = { 'loginfailed': true };
       });
