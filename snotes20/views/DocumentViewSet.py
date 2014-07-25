@@ -87,6 +87,17 @@ class DocumentViewSet(viewsets.ViewSet):
 
         return resp
 
+    @action(methods=['POST', 'DELETE'])
+    def contributed(self, request, pk=None):
+        document = get_object_or_404(models.Document, pk=pk)
+        exists = any(noter.username == request.user.username for noter in document.meta.shownoters.all())
+
+        if request.method == 'POST' and not exists:
+            document.meta.shownoters.add(request.user)
+        elif request.method == 'DELETE' and exists:
+            document.meta.shownoters.remove(request.user)
+
+        return Response(status=status.HTTP_202_ACCEPTED)
 
     #def list(self, request):
     #    pass
