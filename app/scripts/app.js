@@ -27,7 +27,15 @@ angular
       })
       .when('/doc/:name', {
         templateUrl: 'views/document.html',
-        controller: 'DocumentCtrl'
+        controller: 'DocumentCtrl',
+        resolve: {
+          'document': function (DocumentService, $route) {
+            return DocumentService.getByName($route.current.params.name);
+          },
+          'docname': function ($route) {
+            return $route.current.params.name;
+          }
+        }
       })
       .when('/rules', {
         templateUrl: 'views/rules.html'
@@ -123,6 +131,13 @@ angular
   .run(function ($cookies, Restangular) {
     Restangular.addFullRequestInterceptor(function(element, operation, what, url, headers, query) {
       headers['X-CSRFToken'] = $cookies.csrftoken;
+    });
+  })
+  .run(function ($rootScope, $location) {
+    $rootScope.$on("$routeChangeError", function(event, current, previous, rejection) {
+      if(rejection.status && rejection.status == 404) {
+        $location.url('/404');
+      }
     });
   })
   .value('cgBusyDefaults',{

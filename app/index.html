@@ -41,13 +41,13 @@
 						<label class="toggle" for="toggle-form">
 							<span class="arrow" ng-class="{true: 'icon-arrow-up', false: 'icon-arrow-down'}[loginform.status === 'down']" ng-show="loginform.status === 'down'"></span>
 							<span class="icon-user"></span>
-							<span class="caption" ng-show="!currentUser" ng-cloak>Mein Account</span>
-							<span class="caption" ng-show="currentUser">{{currentUser.username}}</span>
+							<span class="caption" ng-show="!$root.currentUser" ng-cloak>Mein Account</span>
+							<span class="caption" ng-show="$root.currentUser">{{$root.currentUser.username}}</span>
 						</label>
 						<input type="checkbox" id="toggle-form" ng-model="loginform.status" ng-true-value="down" ng-false-value="up" />
 
 						<div class="account-wrapper">
-							<form cg-busy="loginform.promise" name="loginform.frm" ng-show="!currentUser && loginform.status === 'down'" ng-cloak novalidate>
+							<form cg-busy="loginform.promise" name="loginform.frm" ng-show="!$root.currentUser && loginform.status === 'down'" ng-cloak novalidate>
 								<div class="form-input">
 									<form-error errors="loginform.errors.username"></form-error>
 									<input type="text"
@@ -96,7 +96,7 @@
 							</form>
 						</div>
 
-						<form ng-show="currentUser && loginform.status === 'down'" ng-cloak>
+						<form ng-show="$root.currentUser && loginform.status === 'down'" ng-cloak>
 							<div class="form-button">
 								<a href="/user/profile">Profil</a>
 								<input type="button" value="Ausloggen" ng-click="logout()" />

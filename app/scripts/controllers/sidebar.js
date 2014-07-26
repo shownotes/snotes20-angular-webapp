@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('SidebarController', function ($scope, $cookies, $location, AuthenticationService, Restangular) {
+  .controller('SidebarController', function ($scope, $rootScope, $cookies, $location, AuthenticationService, Restangular) {
 
     $scope.loginform = {
       status: 'up',
@@ -10,7 +10,7 @@ angular.module('snotes30App')
 
     $scope.errors = {};
 
-    AuthenticationService.injectMe($scope);
+    AuthenticationService.injectMe($rootScope);
 
     function flipFormMode() {
       $scope.loginform.mode = $scope.loginform.mode === 'login' ? 'register' : 'login';
@@ -39,7 +39,7 @@ angular.module('snotes30App')
         $scope.user.username,
         $scope.user.password
       ).then(function (user) {
-        $scope.currentUser = {
+        $rootScope.currentUser = {
           username: $scope.user.username
         };
         $scope.user = null;
@@ -71,7 +71,7 @@ angular.module('snotes30App')
 
     $scope.logout = function () {
       AuthenticationService.logout().then(function () {
-        $scope.currentUser = null;
+        $rootScope.currentUser = null;
       });
     };
 
