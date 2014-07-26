@@ -28,6 +28,6 @@ angular.module('snotes30App')
     };
 
     $scope.addPodcaster = function (podcaster) {
-      $scope.doc.customPOST(podcaster, $scope.doc.name + '/podcasters').then(updateDocument);
+      $scope.doc.customPOST($scope.newpodcaster, $scope.doc.name + '/podcasters').then(function () { $scope.newpodcaster = null; }).then(updateDocument);
     };
 });
