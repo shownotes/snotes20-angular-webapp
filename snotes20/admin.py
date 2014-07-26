@@ -85,9 +85,15 @@ class EpisodeAdmin(admin.ModelAdmin):
 class PodcasterAdmin(admin.ModelAdmin):
     pass
 
+class RawPodcasterInline(admin.TabularInline):
+    model = models.RawPodcaster
+    extra = 0
+
 @admin.register(models.DocumentMeta)
 class DocumentMetaAdmin(admin.ModelAdmin):
-    pass
+    fields = ('state', 'shownoters')
+    inlines = [RawPodcasterInline,]
+
 
 class DocumentAdminForm(ReverseOneToOneAdminForm):
     rels = ('episode',)

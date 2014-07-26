@@ -18,8 +18,11 @@ EDITOR_CHOICES = (
 
 class DocumentMeta(models.Model):
     id = UUIDField(primary_key=True, auto=True)
-    state = models.ForeignKey(DocumentState, null=True)
-    shownoters = models.ManyToManyField(settings.AUTH_USER_MODEL)
+    state = models.ForeignKey(DocumentState, null=True, blank=True)
+    shownoters = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
+
+    def __str__(self):
+        return "Meta for " + self.document.__str__()
 
 
 class RawPodcaster(models.Model):
