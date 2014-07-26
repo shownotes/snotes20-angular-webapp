@@ -10,13 +10,12 @@ angular.module('snotes30App')
       }
     );
 
-    $scope.join = function (ep) {
-      $location.path('/doc/' + ep.document.name);
-    };
+    function docurl (name) { return '/doc/' + name; }
+    $scope.docurl = docurl;
 
     $scope.create = function (ep) {
       DocumentService.createFromEpisode(ep).then(function (doc) {
-        $location.path('/doc/' + doc.name);
+        $location.path(docurl(doc.name));
       });
     };
   });

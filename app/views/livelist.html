@@ -23,7 +23,7 @@
 		<td>{{ ep.number || 'noch keines' }}</td>
 		<td>
 			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)" ng-disabled="!$root.currentUser">
-			<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
+			<a ng-href="{{docurl(ep.document.name)}}" ng-show="ep.document"><input type="button" value="Mitschreiben"></a>
 		</td>
 	</tr>
 	<tr ng-show="episodes.length == 0">
