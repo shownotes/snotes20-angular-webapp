@@ -28,8 +28,14 @@ def create_doc_from_episode(request):
     doc.editor = models.EDITOR_ETHERPAD
     doc.creator = request.user
 
+    meta = models.DocumentMeta()
+
     with transaction.atomic():
+        meta.save()
+        doc.meta = meta
+
         doc.save()
+
         episode.document = doc
         episode.save()
 

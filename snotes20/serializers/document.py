@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField
 
-from snotes20.models import Document, DocumentMetaData
+from snotes20.models import Document, DocumentMeta
 from snotes20.serializers import EpisodeSerializer
 
 
@@ -10,11 +10,20 @@ class DocumentMetaSerializer(ModelSerializer):
 
     def field_to_native(self, obj, field_name):
         data = super(DocumentMetaSerializer, self).field_to_native(obj, field_name)
-        data['shownoters'] = [shownoter.username for shownoter in obj.meta.shownoters.all()]
+
+        try:
+            meta = obj.meta
+        except DocumentMeta.DoesNotExist:
+            meta = None
+
+        if meta is not None:
+            data['shownoters'] = [shownoter.username for shownoter in meta.shownoters.all()]
+
+
         return data
 
     class Meta:
-        model = DocumentMetaData
+        model = DocumentMeta
         fields = ('podcasters',)
         depth = 1
 

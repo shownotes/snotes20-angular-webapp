@@ -1,2 +1,2 @@
-from .DocumentState import DocumentState, Podcaster, DocumentMetaData
+from .DocumentState import DocumentState
 #from .osf import OSFDocumentState, OSFNote, OSFTag

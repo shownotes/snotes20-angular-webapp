@@ -85,7 +85,7 @@ class EpisodeAdmin(admin.ModelAdmin):
 class PodcasterAdmin(admin.ModelAdmin):
     pass
 
-@admin.register(models.DocumentMetaData)
+@admin.register(models.DocumentMeta)
 class DocumentMetaAdmin(admin.ModelAdmin):
     pass
 
