@@ -2,7 +2,12 @@
 
 <div class="box-wrapper">
 	<h3>Einleitung</h3>
-	<p>Willkommen! Hier siehst du, welche Podcast-Aufzeichnungen wann beginnen.<br />Um live bei den Sendungsnotizen zu helfen, klicke auf <strong>Erstellen</strong> oder <strong>Mitschreiben</strong>. <a href='/help'>Hast du noch Fragen?</a></p>
+	<p>Willkommen! Hier siehst du, welche Podcast-Aufzeichnungen wann beginnen.<br />
+	Um live bei den Sendungsnotizen zu helfen,
+		<span ng-hide="$root.currentUser">logge dich bitte ein und klicke dann</span>
+		<span ng-hide="!$root.currentUser">klicke</span>
+	auf <strong>Erstellen</strong> oder <strong>Mitschreiben</strong>.
+	<a href='/help'>Hast du noch Fragen?</a></p>
 </div>
 
 <table class="padlist">
@@ -17,7 +22,7 @@
 		<td>{{ ep.podcast.title }}</td>
 		<td>{{ ep.number || 'noch keines' }}</td>
 		<td>
-			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)">
+			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)" ng-disabled="!$root.currentUser">
 			<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="join(ep)">
 		</td>
 	</tr>
