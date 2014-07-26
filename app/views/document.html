@@ -35,10 +35,11 @@
 
 				<p><strong>Podcaster</strong>:
 					<span ng-repeat="podcaster in doc.meta.podcasters">{{podcaster.name}}</span>
+					<span ng-show="doc.meta.podcasters.length == 0">Noch keine.</span>
 				</p>
 				<form class="podcaster">
-					<input type="text" value="" placeholder="Name" />
-					<input class="small" type="submit" value="Hinzufügen" />
+					<input type="text" value="" placeholder="Name" ng-model="newpodcaster.name" />
+					<input class="small" type="submit" value="Hinzufügen" ng-click="addPodcaster(newpodcaster)" />
 				</form>
 
 			</div>

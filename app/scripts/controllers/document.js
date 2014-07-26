@@ -26,4 +26,8 @@ angular.module('snotes30App')
     $scope.delShownoter = function () {
       $scope.doc.customDELETE($scope.doc.name + '/contributed').then(updateDocument);
     };
+
+    $scope.addPodcaster = function (podcaster) {
+      $scope.doc.customPOST(podcaster, $scope.doc.name + '/podcasters').then(updateDocument);
+    };
 });
