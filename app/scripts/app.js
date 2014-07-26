@@ -29,12 +29,12 @@ angular
         templateUrl: 'views/document.html',
         controller: 'DocumentCtrl',
         resolve: {
-          'document': function (DocumentService, $route) {
+          'document': ['DocumentService', '$route', function (DocumentService, $route) {
             return DocumentService.getByName($route.current.params.name);
-          },
-          'docname': function ($route) {
+          }],
+          'docname': ['$route', function ($route) {
             return $route.current.params.name;
-          }
+          }]
         }
       })
       .when('/rules', {
