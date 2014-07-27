@@ -105,6 +105,23 @@ class DocumentViewSet(viewsets.ViewSet):
 
         return Response(status=status.HTTP_202_ACCEPTED)
 
+    @action(methods=['POST', 'DELETE'])
+    def podcasters(self, request, pk=None):
+        if 'name' not in request.DATA:
+            raise PermissionDenied()
+
+        name = request.DATA['name']
+        print(name)
+        document = get_object_or_404(models.Document, pk=pk)
+        exists = any(rpodcaster.name == name for rpodcaster in document.meta.podcasters.all())
+
+        if request.method == 'POST' and not exists:
+            document.meta.podcasters.add(models.RawPodcaster(name=name))
+        elif request.method == 'DELETE' and exists:
+            document.meta.podcasters.get(name=name).remove()
+
+        return Response(status=status.HTTP_202_ACCEPTED)
+
     #def list(self, request):
     #    pass
 
