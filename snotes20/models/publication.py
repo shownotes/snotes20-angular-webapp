@@ -15,6 +15,7 @@ class Podcaster(models.Model):
 
 class Publication(models.Model):
     id = UUIDField(primary_key=True, auto=True)
+    create_date = models.DateTimeField()
     state = models.ForeignKey(DocumentState)
     episode = models.ForeignKey(Episode)
     creator = models.ForeignKey(settings.AUTH_USER_MODEL)
