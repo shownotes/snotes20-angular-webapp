@@ -24,7 +24,7 @@ class UserViewSet(viewsets.ViewSet):
                 password=serialized.init_data['password']
             )
             token = user.add_email_token(user.email)
-            user.email_user_activation('en', token.token)
+            user.email_user_activation('de', token.token)
             user.is_active = False
             user.save()
             return Response(None, status=status.HTTP_201_CREATED)
@@ -47,7 +47,7 @@ class UserViewSet(viewsets.ViewSet):
         try:
             user = NUser.objects.get(username=pk)
             user.set_pw_reset_token()
-            user.email_pw_reset('en')
+            user.email_pw_reset('de')
         except:
             pass
         return Response(status=status.HTTP_200_OK)
