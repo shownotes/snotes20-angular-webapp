@@ -30,6 +30,10 @@
 	<div class="container">
 
 		<section class="sidebar" ng-controller="SidebarController">
+			<div class="toggle" title="Seitenleiste verkleinern">
+				<span class="icon-arrow-left"></span>
+				<!-- <span class="icon-arrow-right"></span> -->
+			</div>
 
 			<header>
 				<h1><a href="#"><img src="images/shownotes-logo.svg" alt="shownot.es" /></a></h1>
@@ -94,25 +98,19 @@
 									<input type="{{loginform.mode === 'login' ? 'button' : 'submit'}}" value="Registrieren" ng-click="register()" />
 								</div>
 							</form>
-						</div>
-
-						<form ng-show="$root.currentUser && loginform.status === 'down'" ng-cloak>
+							<form ng-show="$root.currentUser && loginform.status === 'down'" ng-cloak>
 							<div class="form-button">
 								<a href="/user/profile">Profil</a>
 								<input type="button" value="Ausloggen" ng-click="logout()" />
 							</div>
 						</form>
+						</div>
 					</li>
 				</ul>
 			</nav>
 
 			<nav class="menu">
 				<ul>
-					<li title="Administration">
-						<a href="#">
-							<span class="icon-settings"></span><span class="caption">Administration</span>
-						</a>
-					</li>
 					<li title="Sendungen">
 						<a href="#">
 							<span class="icon-podcast"></span><span class="caption">Sendungen</span>
@@ -128,20 +126,22 @@
 							<span class="icon-bubbles"></span><span class="caption">Community</span>
 						</a>
 					</li>
+					<li title="Administration">
+						<a href="#">
+							<span class="icon-settings"></span><span class="caption">Administration</span>
+						</a>
+					</li>
 				</ul>
 			</nav>
 
 			<footer>
+
 				<p>Alle Inhalte stehen, soweit nicht anders vermerkt, unter der <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.de" rel="license" title="CC0 1.0 Universell (Public Domain Dedication)">CC0-Lizenz</a>.</p>
-				<!-- <p>shownot.es wird betrieben und weiterentwickelt vom Shownotes e.V.</p> -->
-				<!-- <nav>
-					<ul>
-						<li><a href="#">Spenden</a></li>
-						<li><a href="#">Datenschutz</a></li>
-						<li><a href="#">Impressum</a></li>
-					</ul>
-				</nav> -->
+				<p>Ein Projekt des <a href="#">Shownotes e.V.</a>.</p>
+
+				<!-- Flattr -->
 				<a class="FlattrButton" style="display:none;" href="http://shownot.es/"></a>
+
 			</footer>
 
 		</section>
