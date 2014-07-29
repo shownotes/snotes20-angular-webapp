@@ -37,6 +37,9 @@ angular
           }]
         }
       })
+      .when('/doc-readonly', {
+        templateUrl: 'views/document-readonly.html'
+      })
       .when('/rules', {
         templateUrl: 'views/rules.html'
       })
