@@ -1,6 +1,6 @@
-### shownot.es credits ###
+## shownot.es credits
 
-# TEAM
+# Team
 
 	Frontend developer (AngularJS), backend developer: luto
 	Website: luto.at
@@ -11,22 +11,24 @@
 	Twitter: @kaikubasta
 	Location: Berlin, Germany
 
-# THANKS
+# Thanks
 
 	Logo design: Sven Sedivy
 	Website: graphorama.de
 	Twitter: @graphorama
 
 	Fira typeface: Erik Spiekermann, Ralph du Carrois, Mozilla
+	Website: carrois.com/fira-3-1/
 
 	Etherpad: Etherpad Foundation
 	Website: etherpad.org
 
-# SITE
+	Hosting: Uberspace
+	Website: uberspace.de
+
+# Site
 
 	Doctype: HTML5
 	Language: German
 	Frontend: HTML5, CSS3, JavaScript (AngularJS)
 	Backend: Python (Django)
-
-# humanstxt.org
