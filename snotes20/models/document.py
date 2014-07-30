@@ -15,6 +15,14 @@ EDITOR_CHOICES = (
     (EDITOR_ETHERPAD, 'Etherpad'),
 )
 
+CONTENTTYPE_OSF  = 'OSF'
+CONTENTTYPE_TXT  = 'TXT'
+
+CONTENTTYPE_CHOICES = (
+    (CONTENTTYPE_OSF, 'OSF'),
+    (CONTENTTYPE_TXT, 'Text'),
+)
+
 
 class DocumentMeta(models.Model):
     id = UUIDField(primary_key=True, auto=True)
@@ -36,6 +44,7 @@ class Document(models.Model):
     create_date = models.DateTimeField(default=datetime.now)
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
     meta = models.OneToOneField(DocumentMeta, related_name='document', null=True, blank=True, on_delete=models.CASCADE)
+    type = models.CharField(max_length=3, choices=CONTENTTYPE_CHOICES)
 
     def __str__(self):
         try:
