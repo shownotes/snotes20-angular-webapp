@@ -111,7 +111,6 @@ class DocumentViewSet(viewsets.ViewSet):
             raise PermissionDenied()
 
         name = request.DATA['name']
-        print(name)
         document = get_object_or_404(models.Document, pk=pk)
         exists = any(rpodcaster.name == name for rpodcaster in document.meta.podcasters.all())
 
