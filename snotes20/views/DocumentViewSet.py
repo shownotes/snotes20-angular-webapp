@@ -122,6 +122,31 @@ class DocumentViewSet(viewsets.ViewSet):
 
         return Response(status=status.HTTP_202_ACCEPTED)
 
+    @action(methods=['POST', 'GET'])
+    def chat(self, request, pk=None):
+        document = get_object_or_404(models.Document, pk=pk)
+
+        if request.method == 'POST':
+            if 'message' not in request.DATA:
+                raise PermissionDenied()
+
+            issuer = models.ChatMessageIssuer()
+            issuer.type = models.CHAT_MSG_ISSUER_USER
+            issuer.user = request.user
+            issuer.save()
+
+            msg = models.ChatMessage()
+            msg.message = request.DATA['message']
+            msg.document = document
+            msg.issuer = issuer
+            msg.save()
+
+            return Response(status=status.HTTP_202_ACCEPTED)
+        elif request.method == 'GET':
+            msgs = document.messages.all()
+            data = serializers.ChatMessageSerializer(msgs).data
+            return Response(data, status=status.HTTP_200_OK)
+
     #def list(self, request):
     #    pass
 

@@ -76,3 +76,4 @@ class ChatMessage(models.Model):
     document = models.ForeignKey(Document, related_name='messages')
     issuer = models.OneToOneField(ChatMessageIssuer)
     message = models.CharField(max_length=200)
+    date = models.DateTimeField(default=datetime.now)
