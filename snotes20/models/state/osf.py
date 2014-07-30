@@ -11,12 +11,15 @@ class OSFDocumentState(DocumentState):
 
 
 class OSFNote(models.Model):
-    state = models.ForeignKey(OSFDocumentState, primary_key=True)
-    order = models.IntegerField(primary_key=True)
+    state = models.ForeignKey(OSFDocumentState)
+    order = models.IntegerField()
     time = models.IntegerField(null=True)
     text = models.CharField(300)
     link = models.URLField(null=True)
     tags = models.ManyToManyField(OSFTag)
+
+    class Meta:
+        unique_together = ('order', 'state')
 
 
 
