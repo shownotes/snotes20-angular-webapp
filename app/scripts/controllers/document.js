@@ -30,4 +30,16 @@ angular.module('snotes30App')
     $scope.addPodcaster = function (podcaster) {
       $scope.doc.customPOST($scope.newpodcaster, $scope.doc.name + '/podcasters').then(function () { $scope.newpodcaster = null; }).then(updateDocument);
     };
+
+    $scope.sendChatMsg = function () {
+      $scope.doc.customPOST($scope.chatmsg, $scope.doc.name + '/chat').then(function () { $scope.chatmsg = null; }).then(getChatMsgs);
+    };
+
+    function getChatMsgs() {
+      $scope.doc.customGET($scope.doc.name + '/chat').then(function (msgs) {
+        $scope.chatmessages = msgs;
+      });
+    }
+
+    getChatMsgs();
 });
