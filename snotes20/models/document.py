@@ -45,6 +45,7 @@ class Document(models.Model):
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
     meta = models.OneToOneField(DocumentMeta, related_name='document', null=True, blank=True, on_delete=models.CASCADE)
     type = models.CharField(max_length=3, choices=CONTENTTYPE_CHOICES)
+    access_time = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         try:
