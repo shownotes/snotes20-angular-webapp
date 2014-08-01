@@ -61,4 +61,4 @@ class ChatMessageSerializer(ModelSerializer):
 
     class Meta:
         model = ChatMessage
-        fields = ('message', 'date', 'issuer')
+        fields = ('order', 'message', 'date', 'issuer')

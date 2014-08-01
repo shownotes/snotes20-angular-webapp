@@ -1,4 +1,5 @@
 from datetime import datetime
+import time
 
 from django.shortcuts import get_object_or_404
 from django.db import transaction
@@ -138,11 +139,19 @@ class DocumentViewSet(viewsets.ViewSet):
             msg.message = request.DATA['message']
             msg.document = document
             msg.issuer = issuer
+            msg.order = int(round(time.time() * 1000))
             msg.save()
 
             return Response(status=status.HTTP_202_ACCEPTED)
         elif request.method == 'GET':
             msgs = document.messages.all()
+
+            try:
+                if 'since' in request.QUERY_PARAMS:
+                    msgs = msgs.filter(order__gt=int(request.QUERY_PARAMS['since']))
+            except:
+                return Response([], status=status.HTTP_200_OK)
+
             data = serializers.ChatMessageSerializer(msgs).data
             return Response(data, status=status.HTTP_200_OK)
 

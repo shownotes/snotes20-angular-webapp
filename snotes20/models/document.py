@@ -73,6 +73,7 @@ class ChatMessageIssuer(models.Model):
 
 class ChatMessage(models.Model):
     id = UUIDField(primary_key=True, auto=True)
+    order = models.BigIntegerField()
     document = models.ForeignKey(Document, related_name='messages')
     issuer = models.OneToOneField(ChatMessageIssuer)
     message = models.CharField(max_length=200)
