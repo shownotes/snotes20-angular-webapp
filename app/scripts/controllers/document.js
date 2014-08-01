@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('DocumentCtrl', function ($scope, $rootScope, $routeParams, $sce, document, docname, DocumentService) {
+  .controller('DocumentCtrl', function ($scope, $rootScope, $routeParams, $sce, $interval, document, docname, DocumentService) {
     $scope.doc = document;
 
     function updateDocument() {
@@ -35,11 +35,31 @@ angular.module('snotes30App')
       $scope.doc.customPOST($scope.chatmsg, $scope.doc.name + '/chat').then(function () { $scope.chatmsg = null; }).then(getChatMsgs);
     };
 
-    function getChatMsgs() {
-      $scope.doc.customGET($scope.doc.name + '/chat').then(function (msgs) {
-        $scope.chatmessages = msgs;
+    function getChatMsgs(since) {
+      var params = {};
+      if(since) {
+        params['since'] = since;
+      }
+      $scope.doc.customGET($scope.doc.name + '/chat', params).then(function (msgs) {
+        if(since) {
+          $scope.chatmessages = $scope.chatmessages.concat(msgs);
+        } else {
+          $scope.chatmessages = msgs;
+        }
       });
     }
 
     getChatMsgs();
+
+    var chatUpdateInt = $interval(function () {
+      var since = undefined;
+      if($scope.chatmessages && $scope.chatmessages.length != 0) {
+        since = $scope.chatmessages[$scope.chatmessages.length - 1].order;
+      }
+      getChatMsgs(since)
+    }, 500);
+
+    $scope.$on('$destroy', function () {
+      $interval.cancel(chatUpdateInt);
+    });
 });
