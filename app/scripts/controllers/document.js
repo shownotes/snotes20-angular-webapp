@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('DocumentCtrl', function ($scope, $rootScope, $routeParams, $sce, $interval, document, docname, DocumentService) {
-    $scope.doc = document;
+  .controller('DocumentCtrl', function ($scope, $rootScope, $routeParams, $sce, $interval, doc, docname, DocumentService) {
+    $scope.doc = doc;
 
     function updateDocument() {
       return DocumentService.getByName(docname).then(function (doc) {

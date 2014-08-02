@@ -8,21 +8,30 @@
 			Episode {{episode.number}}<br />
 			{{episode.date}}
 		</h3>
-		<a href="/doc/{{document.name}}">Bearbeiten</a>
+		<a href="/doc/{{doc.name}}">Bearbeiten</a>
 	</div>
 
 </div>
 
 <div class="button-group">
-	<button ng-repeat="f in formats" ng-disabled="format == f.name" ng-click="enableFormat(f.name)">{{f.caption}}</button>
-	<button title="HTML herunterladen"><span class="icon-arrow-down"></span></button>
+	<button ng-repeat="f in formats" ng-disabled="format == f" ng-click="enableFormat(f)">{{f.caption}}</button>
+	<button title="HTML herunterladen"><span class="icon-arrow-down" ng-click="download()"></span></button>
 </div>
 
 <hr />
 
 <div class="document-list">
-	<pre>
-{{rawText}}
+
+	<div ng-if="format.type == 'html'">
+{{content.html}}
+	</div>
+
+	<pre ng-if="format.type == 'osf'">
+{{content.osf}}
+	</pre>
+
+	<pre ng-if="format.type == 'plain'">
+{{content.raw}}
 	</pre>
 
 	<h2>00:00:00 <a href="https://www.youtube.com/watch?v=XQKGWw-ZTaw">Intro: Kraftwerk - Number</a></h2>

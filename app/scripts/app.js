@@ -21,7 +21,7 @@ angular
   ])
   .config(function ($routeProvider, $locationProvider, $httpProvider, RestangularProvider) {
     var docResvolers = {
-      'document': ['DocumentService', '$route', function (DocumentService, $route) {
+      'doc': ['DocumentService', '$route', function (DocumentService, $route) {
         return DocumentService.getByName($route.current.params.name);
       }],
       'docname': ['$route', function ($route) {
