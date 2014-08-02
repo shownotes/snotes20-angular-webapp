@@ -5,13 +5,13 @@ from osf import OSFLine
 from .DocumentState import DocumentState
 
 
+
 class OSFDocumentState(DocumentState):
 
     def to_osf_str(self):
-        return "\n".join([note.to_osf_str() for note in self.notes])
-
+        return "\n".join([str(note) for note in self.notes.all()])
     def __str__(self):
-        return "OSFDocumentState, " + self.notes.count() + " notes"
+        return "OSFDocumentState, " + str(self.notes.count()) + " notes"
 
 
 class OSFTag(models.Model):
@@ -38,7 +38,7 @@ class OSFNote(models.Model):
         line.indentation = self.indentation
         line.text = self.text
         line.link = self.link
-        line.tags = [tag.short for tag in self.tags]
+        #line.tags = [tag.short for tag in self.tags.all()]
         return line
 
     class Meta:

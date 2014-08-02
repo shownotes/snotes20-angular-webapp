@@ -97,6 +97,11 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
+        'snotes20.management.commands.refreshdocstate': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
     },
 }
 

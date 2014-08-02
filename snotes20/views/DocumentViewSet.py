@@ -3,6 +3,7 @@ import time
 
 from django.shortcuts import get_object_or_404
 from django.db import transaction
+from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
@@ -154,6 +155,36 @@ class DocumentViewSet(viewsets.ViewSet):
 
             data = serializers.ChatMessageSerializer(msgs).data
             return Response(data, status=status.HTTP_200_OK)
+
+    @action(methods=['GET'])
+    def text(self, request, pk=None):
+        document = get_object_or_404(models.Document, pk=pk)
+
+        text = None
+
+        handlers = [
+            lambda: document.state.osfdocumentstate.to_osf_str(),
+            lambda: document.state.textdocumentstate.text
+        ]
+
+        for handler in handlers:
+            try:
+                text = handler()
+                break
+            except ObjectDoesNotExist:
+                pass
+
+        if not text:
+            raise Exception()
+
+        return Response({'text': text }, status=status.HTTP_200_OK)
+
+    @action(methods=['GET'])
+    def errors(self, request, pk=None):
+        document = get_object_or_404(models.Document, pk=pk)
+        errors = document.state.errors.all()
+        return Response(serializers.DocumentStateErrorSerializer(errors).data, status=status.HTTP_200_OK)
+
 
     #def list(self, request):
     #    pass

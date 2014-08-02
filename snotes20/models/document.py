@@ -26,7 +26,6 @@ CONTENTTYPE_CHOICES = (
 
 class DocumentMeta(models.Model):
     id = UUIDField(primary_key=True, auto=True)
-    state = models.ForeignKey(DocumentState, null=True, blank=True)
     shownoters = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
 
     def __str__(self):
@@ -40,11 +39,12 @@ class RawPodcaster(models.Model):
 
 class Document(models.Model):
     name = models.CharField(primary_key=True, max_length=40)
+    state = models.ForeignKey(DocumentState, null=True, blank=True, on_delete=models.SET_NULL)
     editor = models.CharField(max_length=3, choices=EDITOR_CHOICES)
     create_date = models.DateTimeField(default=datetime.now)
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
     meta = models.OneToOneField(DocumentMeta, related_name='document', null=True, blank=True, on_delete=models.CASCADE)
-    type = models.CharField(max_length=3, choices=CONTENTTYPE_CHOICES)
+    type = models.CharField(max_length=3, choices=CONTENTTYPE_CHOICES, default=CONTENTTYPE_OSF)
     access_time = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):

@@ -95,6 +95,19 @@ class DocumentMetaAdmin(admin.ModelAdmin):
     inlines = [RawPodcasterInline,]
 
 
+class OSFNoteInline(admin.TabularInline):
+    model = models.OSFNote
+    fields = ('time', 'text', 'link', 'tags')
+    readonly_fields = ('time', 'text', 'link', 'tags')
+    can_delete = False
+    extra = 0
+
+@admin.register(models.OSFDocumentState)
+class DocumentStateAdmin(admin.ModelAdmin):
+    fields = ('date',)
+    inlines = [OSFNoteInline,]
+
+
 class DocumentAdminForm(ReverseOneToOneAdminForm):
     rels = ('episode',)
     episode = forms.ModelChoiceField(queryset=models.Episode.objects.all(), required=False)
