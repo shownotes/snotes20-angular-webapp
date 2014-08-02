@@ -20,6 +20,15 @@ angular
     'restangular'
   ])
   .config(function ($routeProvider, $locationProvider, $httpProvider, RestangularProvider) {
+    var docResvolers = {
+      'document': ['DocumentService', '$route', function (DocumentService, $route) {
+        return DocumentService.getByName($route.current.params.name);
+      }],
+      'docname': ['$route', function ($route) {
+        return $route.current.params.name;
+      }]
+    };
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/livelist.html',
@@ -28,17 +37,12 @@ angular
       .when('/doc/:name', {
         templateUrl: 'views/document.html',
         controller: 'DocumentCtrl',
-        resolve: {
-          'document': ['DocumentService', '$route', function (DocumentService, $route) {
-            return DocumentService.getByName($route.current.params.name);
-          }],
-          'docname': ['$route', function ($route) {
-            return $route.current.params.name;
-          }]
-        }
+        resolve: docResvolers
       })
-      .when('/doc-readonly', {
-        templateUrl: 'views/document-readonly.html'
+      .when('/doc/:name/readonly', {
+        templateUrl: 'views/document-readonly.html',
+        controller: 'DocumentReadonlyCtrl',
+        resolve: docResvolers
       })
       .when('/rules', {
         templateUrl: 'views/rules.html'

@@ -16,6 +16,10 @@ angular.module('snotes30App')
     })
   };
 
+  this.getText = function (name) {
+    return documents.customGET(name + '/text');
+  };
+
   this.createFromEpisode = function (episode) {
     return documents.post({ episode: episode.id }, { type: 'fromepisode' });
   };
