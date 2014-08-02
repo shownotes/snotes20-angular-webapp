@@ -7,7 +7,7 @@ from django.db.models.signals import post_delete
 
 from uuidfield import UUIDField
 
-from .state import DocumentState
+from .state import DocumentState, TextDocumentState
 
 EDITOR_ETHERPAD  = 'EP'
 
@@ -40,6 +40,7 @@ class RawPodcaster(models.Model):
 class Document(models.Model):
     name = models.CharField(primary_key=True, max_length=40)
     state = models.ForeignKey(DocumentState, null=True, blank=True, on_delete=models.SET_NULL)
+    raw_state = models.ForeignKey(TextDocumentState, null=True, blank=True, on_delete=models.SET_NULL, related_name="rdocument")
     editor = models.CharField(max_length=3, choices=EDITOR_CHOICES)
     create_date = models.DateTimeField(default=datetime.now)
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)

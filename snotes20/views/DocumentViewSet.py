@@ -156,28 +156,34 @@ class DocumentViewSet(viewsets.ViewSet):
             data = serializers.ChatMessageSerializer(msgs).data
             return Response(data, status=status.HTTP_200_OK)
 
-    @action(methods=['GET'])
+    @action(methods=['POST'])
     def text(self, request, pk=None):
         document = get_object_or_404(models.Document, pk=pk)
 
-        text = None
+        type = 'osf'
 
-        handlers = [
-            lambda: document.state.osfdocumentstate.to_osf_str(),
-            lambda: document.state.textdocumentstate.text
-        ]
+        if 'type' in request.QUERY_PARAMS:
+            type = request.QUERY_PARAMS['type']
 
-        for handler in handlers:
+        data = None
+
+        if type == 'osf' or type == 'json':
             try:
-                text = handler()
-                break
-            except ObjectDoesNotExist:
-                pass
+                text = document.state.osfdocumentstate.to_osf_str()
+            except models.OSFDocumentState.DoesNotExist:
+                raise PermissionDenied()
 
-        if not text:
-            raise Exception()
+            if type == 'osf':
+                data = {'osf': text}
+            elif type == 'json':
+                raise PermissionDenied()
+        elif type == 'raw':
+            data = {'raw': document.raw_state.text}
+        else:
+            raise PermissionDenied()
 
-        return Response({'text': text }, status=status.HTTP_200_OK)
+        response = Response(data, status=status.HTTP_200_OK)
+        return response
 
     @action(methods=['GET'])
     def errors(self, request, pk=None):

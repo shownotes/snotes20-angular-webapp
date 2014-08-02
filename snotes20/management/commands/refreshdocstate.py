@@ -36,13 +36,22 @@ class Command(BaseCommand):
             with transaction.atomic():
                 if doc.state:
                     doc.state.delete()
+                if doc.raw_state:
+                    doc.raw_state.delete()
 
                 editor = editors.EditorFactory.get_editor(doc.editor)
                 text = editor.get_document_text(doc)
 
+                raw_state = models.TextDocumentState()
+                raw_state.text = text
+                raw_state.save()
+
+                doc.raw_state = raw_state
+                doc.save()
+
                 if doc.type == models.CONTENTTYPE_TXT:
-                    state = models.TextDocumentState()
-                    state.text = text
+                    doc.state = raw_state
+                    doc.save()
                 elif doc.type == models.CONTENTTYPE_OSF:
                     state = models.OSFDocumentState()
                     
