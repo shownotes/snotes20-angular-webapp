@@ -186,6 +186,7 @@ module.exports = function (grunt) {
     wiredep: {
       app: {
         src: ['<%= yeoman.app %>/index.html'],
+        exclude: [ /handlebars/ ],
         ignorePath: new RegExp('^<%= yeoman.app %>/')
       },
       sass: {
@@ -350,6 +351,28 @@ module.exports = function (grunt) {
       }
     },
 
+    handlebars: {
+      exporttemplates: {
+        options: {
+          processName: function(filePath) {
+            var lastSlash = filePath.lastIndexOf('/');
+            var lastButOneSlash = filePath.lastIndexOf('/', lastSlash - 1);
+            var name = filePath.substr(lastButOneSlash + 1, lastSlash - lastButOneSlash - 1);
+
+            if(filePath.indexOf('main.hbs') !== filePath.length - 8) {
+              name = name + "_" + filePath.substr(lastSlash + 1, filePath.length - lastSlash - 5);
+            }
+
+            return name;
+          },
+          namespace: "OSF_TEMPLATES"
+        },
+        files: {
+          ".tmp/scripts/osf-templates.js": "<%= yeoman.app %>/bower_components/osf-export-templates/**/*.hbs"
+        }
+      }
+    },
+
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
@@ -427,6 +450,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'copy:fonts',
+      'handlebars:exporttemplates',
       'wiredep',
       'concurrent:server',
       'autoprefixer',
@@ -456,6 +480,7 @@ module.exports = function (grunt) {
     'autoprefixer',
     'concat',
     'ngmin',
+    'handlebars:exporttemplates',
     'copy:dist',
     'cdnify',
     'cssmin',
