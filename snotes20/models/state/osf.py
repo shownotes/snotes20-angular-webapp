@@ -5,11 +5,21 @@ from osf import OSFLine
 from .DocumentState import DocumentState
 
 
-
 class OSFDocumentState(DocumentState):
 
-    def to_osf_str(self):
-        return "\n".join([str(note) for note in self.notes.all()])
+    def to_list(self, notes=None, depth=0):
+        root = []
+
+        if not notes:
+            notes = self.notes
+
+        for note in notes.all():
+            me = note.to_dict(depth)
+            me['notes'] = self.to_list(notes=note.notes, depth=depth + 1)
+            root.append(me)
+
+        return root
+
     def __str__(self):
         return "OSFDocumentState, " + str(self.notes.count()) + " notes"
 
@@ -22,24 +32,23 @@ class OSFTag(models.Model):
 
 class OSFNote(models.Model):
     state = models.ForeignKey(OSFDocumentState, related_name="notes")
+    parent = models.ForeignKey('self', related_name="notes", null=True, blank=True)
     order = models.IntegerField()
     time = models.PositiveIntegerField(null=True)
-    indentation = models.PositiveIntegerField()
     text = models.CharField(max_length=300)
     link = models.URLField(null=True)
     tags = models.ManyToManyField(OSFTag, related_name="notes")
 
-    def __str__(self):
-        return str(self.to_OSFLine())
+    def to_dict(self, depth):
+        me = {
+            'time': self.time,
+            'text': self.text,
+            'link': self.link,
+            'tags': {tag.name: True for tag in self.tags.all()},
+            'depth': depth,
+        }
 
-    def to_OSFLine(self):
-        line = OSFLine()
-        line.time = self.time
-        line.indentation = self.indentation
-        line.text = self.text
-        line.link = self.link
-        #line.tags = [tag.short for tag in self.tags.all()]
-        return line
+        return me
 
     class Meta:
         unique_together = ('order', 'state')

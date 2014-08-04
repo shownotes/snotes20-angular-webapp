@@ -22,6 +22,31 @@ def find_or_create_osf_tag(short):
         return tag
 
 
+def add_osf_note(state, line, parent=None):
+    if isinstance(line, modgrammar.ParseError):
+        error = models.DocumentStateError(
+            state=state,
+            line=line.line,
+            message=line.message
+        )
+
+        error.save()
+    else:
+        note = models.OSFNote(
+            state=state,
+            parent=parent,
+            time=line.time,
+            text=line.text,
+            link=line.link,
+            order=line._line
+        )
+
+        note.save()
+        note.tags.add(*[find_or_create_osf_tag(tag) for tag in line.tags])
+
+        for nnote in line.notes:
+            add_osf_note(state, nnote, note)
+
 
 class Command(BaseCommand):
     args = ''
@@ -62,27 +87,8 @@ class Command(BaseCommand):
                     doc.state = state
                     doc.save()
 
-                    for index, line in enumerate(o_lines):
-                        if isinstance(line, modgrammar.ParseError):
-                            error = models.DocumentStateError(
-                                state=state,
-                                line=line.line,
-                                message=line.message
-                            )
-
-                            error.save()
-                        else:
-                            note = models.OSFNote(
-                                state=state,
-                                time=line.time,
-                                indentation=line.indentation,
-                                text=line.text,
-                                link=line.link,
-                                order=index
-                            )
-
-                            note.save()
-                            note.tags.add(*[find_or_create_osf_tag(tag) for tag in o_lines[index].tags])
+                    for line in o_lines:
+                        add_osf_note(state, line)
                 else:
                     raise Exception()
 

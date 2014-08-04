@@ -167,15 +167,12 @@ class DocumentViewSet(viewsets.ViewSet):
 
         data = None
 
-        if type == 'osf' or type == 'json':
+        if type == 'json':
             try:
-                text = document.state.osfdocumentstate.to_osf_str()
+                data = {
+                    'json': document.state.osfdocumentstate.to_list()
+                }
             except models.OSFDocumentState.DoesNotExist:
-                raise PermissionDenied()
-
-            if type == 'osf':
-                data = {'osf': text}
-            elif type == 'json':
                 raise PermissionDenied()
         elif type == 'raw':
             data = {'raw': document.raw_state.text}
