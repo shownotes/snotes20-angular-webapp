@@ -455,7 +455,7 @@ body {
 	cursor: pointer;
 }
 
-/* Header */
+/* Sidebar header */
 header {
 	margin-bottom: 2em;
 }
@@ -471,7 +471,7 @@ header img {
 	width: 100%;
 	height: auto;
 }
-header object.small {
+header .small {
 	display: none;
 }
 
@@ -592,6 +592,25 @@ nav li > input {
 }
 .pwreset {
 	margin-bottom: 1em;
+}
+
+/* Sidebar footer */
+.sidebar footer {
+	color: #999;
+}
+.sidebar footer p {
+	font-size: .8em;
+}
+.sidebar footer p:not(:last-child) {
+	margin-bottom: 1em;
+}
+.sidebar footer a:link,
+.sidebar footer a:visited {
+	color: #666;
+	white-space: nowrap;
+}
+.sidebar footer a:hover {
+	color: #111;
 }
 
 /* Main Content */
@@ -968,23 +987,23 @@ ul.profile li:before {
 	background: #bbb;
 }
 
-/* Footer */
-footer {
-	color: #999;
-}
-footer p {
+/* Main footer */
+.content footer {
 	font-size: .8em;
 }
-footer p:not(:last-child) {
-	margin-bottom: 1em;
+.content footer ul {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row;
+	flex-direction: row;
+	list-style: none;
+	padding-left: 0;
 }
-footer a:link,
-footer a:visited {
-	color: #666;
-	white-space: nowrap;
-}
-footer a:hover {
-	color: #111;
+.content footer li {
+	
 }
 
 /* Responsive sidebar (main content is fluid) */
@@ -996,13 +1015,13 @@ footer a:hover {
 	.sidebar > *:not(:first-child):not(:last-child) {
 		margin-bottom: 1em;
 	}
-	header object.large,
+	header .large,
 	.sidebar > .toggle,
 	.sidebar p,
 	.sidebar .caption {
 		display: none;
 	}
-	header object.small {
+	header .small {
 		display: block;
 	}
 	.sidebar {
