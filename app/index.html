@@ -126,7 +126,7 @@
 							</form>
 							<form ng-show="$root.currentUser && loginform.status === 'down'" ng-cloak>
 							<div class="form-button">
-								<a href="/user/profile">Profil</a>
+								<a href="/profile/{{$root.currentUser.username}}">Profil</a>
 								<input type="button" value="Ausloggen" ng-click="logout()" />
 							</div>
 						</form>
@@ -162,7 +162,7 @@
 
 			<footer>
 
-				<p>Alle Inhalte stehen, soweit nicht anders vermerkt, unter der <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.de" rel="license" title="CC0 1.0 Universell (Public Domain Dedication)">CC0-Lizenz</a>.</p>
+				<p>Alle Sendungsnotizen stehen, soweit nicht anders vermerkt, unter der <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.de" rel="license" title="CC0 1.0 Universell (Public Domain Dedication)">CC0-Lizenz</a>.</p>
 				<p>Ein Projekt des <a href="#">Shownotes e.V.</a>.</p>
 
 				<a class="FlattrButton" style="display:none;" href="http://shownot.es/"></a>

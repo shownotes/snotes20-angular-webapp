@@ -44,8 +44,14 @@ angular
         controller: 'DocumentReadonlyCtrl',
         resolve: docResvolers
       })
+      .when('/sighting', {
+        templateUrl: 'views/sighting.html'
+      })
       .when('/rules', {
         templateUrl: 'views/rules.html'
+      })
+      .when('/imprint', {
+        templateUrl: 'views/imprint.html'
       })
       .when('/styleguide', {
         templateUrl: 'views/styleguide.html'

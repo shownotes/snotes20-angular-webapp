@@ -13,7 +13,7 @@ angular.module('snotes30App')
       { name: 'md', type: 'plain', caption: 'Markdown' },
       { name: 'reaper', type: 'plain', caption: 'Reaper' },
       { name: 'audacity', type: 'plain', caption: 'Audacity' },
-      { name: 'chapter', type: 'plain', caption: 'Kaptiel' },
+      { name: 'chapter', type: 'plain', caption: 'Kapitel' },
       { name: 'raw', type: 'plain', caption: 'Original' }
     ];
 

@@ -35,9 +35,9 @@
 
 				<p><strong>Podcaster</strong>:
 					<span ng-repeat="podcaster in doc.meta.podcasters">{{podcaster.name}}</span>
-					<span ng-show="doc.meta.podcasters.length == 0">Noch keine.</span>
+					<span ng-show="doc.meta.podcasters.length == 0">Noch keine</span>
 				</p>
-				<form class="podcaster">
+				<form class="input-group">
 					<input type="text" value="" placeholder="Name" ng-model="newpodcaster.name" />
 					<input class="small" type="submit" value="Hinzufügen" ng-click="addPodcaster()" />
 				</form>

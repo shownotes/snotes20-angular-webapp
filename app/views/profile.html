@@ -1,13 +1,34 @@
 <div ng-show="!user" class="content">
-	<h1>Fehler</h1>
-	<p>Diesen Benutzer gibt es nicht.</p>
+	<h2>Fehler: Benutzer nicht gefunden</h2>
+	<h3>Hinweis</h3>
+	<p>Entschuldige, aber der gewünschte Benutzer konnte nicht gefunden werden.</p>
 </div>
-<div ng-show="user" class="content">
-	<h2>{{user.username}} <span>war {{last_login}} online</span></h2>
-	<h3 ng-show="user.role == 'user'">Benutzer</h3>
-	<h3 ng-show="user.role == 'admin'">Administrator</h3>
 
-	<p>{{user.bio}}</p>
+<div ng-show="user" class="content">
+
+	<h2>
+		{{user.username}}
+		<span class="statuslabel" ng-show="user.role == 'user'">Mitglied</span>
+		<span class="statuslabel" ng-show="user.role == 'admin'">Administrator</span>
+	</h2>
+	<h3><span>war {{last_login}} online</span></h3>
+
+	<p ng-show="user.username == currentUser.username">
+		Hallo <em>{{user.username}}</em>! Möchtest du dein <a href="/user/profile">Profil bearbeiten</a>?
+	</p>
+
+	<div class="box-wrapper">
+		<h3>Biographie</h3>
+		<p ng-show="user.bio">{{user.bio}}</p>
+		<p ng-show="!user.bio">
+			<span ng-show="!user.username == currentUser.username">
+				Dieses Mitglied hat noch keine Biographie angelegt.
+			</span>
+			<span ng-show="user.username == currentUser.username">
+				Du hast bisher noch keine Biographie angelegt.
+			</span>
+		</p>
+	</div>
 
 	<ul class="profile">
 		<li data-social="Webseite" ng-show="user.socials['website']"><a href="https://luto.at" title="Webseite von {{user.username}}">{{user.socials['website']}}</a></li>
@@ -16,8 +37,4 @@
 		<li data-social="App.net" ng-show="user.socials['appnet']"><a href="#" title="{{user.username}} auf App.net">{{user.socials['appnet']}}</a></li>
 	</ul>
 
-	<div ng-show="user.username == currentUser.username">
-		<hr />
-		<a href="/user/profile">Profil bearbeiten</a>
-	</div>
 </div>

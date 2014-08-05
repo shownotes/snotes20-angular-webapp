@@ -1,18 +1,18 @@
 <h2>Die neue Plattform</h2>
 <h3>Wie aufregend!</h3>
 
-<p>Hallo {{currentUser.username}}! Wie du siehst, hat sich hier einiges verändert.</p>
+<p>Hallo <em>{{currentUser.username}}</em>! Wie du siehst, hat sich hier einiges verändert.</p>
 
 <p>Da du bereits beim alten <em>ShowPad</em> einen Account hattest, möchten wir dich bitten, dein Passwort aus Sicherheitsgründen zu ändern und unsere neuen <a href="/rules">Regeln</a> zu akzeptieren.</p>
 
 <div class="box-wrapper">
 	<h3>Daten aktualisieren</h3>
 
-	<form class="profile-edit">
+	<form class="form-wrapper">
 		<input type="password" value="" placeholder="Neues Passwort" ng-model="upgrade.password" />
 		<input type="password" value="" placeholder="Neues Passwort bestätigen" ng-model="upgrade.password2" equals="{{upgrade.password}}" />
 		<div class="form-check">
-			<input id="checkrules-upgrade" type="checkbox" value="checkrules" ng-model="upgrade.rules" required />
+			<input id="checkrules-upgrade" type="checkbox" value="checkrules" ng-model="upgrade.rules" />
 			<label for="checkrules-upgrade">Ich akzeptiere die <a href="/rules">Regeln</a>.</label>
 		</div>
 		<input type="submit" value="Änderungen speichern" ng-click="doUpgrade()" />

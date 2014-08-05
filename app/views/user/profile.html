@@ -1,15 +1,15 @@
 <h2>Profil bearbeiten</h2>
 <h3>Fühl dich wie zu Hause.</h3>
 
-<p>Hallo {{user.username}}! Willkommen in deinem persönlichen Profil.</p>
+<p>Hallo <em>{{user.username}}</em>! Hier kannst du dein persönliches Profil bearbeiten.</p>
 
 
 <div class="box-wrapper">
-	<h3>Beschreibung &amp; Farbe</h3>
+	<h3>Biographie &amp; Farbe</h3>
 
 	<p>Diese Angaben sind öffentlich einsehbar.</p>
 
-	<form class="profile-edit">
+	<form class="form-wrapper">
 		<textarea placeholder="Erzähl etwas über dich. Was ist dein Lieblings-Podcast?" ng-model="user.bio"></textarea>
 
 		<p>Deine Farbe im Editor:
@@ -28,7 +28,7 @@
 
 	<p>Diese Angaben sind öffentlich einsehbar.</p>
 
-	<form class="profile-edit">
+	<form class="form-wrapper">
 		<input type="text" value="" placeholder="Webseite" ng-model="user.socials['website']" />
 		<input type="text" value="" placeholder="Flattr" ng-model="user.socials['flattr']" />
 		<input type="text" value="" placeholder="App.net" ng-model="user.socials['appnet']" />
@@ -45,9 +45,9 @@
 
 	<p>Deine aktuelle E-Mail-Adresse lautet <strong>{{user.email}}</strong>. Sie wird nicht veröffentlicht.</p>
 
-	<form class="profile-edit">
-		<input type="email" value="" placeholder="Neue E-Mail-Adresse" required ng-model="changemail.email" />
-		<input type="password" value="" placeholder="Aktuelles Passwort bestätigen" required ng-model="changemail.password" />
+	<form class="form-wrapper">
+		<input type="email" value="" placeholder="Neue E-Mail-Adresse" ng-model="changemail.email" />
+		<input type="password" value="" placeholder="Aktuelles Passwort bestätigen" ng-model="changemail.password" />
 		<input type="submit" value="E-Mail-Adresse ändern" ng-click="changeMail()" />
 		<action-status  success-text="Bitte bestätige deine neue E-Mail-Adresse mit dem Link in deinem Posteingang."
 						fail-text="Bitte überprüfe noch einmal deine Angaben."
@@ -58,10 +58,10 @@
 <div class="box-wrapper">
 	<h3>Passwort</h3>
 
-	<form class="profile-edit">
-		<input type="password" value="" placeholder="Aktuelles Passwort bestätigen" required ng-model="pwchange.password" />
-		<input type="password" value="" placeholder="Neues Passwort" required ng-model="pwchange.newpassword" />
-		<input type="password" value="" placeholder="Neues Passwort wiederholen" required ng-model="pwchange.newpassword2" ng-equals="{{pwchange.newpassword}}" />
+	<form class="form-wrapper">
+		<input type="password" value="" placeholder="Aktuelles Passwort bestätigen" ng-model="pwchange.password" />
+		<input type="password" value="" placeholder="Neues Passwort" ng-model="pwchange.newpassword" />
+		<input type="password" value="" placeholder="Neues Passwort wiederholen" ng-model="pwchange.newpassword2" ng-equals="{{pwchange.newpassword}}" />
 		<input type="submit" value="Passwort ändern" ng-click="changePassword()" />
 		<action-status  success-text="Passwort erfolgreich geändert."
 						fail-text="Bitte überprüfe noch einmal deine Angaben."

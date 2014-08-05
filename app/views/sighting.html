@@ -1,0 +1,99 @@
+<div class="sighting-wrapper">
+
+	<div>
+		<h2>
+			Chaosradio 200
+			<span class="statuslabel">Beendet</span>
+			<!-- <span class="statuslabel">Live</span> -->
+		</h2>
+		<h3>24.04.2014, 22:00:00</h3>
+	</div>
+
+	<div>
+		<form class="form-wrapper">
+			<input type="submit" value="Version sichten" />
+		</form>
+	</div>
+
+</div>
+
+<div class="box-wrapper">
+	<div class="sighting-wrapper">
+
+		<h3>Bearbeiten &mdash; <a href="#">Vorschau</a></h3>
+
+		<div class="form-check">
+			<input type="checkbox" id="provisional" value="checkrules" />
+			<label for="provisional">Als <em>vorläufig</em> markieren</label>
+		</div>
+
+	</div>
+
+	<div class="editor">
+		<iframe src="http://snotes20.com:9001/p/g.XPi5iDvxdHM1mrOP$happy-shooting-2014-08-05-08-10-16"></iframe>
+	</div>
+</div>
+
+<div class="sighting-wrapper">
+
+	<div class="box-wrapper">
+		<h3>Podcaster</h3>
+		<p>
+			<span ng-repeat="podcaster in doc.meta.podcasters">{{podcaster.name}}</span>
+			<span ng-show="doc.meta.podcasters.length == 0">Noch keine</span>
+		</p>
+		<form class="input-group">
+			<input type="text" value="" placeholder="Name" ng-model="newpodcaster.name" />
+			<input class="small" type="submit" value="Hinzufügen" ng-click="addPodcaster()" />
+		</form>
+	</div>
+
+	<div class="box-wrapper">
+		<h3>Helfer</h3>
+		<p class="namelist">
+			luto <a href="#" title="Löschen"><span class="icon-close"></span></a>,
+			Evita <a href="#" title="Löschen"><span class="icon-close"></span></a>,
+			Kai <a href="#" title="Löschen"><span class="icon-close"></span></a>,
+			EpicShownoter1337 <a href="#" title="Löschen"><span class="icon-close"></span></a>
+		</p>
+		<form class="input-group">
+			<input type="text" value="" placeholder="Name" ng-model="newpodcaster.name" />
+			<input type="submit" value="Hinzufügen" />
+		</form>
+	</div>
+
+</div>
+
+<div class="box-wrapper">
+	<h3>Cover auswählen</h3>
+
+	<div class="coverlist">
+		<a href="#"><img src="http://shownot.es/img/logos/cr_logo.png" alt="" class="cover" /></a>
+		<a href="#"><img src="http://shownot.es/img/logos/cr_logo.png" alt="" class="cover" /></a>
+		<a href="#"><img src="http://shownot.es/img/logos/cr_logo.png" alt="" class="cover" /></a>
+		<a href="#"><img src="http://shownot.es/img/logos/cr_logo.png" alt="" class="cover" /></a>
+		<a href="#"><img src="http://shownot.es/img/logos/cr_logo.png" alt="" class="cover" /></a>
+		<a href="#"><img src="http://shownot.es/img/logos/cr_logo.png" alt="" class="cover" /></a>
+	</div>
+
+	<h3>Cover hochladen</h3>
+
+	<form class="form-wrapper">
+		<input type="file" name="coverupload" accept="image/*" />
+	</form>
+
+	<p><strong>Wichtig:</strong> Vor dem Hochladen bitte Erlaubnis bei den Podcastern einholen</p>
+
+</div>
+
+<div class="box-wrapper">
+	<h3>Notiz</h3>
+
+	<form class="form-wrapper">
+		<textarea placeholder="Bemerkungen für Podcaster / andere Sichter"></textarea>
+	</form>
+</div>
+
+<form class="form-wrapper">
+	<input type="submit" value="Version sichten" />
+</form>
