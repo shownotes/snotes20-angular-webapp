@@ -50,6 +50,12 @@ angular
       .when('/rules', {
         templateUrl: 'views/rules.html'
       })
+      .when('/community', {
+        templateUrl: 'views/community.html'
+      })
+      .when('/donate', {
+        templateUrl: 'views/donate.html'
+      })
       .when('/imprint', {
         templateUrl: 'views/imprint.html'
       })

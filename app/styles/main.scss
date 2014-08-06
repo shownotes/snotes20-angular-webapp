@@ -45,7 +45,7 @@
 }
 // https://docs.angularjs.org/api/ng/directive/ngCloak
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-  display: none !important;
+	display: none !important;
 }
 
 /* Typeface */
@@ -101,74 +101,122 @@ $fontDirectory: '/fonts';
 
 /* Icons */
 @font-face {
-	font-family: 'icomoon';
-	src: url('#{$fontDirectory}/icomoon/icomoon.eot?-osx5jv');
-	src: url('#{$fontDirectory}/icomoon/icomoon.eot?#iefix-osx5jv') format('embedded-opentype'),
-			 url('#{$fontDirectory}/icomoon/icomoon.woff?-osx5jv') format('woff'),
-			 url('#{$fontDirectory}/icomoon/icomoon.ttf?-osx5jv') format('truetype'),
-			 url('#{$fontDirectory}/icomoon/icomoon.svg?-osx5jv#icomoon') format('svg');
+	font-family: 'shownotes-icons';
+	src: url('#{$fontDirectory}/icons/shownotes-icons.eot?-155ms6');
+	src: url('#{$fontDirectory}/icons/shownotes-icons.eot?#iefix-155ms6') format('embedded-opentype'),
+			 url('#{$fontDirectory}/icons/shownotes-icons.woff?-155ms6') format('woff'),
+			 url('#{$fontDirectory}/icons/shownotes-icons.ttf?-155ms6') format('truetype'),
+			 url('#{$fontDirectory}/icons/shownotes-icons.svg?-155ms6#shownotes-icons') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 *[class^="icon-"],
 *[class*=" icon-"] {
-	font-family: 'icomoon';
+	font-family: 'shownotes-icons';
 	speak: none;
 	font-style: normal;
 	font-weight: normal;
 	font-variant: normal;
 	text-transform: none;
 }
-.icon-podcast:before {
+.icon-home:before {
 	content: "\e600";
 }
-.icon-bubbles:before {
-	content: "\e603";
-}
-.icon-user:before {
-	content: "\e609";
-}
-.icon-cog:before {
-	content: "\e60a";
-}
-.icon-menu:before {
-	content: "\e60b";
-}
-.icon-close:before {
-	content: "\e605";
-}
-.icon-check:before {
-	content: "\e606";
-}
-.icon-minus:before {
-	content: "\e607";
-}
-.icon-plus:before {
-	content: "\e608";
-}
-.icon-loop:before {
-	content: "\e60c";
-}
-.icon-arrow-up:before {
-	content: "\e60d";
-}
-.icon-arrow-right:before {
-	content: "\e60e";
-}
-.icon-arrow-down:before {
-	content: "\e60f";
-}
-.icon-arrow-left:before {
-	content: "\e610";
-}
-.icon-twitter:before {
-	content: "\e602";
-}
-.icon-info:before {
+.icon-pencil:before {
 	content: "\e601";
 }
-.icon-settings:before {
+.icon-podcast:before {
+	content: "\e602";
+}
+.icon-mail:before {
+	content: "\e603";
+}
+.icon-archive:before {
 	content: "\e604";
+}
+.icon-bubble:before {
+	content: "\e60b";
+}
+.icon-bubbles:before {
+	content: "\e605";
+}
+.icon-user:before {
+	content: "\e606";
+}
+.icon-users:before {
+	content: "\e607";
+}
+.icon-search:before {
+	content: "\e60a";
+}
+.icon-key:before {
+	content: "\e608";
+}
+.icon-lock:before {
+	content: "\e609";
+}
+.icon-wrench:before {
+	content: "\e610";
+}
+.icon-settings:before {
+	content: "\e611";
+}
+.icon-cog:before {
+	content: "\e612";
+}
+.icon-menu:before {
+	content: "\e613";
+}
+.icon-link:before {
+	content: "\e614";
+}
+.icon-info:before {
+	content: "\e615";
+}
+.icon-info-n:before {
+	content: "\e616";
+}
+.icon-close:before {
+	content: "\e617";
+}
+.icon-checkmark:before {
+	content: "\e618";
+}
+.icon-minus:before {
+	content: "\e619";
+}
+.icon-plus:before {
+	content: "\e620";
+}
+.icon-loop:before {
+	content: "\e621";
+}
+.icon-arrow-up:before {
+	content: "\e622";
+}
+.icon-arrow-right:before {
+	content: "\e623";
+}
+.icon-arrow-down:before {
+	content: "\e624";
+}
+.icon-arrow-left:before {
+	content: "\e625";
+}
+.icon-twitter:before {
+	content: "\e626";
+}
+.icon-feed:before {
+	content: "\e627";
+}
+.icon-github:before {
+	content: "\e628";
+}
+.icon-flattr:before {
+	content: "\e629";
+}
+.icon-paypal:before {
+	content: "\e630";
 }
 
 /* Typography */
@@ -195,6 +243,7 @@ h4 {
 }
 p,
 li,
+td,
 blockquote,
 aside {
 	line-height: 1.6;
@@ -249,8 +298,8 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-td,
-th {
+th,
+td {
 	text-align: left;
 	padding: .5em;
 	border-bottom: 2px solid #eee;
@@ -439,20 +488,6 @@ body {
 .sidebar > *:not(:first-child):not(:last-child) {
 	margin-bottom: 2em;
 }
-.sidebar > .toggle {
-	background-color: #40a662;
-	color: #fff;
-	position: absolute;
-	top: 0px;
-	right: -2em;
-	padding: .25em .5em;
-	border-top-right-radius: .4em;
-	border-bottom-right-radius: .4em;
-}
-.sidebar > .toggle:hover {
-	background-color: #007369;
-	cursor: pointer;
-}
 
 /* Sidebar header */
 header {
@@ -493,9 +528,10 @@ nav li {
 nav li:not(:last-child) {
 	border-bottom: 3px solid #eee;
 }
-nav ul li > a:link,
-nav ul li > a:visited,
-nav ul li > label {
+nav li > a:link,
+nav li > a:visited,
+nav li > label,
+nav .search {
 	background-color: #fefefe;
 	font-weight: bold;
 	text-decoration: none;
@@ -503,13 +539,36 @@ nav ul li > label {
 	position: relative;
 	padding: 1em 2em;
 }
-nav ul li > label {
+nav li > label {
 	color: #40a662;
 	z-index: 2;
 }
-nav ul li > label:hover {
+nav li > label:hover {
 	color: #007369;
 	cursor: pointer;
+}
+nav li.search {
+	padding-right: 0;
+}
+nav li.search label {
+	padding: 0;
+	display: inline-block;
+	z-index: 0;
+}
+nav li.search label {
+	color: #40a662;
+	cursor: default;
+}
+nav li.search input[type="search"] {
+	background-color: #fefefe;
+	display: inline-block;
+	width: 14em;
+	padding: 1em 2em 1em 0;
+	margin: -1em 0;
+	border-radius: 0;
+}
+nav li.search input[type="search"]:focus {
+	box-shadow: none;
 }
 nav .toggle {
 	position: relative;
@@ -551,7 +610,7 @@ nav.account .caption {
 	z-index: 1;
 	box-shadow: -0.5em 0.5em .5em 0.1em rgba(0, 0, 0, 0.3);
 }
-nav li > input {
+nav li > input[type="checkbox"] {
 	display: none;
 }
 .account form {
@@ -617,8 +676,15 @@ nav li > input {
 	width: 100%;
 	/*max-width: 60em;*/
 }
-.content > *:not(:last-child) {
+.content > *:not(:last-child):not(h2):not(h3) {
+	margin-bottom: 2em;
+}
+.content h2,
+.content h3 {
 	margin-bottom: 1em;
+}
+.content p+p {
+	margin-top: -1em;
 }
 .content h2 span {
 	font-size: .55em;
@@ -686,8 +752,7 @@ nav li > input {
 	padding-left: 1em;
 }
 .padlist tr > *:last-child {
-	text-align: right;
-	padding-right: 0;
+	padding-right: 1em;
 }
 .padlist tr > td:nth-child(2) {
 	font-weight: bold;
@@ -850,6 +915,11 @@ nav li > input {
 }
 
 /* Covers */
+img.cover {
+	width: 100px;
+	height: 100px;
+	border-radius: .4em;
+}
 .coverlist {
 	display: -webkit-box;
 	display: -moz-box;
@@ -862,13 +932,29 @@ nav li > input {
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
 }
-.coverlist > * {
+.coverlist span {
 	margin: 0 1em 1em 0;
+	cursor: pointer;
+	position: relative;
 }
-img.cover {
-	width: 100px;
-	height: 100px;
+.coverlist span:after {
+	content: ' ';
+	color: transparent;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border: .5em solid #40a662;
 	border-radius: .4em;
+	opacity: 0;
+}
+.coverlist span:hover:after {
+	opacity: 1;
+}
+.coverlist span.active:after {
+	border: .5em solid #007369;
+	opacity: 1;
 }
 
 /* Read-only archive */
@@ -911,6 +997,33 @@ ul.profile li:before {
 	content: attr(data-social) ':';
 	font-weight: bold;
 	padding-right: 1em;
+}
+
+/* Icon list */
+ul.iconlist {
+	list-style: none;
+	padding-left: 0;
+}
+.iconlist li {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row;
+	flex-direction: row;
+	margin-bottom: 2em;
+}
+.iconlist span {
+	vertical-align: top;
+}
+.iconlist span:first-child {
+	color: #999;
+	font-size: 2em;
+	margin-right: .5em;
+}
+.iconlist h3 {
+	margin-bottom: 0;
 }
 
 /* Color picker */
@@ -1059,6 +1172,9 @@ ul.profile li:before {
 
 /* Responsive sidebar (main content is fluid) */
 @media only screen and (max-width: 992px) {
+	td {
+		vertical-align: top;
+	}
 	input,
 	textarea,
 	button,
@@ -1081,11 +1197,13 @@ ul.profile li:before {
 		margin-bottom: 1em;
 	}
 	header .large,
-	.sidebar > .toggle,
 	.sidebar p,
 	.sidebar .caption,
 	.chat {
 		display: none;
+	}
+	header {
+		margin-bottom: 1em;
 	}
 	header .small {
 		display: block;
@@ -1117,6 +1235,20 @@ ul.profile li:before {
 	.account .button > *:last-child {
 		margin: 1em 0 0 0;
 	}
+	nav li.search {
+		padding: 0;
+	}
+	nav li.search label {
+	}
+	nav li.search span {
+		padding: 0.5em 0 0 1em
+	}
+	nav li.search input[type="search"] {
+		font-size: 1em;
+		width: 6em;
+		padding: 0 .5em;
+		margin: 0;
+	}
 	.content {
 		min-width: 25em;
 	}
@@ -1143,7 +1275,7 @@ ul.profile li:before {
 	}
 	.sighting-wrapper > *:not(:last-child),
 	.sighting-wrapper .form-check {
-		margin-bottom: 1em;
+		margin-bottom: 2em;
 	}
 }
 
@@ -1190,8 +1322,5 @@ ul.profile li:before {
 	}
 	header a:before {
 		content: 'shownot.es';
-	}
-	.readonly-header img {
-		width: 100px !important;
 	}
 }

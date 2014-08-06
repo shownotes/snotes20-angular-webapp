@@ -50,17 +50,13 @@
 	<div class="container">
 
 		<section class="sidebar" ng-controller="SidebarController">
-			<div class="toggle" title="Seitenleiste verkleinern">
-				<span class="icon-arrow-left"></span>
-				<!-- <span class="icon-arrow-right"></span> -->
-			</div>
 
 			<header>
 				<h1><a href="#">
 
 					<img class="large" src="images/shownotes-logo.svg" alt="shownot.es" />
 
-					<img class="small" src="images/shownotes-signet.svg" alt="shownot.es" />
+					<img class="small" src="images/shownotes-signet.svg" alt="shownot.es" title="shownot.es" />
 
 				</a></h1>
 			</header>
@@ -68,7 +64,7 @@
 			<nav class="account">
 				<ul>
 					<li>
-						<label class="toggle" for="toggle-form">
+						<label class="toggle" for="toggle-form" title="Mein Account">
 							<span class="arrow" ng-class="{true: 'icon-arrow-up', false: 'icon-arrow-down'}[loginform.status === 'down']" ng-show="loginform.status === 'down'"></span>
 							<span class="icon-user"></span>
 							<span class="caption" ng-show="!$root.currentUser" ng-cloak>Mein Account</span>
@@ -137,6 +133,9 @@
 
 			<nav class="menu">
 				<ul>
+					<li class="search" title="Suche">
+						<label for="search"><span class="icon-search"></span></label><input type="search" id="search" value="" placeholder="Suche &hellip;" />
+					</li>
 					<li title="Sendungen">
 						<a href="#">
 							<span class="icon-podcast"></span><span class="caption">Sendungen</span>
@@ -148,15 +147,15 @@
 						</a>
 					</li>
 					<li title="Community">
-						<a href="#">
+						<a href="/community">
 							<span class="icon-bubbles"></span><span class="caption">Community</span>
 						</a>
 					</li>
-					<li title="Administration">
+					<!-- <li title="Administration">
 						<a href="#">
 							<span class="icon-settings"></span><span class="caption">Administration</span>
 						</a>
-					</li>
+					</li> -->
 				</ul>
 			</nav>
 

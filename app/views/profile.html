@@ -19,14 +19,9 @@
 
 	<div class="box-wrapper">
 		<h3>Biographie</h3>
-		<p ng-show="user.bio">{{user.bio}}</p>
-		<p ng-show="!user.bio">
-			<span ng-show="!user.username == currentUser.username">
-				Dieses Mitglied hat noch keine Biographie angelegt.
-			</span>
-			<span ng-show="user.username == currentUser.username">
-				Du hast bisher noch keine Biographie angelegt.
-			</span>
+		<p>
+			<span ng-show="user.bio">{{user.bio}}</span>
+			<span ng-show="!user.bio">Dieses Mitglied hat noch keine Biographie angelegt.</span>
 		</p>
 	</div>
 
