@@ -44,6 +44,12 @@ angular
         controller: 'DocumentReadonlyCtrl',
         resolve: docResvolers
       })
+      .when('/archive', {
+        templateUrl: 'views/archive.html'
+      })
+      .when('/podcast', {
+        templateUrl: 'views/podcast.html'
+      })
       .when('/sighting', {
         templateUrl: 'views/sighting.html'
       })
