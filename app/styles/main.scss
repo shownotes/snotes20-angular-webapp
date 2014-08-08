@@ -259,15 +259,19 @@ q {
 }
 code,
 pre {
-	background-color: #999;
-	color: #fefefe;
 	font-family: 'FiraMono', monospace;
+	border-radius: .4em;
+}
+code {
+	background-color: #eee;
+	padding: .25em .5em;
 }
 pre {
+	background-color: #999;
+	color: #fefefe;
 	line-height: 1.4;
 	white-space: pre-wrap;
 	padding: 1em;
-	border-radius: .4em;
 	max-height: 20em;
 	overflow-y: scroll;
 }
