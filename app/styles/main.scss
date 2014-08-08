@@ -708,6 +708,7 @@ nav li > input[type="checkbox"] {
 .content h3 {
 	margin-bottom: 1em;
 }
+.content h4+p,
 .content p+p {
 	margin-top: -1em;
 }
@@ -736,7 +737,9 @@ nav li > input[type="checkbox"] {
 }
 .box-wrapper h3,
 .box-wrapper p:not(:last-child),
-.box-wrapper form:not(:last-child) {
+.box-wrapper form:not(:last-child),
+.box-wrapper ul,
+.box-wrapper ol {
 	margin-bottom: 1em;
 }
 .box-wrapper input:not([type="button"]):not([type="submit"]),
@@ -1334,7 +1337,7 @@ footer a:hover {
 		padding: 0;
 	}
 	nav li.search span {
-		padding: 0.5em 0 0 1em
+		padding: 0.5em 2em 0 1em
 	}
 	nav li.search input[type="search"] {
 		font-size: 1em;
