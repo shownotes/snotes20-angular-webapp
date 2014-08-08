@@ -53,6 +53,9 @@ angular
       .when('/sighting', {
         templateUrl: 'views/sighting.html'
       })
+      .when('/faq', {
+        templateUrl: 'views/faq.html'
+      })
       .when('/rules', {
         templateUrl: 'views/rules.html'
       })

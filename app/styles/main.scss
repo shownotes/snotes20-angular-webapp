@@ -262,9 +262,9 @@ pre {
 	background-color: #999;
 	color: #fefefe;
 	font-family: 'FiraMono', monospace;
-	line-height: 1.6;
 }
 pre {
+	line-height: 1.4;
 	white-space: pre-wrap;
 	padding: 1em;
 	border-radius: .4em;
@@ -293,6 +293,30 @@ hr {
 }
 .fail {
 	color: #a64040;
+}
+
+/* Tooltips */
+*[data-tooltip]:after {
+	content: attr(data-tooltip);
+	background-color: rgba(102,102,102,.8);
+	color: #fefefe;
+	font-size: .8em;
+	font-weight: bold;
+	text-align: center;
+	border-radius: .4em;
+	width: 7em; /* 12:34:56.78 */
+	padding: .25em .5em;
+	margin-left: auto;
+	margin-right: auto;
+	position: absolute;
+	top: -1.5em;
+	left: 0;
+	right: 0;
+	z-index: 2;
+	opacity: 0;
+}
+*[data-tooltip]:hover:after {
+	opacity: 1;
 }
 
 /* Tables */
@@ -1010,6 +1034,10 @@ img.cover {
 }
 
 /* List view */
+.document-list h2 span {
+	color: #999; 
+	font-size: 1em;
+}
 .document-list ul {
 	list-style: none;
 	padding-left: 0;
@@ -1018,9 +1046,22 @@ img.cover {
 .document-list ul ul {
 	margin-left: 1em;
 }
+.document-list li a,
+.document-list span {
+	position: relative;
+}
 
 /* Block view */
-.document-block:not(h2) {
+.document-block dl:not(:last-of-type) {
+	margin-bottom: 1em;
+}
+.document-block dt {
+	color: #999;
+	font-size: 1.5em;
+	line-height: 1.25;
+	margin-right: 1em;
+}
+.document-block dd span {
 	line-height: 2.5;
 }
 .document-block span {
@@ -1028,28 +1069,6 @@ img.cover {
 	position: relative;
 	padding: .5em;
 	border-radius: .4em;
-}
-.document-block span[data-tooltip]:after {
-	content: attr(data-tooltip);
-	background-color: rgba(102,102,102,.8);
-	color: #fefefe;
-	font-size: .8em;
-	font-weight: bold;
-	text-align: center;
-	border-radius: .4em;
-	width: 7em;
-	padding: .25em .5em;
-	margin-left: auto;
-	margin-right: auto;
-	position: absolute;
-	top: -1.25em;
-	left: 0;
-	right: 0;
-	z-index: 2;
-	opacity: 0;
-}
-.document-block span[data-tooltip]:hover:after {
-	opacity: 1;
 }
 
 /* User profiles */
@@ -1350,6 +1369,10 @@ footer a:hover {
 	.sighting-wrapper > *:not(:last-child),
 	.sighting-wrapper .form-check {
 		margin-bottom: 2em;
+	}
+	.document-block dt {
+		font-size: 1em;
+		font-weight: bold;
 	}
 }
 

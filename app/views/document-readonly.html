@@ -17,8 +17,6 @@
 
 <hr />
 
-<div class="document-list">
-
 	<div ng-if="format.type == 'html'">
 {{content.html}}
 	</div>
@@ -31,43 +29,62 @@
 {{content.raw}}
 	</pre>
 
-	<h2>00:00:00 <a href="https://www.youtube.com/watch?v=XQKGWw-ZTaw">Intro: Kraftwerk - Number</a></h2>
+<div class="document-list">
+
+	<h2><span>00:00:00</span> <a href="https://www.youtube.com/watch?v=XQKGWw-ZTaw">Intro: Kraftwerk - Number</a></h2>
 
 	<ul>
 		<li>
-			<span title="00:13:37.000: Heute mit">Heute mit</span>
+			<span data-tooltip="00:13:37.000">Heute mit</span>
 			<ul>
-				<li><a href="#" title="00:13:37.000: Andreas Steinhauser (Steini)">Andreas Steinhauser (Steini)</a></li>
-				<li><a href="#" title="00:13:37.000: Tim Pritlove">Tim Pritlove</a></li>
-				<li><a href="#" title="00:13:37.000: Marcus Richter">Marcus Richter</a></li>
-				<li><a href="#" title="00:13:37.000: Erdgeist">Erdgeist</a></li>
+				<li><a href="#" data-tooltip="00:13:37.000">Andreas Steinhauser (Steini)</a></li>
+				<li><a href="#" data-tooltip="00:13:37.000">Tim Pritlove</a></li>
+				<li><a href="#" data-tooltip="00:13:37.000">Marcus Richter</a></li>
+				<li><a href="#" data-tooltip="00:13:37.000">Erdgeist</a></li>
 			</ul>
 		</li>
 	</ul>
 
-	<h2>00:04:29 Die Anfänge des Chaosradios</h2>
+	<h2><span>00:04:29</span> Die Anfänge des Chaosradios</h2>
 
 	<ul>
 		<li>
-			<span title="00:13:37.000: Niemand hat die erste Chaosradio-Folge archiviert">Niemand hat die erste Chaosradio-Folge archiviert</span>
+			<span data-tooltip="00:13:37.000">Niemand hat die erste Chaosradio-Folge archiviert</span>
 			<ul>
-				<li><a href="#" title="00:13:37.000: Die bisherigen Sendungen sind hier abrufbar">Die bisherigen Sendungen sind hier abrufbar</a></li>
+				<li><a href="#" data-tooltip="00:13:37.000">Die bisherigen Sendungen sind hier abrufbar</a></li>
 			</ul>
 		</li>
 	</ul>
 
 </div>
 
+<p>Beispiel für Block-Ansicht:</p>
+
 <div class="document-block">
 
-	<h2>00:13:37 Und jetzt die Block-Ansicht</h2>
+	<dl>
+		<dt>00:13:37</dt>
+		<dd>
+			<h2>Ein paar Blöcke</h2>
+			<span data-tooltip="00:13:37.000">Lorem ipsum</span>
+			<span data-tooltip="00:13:37.000"><a href="#">dolor sit amet</a></span>
+			<span data-tooltip="00:13:37.000">consetetur sadipscing elitr</span>
+			<span data-tooltip="00:13:37.000"><a href="#">sed diam nonumy eirmod tempor invidunt</a></span>
+			<span data-tooltip="00:13:37.000"><a href="#">ut labore et dolore magna aliquyam erat</a></span>
+			<span data-tooltip="00:13:37.000">sed diam voluptua</span>
+		</dd>
+	</dl>
 
-	<span data-tooltip="00:13:37.000">Lorem ipsum</span>
-	<span data-tooltip="00:13:37.000"><a href="#">dolor sit amet</a></span>
-	<span data-tooltip="00:13:37.000">consetetur sadipscing elitr</span>
-	<span data-tooltip="00:13:37.000"><a href="#">sed diam nonumy eirmod tempor invidunt</a></span>
-	<span data-tooltip="00:13:37.000"><a href="#">ut labore et dolore magna aliquyam erat</a></span>
-	<span data-tooltip="00:13:37.000">sed diam voluptua</span>
+	<dl>
+		<dt>00:14:37</dt>
+		<dd>
+			<h2>Noch mehr Blöcke</h2>
+			<span data-tooltip="00:14:37.000">Lorem ipsum</span>
+			<span data-tooltip="00:14:37.000"><a href="#">dolor sit amet</a></span>
+			<span data-tooltip="00:14:37.000">consetetur sadipscing elitr</span>
+			<span data-tooltip="00:14:37.000"><a href="#">sed diam nonumy eirmod tempor invidunt</a></span>
+		</dd>
+	</dl>
 
 </div>
 
