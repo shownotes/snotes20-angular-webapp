@@ -220,17 +220,18 @@ $fontDirectory: '/fonts';
 }
 
 /* Typography */
-h1,
+
+h1 {
+	font-size: 1em;
+}
 h2,
 h3,
 h4 {
 	line-height: 1.25;
 }
-h1 {
-	font-size: 1em;
-}
 h2 {
 	font-size: 1.5em;
+	font-style: italic;
 }
 h3 {
 	font-size: 1em;
@@ -286,11 +287,19 @@ hr {
 	border: 0;
 	border-top: 3px solid #eee;
 }
+.sidebar hr,
+.box-wrapper hr {
+	margin-bottom: 1em;
+	border-top: 3px solid #fefefe;
+}
 .center {
 	text-align: center;
 }
 .right {
 	text-align: right;
+}
+.highlight {
+	background-color: #ffffcc;
 }
 .success {
 	color: #40a662;
@@ -308,7 +317,6 @@ hr {
 	font-weight: bold;
 	text-align: center;
 	border-radius: .4em;
-	width: 7em; /* 12:34:56.78 */
 	padding: .25em .5em;
 	margin-left: auto;
 	margin-right: auto;
@@ -772,6 +780,14 @@ nav li > input[type="checkbox"] {
 	height: 7em;
 }
 
+/* Search */
+.result h4 {
+	color: #999;
+}
+.result h4 + p {
+	margin-top: 0;
+}
+
 /* Pad list */
 .padlist {
 	width: 100%;
@@ -1038,6 +1054,10 @@ img.cover {
 .document-block h2 {
 	font-weight: normal;
 	margin-bottom: .7em;
+}
+.document-list *[data-tooltip]:after,
+.document-block *[data-tooltip]:after {
+	width: 7em; /* 12:34:56.789 */
 }
 
 /* List view */

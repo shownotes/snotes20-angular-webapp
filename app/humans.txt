@@ -1,34 +1,66 @@
-## shownot.es credits
 
-# Team
+    /*==========================*\
+    |     SHOWNOT.ES CREDITS     |
+    \*==========================*/
 
-	Frontend developer (AngularJS), backend developer: luto
-	Website: luto.at
-	Location: Vienna, Austria
 
-	Frontend developer, web designer: Kai Kubasta
-	Website: kaikubasta.de
-	Twitter: @kaikubasta
-	Location: Berlin, Germany
+    ┌┬┐┌─┐┌─┐┌┬┐
+     │ ├┤ ├─┤│││
+     ┴ └─┘┴ ┴┴ ┴
 
-# Thanks
+    Frontend developer (AngularJS), backend developer: luto
+    Website: luto.at
+    Location: Vienna, Austria
 
-	Logo design: Sven Sedivy
-	Website: graphorama.de
-	Twitter: @graphorama
+    Frontend developer, web designer: Kai Kubasta
+    Website: kaikubasta.de
+    Twitter: @kaikubasta
+    Location: Berlin, Germany
 
-	Fira typeface: Erik Spiekermann, Ralph du Carrois, Mozilla
-	Website: carrois.com/fira-3-1/
+    ------------------------------------------
 
-	Etherpad: Etherpad Foundation
-	Website: etherpad.org
+    ┌┬┐┬ ┬┌─┐┌┐┌┬┌─┌─┐  ┌┬┐┌─┐
+     │ ├─┤├─┤│││├┴┐└─┐   │ │ │
+     ┴ ┴ ┴┴ ┴┘└┘┴ ┴└─┘   ┴ └─┘
 
-	Hosting: Uberspace
-	Website: uberspace.de
+    Logo design: Sven Sedivy
+    Website: graphorama.de
+    Twitter: @graphorama
 
-# Site
+    Fira typeface: Erik Spiekermann, Ralph du Carrois, Mozilla
+    Website: carrois.com/fira-3-1/
 
-	Doctype: HTML5
-	Language: German
-	Frontend: HTML5, CSS3, JavaScript (AngularJS)
-	Backend: Python (Django)
+    Hosting: Uberspace
+    Website: uberspace.de
+
+    … and every Flattr supporter ever
+
+    ------------------------------------------
+
+    ┌─┐┬┌┬┐┌─┐
+    └─┐│ │ ├┤ 
+    └─┘┴ ┴ └─┘
+
+    Doctype: HTML5
+    Language: German
+    Frontend: HTML5, CSS3, JavaScript
+    Backend: Python
+
+    ------------------------------------------
+
+    ┌─┐┌─┐┬ ┬┌─┐┬─┐┌─┐┌┬┐  ┌┐ ┬ ┬
+    ├─┘│ ││││├┤ ├┬┘├┤  ││  ├┴┐└┬┘
+    ┴  └─┘└┴┘└─┘┴└─└─┘─┴┘  └─┘ ┴ 
+
+    Etherpad: Etherpad Foundation
+    Website: etherpad.org
+
+    Frontend: AngularJS
+    Website: angularjs.org
+
+    Backend: Django
+    Website: djangoproject.com
+
+    ------------------------------------------
+
+    2014

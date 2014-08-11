@@ -44,6 +44,12 @@ angular
         controller: 'DocumentReadonlyCtrl',
         resolve: docResvolers
       })
+      .when('/search', {
+        templateUrl: 'views/search.html'
+      })
+      .when('/admin', {
+        templateUrl: 'views/admin.html'
+      })
       .when('/archive', {
         templateUrl: 'views/archive.html'
       })
