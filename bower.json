@@ -14,7 +14,8 @@
     "ngLocale": "*",
     "osf-export-templates": "0.0.1",
     "handlebars": "1.3.0",
-    "restangular": "~1.4.0"
+    "restangular": "~1.4.0",
+    "angular-socket-io": "~0.6.0"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16",

@@ -17,6 +17,7 @@ angular
     'ngSanitize',
     'angularSpectrumColorpicker',
     'cgBusy',
+    'btford.socket-io',
     'restangular'
   ])
   .config(function ($routeProvider, $locationProvider, $httpProvider, RestangularProvider) {

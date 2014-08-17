@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('DocumentCtrl', function ($scope, $rootScope, $routeParams, $sce, $interval, doc, docname, DocumentService) {
+  .controller('DocumentCtrl', function ($scope, $rootScope, $routeParams, $sce, $interval, doc, docname, DocumentService, docChatSocket) {
     $scope.doc = doc;
 
     function updateDocument() {
@@ -51,15 +51,9 @@ angular.module('snotes30App')
 
     getChatMsgs();
 
-    var chatUpdateInt = $interval(function () {
-      var since = undefined;
-      if($scope.chatmessages && $scope.chatmessages.length != 0) {
-        since = $scope.chatmessages[$scope.chatmessages.length - 1].order;
-      }
-      getChatMsgs(since)
-    }, 500);
+    docChatSocket.emit('JOIN_DOC', docname);
 
-    $scope.$on('$destroy', function () {
-      $interval.cancel(chatUpdateInt);
-    });
+    docChatSocket.on('DOCUMENT_CHATMESSAGE', function (msg) {
+        $scope.chatmessages.push(msg);
+    })
 });
