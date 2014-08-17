@@ -5,4 +5,5 @@ django-filter
 hoerapi
 https://github.com/luto/django-uuidfield/archive/python3.zip
 osf
+rabbitpy
 etherpad_lite
