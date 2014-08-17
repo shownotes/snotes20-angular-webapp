@@ -10,7 +10,7 @@ nconf.argv()
 var rbbit = require('./rbbit.js');
 
 rbbit.connect(nconf.get('amqp:uri'), function () {
-    winston.info('connected!');
+    winston.info('amqp connected!');
 
     var handlerDir = nconf.get('handlers:dir');
 
@@ -21,3 +21,7 @@ rbbit.connect(nconf.get('amqp:uri'), function () {
         }
     })
 });
+
+var sockets = require('./sockets.js');
+
+sockets.init(nconf.get('sockets'));
