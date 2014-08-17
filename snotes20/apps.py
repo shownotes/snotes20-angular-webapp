@@ -36,5 +36,5 @@ class DefaultConfig(AppConfig):
                 else:
                     raise  # re-raise all other errors
 
-        post_save.connect(editor_create_doc, sender=models.Document, dispatch_uid='editor_create_doc')
-        post_delete.connect(editor_delete_doc, sender=models.Document, dispatch_uid='editor_delete_doc')
+        post_save.connect(editor_create_doc, sender=models.Document, weak=False, dispatch_uid='editor_create_doc')
+        post_delete.connect(editor_delete_doc, sender=models.Document, weak=False, dispatch_uid='editor_delete_doc')
