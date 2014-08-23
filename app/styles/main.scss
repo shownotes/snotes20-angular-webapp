@@ -349,6 +349,9 @@ th {
 table tr:not(:first-child):hover {
 	background-color: #eee;
 }
+table .statuslabel {
+	font-size: 1em;
+}
 
 /* Inputs */
 ::-webkit-input-placeholder {
@@ -762,6 +765,7 @@ nav li > input[type="checkbox"] {
 	background-color: #666;
 	color: #fefefe;
 	font-size: .55em;
+	font-style: normal;
 	vertical-align: middle;
 	padding: .25em .5em;
 	border-radius: .4em;

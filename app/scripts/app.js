@@ -51,6 +51,9 @@ angular
       .when('/admin', {
         templateUrl: 'views/admin.html'
       })
+      .when('/admin/doc', {
+        templateUrl: 'views/admin-document.html'
+      })
       .when('/archive', {
         templateUrl: 'views/archive.html'
       })
