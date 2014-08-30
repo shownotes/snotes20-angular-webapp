@@ -8,7 +8,7 @@ $ git checkout srv
 $ virtualenv venv
 $ . venv/bin/activate
 $ pip install -r requirements.txt
-$ pip install https://www.djangoproject.com/download/1.7c2/tarball/
+$ pip install https://www.djangoproject.com/download/1.7c3/tarball/
 $ python manage.py migrate
 $ python manage.py createsuperuser
 ```
@@ -63,7 +63,7 @@ $ python manage.py migrate
 ## email
 You need an SMTP server to send registration-emails. Configure your connection details in `shownotes/local_settings.py` (`EMAIL_*`).
 
-## etherpad (not yet)
+## etherpad
 You need a running etherpad instance. Once this is done, configure the API-secret in `shownotes/local_settings.py`.
 
 ```
@@ -73,3 +73,6 @@ $ ./bin/run.sh
 ```
 
 The API-secret can be found in `etherpad-lite/APIKEY.txt`.
+
+## amqp
+todo
