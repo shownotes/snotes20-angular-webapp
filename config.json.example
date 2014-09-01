@@ -2,6 +2,9 @@
   "amqp": {
       "uri": "amqp://guest:guest@127.0.0.1:5672/%2F"
   },
+  "sockets": {
+      "port": 9999
+  },
   "handlers": {
       "dir": "./handlers/"
   }
