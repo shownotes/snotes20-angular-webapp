@@ -43,6 +43,9 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'user'
 EMAIL_HOST_PASSWORD = 'password'
 EMAIL_USE_TLS = True
+
+RABBITMQ_ENABLED = False
+RABBITMQ_URI = 'amqp://guest:guest@127.0.0.1:5672/%2F'
 ```
 
 ## dev server
