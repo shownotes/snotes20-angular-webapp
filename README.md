@@ -8,7 +8,6 @@ $ git checkout srv
 $ virtualenv venv
 $ . venv/bin/activate
 $ pip install -r requirements.txt
-$ pip install https://www.djangoproject.com/download/1.7c3/tarball/
 $ python manage.py migrate
 $ python manage.py createsuperuser
 ```
