@@ -189,6 +189,16 @@ class DocumentViewSet(viewsets.ViewSet):
         return Response(serializers.DocumentStateErrorSerializer(errors).data, status=status.HTTP_200_OK)
 
 
+    @action(methods=['POST', 'GET'])
+    def publications(self, request, pk=None):
+        document = get_object_or_404(models.Document, pk=pk)
+
+        if request.method == 'POST':
+            return Response(status=status.HTTP_202_ACCEPTED)
+        elif request.method == 'GET':
+            return Response(None, status=status.HTTP_200_OK)
+
+
     #def list(self, request):
     #    pass
 
