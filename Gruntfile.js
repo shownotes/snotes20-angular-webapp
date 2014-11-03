@@ -351,24 +351,16 @@ module.exports = function (grunt) {
       }
     },
 
-    handlebars: {
-      exporttemplates: {
+    nunjucks: {
+      osftemplates: {
+        baseDir: '<%= yeoman.app %>/bower_components/osf-export-templates/tpls',
+        src: '**/*.tpl',
+        dest: '.tmp/scripts/osf-templates.js',
         options: {
-          processName: function(filePath) {
-            var lastSlash = filePath.lastIndexOf('/');
-            var lastButOneSlash = filePath.lastIndexOf('/', lastSlash - 1);
-            var name = filePath.substr(lastButOneSlash + 1, lastSlash - lastButOneSlash - 1);
-
-            if(filePath.indexOf('main.hbs') !== filePath.length - 8) {
-              name = name + "_" + filePath.substr(lastSlash + 1, filePath.length - lastSlash - 5);
-            }
-
-            return name;
-          },
-          namespace: "OSF_TEMPLATES"
-        },
-        files: {
-          ".tmp/scripts/osf-templates.js": "<%= yeoman.app %>/bower_components/osf-export-templates/**/*.hbs"
+          name: function(filename) {
+            var format = filename.substr(0, filename.length - 4);
+            return "osf_" + format;
+          }
         }
       }
     },
@@ -450,7 +442,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'copy:fonts',
-      'handlebars:exporttemplates',
+      'nunjucks:osftemplates',
       'wiredep',
       'concurrent:server',
       'autoprefixer',

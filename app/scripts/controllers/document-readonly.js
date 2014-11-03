@@ -5,20 +5,22 @@ angular.module('snotes30App')
     $scope.doc = doc;
     $scope.episode = doc.episode;
 
-    $scope.format = "htmllist";
     $scope.formats = [
-      { name: 'htmllist', type: 'html', caption: 'Liste' },
-      { name: 'html', type: 'html', caption: 'Block' },
-      { name: 'osf', type: 'osf', caption: 'OSF' },
-      { name: 'md', type: 'plain', caption: 'Markdown' },
-      { name: 'reaper', type: 'plain', caption: 'Reaper' },
+      { name: 'list',     type: 'html',  caption: 'Liste' },
+      { name: 'block',    type: 'html',  caption: 'Block' },
+      { name: 'md',       type: 'plain', caption: 'Markdown' },
+      { name: 'reaper',   type: 'plain', caption: 'Reaper' },
       { name: 'audacity', type: 'plain', caption: 'Audacity' },
-      { name: 'chapter', type: 'plain', caption: 'Kapitel' },
-      { name: 'raw', type: 'plain', caption: 'Original' }
+      { name: 'chapter',  type: 'plain', caption: 'Kapitel' },
+      { name: 'raw',      type: 'plain', caption: 'Original' },
+      { name: 'osf',      type: 'osf',   caption: 'OSF' }
     ];
+
+    $scope.format = $scope.formats[0];
 
     $scope.enableFormat = function (format) {
       $scope.format = format;
+      updateText();
     };
 
     $scope.download = function () {
@@ -31,14 +33,42 @@ angular.module('snotes30App')
 
     $scope.content = {};
 
-    function updateText() {
-      var type = 'osf';
+    var nunjucksenv = new nunjucks.Environment();
 
-      if($scope.format.name == 'raw')
-        type = 'raw';
+    // http://stackoverflow.com/a/10073788
+    function pad(n, width, z) {
+      z = z || '0';
+      n = n + '';
+      return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+    }
+
+    nunjucksenv.addFilter('htime', function(time) {
+      var milliseconds = time % 1000;
+      time = time / 1000;
+      var seconds = pad(time % 60, 2);
+      var minutes = pad(Math.floor((time / 60) % 60), 2);
+      var hours = pad(Math.floor((time / 60 / 60) % 60), 2);
+
+      return hours + ":" + minutes + ":" + seconds;
+    });
+
+    function updateText() {
+      var type = null;
+
+      switch($scope.format.name) {
+        case 'raw': type = 'raw';  break;
+        case 'osf': type = 'osf';  break;
+        default:    type = 'json'; break;
+      }
 
       DocumentService.getText(docname, type, false).then(function (resp) {
-        $scope.content[type] = resp[type];
+        var data = resp.data;
+
+        if(type == 'json') {
+          data = nunjucksenv.render("osf_" + $scope.format.name, data);
+        }
+
+        $scope.content = data;
       })
     }
 
@@ -46,7 +76,7 @@ angular.module('snotes30App')
 
     var textUpdateInt = $interval(function () {
       updateText();
-    }, 500);
+    }, 1500);
 
     $scope.$on('$destroy', function () {
       $interval.cancel(textUpdateInt);
