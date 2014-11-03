@@ -97,8 +97,8 @@ class DocumentMetaAdmin(admin.ModelAdmin):
 
 class OSFNoteInline(admin.TabularInline):
     model = models.OSFNote
-    fields = ('time', 'text', 'link', 'tags')
-    readonly_fields = ('time', 'text', 'link', 'tags')
+    fields = ('timestamp', 'title', 'url', 'tags')
+    readonly_fields = ('timestamp', 'title', 'url', 'tags')
     can_delete = False
     extra = 0
 

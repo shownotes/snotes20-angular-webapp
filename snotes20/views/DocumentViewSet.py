@@ -165,21 +165,19 @@ class DocumentViewSet(viewsets.ViewSet):
         if 'type' in request.QUERY_PARAMS:
             type = request.QUERY_PARAMS['type']
 
-        data = None
-
         if type == 'json':
             try:
-                data = {
-                    'json': document.state.osfdocumentstate.to_list()
-                }
+                data = document.state.osfdocumentstate.to_dict()
             except models.OSFDocumentState.DoesNotExist:
                 raise PermissionDenied()
         elif type == 'raw':
-            data = {'raw': document.raw_state.text}
+            data  = document.raw_state.text
+        elif type == 'osf':
+            data = None
         else:
             raise PermissionDenied()
 
-        response = Response(data, status=status.HTTP_200_OK)
+        response = Response({'data': data}, status=status.HTTP_200_OK)
         return response
 
     @action(methods=['GET'])

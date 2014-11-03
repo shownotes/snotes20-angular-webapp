@@ -35,9 +35,9 @@ def add_osf_note(state, line, parent=None):
         note = models.OSFNote(
             state=state,
             parent=parent,
-            time=line.time,
-            text=line.text,
-            link=line.link,
+            timestamp=line.time,
+            title=line.text,
+            url=line.link,
             order=line._line
         )
 
