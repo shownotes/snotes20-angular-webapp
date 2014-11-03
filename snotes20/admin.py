@@ -107,6 +107,9 @@ class DocumentStateAdmin(admin.ModelAdmin):
     fields = ('date',)
     inlines = [OSFNoteInline,]
 
+@admin.register(models.OSFTag)
+class DocumentStateAdmin(admin.ModelAdmin):
+    fields = ('short', 'name', 'description')
 
 class DocumentAdminForm(ReverseOneToOneAdminForm):
     rels = ('episode',)
