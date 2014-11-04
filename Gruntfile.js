@@ -472,7 +472,7 @@ module.exports = function (grunt) {
     'autoprefixer',
     'concat',
     'ngmin',
-    'handlebars:exporttemplates',
+    'nunjucks:osftemplates',
     'copy:dist',
     'cdnify',
     'cssmin',
