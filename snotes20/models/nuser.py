@@ -56,10 +56,10 @@ class NUser(AbstractBaseUser, PermissionsMixin):
         return self.is_authenticated_raw() and self.migrated
 
     def get_full_name(self):
-        return ""
+        return self.username
 
     def get_short_name(self):
-        return ""
+        return self.username
 
     def migrate(self, password, request=None):
         if request is None:
