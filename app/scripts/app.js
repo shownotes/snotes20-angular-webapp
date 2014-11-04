@@ -20,7 +20,7 @@ angular
     'btford.socket-io',
     'restangular'
   ])
-  .config(function ($routeProvider, $locationProvider, $httpProvider, RestangularProvider) {
+  .config(function ($routeProvider, $locationProvider, $httpProvider, RestangularProvider, CONFIG) {
     var docResvolers = {
       'doc': ['DocumentService', '$route', function (DocumentService, $route) {
         return DocumentService.getByName($route.current.params.name);
@@ -118,7 +118,7 @@ angular
 
     $locationProvider.html5Mode(true);
 
-    RestangularProvider.setBaseUrl('http://snotes20.com:8000/');
+    RestangularProvider.setBaseUrl(CONFIG.apiBaseUrl);
     RestangularProvider.setRequestSuffix('/');
     RestangularProvider.setDefaultHttpFields({
       withCredentials: true
