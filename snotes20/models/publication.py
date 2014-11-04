@@ -13,26 +13,27 @@ class Podcaster(models.Model):
     name = models.CharField(max_length=30)
 
 
-class Publication(models.Model):
+class PubBase(models.Model):
     id = UUIDField(primary_key=True, auto=True)
     create_date = models.DateTimeField()
     state = models.ForeignKey(DocumentState)
-    episode = models.ForeignKey(Episode)
-    creator = models.ForeignKey(settings.AUTH_USER_MODEL)
-    shownoters = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='contributed_publications')
-    podcasters = models.ManyToManyField(Podcaster, related_name='contributed_publications')
     preliminary = models.BooleanField(default=False)
-    comment = models.CharField(max_length=250)
+    comment = models.CharField(max_length=250,  blank=True, null=True)
+
+    class Meta:
+        abstract = True
 
 
-class PublicationRequest(models.Model):
-    id = UUIDField(primary_key=True, auto=True)
-    state = models.ForeignKey(DocumentState)
-    episode = models.ForeignKey(Episode)
-    creator = models.ForeignKey(settings.AUTH_USER_MODEL)
-    shownoters = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='contributed_publicationrequests')
-    podcasters = models.ManyToManyField(Podcaster, related_name='contributed_publicationrequests')
-    preliminary = models.BooleanField(default=False)
-    comment = models.CharField(max_length=250)
-    publication = models.OneToOneField(Publication, null=True)
+class Publication(PubBase):
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="created_publications")
+    episode = models.ForeignKey(Episode, related_name="publications")
+    shownoters = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='contributed_publications')
+    podcasters = models.ManyToManyField(Podcaster, blank=True, related_name='contributed_publications')
+
+
+class PublicationRequest(PubBase):
     requester = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='requested_publicationrequests')
+    episode = models.ForeignKey(Episode, related_name="publicationrequests")
+    shownoters = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='contributed_publicationrequests')
+    podcasters = models.ManyToManyField(Podcaster, blank=True, related_name='contributed_publicationrequests')
+    publication = models.ForeignKey(Publication, null=True, blank=True)

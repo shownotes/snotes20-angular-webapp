@@ -191,11 +191,16 @@ class DocumentViewSet(viewsets.ViewSet):
     def publications(self, request, pk=None):
         document = get_object_or_404(models.Document, pk=pk)
 
+        if not hasattr(document, 'episode'):
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        episode = document.episode
+
         if request.method == 'POST':
+
             return Response(status=status.HTTP_202_ACCEPTED)
         elif request.method == 'GET':
-            return Response(None, status=status.HTTP_200_OK)
-
+            return Response(episode.publications)
 
     #def list(self, request):
     #    pass

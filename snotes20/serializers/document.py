@@ -1,7 +1,7 @@
 from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField
 
 from snotes20.models import Document, DocumentMeta, ChatMessage, ChatMessageIssuer, CHAT_MSG_ISSUER_USER
-from snotes20.serializers import EpisodeSerializer
+from snotes20.serializers import EpisodeSerializer, PublicationSerializer
 
 
 class DocumentMetaSerializer(ModelSerializer):

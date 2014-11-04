@@ -1,12 +1,17 @@
-from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField
+from rest_framework.serializers import ModelSerializer
 
 from snotes20.models import Publication, PublicationRequest
-from snotes20.serializers import EpisodeSerializer
-
 
 
 class PublicationSerializer(ModelSerializer):
 
     class Meta:
         model = Publication
-        fields = ('order', 'message', 'date', 'issuer', 'document')
+        fields = ('id', 'create_date', 'creator', 'shownoters', 'podcasters', 'preliminary', 'comment')
+
+
+class PublicationRequestSerializer(ModelSerializer):
+
+    class Meta:
+        model = PublicationRequest
+        fields = ('id', 'create_date', 'creator', 'shownoters', 'podcasters', 'preliminary', 'comment')
