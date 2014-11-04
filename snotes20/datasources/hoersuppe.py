@@ -16,7 +16,6 @@ class HoersuppeDataSource(AbstractDataSource):
     @classmethod
     def get_podcasts(cls):
         h_podcastlist = hoerapi.get_podcasts()
-        podcasts = []
 
         for pod in h_podcastlist:
             data = hoerapi.get_podcast_data(pod.slug)
@@ -26,7 +25,7 @@ class HoersuppeDataSource(AbstractDataSource):
             else:
                 type = models.TYPE_PODCAST
 
-            podcasts.append((
+            yield ((
                 models.Podcast(
                     creator=None,
                     title=data.title,
@@ -43,8 +42,6 @@ class HoersuppeDataSource(AbstractDataSource):
                     slug=data.slug,
                 ),
             ))
-
-        return podcasts
 
     @classmethod
     def get_episodes(cls, date_start, date_end):
