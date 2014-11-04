@@ -19,9 +19,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = ''
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -50,8 +47,6 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'shownotes.urls'
 
 WSGI_APPLICATION = 'shownotes.wsgi.application'
-
-CORS_ALLOW_CREDENTIALS = True
 
 REST_FRAMEWORK = {
     # Use hyperlinked styles by default.
@@ -105,8 +100,14 @@ LOGGING = {
     },
 }
 
-AUTHENTICATION_BACKENDS = ('snotes20.showpadauth.NModelBackend', 'snotes20.showpadauth.ShowPadBackend')
-PASSWORD_HASHERS = ( 'snotes20.showpadauth.NPBKDF2PasswordHasher', )
+AUTHENTICATION_BACKENDS = (
+    'snotes20.showpadauth.NModelBackend',
+    'snotes20.showpadauth.ShowPadBackend'
+)
+
+PASSWORD_HASHERS = (
+    'snotes20.showpadauth.NPBKDF2PasswordHasher',
+)
 
 SITEURL = ""
 
@@ -143,17 +144,19 @@ TEMPLATE_DIRS = (
     BASE_DIR + '/snotes20/emailtemplates/',
 )
 
+
+# for CORS-Headers via CorsMiddleware
+ALLOWED_HOSTS = []
+CORS_ALLOW_CREDENTIALS = True
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
@@ -162,8 +165,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# custom user model
 AUTH_USER_MODEL = 'snotes20.NUser'
 
+# import deployment settings form local_settings.py
 try:
     from .local_settings import *
 except ImportError:
