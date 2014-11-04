@@ -42,14 +42,16 @@ angular.module('snotes30App')
       return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
     }
 
-    nunjucksenv.addFilter('htime', function(time) {
-      var milliseconds = time % 1000;
+    nunjucksenv.addFilter('htime', function(time, ms) {
+      var milliseconds = pad(time % 1000, 4);
       time = time / 1000;
       var seconds = pad(time % 60, 2);
       var minutes = pad(Math.floor((time / 60) % 60), 2);
       var hours = pad(Math.floor((time / 60 / 60) % 60), 2);
 
-      return hours + ":" + minutes + ":" + seconds;
+      var str =  hours + ":" + minutes + ":" + seconds;
+      if(ms) str += "." + milliseconds;
+      return str;
     });
 
     function updateText() {
