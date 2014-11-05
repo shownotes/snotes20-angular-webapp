@@ -8,7 +8,7 @@ angular.module('snotes30App')
       scope: {
         document: '='
       },
-      template: '<iframe src="{{docurl}}"></iframe>',
+      template: '<iframe ng-if="docurl" src="{{docurl}}"></iframe>',
       controller: function ($scope, $sce, DocumentService) {
         DocumentService.getEditor($scope.document.editor).then(function (editor) {
           $scope.docurl = $sce.trustAsResourceUrl(editor.url + '/' + $scope.document.urlname);
