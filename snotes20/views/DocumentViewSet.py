@@ -119,7 +119,7 @@ class DocumentViewSet(viewsets.ViewSet):
         if request.method == 'POST' and not exists:
             document.meta.podcasters.add(models.RawPodcaster(name=name))
         elif request.method == 'DELETE' and exists:
-            document.meta.podcasters.get(name=name).remove()
+            document.meta.podcasters.get(name=name).delete()
 
         return Response(status=status.HTTP_202_ACCEPTED)
 
