@@ -28,7 +28,11 @@ angular.module('snotes30App')
     };
 
     $scope.addPodcaster = function (podcaster) {
-      $scope.doc.customPOST($scope.newpodcaster, $scope.doc.name + '/podcasters').then(function () { $scope.newpodcaster = null; }).then(updateDocument);
+      return $scope.doc.customPOST(podcaster, $scope.doc.name + '/podcasters').then(updateDocument);
+    };
+
+    $scope.removePodcaster = function (podcaster) {
+      return $scope.doc.customOperation('remove', $scope.doc.name + '/podcasters', null, null, podcaster).then(updateDocument);
     };
 
     $scope.sendChatMsg = function () {

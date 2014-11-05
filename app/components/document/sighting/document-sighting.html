@@ -22,28 +22,12 @@
 
 	<div class="box-wrapper">
 		<h3>Podcaster</h3>
-		<p>
-			<span ng-repeat="podcaster in doc.meta.podcasters">{{podcaster.name}}</span>
-			<span ng-show="doc.meta.podcasters.length == 0">Noch keine</span>
-		</p>
-		<form class="input-group">
-			<input type="text" value="" placeholder="Name" ng-model="newpodcaster.name" />
-			<input class="small" type="submit" value="Hinzufügen" ng-click="addPodcaster()" />
-		</form>
+		<name-list names="podcasters" name-attr="name" add-name="addPodcaster"></name-list>
 	</div>
 
 	<div class="box-wrapper">
 		<h3>Helfer</h3>
-		<p class="namelist">
-			<span>luto <a href="#" title="Löschen"><span class="icon-close"></span></a></span>,
-			<span>Evita <a href="#" title="Löschen"><span class="icon-close"></span></a></span>,
-			<span>Kai <a href="#" title="Löschen"><span class="icon-close"></span></a></span>,
-			<span>EpicShownoter1337 <a href="#" title="Löschen"><span class="icon-close"></span></a></span>
-		</p>
-		<form class="input-group">
-			<input type="text" value="" placeholder="Name" />
-			<input type="submit" value="Hinzufügen" />
-		</form>
+		<name-list names="helpers" name-attr="name" add-name="addHelper"></name-list>
 	</div>
 
 </div>

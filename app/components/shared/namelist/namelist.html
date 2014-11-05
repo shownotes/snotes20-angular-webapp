@@ -1,0 +1,13 @@
+<div>
+    <p class="namelist">
+        <span ng-hide="names.length > 0" class="empty">Noch keine</span>
+        <span ng-repeat="name in names">
+            {{name[nameAttr]}}
+            <span class="icon-close delete" title="Löschen" ng-click="delete(name)"></span>
+        </span>
+    </p>
+    <form class="input-group">
+        <input type="text" value="" placeholder="Name" ng-model="newName" />
+        <input type="submit" value="Hinzufügen" ng-click="add()" />
+    </form>
+</div>

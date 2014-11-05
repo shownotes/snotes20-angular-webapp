@@ -126,6 +126,8 @@ angular
       withCredentials: true
     });
 
+    RestangularProvider.setDefaultHeaders({'Content-Type': 'application/json'});
+
     RestangularProvider.addElementTransformer('soonepisodes', false, function(element) {
       element.create_date = new Date(element.create_date);
       element.date = new Date(element.date);

@@ -901,6 +901,18 @@ nav li > input[type="checkbox"] {
 .cover-header h2 + h3 {
 	margin: 0 0 .8em 0;
 }
+.namelist {
+  span.delete {
+    color: #40a662;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  > span:not(.empty):not(:last-child)::after {
+    content: ',\20'
+  }
+}
 .document-header,
 .sighting-wrapper {
 	display: -webkit-box;
