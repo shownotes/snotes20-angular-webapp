@@ -6,10 +6,15 @@
 <h3>24.04.2014, 22:00:00</h3>
 
 <div class="box-wrapper">
-	<h3>Bearbeiten &mdash; <a href="#">Vorschau</a></h3>
+	<h3 class="sighting-editormode">
+		<span ng-click="editorMode = 'preview'" ng-class="{ active: (editorMode != 'preview') }">Vorschau</span>
+		&mdash;
+		<span ng-click="editorMode = 'edit'" ng-class="{ active: (editorMode != 'edit') }">Bearbeiten</span>
+	</h3>
 
 	<div class="editor">
-		<iframe src="http://snotes20.com:9001/p/g.XPi5iDvxdHM1mrOP$happy-shooting-2014-08-05-08-10-16"></iframe>
+		<document-editor document="doc" ng-if="editorMode == 'edit'"></document-editor>
+		<div ng-if="editorMode == 'preview'">preview</div>
 	</div>
 </div>
 

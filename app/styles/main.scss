@@ -489,10 +489,12 @@ button:disabled:active {
 
 /* Links */
 a:link,
-a:visited {
+a:visited,
+.sighting-editormode > span.active /* preview / edit links in document-sighting */ {
 	color: #40a662;
 	font-weight: bold;
 	text-decoration: none;
+	cursor: pointer;
 }
 a:hover,
 a:focus,
