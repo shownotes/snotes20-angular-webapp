@@ -15,11 +15,6 @@ angular.module('snotes30App')
       $scope.canPublish = true;
     }, angular.noop);
 
-    DocumentService.getEditor($scope.doc.editor).then(function (editor) {
-      $scope.editor = editor;
-      $scope.docurl = $sce.trustAsResourceUrl(editor.url + '/' + $scope.doc.urlname);
-    });
-
     $scope.isShownoter = function () {
       return $scope.doc.meta.shownoters.indexOf($rootScope.currentUser.username) !== -1;
     };
