@@ -15,23 +15,19 @@ angular.module('snotes30App')
     $scope.editorMode = mode;
   };
 
-  $scope.addHelper = function (name) {
+  $scope.addHelper = function (helper) {
     var deferred = $q.defer();
 
-    $scope.helpers.push({
-      name: name
-    });
+    $scope.helpers.push(helper);
 
     deferred.resolve();
     return deferred.promise;
   };
 
-  $scope.addPodcaster = function (name) {
+  $scope.addPodcaster = function (podcaster) {
     var deferred = $q.defer();
 
-    $scope.podcasters.push({
-      name: name
-    });
+    $scope.podcasters.push(podcaster);
 
     deferred.resolve();
     return deferred.promise;
