@@ -46,7 +46,7 @@ angular
         resolve: docResvolers
       })
       .when('/doc/:name/sigh', {
-        templateUrl: 'components/document/edit/document-sighting.html',
+        templateUrl: 'components/document/sighting/document-sighting.html',
         controller: 'DocumentSightingCtrl',
         resolve: docResvolers
       })
