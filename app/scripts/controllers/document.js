@@ -3,12 +3,17 @@
 angular.module('snotes30App')
   .controller('DocumentCtrl', function ($scope, $rootScope, $routeParams, $sce, $interval, doc, docname, DocumentService, docChatSocket) {
     $scope.doc = doc;
+    $scope.canPublish = false;
 
     function updateDocument() {
       return DocumentService.getByName(docname).then(function (doc) {
         $scope.doc = doc;
       });
     }
+
+    $scope.doc.customGET($scope.doc.name + '/canpublish').then(function () {
+      $scope.canPublish = true;
+    }, angular.noop);
 
     DocumentService.getEditor($scope.doc.editor).then(function (editor) {
       $scope.editor = editor;
@@ -33,6 +38,16 @@ angular.module('snotes30App')
 
     $scope.sendChatMsg = function () {
       $scope.doc.customPOST($scope.chatmsg, $scope.doc.name + '/chat').then(function () { $scope.chatmsg = null; }).then(getChatMsgs);
+    };
+
+    $scope.hasPublications = function () {
+      var episode = $scope.doc.episode;
+      return episode && episode.publications.length > 0;
+    };
+
+    $scope.hasPublicationRequests = function () {
+      var episode = $scope.doc.episode;
+      return episode && episode.publicationrequests.length > 0;
     };
 
     function getChatMsgs(since) {

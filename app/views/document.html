@@ -15,16 +15,16 @@
 					<h2>{{doc.name}}</h2>
 				</div>
 
-				<div class="document-actions">
+				<div class="document-actions" ng-show="doc.episode">
 
 					<form class="shownoter">
 						<input type="submit" value="Als Helfer eintragen" ng-show="!isShownoter()" ng-click="addShownoter()" />
 						<input type="submit" value="Als Helfer austragen" ng-show="isShownoter()" ng-click="delShownoter()" />
 					</form>
 
-					<form class="sighting" ng-show="false">
-						<input type="submit" value="Version sichten" />
-						<!-- <input type="submit" value="Sichtung beantragen" /> -->
+					<form class="sighting">
+						<input type="submit" value="Version sichten" ng-show="canPublish"/>
+						<input type="submit" value="Sichtung beantragen" ng-show="!canPublish" />
 					</form>
 
 				</div>
