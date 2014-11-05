@@ -1,0 +1,111 @@
+<header>
+    <h1><a href="#">
+        <img class="large" src="images/shownotes-logo.svg" alt="shownot.es" />
+        <img class="small" src="images/shownotes-signet.svg" alt="shownot.es" title="shownot.es" />
+    </a></h1>
+</header>
+
+<nav class="account">
+    <ul>
+        <li>
+            <label class="toggle" for="toggle-form" title="Mein Account">
+                <span class="arrow" ng-class="{true: 'icon-arrow-up', false: 'icon-arrow-down'}[loginform.status === 'down']" ng-show="loginform.status === 'down'"></span>
+                <span class="icon-user"></span>
+                <span class="caption" ng-show="!$root.currentUser" ng-cloak>Mein Account</span>
+                <span class="caption" ng-show="$root.currentUser">{{$root.currentUser.username}}</span>
+            </label>
+            <input type="checkbox" id="toggle-form" ng-model="loginform.status" ng-true-value="down" ng-false-value="up" />
+
+            <div class="account-wrapper">
+                <form cg-busy="loginform.promise" name="loginform.frm" ng-show="!$root.currentUser && loginform.status === 'down'" ng-cloak novalidate>
+                    <div class="form-input">
+                        <form-error errors="loginform.errors.username"></form-error>
+                        <input type="text"
+                               ng-model="user.username"
+                               placeholder="Benutzername"
+                               value=""
+                               title="Gib deinen Benutzernamen ein"
+                               required />
+                        <form-error errors="loginform.errors.email"></form-error>
+                        <input type="email"
+                               ng-model="user.email"
+                               ng-show="loginform.mode == 'register'"
+                               ng-required="loginform.mode == 'register'"
+                               placeholder="E-Mail-Adresse"
+                               value=""
+                               title="Gib deine E-Mail-Adresse" />
+                        <form-error errors="loginform.errors.password"></form-error>
+                        <input type="password"
+                               ng-model="user.password"
+                               placeholder="Passwort"
+                               value=""
+                               title="Gib dein Passwort ein"
+                               required />
+                        <input type="password"
+                               ng-model="user.password2"
+                               ng-show="loginform.mode == 'register'"
+                               ng-required="loginform.mode == 'register'"
+                               placeholder="Passwort wiederholen"
+                               equals="{{user.password}}"
+                               value=""
+                               title="Wiederhole dein Passwort" />
+                    </div>
+                    <div class="form-check" ng-show="loginform.mode == 'register'">
+                        <input type="checkbox"
+                               id="checkrules"
+                               value="checkrules"
+                               required />
+                        <label for="checkrules">Ich akzeptiere die <a href="/rules">Regeln</a>.</label>
+                    </div>
+                    <div class="pwreset" ng-show="loginform.errors.loginfailed">Hast du dein <a href="#" ng-click="requestPwReset()">Passwort vergessen</a>?</div>
+                    <div ng-show="pwresetdone">Überprüfe dein Mail-Postfach.</div>
+                    <div class="form-button">
+                        <input type="{{loginform.mode === 'register' ? 'button' : 'submit'}}" value="Einloggen" ng-click="login()" />
+                        <input type="{{loginform.mode === 'login' ? 'button' : 'submit'}}" value="Registrieren" ng-click="register()" />
+                    </div>
+                </form>
+                <form ng-show="$root.currentUser && loginform.status === 'down'" ng-cloak>
+                    <div class="form-button">
+                        <a href="/profile/{{$root.currentUser.username}}">Profil</a>
+                        <input type="button" value="Ausloggen" ng-click="logout()" />
+                    </div>
+                </form>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<nav class="menu">
+    <ul>
+        <li class="search" title="Suche">
+            <label for="search"><span class="icon-search"></span></label><input type="search" id="search" value="" placeholder="Suche &hellip;" />
+        </li>
+        <li title="Sendungen">
+            <a href="/archive">
+                <span class="icon-podcast"></span><span class="caption">Sendungen</span>
+            </a>
+        </li>
+        <li title="Häufig gestellte Fragen">
+            <a href="/faq">
+                <span class="icon-info"></span><span class="caption">Häufig gestellte Fragen</span>
+            </a>
+        </li>
+        <li title="Community">
+            <a href="/community">
+                <span class="icon-bubbles"></span><span class="caption">Community</span>
+            </a>
+        </li>
+        <li title="Administration">
+            <a href="/admin">
+                <span class="icon-settings"></span><span class="caption">Administration</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<footer>
+    <p>Alle Sendungsnotizen stehen, soweit nicht anders vermerkt, unter der <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.de" rel="license" title="CC0 1.0 Universell (Public Domain Dedication)">CC0-Lizenz</a>.</p>
+    <p>Ein Projekt des <a href="#">Shownotes e.V.</a>.</p>
+
+    <a class="FlattrButton" style="display:none;" href="http://shownot.es/"></a>
+</footer>
