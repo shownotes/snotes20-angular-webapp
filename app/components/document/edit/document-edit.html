@@ -23,8 +23,8 @@
 					</form>
 
 					<form class="sighting">
-						<input type="submit" value="Version sichten" ng-show="canPublish"/>
-						<input type="submit" value="Sichtung beantragen" ng-show="!canPublish" />
+						<input type="submit" value="Version sichten" ng-show="canPublish" ng-click="doSighting()" />
+						<input type="submit" value="Sichtung beantragen" ng-show="!canPublish" ng-click="requestSighting()" />
 					</form>
 
 				</div>

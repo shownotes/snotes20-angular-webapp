@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('DocumentCtrl', function ($scope, $rootScope, $routeParams, $sce, $interval, doc, docname, DocumentService, docChatSocket) {
+  .controller('DocumentEditCtrl', function ($scope, $rootScope, $routeParams, $sce, $interval, doc, docname, DocumentService, docEditChatSocket) {
     $scope.doc = doc;
     $scope.canPublish = false;
 
@@ -37,7 +37,15 @@ angular.module('snotes30App')
     };
 
     $scope.sendChatMsg = function () {
-      $scope.doc.customPOST($scope.chatmsg, $scope.doc.name + '/chat').then(function () { $scope.chatmsg = null; }).then(getChatMsgs);
+      $scope.doc.customPOST($scope.chatmsg, $scope.doc.name + '/chat').then(function () { $scope.chatmsg = null; });
+    };
+
+    $scope.doSighting = function () {
+
+    };
+
+    $scope.requestSighting = function () {
+
     };
 
     $scope.hasPublications = function () {
@@ -66,9 +74,9 @@ angular.module('snotes30App')
 
     getChatMsgs();
 
-    docChatSocket.emit('JOIN_DOC', docname);
+    docEditChatSocket.emit('JOIN_DOC', docname);
 
-    docChatSocket.on('DOCUMENT_CHATMESSAGE', function (msg) {
+    docEditChatSocket.on('DOCUMENT_CHATMESSAGE', function (msg) {
         $scope.chatmessages.push(msg);
     })
 });

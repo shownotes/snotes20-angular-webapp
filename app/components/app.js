@@ -32,88 +32,90 @@ angular
 
     $routeProvider
       .when('/', {
-        templateUrl: 'views/livelist.html',
+        templateUrl: 'components/livelist/livelist.html',
         controller: 'LiveListCtrl'
       })
       .when('/doc/:name', {
-        templateUrl: 'views/document.html',
-        controller: 'DocumentCtrl',
+        templateUrl: 'components/document/edit/document-edit.html',
+        controller: 'DocumentEditCtrl',
         resolve: docResvolers
       })
       .when('/doc/:name/readonly', {
-        templateUrl: 'views/document-readonly.html',
+        templateUrl: 'components/document/edit/document-readonly.html',
         controller: 'DocumentReadonlyCtrl',
         resolve: docResvolers
       })
-      .when('/search', {
-        templateUrl: 'views/search.html'
+      .when('/doc/:name/sigh', {
+        templateUrl: 'components/document/edit/document-sighting.html',
+        controller: 'DocumentSightingCtrl',
+        resolve: docResvolers
       })
       .when('/admin', {
-        templateUrl: 'views/admin.html'
+        templateUrl: 'components/admin/board/board.html'
       })
-      .when('/admin/doc', {
-        templateUrl: 'views/admin-document.html'
+      .when('/admin/sigh', {
+        templateUrl: 'components/admin/sighting/sighting.html'
+      })
+      .when('/admin/importstatus', {
+        templateUrl: 'components/admin/importstatus/importstatus.html',
+        controller: 'ImportStatusCtrl'
       })
       .when('/archive', {
-        templateUrl: 'views/archive.html'
+        templateUrl: 'components/archive/archive.html'
       })
-      .when('/podcast', {
-        templateUrl: 'views/podcast.html'
+      .when('/archive/search', {
+        templateUrl: 'components/archive/search.html'
       })
-      .when('/sighting', {
-        templateUrl: 'views/sighting.html'
+      .when('/archive/podcast', {
+        templateUrl: 'components/archive/podcast.html'
       })
       .when('/faq', {
-        templateUrl: 'views/faq.html'
+        templateUrl: 'components/static/faq.html'
       })
       .when('/rules', {
-        templateUrl: 'views/rules.html'
+        templateUrl: 'components/static/rules.html'
       })
       .when('/community', {
-        templateUrl: 'views/community.html'
+        templateUrl: 'components/static/community.html'
       })
       .when('/donate', {
-        templateUrl: 'views/donate.html'
+        templateUrl: 'components/static/donate.html'
       })
       .when('/imprint', {
-        templateUrl: 'views/imprint.html'
+        templateUrl: 'components/static/imprint.html'
       })
       .when('/styleguide', {
-        templateUrl: 'views/styleguide.html'
-      })
-      .when('/user/profile', {
-        templateUrl: 'views/user/profile.html',
-        controller: 'UserProfileCtrl'
+        templateUrl: 'components/static/imprint.html'
       })
       .when('/profile/:username', {
-        templateUrl: 'views/profile.html',
-        controller: 'ProfileCtrl'
+        templateUrl: 'components/publicprofile/publicprofile.html',
+        controller: 'PublicProfileCtrl'
+      })
+      .when('/user/profile', {
+        templateUrl: 'components/user/profile/profile.html',
+        controller: 'UserProfileCtrl'
       })
       .when('/user/upgrade', {
-        templateUrl: 'views/user/upgrade.html',
+        templateUrl: 'components/user/upgrade/upgrade.html',
         controller: 'UserUpgradeCtrl'
       })
       .when('/user/registration', {
-        templateUrl: 'views/user/regcomplete.html'
+        templateUrl: 'components/user/regcomplete/regcomplete.html'
       })
       .when('/user/pwreset/:username/:token', {
-        templateUrl: 'views/user/pwreset.html',
+        templateUrl: 'components/user/pwreset/pwreset.html',
         controller: 'UserPwResetCtrl'
       })
       .when('/user/activate/:username/:token', {
-        templateUrl: 'views/user/activate.html',
+        templateUrl: 'components/user/activate/activate.html',
         controller: 'UserActivateCtrl'
       })
       .when('/user/confirm/:username/:token', {
-        templateUrl: 'views/user/activate.html',
+        templateUrl: 'components/user/activate/activate.html',
         controller: 'UserActivateCtrl'
       })
-      .when('/admin/importstatus', {
-        templateUrl: 'views/admin/importstatus.html',
-        controller: 'ImportStatusCtrl'
-      })
       .otherwise({
-        templateUrl: '404.html'
+        templateUrl: '../404.html'
       });
 
     $locationProvider.html5Mode(true);
@@ -181,7 +183,7 @@ angular
   .value('cgBusyDefaults',{
     message:'Doing magic!',
     backdrop: true,
-    templateUrl: 'views/loading.html',
+    templateUrl: 'components/shared/loading.html',
     delay: 200,
     minDuration: 50
   });

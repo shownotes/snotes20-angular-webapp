@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('UserUpgradeCtrl', function ($scope, $location, Restangular, AuthenticationService) {
+  .controller('UserUpgradeCtrl', function ($scope, $location, Restangular, AuthenticationSvc) {
 
-    AuthenticationService.injectMe($scope);
+    AuthenticationSvc.injectMe($scope);
 
     $scope.doUpgrade = function () {
       Restangular.one('users', 'me').customPOST({password: $scope.upgrade.password}, "upgrade").then(function () {

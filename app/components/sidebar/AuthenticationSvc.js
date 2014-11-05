@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('snotes30App')
-  .service('AuthenticationService', function ($rootScope, $q, Restangular) {
+  .service('AuthenticationSvc', function ($rootScope, $q, Restangular) {
     var auth = Restangular.all('auth');
     var users = Restangular.all('users');
 

@@ -48,7 +48,7 @@
 
 	<div class="container">
 
-		<section class="sidebar" ng-controller="SidebarController">
+		<section class="sidebar" ng-controller="SidebarCrtl">
 
 			<header>
 				<h1><a href="#">
@@ -196,36 +196,43 @@
 	<!-- endbuild -->
 
 	<!-- build:js({.tmp,app}) scripts/scripts.js -->
-	<script src="scripts/app.js"></script>
-	<script src="scripts/config.js"></script>
-	<script src="scripts/controllers/livelist.js"></script>
-	<script src="scripts/services/document.js"></script>
+	<script src="components/app.js"></script>
+	<script src="components/config.js"></script>
 
-	<script src="scripts/controllers/sidebar.js"></script>
-	<script src="scripts/services/authentication.js"></script>
-	<script src="scripts/directives/equals.js"></script>
-	<script src="scripts/directives/formerror.js"></script>
+    <!-- start page -->
+	<script src="components/livelist/LiveListCtrl.js"></script>
 
-	<script src="scripts/controllers/user/profile.js"></script>
-	<script src="scripts/directives/actionstatus.js"></script>
-	<script src="scripts/services/actionStatusGlue.js"></script>
+    <!-- sidebar -->
+    <script src="components/sidebar/SidebarCrtl.js"></script>
+    <script src="components/sidebar/AuthenticationSvc.js"></script>
+	<script src="components/shared/equals.js"></script>
+	<script src="components/shared/formerror.js"></script>
 
-	<script src="scripts/controllers/user/upgrade.js"></script>
+    <!-- user -->
+    <script src="components/shared/actionstatus/actionstatus.js"></script>
+    <script src="components/shared/actionstatus/actionStatusGlue.js"></script>
 
-	<script src="scripts/controllers/user/activate.js"></script>
+    <script src="components/user/profile/UserProfileCtrl.js"></script>
+    <script src="components/user/upgrade/UserUpgradeCtrl.js"></script>
+    <script src="components/user/activate/UserActivateCtrl.js"></script>
+    <script src="components/user/pwreset/UserPwResetCtrl.js"></script>
 
-	<script src="scripts/controllers/user/pwreset.js"></script>
+    <!-- public profile -->
+    <script src="components/publicprofile/PublicProfileCtrl.js"></script>
 
-	<script src="scripts/controllers/document.js"></script>
-	<script src="scripts/factories/docChatSocket.js"></script>
+    <!-- documents -->
+    <script src="components/document/DocumentSvc.js"></script>
 
-	<script src="scripts/controllers/document-readonly.js"></script>
+    <script src="components/document/edit/DocumentEditCtrl.js"></script>
+    <script src="components/document/edit/docEditChatSocket.js"></script>
 
-	<script src="scripts/controllers/profile.js"></script>
+    <script src="components/document/readonly/DocumentReadonlyCtrl.js"></script>
+    <script src="scripts/osf-templates.js"></script>
 
-	<script src="scripts/controllers/admin/importstatus.js"></script>
+    <script src="components/document/sighting/DocumentSightingCtrl.js"></script>
 
-	<script src="scripts/osf-templates.js"></script>
+    <!-- admin -->
+	<script src="components/admin/importstatus/ImportStatusCtrl.js"></script>
 	<!-- endbuild -->
 
 	<script type="text/javascript" src="//api.flattr.com/js/0.6/load.js?mode=auto" async></script>

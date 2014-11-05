@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('ProfileCtrl', function ($scope, $routeParams, AuthenticationService, Restangular) {
+  .controller('PublicProfileCtrl', function ($scope, $routeParams, AuthenticationSvc, Restangular) {
     var user = Restangular.one('users', $routeParams.username);
 
     $scope.user = {};
@@ -31,7 +31,7 @@ angular.module('snotes30App')
       $scope.user = null;
     });
 
-    AuthenticationService.getStatus().then(function (data) {
+    AuthenticationSvc.getStatus().then(function (data) {
       $scope.currentUser = data.user;
     });
   });
