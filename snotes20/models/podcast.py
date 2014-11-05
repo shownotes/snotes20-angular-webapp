@@ -49,6 +49,7 @@ class Podcast(Importable):
     deleted = models.BooleanField(default=False)
     approved= models.BooleanField(default=False)
     create_date = models.DateTimeField(default=datetime.now)
+    mums = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="mum_podcasts")
 
     def __str__(self):
         try:
@@ -84,6 +85,11 @@ class Episode(Importable):
     create_date = models.DateTimeField(default=datetime.now)
     stream = models.CharField(max_length=100, null=True, blank=True)
     document = models.OneToOneField(Document, null=True, blank=True, unique=True, on_delete=models.SET_NULL)
+
+    class Meta:
+        permissions = (
+            ("publish_episode", "publish"),
+        )
 
     def __str__(self):
         return "Episode {}-{} ({})".format(self.podcast.slug, self.number or 'NoNumberYet', self.date)

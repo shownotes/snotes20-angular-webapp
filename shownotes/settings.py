@@ -30,6 +30,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'rules.apps.AutodiscoverRulesConfig',
     'snotes20',
 )
 
@@ -101,6 +102,7 @@ LOGGING = {
 }
 
 AUTHENTICATION_BACKENDS = (
+    'rules.permissions.ObjectPermissionBackend',
     'snotes20.showpadauth.NModelBackend',
     'snotes20.showpadauth.ShowPadBackend'
 )
