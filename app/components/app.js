@@ -41,7 +41,7 @@ angular
         resolve: docResvolers
       })
       .when('/doc/:name/readonly', {
-        templateUrl: 'components/document/edit/document-readonly.html',
+        templateUrl: 'components/document/readonly/document-readonly.html',
         controller: 'DocumentReadonlyCtrl',
         resolve: docResvolers
       })
