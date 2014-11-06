@@ -231,7 +231,6 @@ h4 {
 }
 h2 {
 	font-size: 1.5em;
-	font-style: italic;
 }
 h3 {
 	font-size: 1em;
@@ -529,7 +528,7 @@ body {
 /* Sidebar */
 .sidebar {
 	background-color: #eee;
-	box-shadow: 0 .25em 1em rgba(0,0,0,.8);
+	box-shadow: 0 .25em .25em rgba(0,0,0,.8);
 	position: relative;
 	min-width: 20em;
 	max-width: 20em;
@@ -593,6 +592,7 @@ nav li > label {
 	color: #40a662;
 	z-index: 2;
 }
+
 nav li > label:hover {
 	color: #007369;
 	cursor: pointer;
@@ -658,7 +658,7 @@ nav.account .caption {
 	position: absolute;
 	top: 4em;
 	z-index: 1;
-	box-shadow: -0.5em 0.5em .5em 0.1em rgba(0, 0, 0, 0.3);
+	box-shadow: -0.25em 0.1em 0.25em 0.1em rgba(0, 0, 0, 0.3);
 }
 nav li > input[type="checkbox"] {
 	display: none;
@@ -997,7 +997,7 @@ nav li > input[type="checkbox"] {
 	width: 20%;
 	height: 100vh;
 	overflow-y: scroll;
-	box-shadow: 0 .25em 1em rgba(0,0,0,.8);
+	box-shadow: 0 .25em .25em rgba(0,0,0,.8);
 }
 .chat p {
 	font-size: .8em;
