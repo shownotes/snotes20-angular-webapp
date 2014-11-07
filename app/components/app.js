@@ -10,6 +10,7 @@
  */
 angular
   .module('snotes30App', [
+    'ui.router',
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -20,102 +21,144 @@ angular
     'btford.socket-io',
     'restangular'
   ])
-  .config(function ($routeProvider, $locationProvider, $httpProvider, RestangularProvider, CONFIG) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider, CONFIG) {
     var docResvolers = {
-      'doc': ['DocumentService', '$route', function (DocumentService, $route) {
-        return DocumentService.getByName($route.current.params.name);
+      'doc': ['DocumentService', '$stateParams', function (DocumentService, $stateParams) {
+        return DocumentService.getByName($stateParams.name);
       }],
-      'docname': ['$route', function ($route) {
-        return $route.current.params.name;
+      'docname': ['$stateParams', function ($stateParams) {
+        return $stateParams.name;
       }]
     };
 
-    $routeProvider
-      .when('/', {
+    $urlRouterProvider.otherwise("/");
+
+    $urlRouterProvider.rule(function ($injector, $location) {
+      var path = $location.url();
+
+      if(path === '/') {
+        return;
+      }
+
+      // remove trailing slash
+      if (path[path.length - 1] === '/' || path.indexOf('/?') > -1) {
+        return path.substr(0, path.length - 1);
+      }
+    });
+
+    $stateProvider
+      .state('state1.list', {
+        url: "/list",
+        templateUrl: "partials/state1.list.html",
+        controller: function($scope) {
+          $scope.items = ["A", "List", "Of", "Items"];
+        }
+      })
+      .state('livelist', {
+        url: '/',
         templateUrl: 'components/livelist/livelist.html',
         controller: 'LiveListCtrl'
       })
-      .when('/doc/:name', {
+      .state('document-edit', {
+        url: '/doc/:name',
         templateUrl: 'components/document/edit/document-edit.html',
         controller: 'DocumentEditCtrl',
         resolve: docResvolers
       })
-      .when('/doc/:name/readonly', {
+      .state('document-readonly', {
+        url: '/doc/:name/readonly',
         templateUrl: 'components/document/readonly/document-readonly.html',
         controller: 'DocumentReadonlyCtrl',
         resolve: docResvolers
       })
-      .when('/doc/:name/sigh', {
+      .state('document-sighting', {
+        url: '/doc/:name/sigh', // /doc/bluemoon-2014-11-07-11-15-03/sigh
         templateUrl: 'components/document/sighting/document-sighting.html',
         controller: 'DocumentSightingCtrl',
         resolve: docResvolers
       })
-      .when('/admin', {
+      .state('admin-board', {
+        url: '/admin',
         templateUrl: 'components/admin/board/board.html'
       })
-      .when('/admin/sigh', {
+      .state('admin-sighting', {
+        url: '/admin/sigh',
         templateUrl: 'components/admin/sighting/sighting.html'
       })
-      .when('/admin/importstatus', {
+      .state('admin-importstatus', {
+        url: '/admin/importstatus',
         templateUrl: 'components/admin/importstatus/importstatus.html',
         controller: 'ImportStatusCtrl'
       })
-      .when('/archive', {
+      .state('archive', {
+        url: '/archive',
         templateUrl: 'components/archive/archive.html'
       })
-      .when('/archive/search', {
+      .state('archive-search', {
+        url: '/archive/search',
         templateUrl: 'components/archive/search.html'
       })
-      .when('/archive/podcast', {
+      .state('archive-podcast', {
+        url: '/archive/podcast',
         templateUrl: 'components/archive/podcast.html'
       })
-      .when('/faq', {
+      .state('faq', {
+        url: '/faq',
         templateUrl: 'components/static/faq.html'
       })
-      .when('/rules', {
+      .state('rules', {
+        url: '/rules',
         templateUrl: 'components/static/rules.html'
       })
-      .when('/community', {
+      .state('community', {
+        url: '/community',
         templateUrl: 'components/static/community.html'
       })
-      .when('/donate', {
+      .state('donate', {
+        url: '/donate',
         templateUrl: 'components/static/donate.html'
       })
-      .when('/imprint', {
+      .state('imprint', {
+        url: '/imprint',
         templateUrl: 'components/static/imprint.html'
       })
-      .when('/styleguide', {
+      .state('styleguide', {
+        url: '/styleguide',
         templateUrl: 'components/static/imprint.html'
       })
-      .when('/profile/:username', {
+      .state('publicprofile', {
+        url: '/profile/:username',
         templateUrl: 'components/publicprofile/publicprofile.html',
         controller: 'PublicProfileCtrl'
       })
-      .when('/user/profile', {
+      .state('user-profile', {
+        url: '/user/profile',
         templateUrl: 'components/user/profile/profile.html',
         controller: 'UserProfileCtrl'
       })
-      .when('/user/upgrade', {
+      .state('user-upgrade', {
+        url: '/user/upgrade',
         templateUrl: 'components/user/upgrade/upgrade.html',
         controller: 'UserUpgradeCtrl'
       })
-      .when('/user/registration', {
+      .state('user-registration', {
+        url: '/user/registration',
         templateUrl: 'components/user/regcomplete/regcomplete.html'
       })
-      .when('/user/pwreset/:username/:token', {
+      .state('user-pwreset', {
+        url: '/user/pwreset/:username/:token',
         templateUrl: 'components/user/pwreset/pwreset.html',
         controller: 'UserPwResetCtrl'
       })
-      .when('/user/activate/:username/:token', {
+      .state('user-activate', {
+        url: '/user/activate/:username/:token',
         templateUrl: 'components/user/activate/activate.html',
         controller: 'UserActivateCtrl'
       })
-      .when('/user/confirm/:username/:token', {
+      .state('user-confirm-email', {
+        url: '/user/confirm/:username/:token',
         templateUrl: 'components/user/activate/activate.html',
         controller: 'UserActivateCtrl'
-      })
-      .otherwise({
-        templateUrl: '../404.html'
       });
 
     $locationProvider.html5Mode(true);
@@ -177,9 +220,11 @@ angular
   })
   .run(function ($rootScope, $location) {
     $rootScope.$on("$routeChangeError", function(event, current, previous, rejection) {
+      console.log(rejection);
+      /*
       if(rejection.status && rejection.status == 404) {
         $location.url('/404');
-      }
+      }*/
     });
   })
   .value('cgBusyDefaults',{

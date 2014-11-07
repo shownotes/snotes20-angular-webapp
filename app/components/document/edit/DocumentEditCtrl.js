@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('DocumentEditCtrl', function ($scope, $rootScope, $routeParams, $sce, $interval, doc, docname, DocumentService, docEditChatSocket) {
+  .controller('DocumentEditCtrl', function ($scope, $rootScope, $sce, $interval, doc, docname, DocumentService, docEditChatSocket) {
     $scope.doc = doc;
     $scope.canPublish = false;
 

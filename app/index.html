@@ -47,8 +47,8 @@
 <body ng-app="snotes30App">
 
 	<div class="container">
-		<section class="sidebar" ng-controller="SidebarCrtl" ng-include="'components/sidebar/sidebar.html'"></section>
-		<section class="content" ng-view=""></section>
+		<section class="sidebar" ng-include="'components/sidebar/sidebar.html'"></section>
+		<section class="content" ui-view></section>
 	</div>
 
 	<!-- build:js scripts/vendor.js -->
@@ -66,6 +66,7 @@
 	<script src="bower_components/nunjucks/browser/nunjucks.min.js"></script>
 	<script src="bower_components/lodash/dist/lodash.compat.js"></script>
 	<script src="bower_components/restangular/dist/restangular.js"></script>
+	<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 	<script src="bower_components/angular-socket-io/socket.js"></script>
 	<!-- endbower -->
 	<script src="bower_components/ngLocale/angular-locale_de-de.js"></script>

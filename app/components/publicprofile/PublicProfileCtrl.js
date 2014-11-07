@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('PublicProfileCtrl', function ($scope, $routeParams, AuthenticationSvc, Restangular) {
-    var user = Restangular.one('users', $routeParams.username);
+  .controller('PublicProfileCtrl', function ($scope, $stateParams, AuthenticationSvc, Restangular) {
+    var user = Restangular.one('users', $stateParams.username);
 
     $scope.user = {};
 

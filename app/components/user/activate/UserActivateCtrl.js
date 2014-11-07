@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('UserActivateCtrl', function ($scope, $routeParams, $location, Restangular) {
+  .controller('UserActivateCtrl', function ($scope, $stateParams, $location, Restangular) {
     var data = {
-      username: $routeParams.username,
-      token: $routeParams.token
+      username: $stateParams.username,
+      token: $stateParams.token
     };
 
     if($location.url().indexOf('/user/confirm/') === 0)

@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('UserPwResetCtrl', function ($scope, $routeParams, Restangular, actionStatusGlueService) {
+  .controller('UserPwResetCtrl', function ($scope, $stateParams, Restangular, actionStatusGlueService) {
 
     $scope.sendPwReset = function () {
       var data = {
-        username: $routeParams.username,
-        token: $routeParams.token,
+        username: $stateParams.username,
+        token: $stateParams.token,
         password: $scope.pwreset.password
       };
 

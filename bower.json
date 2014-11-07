@@ -15,6 +15,7 @@
     "osf-export-templates": "0.0.1",
     "nunjucks": "~1.1.0",
     "restangular": "~1.4.0",
+    "angular-ui-router": "~0.2.11",
     "angular-socket-io": "~0.6.0"
   },
   "devDependencies": {
