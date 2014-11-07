@@ -14,7 +14,7 @@
                 <span class="caption" ng-show="!$root.currentUser" ng-cloak>Mein Account</span>
                 <span class="caption" ng-show="$root.currentUser">{{$root.currentUser.username}}</span>
             </label>
-            <input type="checkbox" id="toggle-form" ng-model="loginform.status" ng-true-value="down" ng-false-value="up" />
+            <input type="checkbox" id="toggle-form" ng-model="loginform.status" ng-true-value="'down'" ng-false-value="'up'" />
 
             <div class="account-wrapper">
                 <form cg-busy="loginform.promise" name="loginform.frm" ng-show="!$root.currentUser && loginform.status === 'down'" ng-cloak novalidate>
