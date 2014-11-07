@@ -3,11 +3,14 @@
 angular.module('snotes30App')
 .controller('DocumentSightingCtrl', function ($scope, $rootScope, $q, doc, DocumentService) {
   $scope.doc = doc;
+  $scope.episode = doc.episode;
 
   $scope.publication = {
-    episode: doc.episode,
+    episode: doc.episode.id,
     podcasters: [],
-    shownoters: []
+    shownoters: [],
+    comment: "",
+    preliminary: false
   };
 
   $scope.epnumber = doc.episode.number;

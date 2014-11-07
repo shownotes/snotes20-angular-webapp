@@ -87,14 +87,14 @@
 	<h3>Notiz</h3>
 
 	<form class="form-wrapper">
-		<textarea placeholder="Bemerkungen für Podcaster / andere Sichter"></textarea>
+		<textarea ng-model="publication.comment" placeholder="Bemerkungen für Podcaster / andere Sichter"></textarea>
 	</form>
 </div>
 
 <form class="form-wrapper">
 	<div class="form-check">
-			<input type="checkbox" id="provisional" value="checkrules" />
-			<label for="provisional">Als <em>vorläufig</em> markieren</label>
+			<input type="checkbox" id="preliminary" ng-model="publication.preliminary" value="checkrules" />
+			<label for="preliminary">Als <em>vorläufig</em> markieren</label>
 		</div>
 	<input type="submit" value="Version sichten" />
 </form>
