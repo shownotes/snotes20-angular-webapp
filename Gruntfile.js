@@ -359,7 +359,7 @@ module.exports = function (grunt) {
         options: {
           name: function(filename) {
             var format = filename.substr(0, filename.length - 4);
-            return "osf_" + format;
+            return 'osf_' + format;
           }
         }
       }
