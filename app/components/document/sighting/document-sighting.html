@@ -1,9 +1,18 @@
 <h2>
-	Chaosradio 200
-	<span class="statuslabel">Beendet</span>
-	<!-- <span class="statuslabel">Live</span> -->
+	{{doc.episode.podcast.title}} <span class="sighting-title-number">{{doc.episode.number || '(keine Nummer)'}}</span>
+	<span class="statuslabel unknown" title="Es liegen keine Informationen von xenim vor.">Unbekannt</span>
+	<span class="statuslabel finished">Beendet</span>
+	<span class="statuslabel live">Live</span>
 </h2>
-<h3>24.04.2014, 22:00:00</h3>
+<h3>{{doc.episode.date | date : 'medium'}}</h3>
+
+<div class="box-wrapper">
+	<h3>Nummber</h3>
+	<p>
+		Die letzten Nummern in diesem Podcast waren: <b>133</b>, <b>51</b> und <b>61</b>.
+	</p>
+	<input ng-model="epnumber">
+</div>
 
 <div class="box-wrapper">
 	<h3 class="sighting-editormode">
@@ -14,7 +23,7 @@
 
 	<div class="editor">
 		<document-editor document="doc" ng-if="editorMode == 'edit'"></document-editor>
-		<div ng-if="editorMode == 'preview'">preview</div>
+		<document-render document="doc" show-formats="true" ng-if="editorMode == 'preview'"></document-render>
 	</div>
 </div>
 
@@ -22,12 +31,12 @@
 
 	<div class="box-wrapper">
 		<h3>Podcaster</h3>
-		<name-list names="podcasters" name-attr="name" add-name="addPodcaster"></name-list>
+		<name-list names="publication.podcasters" name-attr="name" add-name="addPodcaster"></name-list>
 	</div>
 
 	<div class="box-wrapper">
 		<h3>Helfer</h3>
-		<name-list names="helpers" name-attr="name" add-name="addHelper"></name-list>
+		<name-list names="publication.shownoters" name-attr="name" add-name="addShownoter"></name-list>
 	</div>
 
 </div>

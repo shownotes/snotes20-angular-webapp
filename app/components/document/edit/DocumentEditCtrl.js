@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('DocumentEditCtrl', function ($scope, $rootScope, $sce, $interval, doc, docname, DocumentService, docEditChatSocket) {
+  .controller('DocumentEditCtrl', function ($scope, $rootScope, $sce, $interval, $state, doc, docname, DocumentService, docEditChatSocket) {
     $scope.doc = doc;
     $scope.canPublish = false;
 
@@ -40,7 +40,7 @@ angular.module('snotes30App')
     };
 
     $scope.doSighting = function () {
-
+      $state.go('document-sighting', { name: $scope.doc.name });
     };
 
     $scope.requestSighting = function () {

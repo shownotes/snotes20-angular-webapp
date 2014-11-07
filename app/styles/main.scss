@@ -764,13 +764,22 @@ nav li > input[type="checkbox"] {
 	background-color: #fefefe;
 }
 .statuslabel {
-	background-color: #666;
 	color: #fefefe;
 	font-size: .55em;
 	font-style: normal;
 	vertical-align: middle;
 	padding: .25em .5em;
 	border-radius: .4em;
+
+	&.unknown {
+		background-color: #666;
+	}
+	&.finished {
+		background-color: green;
+	}
+	&.live {
+		background-color: red;
+	}
 }
 
 /* Form wrapper */
@@ -931,6 +940,10 @@ nav li > input[type="checkbox"] {
 }
 .sighting-wrapper h2+h3 {
 	margin-top: 0;
+}
+.sighting-title-number {
+	color: gray;
+	font-size: 0.65em !important;
 }
 .document-header > * {
 	width: 50%;

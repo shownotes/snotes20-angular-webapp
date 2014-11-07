@@ -3,11 +3,14 @@
 angular.module('snotes30App')
 .controller('DocumentSightingCtrl', function ($scope, $rootScope, $q, doc, DocumentService) {
   $scope.doc = doc;
-  $scope.episode = doc.episode;
 
-  $scope.helpers = [];
+  $scope.publication = {
+    episode: doc.episode,
+    podcasters: [],
+    shownoters: []
+  };
 
-  $scope.podcasters = [];
+  $scope.epnumber = doc.episode.number;
 
   $scope.editorMode = 'preview';
 
@@ -15,10 +18,10 @@ angular.module('snotes30App')
     $scope.editorMode = mode;
   };
 
-  $scope.addHelper = function (helper) {
+  $scope.addShownoter = function (shownoter) {
     var deferred = $q.defer();
 
-    $scope.helpers.push(helper);
+    $scope.publication.shownoters.push(shownoter);
 
     deferred.resolve();
     return deferred.promise;
@@ -27,7 +30,7 @@ angular.module('snotes30App')
   $scope.addPodcaster = function (podcaster) {
     var deferred = $q.defer();
 
-    $scope.podcasters.push(podcaster);
+    $scope.publication.podcasters.push(podcaster);
 
     deferred.resolve();
     return deferred.promise;
