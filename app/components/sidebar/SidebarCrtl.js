@@ -12,6 +12,11 @@ angular.module('snotes30App')
 
     AuthenticationSvc.injectMe($rootScope);
 
+    function resetState() {
+      $scope.loginform.status = 'up';
+      $scope.user = null;
+    }
+
     function flipFormMode() {
       $scope.loginform.mode = $scope.loginform.mode === 'login' ? 'register' : 'login';
     }
@@ -42,7 +47,7 @@ angular.module('snotes30App')
         $rootScope.currentUser = {
           username: $scope.user.username
         };
-        $scope.user = null;
+
         if(!user.migrated) {
           $location.url('/user/upgrade');
         }
@@ -51,6 +56,8 @@ angular.module('snotes30App')
         if(url.indexOf('/user/activate') === 0 || url == '/user/registration') {
           $location.url('/');
         }
+
+        resetState();
       }, function (errors) {
         $scope.loginform.errors = { 'loginfailed': true };
       });
@@ -62,8 +69,10 @@ angular.module('snotes30App')
         $scope.user.email,
         $scope.user.password
       ).then(function () {
-        flipFormMode();
         $location.url('/user/registration');
+
+        resetState();
+        flipFormMode();
       }, function (errors) {
         $scope.loginform.errors = errors.data;
       });
@@ -72,6 +81,7 @@ angular.module('snotes30App')
     $scope.logout = function () {
       AuthenticationSvc.logout().then(function () {
         $rootScope.currentUser = null;
+        resetState();
       });
     };
 
