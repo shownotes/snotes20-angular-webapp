@@ -1,0 +1,17 @@
+<div>
+    <div ng-show="showFormats" ng-cloak>
+        <div class="button-group">
+            <button ng-repeat="f in formats"
+                    ng-disabled="format == f"
+                    ng-click="enableFormat(f.name)">
+                {{f.caption}}
+            </button>
+            <button title="HTML herunterladen"><span class="icon-arrow-down" ng-click="download()"></span></button>
+        </div>
+
+        <hr />
+    </div>
+
+    <div ng-if="format().type == 'html'" class="document-{{format().name}}" ng-bind-html="content"></div>
+    <pre ng-if="format().type == 'osf' || format().type == 'plain'">{{content}}</pre>
+</div>
