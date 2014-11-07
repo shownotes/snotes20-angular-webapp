@@ -48,7 +48,7 @@ angular.module('snotes30App')
           hiddenElement.click();
         };
 
-        $scope.content = {};
+        $scope.content = "";
 
         var nunjucksenv = new nunjucks.Environment();
 
