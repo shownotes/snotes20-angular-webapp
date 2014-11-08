@@ -17,9 +17,8 @@ class DocumentMetaSerializer(ModelSerializer):
             meta = None
 
         if meta is not None:
-            data['shownoters'] = [shownoter.username for shownoter in meta.shownoters.all()]
+            data['shownoters'] = [{'name': shownoter.username, 'id': shownoter.id} for shownoter in meta.shownoters.all()]
             data['podcasters'] = [{'name': rpodcaster.name} for rpodcaster in meta.podcasters.all()]
-
 
         return data
 

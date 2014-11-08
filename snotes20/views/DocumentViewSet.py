@@ -3,7 +3,7 @@ import time
 
 from django.shortcuts import get_object_or_404
 from django.db import transaction
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.validators import ValidationError
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
@@ -104,6 +104,36 @@ class DocumentViewSet(viewsets.ViewSet):
             document.meta.shownoters.add(request.user)
         elif request.method == 'DELETE' and exists:
             document.meta.shownoters.remove(request.user)
+
+        return Response(status=status.HTTP_202_ACCEPTED)
+
+    @action(methods=['POST', 'DELETE'])
+    def shownoters(self, request, pk=None):
+        if 'name' not in request.DATA and 'id' not in request.DATA:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        document = get_object_or_404(models.Document, pk=pk)
+
+        if not hasattr(document, 'episode'):
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        episode = document.episode
+
+        if not request.user.has_perm('o_publish_episode', episode):
+            raise PermissionDenied()
+
+        try:
+            if 'name' in request.DATA:
+                shownoter = models.NUser.objects.get(username=request.DATA['name'])
+            else:
+                shownoter = models.NUser.objects.get(id=request.DATA['id'])
+        except models.NUser.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        if request.method == 'DELETE':
+            document.meta.shownoters.remove(shownoter)
+        elif request.method == 'POST':
+            document.meta.shownoters.add(shownoter)
 
         return Response(status=status.HTTP_202_ACCEPTED)
 
