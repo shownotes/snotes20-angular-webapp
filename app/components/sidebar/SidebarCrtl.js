@@ -12,7 +12,7 @@ angular.module('snotes30App')
 
     AuthenticationSvc.injectMe($rootScope);
 
-    $scope.resetState = function resetState() {
+    var resetState = $scope.resetState = function () {
       $scope.loginform.status = 'up';
       $scope.user = null;
     };
