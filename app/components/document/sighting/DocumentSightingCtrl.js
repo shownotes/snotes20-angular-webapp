@@ -54,4 +54,8 @@ angular.module('snotes30App')
   $scope.delPodcaster = function (podcaster) {
     return DocumentService.delPodcaster(doc, podcaster).then(updateDocument);
   };
+
+  $scope.publish = function () {
+    DocumentService.publish(doc, $scope.publication);
+  }
 });

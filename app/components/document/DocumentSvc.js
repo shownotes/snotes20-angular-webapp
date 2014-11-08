@@ -40,6 +40,10 @@ angular.module('snotes30App')
     return doc.customOperation('remove', doc.name + '/shownoters', null, null, shownoter);
   };
 
+  this.publish = function (doc, publication) {
+    return doc.customPOST(publication, doc.name + '/publications');
+  };
+
   this.getEditor = function (name) {
     var deferred = $q.defer();
 
