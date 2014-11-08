@@ -117,7 +117,12 @@ class DocumentViewSet(viewsets.ViewSet):
         exists = any(rpodcaster.name == name for rpodcaster in document.meta.podcasters.all())
 
         if request.method == 'POST' and not exists:
-            document.meta.podcasters.add(models.RawPodcaster(name=name))
+            rpodcaster = models.RawPodcaster(name=name)
+            try:
+                rpodcaster.clean_fields()
+            except ValidationError:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+            document.meta.podcasters.add(rpodcaster)
         elif request.method == 'DELETE' and exists:
             document.meta.podcasters.get(name=name).delete()
 

@@ -3,6 +3,7 @@ from datetime import datetime
 from django.db import models
 from django.conf import settings
 from django.dispatch import receiver
+from django.core.validators import MinLengthValidator
 from django.db.models.signals import post_delete
 
 from uuidfield import UUIDField
@@ -34,7 +35,7 @@ class DocumentMeta(models.Model):
 
 class RawPodcaster(models.Model):
     meta = models.ForeignKey(DocumentMeta, related_name="podcasters")
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30, validators=[MinLengthValidator(2)])
 
 
 class Document(models.Model):
