@@ -31,7 +31,7 @@ def publish(tt, body, json=False):
         props['content_type'] = 'application/json'
 
     rbbit.publish(uri=settings.RABBITMQ_URI,
-                  exchange=tt,
+                  exchange_name=tt,
                   body=body,
                   properties=props)
 
