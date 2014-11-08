@@ -16,7 +16,8 @@ angular.module('snotes30App')
     };
 
     $scope.openDoc = function (ep) {
-      $state.go('document-edit', { name: ep.document.name }, { inherit: false });
+      var name = (typeof ep === 'string') ? ep : ep.document.name;
+      $state.go('document-edit', { name: name }, { inherit: false });
     };
 
     $scope.create = function (ep) {
