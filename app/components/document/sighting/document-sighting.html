@@ -7,14 +7,6 @@
 <h3>{{doc.episode.date | date : 'medium'}}</h3>
 
 <div class="box-wrapper">
-	<h3>Nummber</h3>
-	<p>
-		Die letzten Nummern in diesem Podcast waren: <b>133</b>, <b>51</b> und <b>61</b>.
-	</p>
-	<input ng-model="epnumber">
-</div>
-
-<div class="box-wrapper">
 	<h3 class="sighting-editormode">
 		<span ng-click="editorMode = 'preview'" ng-class="{ active: (editorMode != 'preview') }">Vorschau</span>
 		&mdash;
@@ -83,12 +75,23 @@
 
 </div>
 
-<div class="box-wrapper">
-	<h3>Notiz</h3>
+<div class="sighting-wrapper">
 
-	<form class="form-wrapper">
-		<textarea ng-model="publication.comment" placeholder="Bemerkungen für Podcaster / andere Sichter"></textarea>
-	</form>
+	<div class="box-wrapper">
+		<h3>Episodennummer</h3>
+		<p>
+			Die letzten Episodennummern in diesem Podcast waren: <b>133</b>, <b>51</b> und <b>61</b>.
+		</p>
+		<input ng-model="epnumber" type="text" />
+	</div>
+
+	<div class="box-wrapper">
+		<h3>Notiz</h3>
+		<form class="form-wrapper">
+			<textarea ng-model="publication.comment" placeholder="Bemerkungen für Podcaster / andere Sichter"></textarea>
+		</form>
+	</div>		
+
 </div>
 
 <form class="form-wrapper">

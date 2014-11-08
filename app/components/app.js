@@ -114,6 +114,10 @@ angular
         url: '/community',
         templateUrl: 'components/static/community.html'
       })
+      .state('privacy', {
+        url: '/privacy',
+        templateUrl: 'components/static/privacy.html'
+      })
       .state('donate', {
         url: '/donate',
         templateUrl: 'components/static/donate.html'

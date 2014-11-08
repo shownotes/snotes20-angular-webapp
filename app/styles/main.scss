@@ -528,7 +528,6 @@ body {
 /* Sidebar */
 .sidebar {
 	background-color: #eee;
-	box-shadow: 0 .25em .25em rgba(0,0,0,.8);
 	position: relative;
 	min-width: 20em;
 	max-width: 20em;
@@ -658,7 +657,7 @@ nav.account .caption {
 	position: absolute;
 	top: 4em;
 	z-index: 1;
-	box-shadow: -0.25em 0.1em 0.25em 0.1em rgba(0, 0, 0, 0.3);
+	box-shadow: -0.5em 0.1em .25em 0.1em rgba(0, 0, 0, 0.3);
 }
 nav li > input[type="checkbox"] {
 	display: none;
@@ -750,7 +749,6 @@ nav li > input[type="checkbox"] {
 .box-wrapper {
 	background-color: #eee;
 	padding: 2em;
-	border-radius: .4em;
 }
 .box-wrapper h3,
 .box-wrapper p:not(:last-child),
@@ -764,6 +762,7 @@ nav li > input[type="checkbox"] {
 	background-color: #fefefe;
 }
 .statuslabel {
+	background-color: #666;
 	color: #fefefe;
 	font-size: .55em;
 	font-style: normal;
@@ -771,14 +770,11 @@ nav li > input[type="checkbox"] {
 	padding: .25em .5em;
 	border-radius: .4em;
 
-	&.unknown {
-		background-color: #666;
-	}
 	&.finished {
-		background-color: green;
+		background-color: #40a662;
 	}
 	&.live {
-		background-color: red;
+		background-color: #a64040;
 	}
 }
 
@@ -815,6 +811,9 @@ nav li > input[type="checkbox"] {
 }
 .padlist tr > td:nth-child(2) {
 	font-weight: bold;
+}
+.padlist tr.past {
+	color: #666;
 }
 .padlist input[type="button"] {
 	min-width: 6em;
@@ -1374,9 +1373,7 @@ footer a:hover {
 		min-width: 17em;
 		position: absolute;
 		border-left: none;
-		border-top-right-radius: .4em;
-		border-bottom-right-radius: .4em;
-		box-shadow: .25em .25em 1em rgba(0,0,0,.5);
+		box-shadow: 0 0.1em .25em 0.1em rgba(0, 0, 0, 0.3);
 		z-index: 1000;
 	}
 	.account .button {
