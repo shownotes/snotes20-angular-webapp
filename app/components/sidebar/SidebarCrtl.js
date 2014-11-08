@@ -12,10 +12,10 @@ angular.module('snotes30App')
 
     AuthenticationSvc.injectMe($rootScope);
 
-    function resetState() {
+    $scope.resetState = function resetState() {
       $scope.loginform.status = 'up';
       $scope.user = null;
-    }
+    };
 
     function flipFormMode() {
       $scope.loginform.mode = $scope.loginform.mode === 'login' ? 'register' : 'login';
