@@ -13,6 +13,7 @@ from rest_framework.decorators import action
 import snotes20.serializers as serializers
 import snotes20.models as models
 import snotes20.editors as editors
+import snotes20.contenttypes as contenttypes
 
 def create_doc_from_episode(request):
     if 'episode' not in request.DATA:
@@ -232,8 +233,35 @@ class DocumentViewSet(viewsets.ViewSet):
         episode = document.episode
 
         if request.method == 'POST':
+            if not request.user.is_authenticated() or not request.user.has_perm('o_publish_episode', episode):
+                return Response(status=status.HTTP_403_FORBIDDEN)
 
-            return Response(status=status.HTTP_202_ACCEPTED)
+            podcasters = request.DATA['podcasters']
+            request.DATA['podcasters'] = []
+
+            shownoters = request.DATA['shownoters']
+            request.DATA['shownoters'] = []
+
+            request.DATA['create_date'] = datetime.now()
+            request.DATA['creator'] = request.user.pk
+
+            serialized = serializers.PublicationSerializer(data=request.DATA)
+
+            if not serialized.is_valid():
+                return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
+
+            pub = serialized.object
+
+            with transaction.atomic():
+                raw_state, state = contenttypes.get_state(document)
+                state.save()
+
+                pub.state = state
+                pub.episode = episode
+
+                serialized.save()
+
+            return Response(status=status.HTTP_201_CREATED)
         elif request.method == 'GET':
             return Response(episode.publications)
 
