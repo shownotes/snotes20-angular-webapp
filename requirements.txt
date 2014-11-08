@@ -8,5 +8,5 @@ osf
 rabbitpy
 etherpad_lite
 rules
-Django==1.7
+Django==1.7.1
 
