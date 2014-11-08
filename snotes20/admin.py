@@ -91,7 +91,7 @@ class RawPodcasterInline(admin.TabularInline):
 
 @admin.register(models.DocumentMeta)
 class DocumentMetaAdmin(admin.ModelAdmin):
-    fields = ('state', 'shownoters')
+    fields = ('shownoters',)
     inlines = [RawPodcasterInline,]
 
 
