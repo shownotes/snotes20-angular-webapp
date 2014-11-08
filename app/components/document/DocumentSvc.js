@@ -24,6 +24,22 @@ angular.module('snotes30App')
     return documents.post({ episode: episode.id }, { type: 'fromepisode' });
   };
 
+  this.addPodcaster = function (doc, podcaster) {
+    return doc.customPOST(podcaster, doc.name + '/podcasters');
+  };
+
+  this.delPodcaster = function (doc, podcaster) {
+    return doc.customOperation('remove', doc.name + '/podcasters', null, null, podcaster);
+  };
+
+  this.addShownoter = function (doc, shownoter) {
+    return doc.customPOST(shownoter, doc.name + '/shownoters');
+  };
+
+  this.delShownoter = function (doc, shownoter) {
+    return doc.customOperation('remove', doc.name + '/shownoters', null, null, shownoter);
+  };
+
   this.getEditor = function (name) {
     var deferred = $q.defer();
 

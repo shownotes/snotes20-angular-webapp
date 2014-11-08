@@ -7,8 +7,8 @@ angular.module('snotes30App')
 
   $scope.publication = {
     episode: doc.episode.id,
-    podcasters: [],
-    shownoters: [],
+    podcasters: doc.meta.podcasters,
+    shownoters: doc.meta.shownoters,
     comment: "",
     preliminary: false
   };
@@ -16,6 +16,15 @@ angular.module('snotes30App')
   $scope.epnumber = doc.episode.number;
 
   $scope.editorMode = 'preview';
+
+  function updateDocument() {
+    return DocumentService.getByName(doc.name).then(function (doc) {
+      $scope.doc = doc;
+
+      $scope.publication.podcasters = doc.meta.podcasters;
+      $scope.publication.shownoters = doc.meta.shownoters;
+    });
+  }
 
   $scope.switchEditorMode = function (mode) {
     $scope.editorMode = mode;
@@ -30,12 +39,19 @@ angular.module('snotes30App')
     return deferred.promise;
   };
 
+  $scope.addShownoter = function (shownoter) {
+    return DocumentService.addShownoter(doc, shownoter).then(updateDocument);
+  };
+
+  $scope.delShownoter = function (shownoter) {
+    return DocumentService.delShownoter(doc, shownoter).then(updateDocument);
+  };
+
   $scope.addPodcaster = function (podcaster) {
-    var deferred = $q.defer();
+    return DocumentService.addPodcaster(doc, podcaster).then(updateDocument);
+  };
 
-    $scope.publication.podcasters.push(podcaster);
-
-    deferred.resolve();
-    return deferred.promise;
+  $scope.delPodcaster = function (podcaster) {
+    return DocumentService.delPodcaster(doc, podcaster).then(updateDocument);
   };
 });

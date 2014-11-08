@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('DocumentEditCtrl', function ($scope, $rootScope, $sce, $interval, $state, doc, docname, DocumentService, docEditChatSocket) {
+  .controller('DocumentEditCtrl', function ($scope, $rootScope, $sce, $interval, doc, docname, DocumentService, docEditChatSocket) {
     $scope.doc = doc;
     $scope.canPublish = false;
 
@@ -28,11 +28,11 @@ angular.module('snotes30App')
     };
 
     $scope.addPodcaster = function (podcaster) {
-      return $scope.doc.customPOST(podcaster, $scope.doc.name + '/podcasters').then(updateDocument);
+      return DocumentService.addPodcaster(doc, podcaster).then(updateDocument);
     };
 
-    $scope.removePodcaster = function (podcaster) {
-      return $scope.doc.customOperation('remove', $scope.doc.name + '/podcasters', null, null, podcaster).then(updateDocument);
+    $scope.delPodcaster = function (podcaster) {
+      return DocumentService.delPodcaster(doc, podcaster).then(updateDocument);
     };
 
     $scope.sendChatMsg = function () {
