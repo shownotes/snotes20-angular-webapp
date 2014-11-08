@@ -147,7 +147,7 @@ class DocumentViewSet(viewsets.ViewSet):
         exists = any(rpodcaster.name == name for rpodcaster in document.meta.podcasters.all())
 
         if request.method == 'POST' and not exists:
-            rpodcaster = models.RawPodcaster(name=name)
+            rpodcaster = models.RawPodcaster(name=name, meta=document.meta)
             try:
                 rpodcaster.clean_fields()
             except ValidationError:
