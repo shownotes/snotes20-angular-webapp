@@ -10,6 +10,11 @@ angular.module('snotes30App')
       }
     );
 
+    $scope.isPast = function (ep) {
+      var today = new Date().setHours(0,0,0,0);
+      return ep.date < today;
+    };
+
     $scope.openDoc = function (ep) {
       $state.go('document-edit', { name: ep.document.name }, { inherit: false });
     };

@@ -15,7 +15,7 @@
 		<th>Kürzel</th>
 		<th></th>
 	</tr>
-	<tr ng-repeat="ep in episodes">
+	<tr ng-repeat="ep in episodes" ng-class="{ past: isPast(ep) }">
 		<td>{{ ep.date | date : 'short' }}</td>
 		<td>{{ ep.podcast.title }}</td>
 		<td>{{ ep.number || 'noch keines' }}</td>
