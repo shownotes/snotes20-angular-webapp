@@ -189,7 +189,7 @@ class DocumentViewSet(viewsets.ViewSet):
             except:
                 return Response([], status=status.HTTP_200_OK)
 
-            data = serializers.ChatMessageSerializer(msgs).data
+            data = serializers.ChatMessageSerializer(msgs, many=True).data
             return Response(data, status=status.HTTP_200_OK)
 
     @action(methods=['POST'])
