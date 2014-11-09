@@ -16,8 +16,12 @@ angular.module('snotes30App')
     })
   };
 
-  this.getText = function (name, type, download) {
-    return documents.customPOST(null, name + '/text', { 'type': type, 'download': download });
+  this.getText = function (name, type, download, pub) {
+    var params = { 'type': type, 'download': download };
+    if(pub !== undefined && pub.length > 0) {
+      params.pub = pub;
+    }
+    return documents.customPOST(null, name + '/text', params);
   };
 
   this.createFromEpisode = function (episode) {

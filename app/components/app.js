@@ -51,6 +51,12 @@ angular
         controller: 'DocumentReadonlyCtrl',
         resolve: docResvolers
       })
+      .state('document-readonly-pub', {
+        url: '/doc/:name/readonly/:pub/',
+        templateUrl: 'components/document/readonly/document-readonly.html',
+        controller: 'DocumentReadonlyCtrl',
+        resolve: docResvolers
+      })
       .state('document-sighting', {
         url: '/doc/:name/sigh/',
         templateUrl: 'components/document/sighting/document-sighting.html',

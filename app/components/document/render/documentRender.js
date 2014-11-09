@@ -8,6 +8,7 @@ angular.module('snotes30App')
       scope: {
         document: '=',
         showFormats: '@',
+        publication: '=?',
         formatName: '=?'
       },
       templateUrl: '/components/document/render/document-render.html',
@@ -80,7 +81,7 @@ angular.module('snotes30App')
             default:    type = 'json'; break;
           }
 
-          DocumentService.getText($scope.document.name, type, false).then(function (resp) {
+          DocumentService.getText($scope.document.name, type, false, $scope.publication).then(function (resp) {
             var data = resp.data;
 
             if(type == 'json') {
