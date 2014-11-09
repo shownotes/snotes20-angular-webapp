@@ -9,6 +9,7 @@ angular.module('snotes30App')
         document: '=',
         showFormats: '@',
         publication: '=?',
+        refresh: '=?',
         formatName: '=?'
       },
       templateUrl: '/components/document/render/document-render.html',
@@ -92,15 +93,17 @@ angular.module('snotes30App')
           })
         }
 
-        updateText();
-
-        var textUpdateInt = $interval(function () {
+        if($scope.refresh !== false) {
           updateText();
-        }, 1500);
 
-        $scope.$on('$destroy', function () {
-          $interval.cancel(textUpdateInt);
-        });
+          var textUpdateInt = $interval(function () {
+            updateText();
+          }, 1500);
+
+          $scope.$on('$destroy', function () {
+            $interval.cancel(textUpdateInt);
+          });
+        }
       }
     };
   });
