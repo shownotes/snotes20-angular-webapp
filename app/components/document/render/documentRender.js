@@ -93,9 +93,9 @@ angular.module('snotes30App')
           })
         }
 
-        if($scope.refresh !== false) {
-          updateText();
+        updateText();
 
+        if($scope.refresh !== false) {
           var textUpdateInt = $interval(function () {
             updateText();
           }, 1500);
