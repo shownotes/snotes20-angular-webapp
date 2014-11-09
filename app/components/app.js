@@ -76,6 +76,12 @@ angular
         templateUrl: 'components/admin/importstatus/importstatus.html',
         controller: 'ImportStatusCtrl'
       })
+      .state('404', {
+        templateUrl: '404.html'
+      })
+      .state('403', {
+        templateUrl: '403.html'
+      })
       .state('archive', {
         url: '/archive/',
         templateUrl: 'components/archive/archive.html'
@@ -208,12 +214,10 @@ angular
       headers['X-CSRFToken'] = $cookies.csrftoken;
     });
   })
-  .run(function ($rootScope, $location) {
-    $rootScope.$on("$routeChangeError", function(event, current, previous, rejection) {
-      console.log(rejection);
-
-      if(rejection.status && rejection.status == 404) {
-        $location.url('/404');
+  .run(function ($rootScope, $state) {
+    $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
+      if(error.status === 404) {
+        $state.go('404');
       }
     });
   })
