@@ -198,16 +198,26 @@ class DocumentViewSet(viewsets.ViewSet):
 
         type = 'osf'
 
+        source = document
+
         if 'type' in request.QUERY_PARAMS:
             type = request.QUERY_PARAMS['type']
 
+        print(source)
+
+        if 'pub' in request.QUERY_PARAMS:
+            try:
+                source = document.episode.publications.get(pk=request.QUERY_PARAMS['pub'])
+            except models.Publication.DoesNotExist:
+                return Response(None, status=status.HTTP_404_NOT_FOUND)
+
         if type == 'json':
             try:
-                data = document.state.osfdocumentstate.to_dict()
+                data = source.state.osfdocumentstate.to_dict()
             except models.OSFDocumentState.DoesNotExist:
                 raise PermissionDenied()
         elif type == 'raw':
-            data  = document.raw_state.text
+            data  = source.raw_state.text
         elif type == 'osf':
             data = None
         else:
@@ -243,7 +253,6 @@ class DocumentViewSet(viewsets.ViewSet):
             request.DATA['shownoters'] = []
 
             request.DATA['create_date'] = datetime.now()
-            request.DATA['creator'] = request.user.pk
 
             serialized = serializers.PublicationSerializer(data=request.DATA)
 
@@ -256,7 +265,9 @@ class DocumentViewSet(viewsets.ViewSet):
                 raw_state, state = contenttypes.get_state(document)
                 state.save()
 
+                pub.creator = request.user
                 pub.state = state
+                pub.raw_state = raw_state
                 pub.episode = episode
 
                 serialized.save()

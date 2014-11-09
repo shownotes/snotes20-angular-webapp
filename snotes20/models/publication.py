@@ -4,7 +4,7 @@ from django.conf import settings
 from uuidfield import UUIDField
 
 from .podcast import Episode
-from .state import DocumentState
+from .state import DocumentState, TextDocumentState
 
 
 class Podcaster(models.Model):
@@ -16,7 +16,6 @@ class Podcaster(models.Model):
 class PubBase(models.Model):
     id = UUIDField(primary_key=True, auto=True)
     create_date = models.DateTimeField()
-    state = models.ForeignKey(DocumentState)
     preliminary = models.BooleanField(default=False)
     comment = models.CharField(max_length=250,  blank=True, null=True)
 
@@ -29,6 +28,8 @@ class Publication(PubBase):
     episode = models.ForeignKey(Episode, related_name="publications")
     shownoters = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='contributed_publications')
     podcasters = models.ManyToManyField(Podcaster, blank=True, related_name='contributed_publications')
+    state = models.ForeignKey(DocumentState, related_name="+")
+    raw_state = models.ForeignKey(TextDocumentState, related_name="+")
 
 
 class PublicationRequest(PubBase):

@@ -7,11 +7,11 @@ class PublicationSerializer(ModelSerializer):
 
     class Meta:
         model = Publication
-        fields = ('id', 'create_date', 'creator', 'shownoters', 'podcasters', 'preliminary', 'comment')
+        fields = ('id', 'create_date', 'shownoters', 'podcasters', 'preliminary', 'comment')
 
 
 class PublicationRequestSerializer(ModelSerializer):
 
     class Meta:
         model = PublicationRequest
-        fields = ('id', 'create_date', 'creator', 'shownoters', 'podcasters', 'preliminary', 'comment')
+        fields = ('id', 'create_date', 'shownoters', 'podcasters', 'preliminary', 'comment')
