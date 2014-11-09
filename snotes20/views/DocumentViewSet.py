@@ -203,8 +203,6 @@ class DocumentViewSet(viewsets.ViewSet):
         if 'type' in request.QUERY_PARAMS:
             type = request.QUERY_PARAMS['type']
 
-        print(source)
-
         if 'pub' in request.QUERY_PARAMS:
             try:
                 num = int(request.QUERY_PARAMS['pub'])
