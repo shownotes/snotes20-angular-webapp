@@ -31,20 +31,7 @@ angular
       }]
     };
 
-    $urlRouterProvider.otherwise("/");
-
-    $urlRouterProvider.rule(function ($injector, $location) {
-      var path = $location.url();
-
-      if(path === '/') {
-        return;
-      }
-
-      // remove trailing slash
-      if (path[path.length - 1] === '/' || path.indexOf('/?') > -1) {
-        return path.substr(0, path.length - 1);
-      }
-    });
+    $urlRouterProvider.otherwise("/404");
 
     $stateProvider
       .state('livelist', {
@@ -53,107 +40,107 @@ angular
         controller: 'LiveListCtrl'
       })
       .state('document-edit', {
-        url: '/doc/:name',
+        url: '/doc/:name/',
         templateUrl: 'components/document/edit/document-edit.html',
         controller: 'DocumentEditCtrl',
         resolve: docResvolers
       })
       .state('document-readonly', {
-        url: '/doc/:name/readonly',
+        url: '/doc/:name/readonly/',
         templateUrl: 'components/document/readonly/document-readonly.html',
         controller: 'DocumentReadonlyCtrl',
         resolve: docResvolers
       })
       .state('document-sighting', {
-        url: '/doc/:name/sigh', // /doc/bluemoon-2014-11-07-11-15-03/sigh
+        url: '/doc/:name/sigh/',
         templateUrl: 'components/document/sighting/document-sighting.html',
         controller: 'DocumentSightingCtrl',
         resolve: docResvolers
       })
       .state('admin-board', {
-        url: '/admin',
+        url: '/admin/',
         templateUrl: 'components/admin/board/board.html'
       })
       .state('admin-sighting', {
-        url: '/admin/sigh',
+        url: '/admin/sigh/',
         templateUrl: 'components/admin/sighting/sighting.html'
       })
       .state('admin-importstatus', {
-        url: '/admin/importstatus',
+        url: '/admin/importstatus/',
         templateUrl: 'components/admin/importstatus/importstatus.html',
         controller: 'ImportStatusCtrl'
       })
       .state('archive', {
-        url: '/archive',
+        url: '/archive/',
         templateUrl: 'components/archive/archive.html'
       })
       .state('archive-search', {
-        url: '/archive/search',
+        url: '/archive/search/',
         templateUrl: 'components/archive/search.html'
       })
       .state('archive-podcast', {
-        url: '/archive/podcast',
+        url: '/archive/podcast/',
         templateUrl: 'components/archive/podcast.html'
       })
       .state('faq', {
-        url: '/faq',
+        url: '/faq/',
         templateUrl: 'components/static/faq.html'
       })
       .state('rules', {
-        url: '/rules',
+        url: '/rules/',
         templateUrl: 'components/static/rules.html'
       })
       .state('community', {
-        url: '/community',
+        url: '/community/',
         templateUrl: 'components/static/community.html'
       })
       .state('privacy', {
-        url: '/privacy',
+        url: '/privacy/',
         templateUrl: 'components/static/privacy.html'
       })
       .state('donate', {
-        url: '/donate',
+        url: '/donate/',
         templateUrl: 'components/static/donate.html'
       })
       .state('imprint', {
-        url: '/imprint',
+        url: '/imprint/',
         templateUrl: 'components/static/imprint.html'
       })
       .state('styleguide', {
-        url: '/styleguide',
+        url: '/styleguide/',
         templateUrl: 'components/static/imprint.html'
       })
       .state('publicprofile', {
-        url: '/profile/:username',
+        url: '/profile/:username/',
         templateUrl: 'components/publicprofile/publicprofile.html',
         controller: 'PublicProfileCtrl'
       })
       .state('user-profile', {
-        url: '/user/profile',
+        url: '/user/profile/',
         templateUrl: 'components/user/profile/profile.html',
         controller: 'UserProfileCtrl'
       })
       .state('user-upgrade', {
-        url: '/user/upgrade',
+        url: '/user/upgrade/',
         templateUrl: 'components/user/upgrade/upgrade.html',
         controller: 'UserUpgradeCtrl'
       })
       .state('user-registration', {
-        url: '/user/registration',
+        url: '/user/registration/',
         templateUrl: 'components/user/regcomplete/regcomplete.html'
       })
       .state('user-pwreset', {
-        url: '/user/pwreset/:username/:token',
+        url: '/user/pwreset/:username/:token/',
         templateUrl: 'components/user/pwreset/pwreset.html',
         controller: 'UserPwResetCtrl'
       })
       .state('user-activate', {
-        url: '/user/activate/:username/:token',
+        url: '/user/activate/:username/:token/',
         templateUrl: 'components/user/activate/activate.html',
         controller: 'UserActivateCtrl'
       })
       .state('user-confirm-email', {
-        url: '/user/confirm/:username/:token',
+        url: '/user/confirm/:username/:token/',
         templateUrl: 'components/user/activate/activate.html',
         controller: 'UserActivateCtrl'
       });
@@ -218,10 +205,10 @@ angular
   .run(function ($rootScope, $location) {
     $rootScope.$on("$routeChangeError", function(event, current, previous, rejection) {
       console.log(rejection);
-      /*
+
       if(rejection.status && rejection.status == 404) {
         $location.url('/404');
-      }*/
+      }
     });
   })
   .value('cgBusyDefaults',{
