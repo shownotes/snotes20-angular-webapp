@@ -25,9 +25,6 @@ angular
     var docResvolers = {
       'doc': ['DocumentService', '$stateParams', function (DocumentService, $stateParams) {
         return DocumentService.getByName($stateParams.name);
-      }],
-      'docname': ['$stateParams', function ($stateParams) {
-        return $stateParams.name;
       }]
     };
 

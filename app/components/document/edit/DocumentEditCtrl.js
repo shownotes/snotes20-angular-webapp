@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('DocumentEditCtrl', function ($scope, $rootScope, $sce, $state, $interval, doc, docname, DocumentService, docEditChatSocket) {
+  .controller('DocumentEditCtrl', function ($scope, $rootScope, $sce, $state, $interval, doc, DocumentService, docEditChatSocket) {
     $scope.doc = doc;
     $scope.canPublish = false;
 
     function updateDocument() {
-      return DocumentService.getByName(docname).then(function (doc) {
+      return DocumentService.getByName(doc.name).then(function (doc) {
         $scope.doc = doc;
       });
     }
@@ -73,7 +73,7 @@ angular.module('snotes30App')
 
     getChatMsgs();
 
-    docEditChatSocket.emit('JOIN_DOC', docname);
+    docEditChatSocket.emit('JOIN_DOC', doc.name);
 
     docEditChatSocket.on('DOCUMENT_CHATMESSAGE', function (msg) {
         $scope.chatmessages.push(msg);
