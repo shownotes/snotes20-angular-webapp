@@ -18,7 +18,7 @@ angular.module('snotes30App')
 
   this.getText = function (name, type, download, pub) {
     var params = { 'type': type, 'download': download };
-    if(pub !== undefined && pub.length > 0) {
+    if(pub !== undefined && (typeof pub != 'string' || pub.length > 0)) {
       params.pub = pub;
     }
     return documents.customPOST(null, name + '/text', params);

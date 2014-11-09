@@ -10,4 +10,10 @@
 
 </div>
 
+<ul>
+    <li ng-repeat="pub in episode.publications">
+        <a ui-sref="document-readonly-pub({ name: doc.name, pub: $index })">{{pub.create_date | date:'medium'}}</a>
+    </li>
+</ul>
+
 <document-render document="doc" show-formats="true" publication="pub" refresh="pub === undefined"></document-render>
