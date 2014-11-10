@@ -28,6 +28,15 @@ angular
       }]
     };
 
+    var epResolvers = {
+      'doc': ['DocumentService', '$stateParams', function (DocumentService, $stateParams) {
+        var podcast = $stateParams.podcast;
+        var number = $stateParams.number;
+
+        return DocumentService.getByEpisode(podcast, number);
+      }]
+    };
+
     $urlRouterProvider.otherwise("/404/");
 
     $stateProvider
@@ -37,27 +46,27 @@ angular
         controller: 'LiveListCtrl'
       })
       .state('document-edit', {
-        url: '/doc/:name/',
+        url: '/doc/:name/edit/',
         templateUrl: 'components/document/edit/document-edit.html',
         controller: 'DocumentEditCtrl',
-        resolve: docResvolers
-      })
-      .state('document-readonly', {
-        url: '/doc/:name/readonly/',
-        templateUrl: 'components/document/readonly/document-readonly.html',
-        controller: 'DocumentReadonlyCtrl',
-        resolve: docResvolers
-      })
-      .state('document-readonly-pub', {
-        url: '/doc/:name/readonly/:pub/',
-        templateUrl: 'components/document/readonly/document-readonly.html',
-        controller: 'DocumentReadonlyCtrl',
         resolve: docResvolers
       })
       .state('document-sighting', {
         url: '/doc/:name/sigh/',
         templateUrl: 'components/document/sighting/document-sighting.html',
         controller: 'DocumentSightingCtrl',
+        resolve: docResvolers
+      })
+      .state('document-readonly', {
+        url: '/doc/:name/',
+        templateUrl: 'components/document/readonly/document-readonly.html',
+        controller: 'DocumentReadonlyCtrl',
+        resolve: docResvolers
+      })
+      .state('document-readonly-pub', {
+        url: '/doc/:name/:pub/',
+        templateUrl: 'components/document/readonly/document-readonly.html',
+        controller: 'DocumentReadonlyCtrl',
         resolve: docResvolers
       })
       .state('admin-board', {
@@ -162,7 +171,20 @@ angular
         url: '/user/confirm/:username/:token/',
         templateUrl: 'components/user/activate/activate.html',
         controller: 'UserActivateCtrl'
-      });
+      })
+      .state('view-episode', {
+        url: '/:podcast/:number/',
+        templateUrl: 'components/document/readonly/document-readonly.html',
+        controller: 'DocumentReadonlyCtrl',
+        resolve: epResolvers
+      })
+      .state('edit-episode', {
+        url: '/:podcast/:number/edit/',
+        templateUrl: 'components/document/edit/document-edit.html',
+        controller: 'DocumentEditCtrl',
+        resolve: epResolvers
+      })
+       ;
 
     $locationProvider.html5Mode(true);
 

@@ -10,7 +10,8 @@ angular.module('snotes30App')
   };
 
   this.getByEpisode = function (podcast, number) {
-    return documents.customGET('', {
+    return documents.customGET('_', {
+      type: 'byepisode',
       podcast: podcast,
       number: number
     })
