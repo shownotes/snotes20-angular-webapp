@@ -55,7 +55,7 @@
                                id="checkrules"
                                value="checkrules"
                                required />
-                        <label for="checkrules">Ich akzeptiere die <a href="/rules">Regeln</a>.</label>
+                        <label for="checkrules">Ich akzeptiere die <a href="/rules/">Regeln</a>.</label>
                     </div>
                     <div class="pwreset" ng-show="loginform.errors.loginfailed">Hast du dein <a href="#" ng-click="requestPwReset()">Passwort vergessen</a>?</div>
                     <div ng-show="pwresetdone">Überprüfe dein Mail-Postfach.</div>
@@ -66,7 +66,7 @@
                 </form>
                 <form ng-show="$root.currentUser && loginform.status === 'down'" ng-cloak>
                     <div class="form-button">
-                        <a href="/profile/{{$root.currentUser.username}}" ng-click="resetState()">Profil</a>
+                        <a href="/profile/{{$root.currentUser.username}}/" ng-click="resetState()">Profil</a>
                         <input type="button" value="Ausloggen" ng-click="logout()" />
                     </div>
                 </form>
@@ -81,22 +81,22 @@
             <label for="search"><span class="icon-search"></span></label><input type="search" id="search" value="" placeholder="Suche &hellip;" />
         </li>
         <li title="Sendungen">
-            <a href="/archive">
+            <a href="/archive/">
                 <span class="icon-podcast"></span><span class="caption">Sendungen</span>
             </a>
         </li>
         <li title="Häufig gestellte Fragen">
-            <a href="/faq">
+            <a href="/faq/">
                 <span class="icon-info"></span><span class="caption">Häufig gestellte Fragen</span>
             </a>
         </li>
         <li title="Community">
-            <a href="/community">
+            <a href="/community/">
                 <span class="icon-bubbles"></span><span class="caption">Community</span>
             </a>
         </li>
         <li title="Administration">
-            <a href="/admin">
+            <a href="/admin/">
                 <span class="icon-settings"></span><span class="caption">Administration</span>
             </a>
         </li>
