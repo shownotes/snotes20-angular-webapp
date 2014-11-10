@@ -8,7 +8,6 @@ angular.module('snotes30App')
   $scope.publication = {
     episode: doc.episode.id,
     podcasters: doc.meta.podcasters,
-    shownoters: doc.meta.shownoters,
     comment: "",
     preliminary: false
   };
@@ -22,7 +21,6 @@ angular.module('snotes30App')
       $scope.doc = doc;
 
       $scope.publication.podcasters = doc.meta.podcasters;
-      $scope.publication.shownoters = doc.meta.shownoters;
     });
   }
 
