@@ -9,6 +9,6 @@ angular.module('snotes30App')
   };
 
   this.getRecentList = function () {
-    return archive.getList();
+    return archive.getList({type: 'recent'});
   };
 });
