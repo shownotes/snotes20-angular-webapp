@@ -4,6 +4,8 @@ import django.forms as forms
 import django.db.models as dmodels
 from django.core.urlresolvers import reverse
 
+from rules.contrib.admin import ObjectPermissionsModelAdmin
+
 import snotes20.models as models
 from snotes20.reverseadmins import ReverseOneToOneAdmin, ReverseOneToOneAdminForm
 
@@ -21,9 +23,15 @@ class EpisodeInline(admin.TabularInline):
         dmodels.URLField: {'widget': forms.TextInput(attrs={'size': '20'})},
     }
 
+class MumInline(admin.TabularInline):
+    verbose_name = "Mum"
+    verbose_name_plural = "Mums"
+    model = models.Podcast.mums.through
+    extra = 0
+
 @admin.register(models.Podcast)
 class PodcastAdmin(admin.ModelAdmin):
-    inlines = [PodcastSlugInline, EpisodeInline]
+    inlines = [PodcastSlugInline, EpisodeInline, MumInline]
 
     search_fields = ('slugs__slug', 'source_id', 'title', 'url')
     readonly_fields = ('slug',)
