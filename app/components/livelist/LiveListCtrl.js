@@ -25,10 +25,11 @@ angular.module('snotes30App')
 
       if(ep.number || nonumber) {
         var _doc;
+
         DocumentService.createFromEpisode(ep).then(function (doc) {
           _doc = doc;
-          if(!nonumber) {
-            return DocumentService.setNumber(doc, ep.number);
+          if(!nonumber && !ep.number) {
+            return DocumentService.setNumber(doc, $scope.number);
           }
         }).then(function () {
           $scope.openDoc(_doc.name);
