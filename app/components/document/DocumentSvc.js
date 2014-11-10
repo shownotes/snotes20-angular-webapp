@@ -16,6 +16,10 @@ angular.module('snotes30App')
     })
   };
 
+  this.getTodo = function () {
+    return documents.customGET('todo');
+  };
+
   this.getText = function (name, type, download, pub) {
     var params = { 'type': type, 'download': download };
     if(pub !== undefined && (typeof pub != 'string' || pub.length > 0)) {

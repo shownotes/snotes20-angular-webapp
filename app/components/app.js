@@ -66,6 +66,12 @@ angular
       })
       .state('admin-sighting', {
         url: '/admin/sigh/',
+        controller: 'AdminSightingCtrl',
+        resolve: {
+          todos: function (DocumentService) {
+            return DocumentService.getTodo();
+          }
+        },
         templateUrl: 'components/admin/sighting/sighting.html'
       })
       .state('admin-importstatus', {
