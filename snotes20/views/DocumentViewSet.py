@@ -47,8 +47,9 @@ def create_doc_from_episode(request):
 
 def get_doc_impl(document):
     if document is not None:
-        data = serializers.DocumentSerializer(instance=document)
-        return document, Response(data.data)
+        data = serializers.DocumentSerializer(instance=document).data
+        data['episode']['publicationrequests'] = filter(lambda req: req['publication'] == None, data['episode']['publicationrequests'])
+        return document, Response(data)
     else:
         return None, Response(None, status=status.HTTP_404_NOT_FOUND)
 
