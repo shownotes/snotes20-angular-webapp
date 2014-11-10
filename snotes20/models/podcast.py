@@ -61,6 +61,10 @@ class Podcast(Importable):
     def slug(self):
         return str(self.slugs.latest())
 
+    @property
+    def num_episodes(self):
+        return self.episodes.count()
+
 
 class PodcastSlug(models.Model):
     podcast = models.ForeignKey(Podcast, related_name="slugs")
@@ -75,6 +79,7 @@ class PodcastSlug(models.Model):
 
 class Episode(Importable):
     id = UUIDField(primary_key=True, auto=True)
+    title = models.CharField(max_length=200, null=True, blank=True)
     podcast = models.ForeignKey(Podcast, related_name="episodes")
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
     number = models.CharField(max_length=10, null=True, blank=True)
