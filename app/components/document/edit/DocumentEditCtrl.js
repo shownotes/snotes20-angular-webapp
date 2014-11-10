@@ -50,7 +50,7 @@ angular.module('snotes30App')
     };
 
     $scope.requestSighting = function () {
-
+      $scope.doc.customPOST({}, $scope.doc.name + '/publicationrequests').then(updateDocument);
     };
 
     $scope.hasPublications = function () {
