@@ -16,7 +16,6 @@ class Podcaster(models.Model):
 class PubBase(models.Model):
     id = UUIDField(primary_key=True, auto=True)
     create_date = models.DateTimeField()
-    preliminary = models.BooleanField(default=False)
     comment = models.CharField(max_length=250,  blank=True, null=True)
 
     class Meta:
@@ -28,6 +27,7 @@ class Publication(PubBase):
     episode = models.ForeignKey(Episode, related_name="publications")
     shownoters = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='contributed_publications')
     podcasters = models.ManyToManyField(Podcaster, blank=True, related_name='contributed_publications')
+    preliminary = models.BooleanField(default=False)
     state = models.ForeignKey(DocumentState, related_name="+")
     raw_state = models.ForeignKey(TextDocumentState, related_name="+")
 
@@ -35,6 +35,4 @@ class Publication(PubBase):
 class PublicationRequest(PubBase):
     requester = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='requested_publicationrequests')
     episode = models.ForeignKey(Episode, related_name="publicationrequests")
-    shownoters = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='contributed_publicationrequests')
-    podcasters = models.ManyToManyField(Podcaster, blank=True, related_name='contributed_publicationrequests')
     publication = models.ForeignKey(Publication, null=True, blank=True)

@@ -277,6 +277,35 @@ class DocumentViewSet(viewsets.ViewSet):
         elif request.method == 'GET':
             return Response(episode.publications)
 
+    @action(methods=['POST'])
+    def publicationrequests(self, request, pk=None):
+        document = get_object_or_404(models.Document, pk=pk)
+
+        if not hasattr(document, 'episode'):
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        episode = document.episode
+
+        if episode.publicationrequests.filter(publication__isnull=True).count() != 0:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        comment = ""
+
+        if 'comment' in request.DATA:
+            comment = request.DATA['comment']
+
+        request = models.PublicationRequest(episode=episode,
+                                            comment=comment,
+                                            requester=request.user,
+                                            create_date=datetime.now())
+        try:
+            request.clean_fields()
+        except ValidationError:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        request.save()
+
+        return Response(status=status.HTTP_201_CREATED)
 
     @action(methods=['GET'])
     def canpublish(self, request, pk=None):
