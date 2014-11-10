@@ -28,6 +28,12 @@ angular
       }]
     };
 
+    var podcastResolvers = {
+      'podcast': ['PodcastService', '$stateParams', function (PodcastService, $stateParams) {
+        return PodcastService.getBySlug($stateParams.podcast)
+      }]
+    };
+
     var epResolvers = {
       'doc': ['DocumentService', '$stateParams', function (DocumentService, $stateParams) {
         var podcast = $stateParams.podcast;
@@ -100,15 +106,20 @@ angular
       })
       .state('archive', {
         url: '/archive/',
-        templateUrl: 'components/archive/archive.html'
+        templateUrl: 'components/archive/archive/archive.html',
+        controller: 'ArchiveCtrl',
+        resolve: {
+          'recentpodcasts': ['ArchiveService', function (ArchiveService) {
+            return ArchiveService.getRecentList();
+          }],
+          'podcasts': ['ArchiveService', function (ArchiveService) {
+            return ArchiveService.getList();
+          }]
+        }
       })
       .state('archive-search', {
         url: '/archive/search/',
         templateUrl: 'components/archive/search.html'
-      })
-      .state('archive-podcast', {
-        url: '/archive/podcast/',
-        templateUrl: 'components/archive/podcast.html'
       })
       .state('faq', {
         url: '/faq/',
@@ -171,6 +182,11 @@ angular
         url: '/user/confirm/:username/:token/',
         templateUrl: 'components/user/activate/activate.html',
         controller: 'UserActivateCtrl'
+      })
+      .state('archive-podcast', {
+        url: '/:podcast/',
+        templateUrl: 'components/archive/podcast.html',
+        resolve: podcastResolvers
       })
       .state('view-episode', {
         url: '/:podcast/:number/',

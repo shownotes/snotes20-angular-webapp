@@ -1,0 +1,17 @@
+<h2>Sendungen</h2>
+
+<p>In diesem Archiv sind alle Podcasts aufgeführt, für die auf <em>shownot.es</em> bereits Sendungsnotizen erstellt wurden. <a href="#">Wie kommt mein Podcast auf diese Liste?</a></p>
+
+<h3>Kürzlich erstellt für</h3>
+
+<div class="archive">
+    <archivebox ng-repeat="pod in recentpodcasts" pod="pod"></archivebox>
+</div>
+
+<hr />
+
+<h3>Alle Podcasts</h3>
+
+<div class="archive">
+    <archivebox ng-repeat="pod in podcasts" pod="pod"></archivebox>
+</div>
