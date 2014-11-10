@@ -1,0 +1,30 @@
+<div class="cover-header">
+
+	<img src="{{podcast.cover}}" alt="Chaosradio" class="cover" />
+
+	<div>
+		<h2>{{podcast.title}}</h2>
+		<h3>{{filterepisodes.length}} Episoden</h3>
+	</div>
+
+</div>
+
+<p>Durchschnitt: <strong>5 Podcaster</strong> und <strong>4 Shownoter</strong> pro Sendung</p>
+
+<table>
+	<tr>
+		<th>Episode</th>
+		<th>Datum</th>
+		<th>Podcaster</th>
+		<th>Shownoter</th>
+	</tr>
+	<tr ng-repeat="ep in filterepisodes = (podcast.episodes | filter:hasPub())">
+		<td><a href="#">{{ep.number}} <span ng-show="ep.title">- {{ep.title}}</span></a></td>
+		<td>{{ep.date | date:'medium'}}</td>
+		<td>{{getPub(ep).podcasters.length}}</td>
+		<td>{{getPub(ep).shownoters.length}}</td>
+	</tr>
+	<tr ng-hide="filterepisodes.length > 0">
+		<td colspan="4">keine Episoden</td>
+	</tr>
+</table>

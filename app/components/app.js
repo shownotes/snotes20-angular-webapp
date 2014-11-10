@@ -185,8 +185,9 @@ angular
       })
       .state('archive-podcast', {
         url: '/:podcast/',
-        templateUrl: 'components/archive/podcast.html',
-        resolve: podcastResolvers
+        templateUrl: 'components/archive/podcast/podcast.html',
+        resolve: podcastResolvers,
+        controller: 'ArchivePodcastCtrl'
       })
       .state('view-episode', {
         url: '/:podcast/:number/',
