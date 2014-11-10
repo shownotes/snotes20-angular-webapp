@@ -48,7 +48,6 @@ def create_doc_from_episode(request):
 def get_doc_impl(document):
     if document is not None:
         data = serializers.DocumentSerializer(instance=document).data
-        data['episode']['publicationrequests'] = filter(lambda req: req['publication'] == None, data['episode']['publicationrequests'])
         return document, Response(data)
     else:
         return None, Response(None, status=status.HTTP_404_NOT_FOUND)
@@ -274,6 +273,8 @@ class DocumentViewSet(viewsets.ViewSet):
 
                 serialized.save()
 
+                episode.publicationrequests.all().delete()
+
             return Response(status=status.HTTP_201_CREATED)
         elif request.method == 'GET':
             return Response(episode.publications)
@@ -287,7 +288,7 @@ class DocumentViewSet(viewsets.ViewSet):
 
         episode = document.episode
 
-        if episode.publicationrequests.filter(publication__isnull=True).count() != 0:
+        if episode.publicationrequests.count() != 0:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
         comment = ""

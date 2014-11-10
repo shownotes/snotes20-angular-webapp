@@ -35,4 +35,3 @@ class Publication(PubBase):
 class PublicationRequest(PubBase):
     requester = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='requested_publicationrequests')
     episode = models.ForeignKey(Episode, related_name="publicationrequests")
-    publication = models.ForeignKey(Publication, null=True, blank=True)
