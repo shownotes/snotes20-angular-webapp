@@ -291,9 +291,8 @@ class DocumentViewSet(viewsets.ViewSet):
                 return Response(status=status.HTTP_403_FORBIDDEN)
 
             podcasters = request.DATA['podcasters']
-            request.DATA['podcasters'] = []
 
-            shownoters = request.DATA['shownoters']
+            request.DATA['podcasters'] = []
             request.DATA['shownoters'] = []
 
             request.DATA['create_date'] = datetime.now()
@@ -314,7 +313,9 @@ class DocumentViewSet(viewsets.ViewSet):
                 pub.raw_state = raw_state
                 pub.episode = episode
 
-                serialized.save()
+                pub.save()
+
+                pub.shownoters.add(*document.meta.shownoters.all())
 
                 episode.publicationrequests.all().delete()
 
