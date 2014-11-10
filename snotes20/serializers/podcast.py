@@ -1,9 +1,11 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, Field
 
 from snotes20.models import Podcast, Episode
 
 
 class PodcastSerializer(ModelSerializer):
+    slug = Field()
+
     class Meta:
         model = Podcast
         fields = ('id', 'slug', 'creator', 'title', 'description', 'url', 'stream', 'chat',

@@ -13,6 +13,8 @@ router.register(r'soonepisodes', views.SoonEpisodeViewSet, base_name='sonnepisod
 router.register(r'documents', views.DocumentViewSet, base_name='documents')
 router.register(r'importerlogs', views.ImporterLogViewSet, base_name='importerlogs')
 router.register(r'editors', views.EditorViewSet, base_name='editors')
+router.register(r'archive', views.ArchiveViewSet, base_name='archive')
+router.register(r'podcasts', views.PodcastViewSet, base_name='podcasts')
 
 urlpatterns = patterns('',
     url(r'^', include(router.urls)),
