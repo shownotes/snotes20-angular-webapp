@@ -20,8 +20,16 @@
 		<td>{{ ep.podcast.title }}</td>
 		<td>{{ ep.number || 'noch keines' }}</td>
 		<td>
-			<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create(ep)" ng-disabled="!$root.currentUser">
-			<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="openDoc(ep)">
+			<div ng-show="setNumber == ep">
+				Nummer:
+				<input type="text" id="addNumber_{{$index}}" ng-model="ep.number" style="display: inline-block; width: 150px">
+				<input type="button" value="Erstellen" ng-click="create($index)" style="display: inline-block; width: 75px">
+				<input type="button" value="Weiß nicht" ng-click="create($index, true)" style="display: inline-block; width: 100px">
+			</div>
+			<div ng-hide="setNumber == ep">
+				<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create($index)" ng-disabled="!$root.currentUser">
+				<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="openDoc(ep)">
+			</div>
 		</td>
 	</tr>
 	<tr ng-show="episodes.length == 0">

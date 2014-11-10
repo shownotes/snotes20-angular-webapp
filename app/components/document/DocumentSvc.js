@@ -28,6 +28,10 @@ angular.module('snotes30App')
     return documents.post({ episode: episode.id }, { type: 'fromepisode' });
   };
 
+  this.setNumber = function (doc, number) {
+    return doc.customPOST({ number: number }, doc.name + '/number');
+  };
+
   this.addPodcaster = function (doc, podcaster) {
     return doc.customPOST(podcaster, doc.name + '/podcasters');
   };
