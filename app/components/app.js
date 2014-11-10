@@ -83,9 +83,9 @@ angular
         url: '/admin/sigh/',
         controller: 'AdminSightingCtrl',
         resolve: {
-          todos: function (DocumentService) {
+          todos: ['DocumentService', function (DocumentService) {
             return DocumentService.getTodo();
-          }
+          }]
         },
         templateUrl: 'components/admin/sighting/sighting.html'
       })
