@@ -3,12 +3,13 @@ import time
 
 from django.shortcuts import get_object_or_404
 from django.db import transaction
+from django.db.models import Q, Count
 from django.core.validators import ValidationError
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from rest_framework.decorators import action
+from rest_framework.decorators import action, list_route
 
 import snotes20.serializers as serializers
 import snotes20.models as models
@@ -107,6 +108,44 @@ class DocumentViewSet(viewsets.ViewSet):
             document.meta.shownoters.remove(request.user)
 
         return Response(status=status.HTTP_202_ACCEPTED)
+
+    @action(methods=['POST'])
+    def number(self, request, pk=None):
+        document = get_object_or_404(models.Document, pk=pk)
+
+        if not hasattr(document, 'episode'):
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        episode = document.episode
+
+        if episode.number is not None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            episode.number = int(request.DATA['number'])
+            episode.full_clean()
+        except:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        episode.save()
+
+        return Response(status=status.HTTP_202_ACCEPTED)
+
+    @list_route()
+    def todo(self, request):
+        if not request.user.has_perm('snotes20.publish_episode') and not models.Podcast.objects.filter(mums=request.user).exists():
+            raise PermissionDenied()
+
+        qry = models.Document.objects.filter(episode__isnull=False)\
+                                     .annotate(Count('episode__publications'))\
+                                     .annotate(Count('episode__publicationrequests'))\
+                                     .filter(Q(episode__publications__count=0) |
+                                             Q(episode__publicationrequests__count__gt=0))
+
+        return Response({
+            'data': serializers.DocumentSerializer(qry[:15], many=True).data,
+            'count': qry.count()
+        })
 
     @action(methods=['POST', 'DELETE'])
     def shownoters(self, request, pk=None):
