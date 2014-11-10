@@ -142,6 +142,10 @@ class DocumentViewSet(viewsets.ViewSet):
                                      .filter(Q(episode__publications__count=0) |
                                              Q(episode__publicationrequests__count__gt=0))
 
+        if 'search' in request.QUERY_PARAMS:
+            key = request.QUERY_PARAMS['search']
+            qry = qry.filter(episode__podcast__title__contains=key)
+
         return Response({
             'data': serializers.DocumentSerializer(qry[:15], many=True).data,
             'count': qry.count()
