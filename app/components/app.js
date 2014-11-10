@@ -247,6 +247,8 @@ angular
     $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
       if(error.status === 404 || error.status === 403) {
         $state.go(error.status + "");
+      } else {
+        console.log(error);
       }
     });
   })
