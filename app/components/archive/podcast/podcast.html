@@ -1,6 +1,6 @@
 <div class="cover-header">
 
-	<img src="{{podcast.cover}}" alt="Chaosradio" class="cover" />
+	<img src="{{podcast.cover}}" alt="cover" class="cover" />
 
 	<div>
 		<h2>{{podcast.title}}</h2>
@@ -19,7 +19,7 @@
 		<th>Shownoter</th>
 	</tr>
 	<tr ng-repeat="ep in filterepisodes = (podcast.episodes | filter:hasPub())">
-		<td><a href="#">{{ep.number}} <span ng-show="ep.title">- {{ep.title}}</span></a></td>
+		<td><a ui-sref="view-episode({ podcast: podcast.slug, number: ep.number })">{{ep.number}} <span ng-show="ep.title">- {{ep.title}}</span></a></td>
 		<td>{{ep.date | date:'medium'}}</td>
 		<td>{{getPub(ep).podcasters.length}}</td>
 		<td>{{getPub(ep).shownoters.length}}</td>
