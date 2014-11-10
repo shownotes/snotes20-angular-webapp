@@ -223,8 +223,8 @@ angular
   })
   .run(function ($rootScope, $state) {
     $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
-      if(error.status === 404) {
-        $state.go('404');
+      if(error.status === 404 || error.status === 403) {
+        $state.go(error.status + "");
       }
     });
   })
