@@ -11,7 +11,10 @@
 </div>
 
 <ul>
-    <li ng-repeat="pub in episode.publications">
+    <li ng-class="{ active: (pub === undefined) }">
+        <a ui-sref="document-readonly-pub({ name: doc.name, pub: undefined })">live</a>
+    </li>
+    <li ng-repeat="pub in episode.publications" ng-class="{ active: (pub === $index) }">
         <a ui-sref="document-readonly-pub({ name: doc.name, pub: $index })">{{pub.create_date | date:'medium'}}</a>
     </li>
 </ul>
