@@ -28,7 +28,7 @@ angular
       }]
     };
 
-    $urlRouterProvider.otherwise("/404");
+    $urlRouterProvider.otherwise("/404/");
 
     $stateProvider
       .state('livelist', {
@@ -74,6 +74,10 @@ angular
         controller: 'ImportStatusCtrl'
       })
       .state('404', {
+        templateUrl: '404.html'
+      })
+      .state('404u', {
+        url: '/404/',
         templateUrl: '404.html'
       })
       .state('403', {
