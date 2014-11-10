@@ -16,7 +16,13 @@ angular.module('snotes30App')
     }, angular.noop);
 
     $scope.isShownoter = function () {
-      return $scope.doc.meta.shownoters.indexOf($rootScope.currentUser.username) !== -1;
+      for (var i = 0; i < $scope.doc.meta.shownoters.length; i++) {
+        var snoter = $scope.doc.meta.shownoters[i];
+        if(snoter.name == $rootScope.currentUser.username) {
+          return true;
+        }
+      }
+      return false;
     };
 
     $scope.addShownoter = function () {
