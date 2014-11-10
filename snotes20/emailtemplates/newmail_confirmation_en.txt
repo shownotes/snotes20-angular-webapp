@@ -1,6 +1,6 @@
 Hallo {{ username }}!
 
 You have changed your email-address. To confirm this change, please click on the following link:
-{{ siteurl }}/user/confirm/{{ username }}/{{ token }}
+{{ siteurl }}/user/confirm/{{ username }}/{{ token }}/
 
 - shownot.es

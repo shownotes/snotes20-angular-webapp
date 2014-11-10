@@ -1,7 +1,7 @@
 Hello {{ username }}!
 
 You or someone pretending to be you has requested a new password at shownot.es. To change your password, please click the following link:
-{{ siteurl }}/user/pwreset/{{ username }}/{{ token }}
+{{ siteurl }}/user/pwreset/{{ username }}/{{ token }}/
 
 You you did not request this email, you can simply ignore it.
 

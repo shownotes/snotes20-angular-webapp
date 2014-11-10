@@ -1,7 +1,7 @@
 Hello {{ username }}!
 
 To activate your shownot.es account, please click the following link:
-{{ siteurl }}/user/activate/{{ username }}/{{ token }}
+{{ siteurl }}/user/activate/{{ username }}/{{ token }}/
 
 Thank you.
 
