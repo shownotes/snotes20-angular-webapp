@@ -1006,26 +1006,23 @@ nav li > input[type="checkbox"] {
 
 /* Chat */
 .chat {
-	width: 20%;
 	height: 100vh;
+	width: 20%;
+	position: fixed;
+}
+.chatmsgs {
 	overflow-y: scroll;
-	box-shadow: 0 .25em .25em rgba(0,0,0,.8);
 }
 .chat p {
 	font-size: .8em;
 	padding: .25em;
-}
-.chat p:last-of-type {
-	margin-bottom: 5.625em;
+	margin: 0 !important;
 }
 .chat time {
-	float: right;
-	padding: .25em;
 	opacity: .5;
 }
 .chat-input {
 	background-color: #fefefe;
-	box-shadow: 0.5em -0.5em .5em 0.1em rgba(0, 0, 0, 0.3);
 	position: fixed;
 	bottom: 0;
 }
