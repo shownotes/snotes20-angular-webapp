@@ -17,8 +17,8 @@ angular.module('snotes30App')
     })
   };
 
-  this.getTodo = function () {
-    return documents.customGET('todo');
+  this.getTodo = function (search) {
+    return documents.customGET('todo', { search: search });
   };
 
   this.getText = function (name, type, download, pub) {
