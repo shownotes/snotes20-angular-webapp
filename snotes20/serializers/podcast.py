@@ -6,7 +6,8 @@ from snotes20.models import Podcast, Episode
 class EpisodeSerializer(ModelSerializer):
     class Meta:
         model = Episode
-        fields = ('id', 'podcast', 'creator', 'number', 'episode_url', 'date', 'canceled', 'type', 'create_date', 'stream', 'publications', 'publicationrequests')
+        fields = ('id', 'podcast', 'creator', 'number', 'episode_url', 'date', 'canceled', 'type',
+                  'create_date', 'stream', 'publications', 'publicationrequests', 'document')
         depth = 1
 
 
