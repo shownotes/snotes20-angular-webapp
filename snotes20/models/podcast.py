@@ -75,7 +75,7 @@ class PodcastSlug(models.Model):
 
 class Episode(Importable):
     id = UUIDField(primary_key=True, auto=True)
-    podcast = models.ForeignKey(Podcast)
+    podcast = models.ForeignKey(Podcast, related_name="episodes")
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
     number = models.CharField(max_length=10, null=True, blank=True)
     episode_url = models.URLField(verbose_name="Episode URL", null=True, blank=True)
