@@ -5,13 +5,14 @@ angular.module('snotes30App')
   var documents = Restangular.all('documents');
   var editorCache = null;
 
-  this.getByName = function (name) {
-    return documents.get(name);
+  this.getByName = function (name, edit) {
+    return documents.get(name, { edit: edit });
   };
 
-  this.getByEpisode = function (podcast, number) {
+  this.getByEpisode = function (podcast, number, edit) {
     return documents.customGET('_', {
       type: 'byepisode',
+      edit: edit,
       podcast: podcast,
       number: number
     })

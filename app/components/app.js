@@ -22,26 +22,25 @@ angular
     'restangular'
   ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider, CONFIG) {
-    var docResvolers = {
-      'doc': ['DocumentService', '$stateParams', function (DocumentService, $stateParams) {
-        return DocumentService.getByName($stateParams.name);
-      }]
-    };
 
-    var podcastResolvers = {
-      'podcast': ['PodcastService', '$stateParams', function (PodcastService, $stateParams) {
-        return PodcastService.getBySlug($stateParams.podcast)
-      }]
-    };
+    function getDocResolvers (edit) {
+      return {
+        'doc': ['DocumentService', '$stateParams', function (DocumentService, $stateParams) {
+          return DocumentService.getByName($stateParams.name, edit);
+        }]
+      };
+    }
 
-    var epResolvers = {
-      'doc': ['DocumentService', '$stateParams', function (DocumentService, $stateParams) {
-        var podcast = $stateParams.podcast;
-        var number = $stateParams.number;
+    function getEpResolvers (edit) {
+      return {
+        'doc': ['DocumentService', '$stateParams', function (DocumentService, $stateParams) {
+          var podcast = $stateParams.podcast;
+          var number = $stateParams.number;
 
-        return DocumentService.getByEpisode(podcast, number);
-      }]
-    };
+          return DocumentService.getByEpisode(podcast, number, edit);
+        }]
+      };
+    }
 
     $urlRouterProvider.otherwise("/404/");
 
@@ -55,25 +54,25 @@ angular
         url: '/doc/:name/edit/',
         templateUrl: 'components/document/edit/document-edit.html',
         controller: 'DocumentEditCtrl',
-        resolve: docResvolers
+        resolve: getDocResolvers(true)
       })
       .state('document-sighting', {
         url: '/doc/:name/sigh/',
         templateUrl: 'components/document/sighting/document-sighting.html',
         controller: 'DocumentSightingCtrl',
-        resolve: docResvolers
+        resolve: getDocResolvers(false)
       })
       .state('document-readonly', {
         url: '/doc/:name/',
         templateUrl: 'components/document/readonly/document-readonly.html',
         controller: 'DocumentReadonlyCtrl',
-        resolve: docResvolers
+        resolve: getDocResolvers(false)
       })
       .state('document-readonly-pub', {
         url: '/doc/:name/:pub/',
         templateUrl: 'components/document/readonly/document-readonly.html',
         controller: 'DocumentReadonlyCtrl',
-        resolve: docResvolers
+        resolve: getDocResolvers(false)
       })
       .state('admin-board', {
         url: '/admin/',
@@ -186,20 +185,24 @@ angular
       .state('archive-podcast', {
         url: '/:podcast/',
         templateUrl: 'components/archive/podcast/podcast.html',
-        resolve: podcastResolvers,
+        resolve: {
+          'podcast': ['PodcastService', '$stateParams', function (PodcastService, $stateParams) {
+            return PodcastService.getBySlug($stateParams.podcast)
+          }]
+        },
         controller: 'ArchivePodcastCtrl'
       })
       .state('view-episode', {
         url: '/:podcast/:number/',
         templateUrl: 'components/document/readonly/document-readonly.html',
         controller: 'DocumentReadonlyCtrl',
-        resolve: epResolvers
+        resolve: getEpResolvers(false)
       })
       .state('edit-episode', {
         url: '/:podcast/:number/edit/',
         templateUrl: 'components/document/edit/document-edit.html',
         controller: 'DocumentEditCtrl',
-        resolve: epResolvers
+        resolve: getEpResolvers(true)
       })
        ;
 
