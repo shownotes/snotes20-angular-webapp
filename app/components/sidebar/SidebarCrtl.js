@@ -69,7 +69,7 @@ angular.module('snotes30App')
         $scope.user.email,
         $scope.user.password
       ).then(function () {
-        $location.url('/user/registration');
+        $location.url('/user/registration/');
 
         resetState();
         flipFormMode();
