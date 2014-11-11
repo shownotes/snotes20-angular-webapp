@@ -86,7 +86,7 @@ class DocumentViewSet(viewsets.ViewSet):
         else:
             doc, resp = get_doc(request, pk)
 
-        if resp.status_code == 200 and request.user.is_authenticated():
+        if resp.status_code == 200 and request.user.is_authenticated() and 'edit' in request.QUERY_PARAMS:
             editor = editors.EditorFactory.get_editor(doc.editor)
             urlname = editor.get_urlname_for_document(doc)
 
@@ -94,6 +94,11 @@ class DocumentViewSet(viewsets.ViewSet):
 
             session_id = editor.generate_session(doc, request.user)
             resp.set_cookie('sessionID', session_id)
+
+            doc.edit_date = datetime.now()
+
+        doc.access_date = datetime.now()
+        doc.save()
 
         return resp
 

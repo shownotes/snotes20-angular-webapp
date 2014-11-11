@@ -44,6 +44,8 @@ class Document(models.Model):
     raw_state = models.ForeignKey(TextDocumentState, null=True, blank=True, on_delete=models.SET_NULL, related_name="rdocument")
     editor = models.CharField(max_length=3, choices=EDITOR_CHOICES)
     create_date = models.DateTimeField(default=datetime.now)
+    access_date = models.DateTimeField(null=True, blank=True)
+    edit_date = models.DateTimeField(null=True, blank=True)
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
     meta = models.OneToOneField(DocumentMeta, related_name='document', null=True, blank=True, on_delete=models.CASCADE)
     type = models.CharField(max_length=3, choices=CONTENTTYPE_CHOICES, default=CONTENTTYPE_OSF)
