@@ -67,7 +67,7 @@ module.exports = function (grunt) {
         tasks: ['wiredep']
       },
       js: {
-        files: ['<%= yeoman.app %>/components/{,*/}*.js'],
+        files: ['<%= yeoman.app %>/components/**/*.js'],
         tasks: ['newer:jshint:all'],
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -90,7 +90,7 @@ module.exports = function (grunt) {
         },
         files: [
           '<%= yeoman.app %>/*.html',
-          '<%= yeoman.app %>/components/{,*/}*.html',
+          '<%= yeoman.app %>/components/**/*.html',
           '.tmp/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
@@ -241,7 +241,7 @@ module.exports = function (grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
-      html: ['<%= yeoman.app %>/*.html', '<%= yeoman.app %>/components/{,*/}*.html'],
+      html: ['<%= yeoman.app %>/*.html', '<%= yeoman.app %>/components/**/*.html'],
       options: {
         dest: '<%= yeoman.dist %>',
         flow: {
@@ -258,7 +258,7 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/*.html', '<%= yeoman.dist %>/components/{,*/}*.html'],
+      html: ['<%= yeoman.dist %>/*.html', '<%= yeoman.dist %>/components/**/*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
         assetsDirs: ['<%= yeoman.dist %>','<%= yeoman.dist %>/images']
@@ -378,7 +378,7 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '.htaccess',
             '*.html',
-            'components/{,*/}*.html',
+            'components/**/*.html',
             'images/{,*/}*.{webp}',
             'fonts/**/*'
           ]
