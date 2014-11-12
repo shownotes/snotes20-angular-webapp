@@ -462,13 +462,13 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'nunjucks:osftemplates',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
     'concat',
     'ngmin',
-    'nunjucks:osftemplates',
     'copy:dist',
     'cdnify',
     'cssmin',
