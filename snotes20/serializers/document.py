@@ -1,7 +1,7 @@
-from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField
+from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField, Field
 
 from snotes20.models import Document, DocumentMeta, ChatMessage, ChatMessageIssuer, CHAT_MSG_ISSUER_USER
-from snotes20.serializers import EpisodeSerializer, PublicationSerializer
+from snotes20.serializers import EpisodeSerializer, PodcastSerializer
 
 
 class DocumentMetaSerializer(ModelSerializer):
@@ -28,8 +28,13 @@ class DocumentMetaSerializer(ModelSerializer):
         depth = 1
 
 
+class SubEpisodeSerializer(EpisodeSerializer):
+    class Meta(EpisodeSerializer.Meta):
+        fields = list(set(EpisodeSerializer.Meta.fields) - {'document',})
+
+
 class DocumentSerializer(ModelSerializer):
-    episode = EpisodeSerializer()
+    episode = SubEpisodeSerializer()
     meta = DocumentMetaSerializer()
     urlname = Field()
 

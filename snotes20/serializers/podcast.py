@@ -38,5 +38,5 @@ class SubEpisodeSerializer(BaseEpisodeSerializer):
     class Meta(BaseEpisodeSerializer.Meta):
         fields = list(set(BaseEpisodeSerializer.Meta.fields) - {'podcast',})
 
-class PodcastSerializer(ModelSerializer):
+class PodcastSerializer(BasePodcastSerializer):
     episodes = SubEpisodeSerializer(many=True)
