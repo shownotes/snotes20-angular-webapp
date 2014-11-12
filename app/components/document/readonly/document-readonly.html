@@ -1,6 +1,8 @@
 <div class="cover-header">
 
-	<a href="#"><img src="http://shownot.es/img/logos/cr_logo.png" alt="Chaosradio" class="cover" /></a>
+	<a ui-sref="archive-podcast({ podcast: episode.podcast.slug })">
+		<media-image alt="cover" class="cover" path="episode.cover.file"></media-image>
+    </a>
 
 	<div>
 		<h2>{{episode.podcast.title}} {{episode.number}}</h2>
