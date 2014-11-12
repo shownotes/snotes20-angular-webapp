@@ -138,6 +138,9 @@ def import_from_source(source):
             exc_type, exc_value, exc_traceback = sys.exc_info()
             jobLog.error = "".join(traceback.format_exception(exc_type, exc_value, exc_traceback))
 
+            print("Job failed.")
+            print(jobLog.error)
+
         jobLog.stop()
         jobLogs.append(jobLog)
 
