@@ -37,7 +37,7 @@ class PodcastAdmin(admin.ModelAdmin):
     readonly_fields = ('slug',)
     fieldsets = (
         (None, {
-            'fields': ('slug', 'title', 'description', 'url', 'type')
+            'fields': ('slug', 'title', 'description', 'url', 'type', 'cover')
         }),
         ('Live', {
             'fields': ('stream', 'chat')
@@ -74,7 +74,7 @@ class EpisodeAdmin(admin.ModelAdmin):
     inlines = (PublicationInline,)
     fieldsets = (
         (None, {
-            'fields': ('podcast', 'number', 'type', 'episode_url')
+            'fields': ('podcast', 'number', 'type', 'episode_url', 'cover')
         }),
         ('Live', {
             'fields': (('date', 'canceled'), 'stream', 'document')
@@ -239,4 +239,9 @@ class ImporterLogAdmin(admin.ModelAdmin):
     fields = ('runtime', ('starttime', 'endtime'))
     readonly_fields = ('runtime',)
     inlines = [ImporterDatasourceLogInline]
+
+
+@admin.register(models.Cover)
+class CoverAdmin(admin.ModelAdmin):
+    fields = ('creator', 'create_date', 'file')
 

@@ -11,3 +11,6 @@ db.sqlite3-journal
 
 # settings
 shownotes/local_settings.py
+
+# user files
+media

@@ -5,6 +5,7 @@ from django.conf import settings
 
 from uuidfield import UUIDField
 
+from .cover import Cover
 from .document import Document
 
 
@@ -41,6 +42,7 @@ class Podcast(Importable):
     id = UUIDField(primary_key=True, auto=True)
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
     title = models.CharField(max_length=150)
+    cover = models.ForeignKey(Cover, related_name="podcasts", null=True, blank=True)
     description = models.TextField()
     url = models.URLField()
     stream = models.CharField(max_length=100, null=True, blank=True)
@@ -81,6 +83,7 @@ class Episode(Importable):
     id = UUIDField(primary_key=True, auto=True)
     title = models.CharField(max_length=200, null=True, blank=True)
     podcast = models.ForeignKey(Podcast, related_name="episodes")
+    cover = models.ForeignKey(Cover, related_name="episodes", null=True, blank=True)
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
     number = models.CharField(max_length=10, null=True, blank=True)
     episode_url = models.URLField(verbose_name="Episode URL", null=True, blank=True)

@@ -170,6 +170,8 @@ STATIC_URL = '/static/'
 # custom user model
 AUTH_USER_MODEL = 'snotes20.NUser'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # import deployment settings form local_settings.py
 try:
     from .local_settings import *
