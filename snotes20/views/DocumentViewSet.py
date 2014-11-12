@@ -88,10 +88,6 @@ class DocumentViewSet(viewsets.ViewSet):
 
         if resp.status_code == 200 and request.user.is_authenticated() and 'edit' in request.QUERY_PARAMS:
             editor = editors.EditorFactory.get_editor(doc.editor)
-            urlname = editor.get_urlname_for_document(doc)
-
-            resp.data['urlname'] = urlname
-
             session_id = editor.generate_session(doc, request.user)
             resp.set_cookie('sessionID', session_id)
 

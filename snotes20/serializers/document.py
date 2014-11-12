@@ -31,10 +31,11 @@ class DocumentMetaSerializer(ModelSerializer):
 class DocumentSerializer(ModelSerializer):
     episode = EpisodeSerializer()
     meta = DocumentMetaSerializer()
+    urlname = Field()
 
     class Meta:
         model = Document
-        fields = ('name', 'editor', 'create_date', 'episode', 'meta')
+        fields = ('name', 'editor', 'create_date', 'episode', 'meta', 'urlname')
 
 
 class ChatMessageIssuerSerializer(ModelSerializer):

@@ -9,6 +9,7 @@ from django.db.models.signals import post_delete
 from uuidfield import UUIDField
 
 from .state import DocumentState, TextDocumentState
+import snotes20.editors as editors
 
 EDITOR_ETHERPAD  = 'EP'
 
@@ -50,6 +51,11 @@ class Document(models.Model):
     meta = models.OneToOneField(DocumentMeta, related_name='document', null=True, blank=True, on_delete=models.CASCADE)
     type = models.CharField(max_length=3, choices=CONTENTTYPE_CHOICES, default=CONTENTTYPE_OSF)
     access_time = models.DateTimeField(null=True, blank=True)
+
+    def urlname(self):
+        editor = editors.EditorFactory.get_editor(self.editor)
+        urlname = editor.get_urlname_for_document(self)
+        return urlname
 
     def __str__(self):
         try:
