@@ -61,7 +61,9 @@ angular.module('snotes30App')
   };
 
   $scope.setEpisodeNumber = function () {
-    DocumentService.setNumber(doc, $scope.epnumber);
+    DocumentService.setNumber(doc, $scope.epnumber).then(function () {
+      $scope.episode.number = $scope.epnumber;
+    })
   };
 
   $scope.publish = function () {
