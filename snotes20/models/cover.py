@@ -10,10 +10,16 @@ from django.utils.image import Image
 
 from uuidfield import UUIDField
 
+valid_exts = ('jpg', 'jpeg', 'png',)
+
 
 # http://stackoverflow.com/a/15141228/2486196
 def f(instance, filename):
     ext = filename.split('.')[-1]
+
+    if ext not in valid_exts:
+        raise Exception('invalid extension')
+
     return 'covers/{}.{}'.format(str(uuid.uuid4()), ext)
 
 
