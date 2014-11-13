@@ -31,6 +31,9 @@ class PodcastViewSet(viewsets.ViewSet):
 
         ep_covers = models.Cover.objects.filter(episodes__podcast=podcast).distinct()
 
+        if len(covers) > 0:
+            ep_covers = ep_covers.exclude(id=covers[0].id)
+
         covers.extend(ep_covers)
 
         data = serializers.CoverSerializer(covers, many=True).data
