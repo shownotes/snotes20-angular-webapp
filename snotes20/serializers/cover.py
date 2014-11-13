@@ -7,4 +7,4 @@ class CoverSerializer(ModelSerializer):
 
     class Meta:
         model = Cover
-        fields = ('file', 'create_date')
+        fields = ('id', 'file', 'create_date')
