@@ -76,7 +76,10 @@
 		<p>
 			Die letzten Episodennummern in diesem Podcast waren: <b>133</b>, <b>51</b> und <b>61</b>.
 		</p>
-		<input ng-model="epnumber" type="text" />
+		<div class="input-group">
+			<input ng-model="epnumber" type="text" />
+			<input type="submit" value="Setzen" ng-click="setEpisodeNumber()" />
+		</div>
 	</div>
 
 	<div class="box-wrapper">

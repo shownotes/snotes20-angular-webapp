@@ -60,6 +60,10 @@ angular.module('snotes30App')
     return DocumentService.delPodcaster(doc, podcaster).then(updateDocument);
   };
 
+  $scope.setEpisodeNumber = function () {
+    DocumentService.setNumber(doc, $scope.epnumber);
+  };
+
   $scope.publish = function () {
     if($scope.selectedCover === $scope.newCoverUrl) {
       $scope.publication.cover = {
