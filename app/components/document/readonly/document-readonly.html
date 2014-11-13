@@ -1,7 +1,7 @@
 <div class="cover-header">
 
 	<a ui-sref="archive-podcast({ podcast: episode.podcast.slug })">
-		<media-image alt="cover" class="cover" path="episode.cover.file"></media-image>
+		<media-image alt="cover" class="cover" path="episode.cover.file || episode.podcast.cover.file"></media-image>
     </a>
 
 	<div>
