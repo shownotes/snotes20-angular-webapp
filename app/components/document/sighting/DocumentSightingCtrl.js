@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('snotes30App')
-.controller('DocumentSightingCtrl', function ($scope, $rootScope, $q, doc, covers, DocumentService) {
+.controller('DocumentSightingCtrl', function ($scope, $rootScope, $q, $state, doc, covers, DocumentService) {
   $scope.doc = doc;
   $scope.covers = covers;
   $scope.selectedCover = $scope.covers[0];
@@ -74,6 +74,14 @@ angular.module('snotes30App')
       $scope.publication.cover = $scope.selectedCover;
     }
 
-    DocumentService.publish(doc, $scope.publication);
+    DocumentService.publish(doc, $scope.publication).then(function () {
+      $state.go('view-episode-pub', {
+        podcast: $scope.episode.podcast.slug,
+        number: $scope.episode.number,
+        pub: $scope.episode.publications.length
+      });
+    }, function () {
+      $scope.pubFailed = true;
+    });
   }
 });
