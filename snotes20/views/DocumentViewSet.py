@@ -292,11 +292,12 @@ class DocumentViewSet(viewsets.ViewSet):
                 return Response(status=status.HTTP_403_FORBIDDEN)
 
             podcasters = request.DATA['podcasters']
-            cover = request.DATA['cover']
-
-            del request.DATA['cover']
             request.DATA['podcasters'] = []
-            request.DATA['shownoters'] = []
+
+            cover = None
+            if 'cover' in request.DATA:
+                cover = request.DATA['cover']
+                del request.DATA['cover']
 
             request.DATA['create_date'] = datetime.now()
 
@@ -311,13 +312,14 @@ class DocumentViewSet(viewsets.ViewSet):
                 raw_state, state = contenttypes.get_state(document)
                 state.save()
 
-                if cover['id'] == 'new':
-                    cover = models.Cover.from_url(request.user, cover['file'])
-                else:
-                    cover = models.Cover.objects.get(pk=cover['id'])
+                if cover is not None:
+                    if cover['id'] == 'new':
+                        cover = models.Cover.from_url(request.user, cover['file'])
+                    else:
+                        cover = models.Cover.objects.get(pk=cover['id'])
 
-                episode.cover = cover
-                episode.save()
+                    episode.cover = cover
+                    episode.save()
 
                 pub.creator = request.user
                 pub.state = state
