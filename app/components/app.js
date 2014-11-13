@@ -214,6 +214,12 @@ angular
         controller: 'DocumentEditCtrl',
         resolve: getEpResolvers(true)
       })
+      .state('view-episode-pub', {
+        url: '/:podcast/:number/:pub/',
+        templateUrl: 'components/document/readonly/document-readonly.html',
+        controller: 'DocumentReadonlyCtrl',
+        resolve: getEpResolvers(false)
+      })
        ;
 
     $locationProvider.html5Mode(true);
