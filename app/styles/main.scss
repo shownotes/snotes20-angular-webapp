@@ -1053,6 +1053,10 @@ img.cover {
 	cursor: pointer;
 	position: relative;
 }
+.coverlist span img {
+	width: 150px;
+	height: 150px;
+}
 .coverlist span:after {
 	content: ' ';
 	color: transparent;

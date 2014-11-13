@@ -31,6 +31,16 @@ angular
       };
     }
 
+    function getSighResolvers() {
+      var res = getDocResolvers(false);
+
+      res['covers'] = ['PodcastService', 'doc', function (PodcastService, doc) {
+        return PodcastService.getCovers(doc.episode.podcast);
+      }];
+
+      return res;
+    }
+
     function getEpResolvers (edit) {
       return {
         'doc': ['DocumentService', '$stateParams', function (DocumentService, $stateParams) {
@@ -60,7 +70,7 @@ angular
         url: '/doc/:name/sigh/',
         templateUrl: 'components/document/sighting/document-sighting.html',
         controller: 'DocumentSightingCtrl',
-        resolve: getDocResolvers(false)
+        resolve: getSighResolvers()
       })
       .state('document-readonly', {
         url: '/doc/:name/',
@@ -187,7 +197,7 @@ angular
         templateUrl: 'components/archive/podcast/podcast.html',
         resolve: {
           'podcast': ['PodcastService', '$stateParams', function (PodcastService, $stateParams) {
-            return PodcastService.getBySlug($stateParams.podcast)
+            return PodcastService.getBySlug($stateParams.podcast);
           }]
         },
         controller: 'ArchivePodcastCtrl'

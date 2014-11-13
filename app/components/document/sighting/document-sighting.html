@@ -37,23 +37,15 @@
 	<h3>Cover auswählen</h3>
 
 	<div class="coverlist">
-		<span class="active">
-			<img src="http://shownot.es/img/logos/cr_logo.png" alt="" class="cover" />
+		<span ng-repeat="cover in covers"
+			  ng-class="{ active: ($parent.selectedCover.id == cover.id) }"
+			  ng-click="$parent.selectedCover.id = cover.id">
+			<media-image path="cover.file"></media-image>
 		</span>
-		<span>
-			<img src="http://shownot.es/img/logos/cr_logo.png" alt="" class="cover" />
-		</span>
-		<span>
-			<img src="http://shownot.es/img/logos/cr_logo.png" alt="" class="cover" />
-		</span>
-		<span>
-			<img src="http://shownot.es/img/logos/cr_logo.png" alt="" class="cover" />
-		</span>
-		<span>
-			<img src="http://shownot.es/img/logos/cr_logo.png" alt="" class="cover" />
-		</span>
-		<span>
-			<img src="http://shownot.es/img/logos/cr_logo.png" alt="" class="cover" />
+		<span ng-class="{ active: (selectedCover == newCoverUrl) }"
+			  ng-click="selectedCover = newCoverUrl"
+			  ng-show="newCoverUrl">
+			<img src="{{newCoverUrl}}"/>
 		</span>
 	</div>
 
@@ -61,14 +53,16 @@
 
 	<h3>Cover einbinden</h3>
 
+	<!--
 	<form class="form-wrapper">
 		<input type="file" name="coverupload" accept="image/*" />
 	</form>
 
 	<p>oder</p>
+	-->
 
 	<form>
-		<input type="text" id="coverurl" placeholder="Cover-URL eingeben" />
+		<input type="text" id="coverurl" ng-model="newCoverUrl" placeholder="Cover-URL eingeben" />
 	</form>
 
 	<p><strong>Wichtig:</strong> Vor dem Hochladen bitte entsprechende Erlaubnis einholen. Ein Cover sollte mindestens 150 &times; 150 Pixel groß (und quadratisch) sein.</p>

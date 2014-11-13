@@ -7,4 +7,8 @@ angular.module('snotes30App')
   this.getBySlug = function (slug) {
     return podcasts.get(slug);
   };
+
+  this.getCovers = function (podcast) {
+    return podcasts.customGET((podcast.slug || podcast) + '/covers');
+  }
 });

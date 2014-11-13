@@ -1,9 +1,16 @@
 'use strict';
 
 angular.module('snotes30App')
-.controller('DocumentSightingCtrl', function ($scope, $rootScope, $q, doc, DocumentService) {
+.controller('DocumentSightingCtrl', function ($scope, $rootScope, $q, doc, covers, DocumentService) {
   $scope.doc = doc;
+  $scope.covers = covers;
+  $scope.selectedCover = $scope.covers[0];
+  $scope.newCoverUrl = "";
   $scope.episode = doc.episode;
+
+  if(doc.episode.cover) {
+    $scope.selectedCover = doc.episode.cover;
+  }
 
   $scope.publication = {
     episode: doc.episode.id,
@@ -54,6 +61,15 @@ angular.module('snotes30App')
   };
 
   $scope.publish = function () {
+    if($scope.selectedCover === $scope.newCoverUrl) {
+      $scope.publication.cover = {
+        id: 'new',
+        file: $scope.selectedCover
+      };
+    } else {
+      $scope.publication.cover = $scope.selectedCover;
+    }
+
     DocumentService.publish(doc, $scope.publication);
   }
 });
