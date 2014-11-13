@@ -1,3 +1,4 @@
+from io import BytesIO
 import uuid
 import urllib.request
 from datetime import datetime
@@ -47,12 +48,18 @@ class Cover(models.Model):
             if 'content-length' not in response.headers or int(response.headers['content-length']) > 1000000:
                 return None
 
-            img_temp = NamedTemporaryFile(delete=True)
-            img_temp.write(response.read())
-            img_temp.flush()
+            data = response.read()
 
-            Image.open(img_temp.name).verify()
-            Image.open(img_temp.name).resize((100, 100), Image.ANTIALIAS)
+            Image.open(BytesIO(data)).verify()
+
+            img = Image.open(BytesIO(data))
+            img = img.resize((150, 150), Image.ANTIALIAS)
+
+            img_temp = NamedTemporaryFile(delete=True)
+            ext = url.split('.')[-1].upper()
+            if ext == 'JPG':
+                ext = 'JPEG'
+            img.save(img_temp, format=ext)
 
             cover.file.save(f(None, url), File(img_temp), save=True)
 
