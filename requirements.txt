@@ -9,5 +9,6 @@ osf
 rabbitpy
 etherpad_lite
 rules
+pillow
 Django==1.7.1
 
