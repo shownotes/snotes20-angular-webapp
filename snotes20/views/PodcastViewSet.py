@@ -25,7 +25,8 @@ class PodcastViewSet(viewsets.ViewSet):
         covers = []
 
         try:
-            covers.append(podcast.cover)
+            if podcast.cover is not None:
+                covers.append(podcast.cover)
         except models.Cover.DoesNotExist:
             pass
 
