@@ -25,12 +25,18 @@ class HoersuppeDataSource(AbstractDataSource):
             else:
                 type = models.TYPE_PODCAST
 
+            cover = models.Cover.from_url(None, data.imageurl)
+
+            if not cover:
+                logger.debug("could not get cover for %s", pod.slug)
+
             yield ((
                 models.Podcast(
                     creator=None,
                     title=data.title,
                     description=data.description,
                     url=data.url,
+                    cover=cover,
                     stream=None,
                     chat=data.chat_url,
                     type=type,

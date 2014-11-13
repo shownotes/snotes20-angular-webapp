@@ -27,7 +27,7 @@ class Cover(models.Model):
     id = UUIDField(primary_key=True, auto=True)
     file = models.ImageField(upload_to=f)
     original_url = models.URLField()
-    creator = models.ForeignKey(settings.AUTH_USER_MODEL)
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
     create_date = models.DateTimeField()
 
     @staticmethod
