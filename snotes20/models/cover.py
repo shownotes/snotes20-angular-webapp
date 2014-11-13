@@ -44,7 +44,7 @@ class Cover(models.Model):
 
             response = urllib.request.urlopen(url)
 
-            if 'content-length' not in response.headers or int(response.headers['content-length']) > 100000:
+            if 'content-length' not in response.headers or int(response.headers['content-length']) > 1000000:
                 return None
 
             img_temp = NamedTemporaryFile(delete=True)
@@ -52,6 +52,7 @@ class Cover(models.Model):
             img_temp.flush()
 
             Image.open(img_temp.name).verify()
+            Image.open(img_temp.name).resize((100, 100), Image.ANTIALIAS)
 
             cover.file.save(f(None, url), File(img_temp), save=True)
 
