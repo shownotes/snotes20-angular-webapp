@@ -12,6 +12,8 @@ $ python manage.py migrate
 $ python manage.py createsuperuser
 ```
 
+In addition, you will need a postgresql-server.
+
 ## Settings
 Create a `./shownotes/local_settings.py`-file and put something like the following in it.
 ```
@@ -34,6 +36,20 @@ EDITORS = {
     }
 }
 
+# Database settings
+# https://docs.djangoproject.com/en/dev/ref/databases/
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '5432',
+    }
+}
+
 SITEURL = "http://localhost:9000"
 
 DEFAULT_FROM_EMAIL = 'noreply@localhost'
@@ -53,13 +69,6 @@ To start the development server at http://127.0.0.1:8000/ execute:
 ```
 $ . venv/bin/activate
 $ python manage.py runserver
-```
-
-## reset db
-To delete all data and apply a new db-version execute:
-```
-$ rm db.sqlite3
-$ python manage.py migrate
 ```
 
 ## email

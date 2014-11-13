@@ -3,7 +3,7 @@ from datetime import datetime
 from django.db import models
 from django.conf import settings
 
-from uuidfield import UUIDField
+from django_extensions.db.fields import PostgreSQLUUIDField
 
 from .cover import Cover
 from .document import Document
@@ -39,7 +39,7 @@ TYPE_CHOICES = (
 
 
 class Podcast(Importable):
-    id = UUIDField(primary_key=True, auto=True)
+    id = PostgreSQLUUIDField(primary_key=True, auto=True)
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
     title = models.CharField(max_length=150)
     cover = models.ForeignKey(Cover, related_name="podcasts", null=True, blank=True)
@@ -80,7 +80,7 @@ class PodcastSlug(models.Model):
         get_latest_by = 'date_added'
 
 class Episode(Importable):
-    id = UUIDField(primary_key=True, auto=True)
+    id = PostgreSQLUUIDField(primary_key=True, auto=True)
     title = models.CharField(max_length=200, null=True, blank=True)
     podcast = models.ForeignKey(Podcast, related_name="episodes")
     cover = models.ForeignKey(Cover, related_name="episodes", null=True, blank=True)

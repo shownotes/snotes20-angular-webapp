@@ -3,7 +3,6 @@ from django.db.models.signals import post_save
 
 from rest_framework.renderers import JSONRenderer
 
-from uuidfield.fields import StringUUID
 from uuid import UUID
 
 import rabbitpy.simple as rbbit
@@ -46,7 +45,7 @@ def handle_create(sender, instance, created, **kwargs):
     if cfg['type'] == 'full':
         body = cfg['serializer'](instance).data
     else:
-        if isinstance(instance.pk, UUID) or isinstance(instance.pk, StringUUID):
+        if isinstance(instance.pk, UUID):
             pk = str(instance.pk)
         else:
             pk = instance.pk

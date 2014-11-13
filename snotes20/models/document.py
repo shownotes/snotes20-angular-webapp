@@ -6,7 +6,7 @@ from django.dispatch import receiver
 from django.core.validators import MinLengthValidator
 from django.db.models.signals import post_delete
 
-from uuidfield import UUIDField
+from django_extensions.db.fields import PostgreSQLUUIDField
 
 from .state import DocumentState, TextDocumentState
 import snotes20.editors as editors
@@ -27,7 +27,7 @@ CONTENTTYPE_CHOICES = (
 
 
 class DocumentMeta(models.Model):
-    id = UUIDField(primary_key=True, auto=True)
+    id = PostgreSQLUUIDField(primary_key=True, auto=True)
     shownoters = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
 
     def __str__(self):
@@ -83,7 +83,7 @@ class ChatMessageIssuer(models.Model):
 
 
 class ChatMessage(models.Model):
-    id = UUIDField(primary_key=True, auto=True)
+    id = PostgreSQLUUIDField(primary_key=True, auto=True)
     order = models.BigIntegerField()
     document = models.ForeignKey(Document, related_name='messages')
     issuer = models.OneToOneField(ChatMessageIssuer)

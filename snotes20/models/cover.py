@@ -9,7 +9,7 @@ from django.core.files import File
 from django.core.files.temp import NamedTemporaryFile
 from django.utils.image import Image
 
-from uuidfield import UUIDField
+from django_extensions.db.fields import PostgreSQLUUIDField
 
 valid_exts = ('jpg', 'jpeg', 'png',)
 
@@ -25,7 +25,7 @@ def f(instance, filename):
 
 
 class Cover(models.Model):
-    id = UUIDField(primary_key=True, auto=True)
+    id = PostgreSQLUUIDField(primary_key=True, auto=True)
     file = models.ImageField(upload_to=f)
     original_url = models.URLField()
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)

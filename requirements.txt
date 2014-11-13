@@ -3,7 +3,8 @@ django-cors-headers
 markdown
 django-filter
 hoerapi
-https://github.com/luto/django-uuidfield/archive/python3.zip
+django-extensions
+psycopg2
 osf
 rabbitpy
 etherpad_lite

@@ -1,20 +1,20 @@
 from django.db import models
 from django.conf import settings
 
-from uuidfield import UUIDField
+from django_extensions.db.fields import PostgreSQLUUIDField
 
 from .podcast import Episode
 from .state import DocumentState, TextDocumentState
 
 
 class Podcaster(models.Model):
-    id = UUIDField(primary_key=True, auto=True)
+    id = PostgreSQLUUIDField(primary_key=True, auto=True)
     uri = models.URLField(unique=True, db_index=True)
     name = models.CharField(max_length=30)
 
 
 class PubBase(models.Model):
-    id = UUIDField(primary_key=True, auto=True)
+    id = PostgreSQLUUIDField(primary_key=True, auto=True)
     create_date = models.DateTimeField()
     comment = models.CharField(max_length=250,  blank=True, null=True)
 
