@@ -94,7 +94,7 @@ class DocumentViewSet(viewsets.ViewSet):
             doc.edit_date = datetime.now()
 
         doc.access_date = datetime.now()
-        doc.save()
+        doc.save(update_fields=['edit_date', 'access_date'])
 
         return resp
 
