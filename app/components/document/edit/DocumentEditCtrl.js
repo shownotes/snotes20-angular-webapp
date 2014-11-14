@@ -83,5 +83,16 @@ angular.module('snotes30App')
 
     docEditChatSocket.on('DOCUMENT_CHATMESSAGE', function (msg) {
         $scope.chatmessages.push(msg);
-    })
+    });
+
+    var heightUpdateInt = $interval(function () {
+      var bodyHeight = angular.element(window).height();
+      var $editor = angular.element('.editor');
+      var offset = Math.ceil($editor.offset()['top']) + 3;
+      $editor.css('height', bodyHeight - offset);
+    }, 50);
+
+    $scope.$on('$destroy', function () {
+      $interval.cancel(heightUpdateInt);
+    });
 });
