@@ -19,7 +19,7 @@ class OSFDocumentState(DocumentState):
         if not notes:
             notes = self.shownotes
 
-        for note in notes.all():
+        for note in notes.all().order_by('order'):
             me = note.to_dict(level)
             me['shownotes'] = self.get_shownotes_list(notes=note.shownotes, level=level + 1)
             root.append(me)
