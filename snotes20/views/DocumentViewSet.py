@@ -275,7 +275,8 @@ class DocumentViewSet(viewsets.ViewSet):
     def errors(self, request, pk=None):
         document = get_object_or_404(models.Document, pk=pk)
         errors = document.state.errors.all()
-        return Response(serializers.DocumentStateErrorSerializer(errors).data, status=status.HTTP_200_OK)
+        data = serializers.DocumentStateErrorSerializer(errors, many=True).data
+        return Response(data, status=status.HTTP_200_OK)
 
 
     @action(methods=['POST', 'GET'])
