@@ -2,6 +2,7 @@
 
 angular.module('snotes30App')
   .controller('UserPwResetCtrl', function ($scope, $stateParams, Restangular, actionStatusGlueService) {
+    $scope.username = $stateParams.username;
 
     $scope.sendPwReset = function () {
       var data = {
