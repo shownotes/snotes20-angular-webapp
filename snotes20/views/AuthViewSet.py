@@ -25,7 +25,7 @@ class AuthViewSet(viewsets.ViewSet):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                user.login_time = datetime.now()
+                user.date_login = datetime.now()
                 user.save()
                 return Response(data={'migrated': user.migrated}, status=200)
             else:
