@@ -145,7 +145,7 @@ class DocumentViewSet(viewsets.ViewSet):
 
         if 'search' in request.QUERY_PARAMS:
             key = request.QUERY_PARAMS['search']
-            qry = qry.filter(episode__podcast__title__contains=key)
+            qry = qry.filter(episode__podcast__title__icontains=key)
 
         return Response({
             'data': serializers.DocumentSerializer(qry[:15], many=True).data,
