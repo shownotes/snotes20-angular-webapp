@@ -87,7 +87,7 @@ class Episode(Importable):
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
     number = models.CharField(max_length=10, null=True, blank=True)
     episode_url = models.URLField(verbose_name="Episode URL", null=True, blank=True)
-    date = models.DateTimeField()
+    date = models.DateTimeField(null=True, blank=True)
     canceled = models.BooleanField(default=False)
     type = models.CharField(max_length=100, choices=TYPE_CHOICES)
     create_date = models.DateTimeField(default=datetime.now)

@@ -43,8 +43,8 @@ class OSFNote(models.Model):
     state = models.ForeignKey(OSFDocumentState, related_name="shownotes")
     parent = models.ForeignKey('self', related_name="shownotes", null=True, blank=True)
     order = models.IntegerField()
-    timestamp = models.PositiveIntegerField(null=True)
-    title = models.CharField(max_length=300)
+    timestamp = models.BigIntegerField(null=True)
+    title = models.CharField(max_length=1000)
     url = models.URLField(null=True)
     tags = models.ManyToManyField(OSFTag, related_name="notes")
 
