@@ -9,11 +9,13 @@
 <table>
 	<tr>
 		<th>Podcast</th>
+		<th>Nummer</th>
 		<th>Datum</th>
 		<th>Status</th>
 	</tr>
 	<tr ng-repeat="doc in todos">
 		<td><a ui-sref="document-sighting({ name: doc.name })">{{doc.episode.podcast.title}}</a></td>
+		<td>{{doc.episode.number}}</td>
 		<td>{{doc.episode.date | date:'medium'}}</td>
 		<td>
 			<span class="statuslabel" ng-show="doc.episode.publications.length == 0">Unveröffentlicht</span>
