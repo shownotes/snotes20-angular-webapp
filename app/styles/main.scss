@@ -348,6 +348,9 @@ th {
 table tr:not(:first-child):hover {
 	background-color: #eee;
 }
+table tr:not(:first-child):hover input[type='text'] {
+	background-color: #fefefe;
+}
 table .statuslabel {
 	font-size: 1em;
 }
@@ -506,7 +509,7 @@ a:active {
 
 /* Body */
 body {
-	background: #fefefe url('../images/background.png') bottom right no-repeat fixed;
+	background: #fefefe;
 	color: #111;
 }
 
@@ -724,8 +727,9 @@ nav li > input[type="checkbox"] {
 .content h3 {
 	margin-bottom: 1em;
 }
+.content h4+ul,
 .content h4+p,
-.content p+p {
+.content p+p, {
 	margin-top: -1em;
 }
 .content h2 span {
@@ -815,11 +819,33 @@ nav li > input[type="checkbox"] {
 .padlist tr.past {
 	color: #666;
 }
-.padlist input[type="button"] {
+.padlist div:not(.number-wrapper) input[type="button"] {
 	min-width: 6em;
 }
 .padlist td.nopodcasts {
   text-align: left;
+}
+.number-wrapper {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row;
+	flex-direction: row;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+.number-wrapper input[type='text'] {
+	width: 100%;
+	margin-bottom: .5em;
+}
+.number-wrapper input[type='button'] {
+	width: 47.5%;
+}
+.number-wrapper input[type='button']:last-child {
+	margin-left: 5%;
 }
 .load {
 	max-width: 15em;
@@ -911,14 +937,14 @@ nav li > input[type="checkbox"] {
 }
 .namelist {
   span.delete {
-    color: #40a662;
-    font-weight: bold;
-    text-decoration: none;
-    cursor: pointer;
+	color: #40a662;
+	font-weight: bold;
+	text-decoration: none;
+	cursor: pointer;
   }
 
   > span:not(.empty):not(:last-child)::after {
-    content: ',\20'
+	content: ',\20'
   }
 }
 .document-header,

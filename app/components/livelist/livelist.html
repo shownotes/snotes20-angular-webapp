@@ -20,15 +20,14 @@
 		<td>{{ ep.podcast.title }}</td>
 		<td>{{ ep.number || 'noch keines' }}</td>
 		<td>
-			<div ng-show="setNumber == ep">
-				Nummer:
-				<input type="text" id="addNumber_{{$index}}" ng-model="newDoc.number" style="display: inline-block; width: 150px">
-				<input type="button" value="Erstellen" ng-click="create($index)" style="display: inline-block; width: 75px">
-				<input type="button" value="Weiß nicht" ng-click="create($index, true)" style="display: inline-block; width: 100px">
+			<div ng-show="setNumber == ep" class="number-wrapper">
+				<input type="text" placeholder="Nummer" id="addNumber_{{$index}}" ng-model="newDoc.number" />
+				<input type="button" value="Erstellen" ng-click="create($index)" />
+				<input type="button" value="Später" ng-click="create($index, true)" />
 			</div>
 			<div ng-hide="setNumber == ep">
-				<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create($index)" ng-disabled="!$root.currentUser">
-				<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="openDoc(ep)">
+				<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create($index)" ng-disabled="!$root.currentUser" />
+				<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="openDoc(ep)" />
 			</div>
 		</td>
 	</tr>
@@ -39,7 +38,7 @@
 	</tr>
 </table>
 
-<p>Die meisten dieser Termine stammen aus dem <a href="http://hoersuppe.de/kalender/">Hörsuppe-Kalender</a>.</p>
+<p>Die meisten dieser Termine stammen aus dem <a href="http://hoersuppe.de/kalender/">Hörsuppe-Kalender</a>. &hearts;</p>
 
 <footer>
 
