@@ -309,8 +309,10 @@ class DocumentViewSet(viewsets.ViewSet):
 
             pub = serialized.object
 
+            prepped = contenttypes.prep_state(document)
+
             with transaction.atomic():
-                raw_state, state = contenttypes.get_state(document)
+                raw_state, state = contenttypes.get_state(prepped)
                 state.save()
 
                 if cover is not None:

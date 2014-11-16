@@ -14,6 +14,8 @@ logger = logging.getLogger(__name__)
 
 
 def update_document(doc):
+    prepped = contenttypes.prep_state(doc)
+
     with transaction.atomic():
         try:
             doc.state.delete()
@@ -21,7 +23,7 @@ def update_document(doc):
         except:
             pass
 
-        raw_state, state = contenttypes.get_state(doc)
+        raw_state, state = contenttypes.get_state(prepped)
 
         doc.raw_state = raw_state
         doc.state = state
