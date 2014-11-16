@@ -19,6 +19,8 @@ module.exports = function (grunt) {
     // based on http://stackoverflow.com/a/20553608/2486196
     var middlewares = [];
 
+    middlewares.push(require('grunt-connect-proxy/lib/utils').proxyRequest)
+
     // enable Angular's HTML5 mode
     middlewares.push(function (req, res, next) {
       var exists = false;
@@ -113,7 +115,22 @@ module.exports = function (grunt) {
             '.tmp',
             '<%= yeoman.app %>'
           ]
-        }
+        },
+        proxies: [
+          {
+            context: '/api',
+            host: 'new.shownot.es',
+            port: 80,
+            https: false,
+            xforward: false,
+            headers: {
+              "host": "new.shownot.es"
+            }
+            /*rewrite: {
+              '^/': '/api'
+            }*/
+          }
+        ]
       },
       test: {
         options: {
@@ -445,6 +462,7 @@ module.exports = function (grunt) {
       'copy:fonts',
       'nunjucks:osftemplates',
       'wiredep',
+      'configureProxies:livereload',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
