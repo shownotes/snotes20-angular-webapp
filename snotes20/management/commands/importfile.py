@@ -46,6 +46,24 @@ class Command(BaseCommand):
             db_pod.slugs.add(db_slug)
             db_pod.save()
 
+        for slug in config['add_slugs']:
+            if  models.PodcastSlug.objects.all().filter(slug=slug['added']).exists():
+                print('skipping slug: ' + slug['added'])
+                continue
+
+            try:
+                db_pod = models.Podcast.objects.get(slugs__slug=slug['existing'])
+            except models.Podcast.DoesNotExist:
+                print('couldn\'t add slug: ' + slug['added'] + ' podcast not found')
+                continue
+
+            db_slug = models.PodcastSlug(slug=slug['added'], podcast=db_pod)
+            db_slug.save()
+
+            db_pod.slugs.add(db_slug)
+            db_pod.save()
+
+
         with open(config['csv_file']) as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             next(reader, None)
