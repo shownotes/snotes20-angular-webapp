@@ -15,13 +15,14 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
-  function connectAngularMiddleware (connect, options) {
-    // based on http://stackoverflow.com/a/20553608/2486196
+  function connectMiddlewares (connect, options) {
     var middlewares = [];
 
-    middlewares.push(require('grunt-connect-proxy/lib/utils').proxyRequest)
+    // enable API proxy
+    middlewares.push(require('grunt-connect-proxy/lib/utils').proxyRequest);
 
     // enable Angular's HTML5 mode
+    // based on http://stackoverflow.com/a/20553608/2486196
     middlewares.push(function (req, res, next) {
       var exists = false;
       var file = req.url.split('?')[0];
@@ -105,7 +106,7 @@ module.exports = function (grunt) {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: 'localhost',
-        middleware: connectAngularMiddleware,
+        middleware: connectMiddlewares,
         livereload: 35729
       },
       livereload: {
@@ -126,9 +127,6 @@ module.exports = function (grunt) {
             headers: {
               "host": "new.shownot.es"
             }
-            /*rewrite: {
-              '^/': '/api'
-            }*/
           }
         ]
       },
