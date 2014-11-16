@@ -58,7 +58,7 @@ class Command(BaseCommand):
                 number = row[3]
                 is_deleted = (row[4] == 'x')
                 is_podcast = not (row[5] == 'x')
-                is_private = (row[5] == 'x')
+                is_private = (row[6] == 'x')
 
                 with open(full_file, 'r') as ff:
                     file_content = ff.read()
