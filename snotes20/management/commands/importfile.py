@@ -54,11 +54,15 @@ class Command(BaseCommand):
                 file = row[0]
                 pad_name = file.split('.')[0]
                 full_file = config['data_dir'] + "/" + file
+
                 pod = row[2]
                 number = row[3]
+
                 is_deleted = (row[4] == 'x')
                 is_podcast = not (row[5] == 'x')
                 is_private = (row[6] == 'x')
+
+                hoerid = row[7]
 
                 with open(full_file, 'r') as ff:
                     file_content = ff.read()
@@ -131,6 +135,11 @@ class Command(BaseCommand):
                     db_ep.podcast = db_pod
                     db_ep.document = db_doc
                     db_ep.number = number
+
+                    if len(hoerid) > 0:
+                        db_ep.source = models.SOURCE_HOERSUPPE
+                        db_ep.source_id = hoerid
+
                     db_ep.save()
 
                 print('ok')
