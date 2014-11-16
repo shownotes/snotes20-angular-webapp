@@ -19,7 +19,7 @@ SOURCE_CHOICES = (
 
 
 class Importable(models.Model):
-    source = models.CharField(max_length=100, choices=SOURCE_CHOICES, db_index=True)
+    source = models.CharField(max_length=100, default=SOURCE_INTERNAL, choices=SOURCE_CHOICES, db_index=True)
     source_id = models.IntegerField(null=True, blank=True, verbose_name="ID at source", db_index=True)
     import_date = models.DateTimeField(null=True, blank=True)
 
