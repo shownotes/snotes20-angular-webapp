@@ -1,0 +1,40 @@
+<h2><q>{{searchterm}}</q></h2>
+<h3>Suchergebnisse</h3>
+
+<hr>
+
+<p ng-show="results.length == 0">
+    Es wurde leider nichts gefunden.. :(
+</p>
+
+<div class="result" ng-repeat="res in results">
+    <h4>
+        <a ui-sref="view-episode-pub({ podcast: res.episode.podcast.slug, number: res.episode.number, pub: 'newest' })">
+            {{res.episode.podcast.title}} {{res.episode.number}}
+        </a>
+        <br />
+        shownot.es/{{res.episode.podcast.slug}}/{{res.episode.number}}
+    </h4>
+    <p>
+        {{res.note.title}}
+        <a ng-if="res.note.url" href="{{res.note.url}}">{{res.note.url}}</a>
+    </p>
+</div>
+
+<!--
+<div class="result">
+	<h4>
+		<a href="#">Häufig gestellte Fragen</a><br />
+		shownot.es/faq
+	</h4>
+	<p>&hellip; ipsum <span class="highlight">dolor sit amet</span>, consetetur sadipscing &hellip;</p>
+</div>
+
+<div class="result">
+	<h4>
+		<a href="#">Community</a><br />
+		shownot.es/community
+	</h4>
+	<p>&hellip; ipsum <span class="highlight">dolor sit amet</span>, consetetur sadipscing &hellip;</p>
+</div>
+-->

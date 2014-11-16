@@ -11,4 +11,8 @@ angular.module('snotes30App')
   this.getRecentList = function () {
     return archive.getList({type: 'recent'});
   };
+
+  this.search = function (words) {
+    return archive.customPOST({words: words}, 'search');
+  }
 });

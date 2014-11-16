@@ -127,8 +127,9 @@ angular
         }
       })
       .state('archive-search', {
-        url: '/archive/search/',
-        templateUrl: 'components/archive/search.html'
+        url: '/archive/search/?q',
+        templateUrl: 'components/archive/search/search.html',
+        controller: 'ArchiveSearchCtrl'
       })
       .state('faq', {
         url: '/faq/',
