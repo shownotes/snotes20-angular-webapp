@@ -53,8 +53,8 @@
                     <div class="form-input">
                         <p>Ich akzeptiere die <a href="/rules/">Regeln</a>.</p>
                     </div>
-                    <div class="pwreset" ng-show="loginform.errors.loginfailed">Hast du dein <a href="#" ng-click="requestPwReset()">Passwort vergessen</a>?</div>
-                    <div ng-show="pwresetdone">Überprüfe dein Mail-Postfach.</div>
+                    <p class="pwreset" ng-show="loginform.errors.loginfailed">Hast du dein <a href="#" ng-click="requestPwReset()">Passwort vergessen</a>?</p>
+                    <p ng-show="pwresetdone">Überprüfe dein E-Mail-Postfach.</p>
                     <div class="form-button">
                         <input type="{{loginform.mode === 'register' ? 'button' : 'submit'}}" value="Einloggen" ng-click="login()" />
                         <input type="{{loginform.mode === 'login' ? 'button' : 'submit'}}" value="Registrieren" ng-click="register()" />
