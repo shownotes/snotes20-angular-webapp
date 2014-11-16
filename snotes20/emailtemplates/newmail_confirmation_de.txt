@@ -1,6 +1,10 @@
 Hallo {{ username }}!
 
-Du hast die Änderung deiner E-Mail-Adresse beantragt. Um diese durchzuführen, klicke bitte auf folgenden Link:
+Du hast die Änderung deiner E-Mail-Adresse beantragt.
+
+Um diese durchzuführen, klicke bitte auf folgenden Link:
 {{ siteurl }}/user/confirm/{{ username }}/{{ token }}/
 
-- shownot.es
+--
+Viele Grüße
+Dein shownot.es-Team
