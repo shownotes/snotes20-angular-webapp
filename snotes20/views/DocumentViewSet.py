@@ -80,7 +80,9 @@ class DocumentViewSet(viewsets.ViewSet):
 
     def retrieve(self, request, pk=None):
         type = request.QUERY_PARAMS.get('type')
-        mode = 'edit' if 'edit' in request.QUERY_PARAMS else 'view'
+        mode = 'view'
+        if 'edit' in request.QUERY_PARAMS and request.QUERY_PARAMS['edit'] == 'true':
+            mode = 'edit'
 
         if type == 'byepisode':
             doc, resp = get_doc_by_episode(request)
