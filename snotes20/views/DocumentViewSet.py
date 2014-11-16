@@ -256,13 +256,18 @@ class DocumentViewSet(viewsets.ViewSet):
             type = request.QUERY_PARAMS['type']
 
         if 'pub' in request.QUERY_PARAMS:
-            try:
-                num = int(request.QUERY_PARAMS['pub'])
-                source = document.episode.publications.order_by('create_date')[num:num + 1][0]
-            except IndexError:
-                return Response(status=status.HTTP_404_NOT_FOUND)
-            except ValueError:
-                return Response(status=status.HTTP_400_BAD_REQUEST)
+            pub = request.QUERY_PARAMS['pub']
+
+            if pub == 'newest':
+                source = document.episode.publications.order_by('create_date')[:1][0]
+            else:
+                try:
+                    num = int(pub)
+                    source = document.episode.publications.order_by('create_date')[num:num + 1][0]
+                except IndexError:
+                    return Response(status=status.HTTP_404_NOT_FOUND)
+                except ValueError:
+                    return Response(status=status.HTTP_400_BAD_REQUEST)
 
         if type == 'json':
             try:
