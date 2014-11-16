@@ -1,8 +1,10 @@
 from django.conf import settings
-from django.db.models import Max
+from django.db.models import Max, Q
+from django.views.decorators.csrf import csrf_exempt
 
 from rest_framework import viewsets
 from rest_framework.response import Response
+from rest_framework.decorators import action, list_route
 
 import snotes20.models as models
 import snotes20.serializers as serializers
@@ -31,5 +33,23 @@ class ArchiveViewSet(viewsets.ViewSet):
             qry = models.Podcast.objects.filter(episodes__publications__isnull=False).distinct('id')
 
         data = serializers.PodcastSerializer(qry, many=True).data
+
+        return Response(data)
+
+    @list_route(methods=['POST'])
+    def search(self, request):
+        words = request.DATA['words']
+        lines = models.OSFNote.objects.filter(Q(title__icontains=words) or Q(url__icontains=words))\
+                                      .filter(state__publication__isnull=False)\
+                                      .distinct('state__publication__episode')
+
+        lines = lines[:15]
+
+        data = [
+            {
+                'note': serializers.OSFNoteSerializer(line).data,
+                'episode': serializers.EpisodeSerializer(line.state.publication.episode).data,
+            } for line in lines
+        ]
 
         return Response(data)
