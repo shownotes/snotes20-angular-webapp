@@ -28,8 +28,8 @@ class Publication(PubBase):
     shownoters = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='contributed_publications')
     podcasters = models.ManyToManyField(Podcaster, blank=True, related_name='contributed_publications')
     preliminary = models.BooleanField(default=False)
-    state = models.ForeignKey(DocumentState, related_name="+")
-    raw_state = models.ForeignKey(TextDocumentState, related_name="+")
+    state = models.OneToOneField(DocumentState, related_name="publication")
+    raw_state = models.OneToOneField(TextDocumentState, related_name="publication_raw")
 
 
 class PublicationRequest(PubBase):
