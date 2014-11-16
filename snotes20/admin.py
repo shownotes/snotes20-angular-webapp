@@ -125,6 +125,7 @@ class DocumentAdminForm(ReverseOneToOneAdminForm):
 
     class Meta:
         model = models.Document
+        exclude = ('state', 'raw_state')
 
 @admin.register(models.Document)
 class DocumentAdmin(ReverseOneToOneAdmin):
