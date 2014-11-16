@@ -49,6 +49,24 @@
 
 	<div class="chat">
 
+		<div class="userlist">
+			<h3><span class="icon-users"></span> Jetzt online: 3</h3>
+			<ul>
+				<li>
+					<a href="/profile/luto" class="statuslabel" style="background-color: #ffc;" title="Mitglied, online">luto</a>
+					<span class="icon-close ban" title="Mitglied sperren"></span>
+				</li>
+				<li>
+					<a href="/profile/laengerername" class="statuslabel" style="background-color: #fcc;" title="Mitglied, online">laengerername</a>
+					<span class="icon-close ban" title="Mitglied sperren"></span>
+				</li>
+				<li>
+					<a href="/profile/kai" class="statuslabel inactive" style="background-color: #fcc;" title="Mitglied, nicht online">kai</a>
+					<span class="icon-close ban" title="Mitglied sperren"></span>
+				</li>
+			</ul>
+		</div>
+
 		<div class="chatmsgs">
 			<p ng-repeat="msg in chatmessages" style="background-color: #{{msg.issuer.color}}">
 				<time>{{msg.date | date: 'shortTime'}}</time>
