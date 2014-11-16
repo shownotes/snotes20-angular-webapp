@@ -31,7 +31,10 @@ class DocumentMeta(models.Model):
     shownoters = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
 
     def __str__(self):
-        return "Meta for " + self.document.__str__()
+        try:
+            return "Meta for " + self.document.__str__()
+        except:
+            return "Meta without document?"
 
 
 class RawPodcaster(models.Model):
