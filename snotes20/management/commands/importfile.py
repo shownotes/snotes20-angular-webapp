@@ -16,6 +16,44 @@ import snotes20.contenttypes as contenttypes
 logger = logging.getLogger(__name__)
 
 
+"""
+config file:
+
+{
+    "csv_file": "path to csv file",
+    "data_dir": "path to txt file directory",
+    "exluded_podcasts": [
+        "podcast slug to ignore",
+    ],
+    "exclude": {
+        "deleted": true,
+        "nopodcast": true,
+        "private": true
+    },
+     "add_slugs": [
+        {
+            "existing": "slug to search",
+            "added": "slug to add to found podcast"
+        }
+    ],
+    "add_podcasts": [
+        {
+            "slug": "",
+            "title": "",
+            "description": "",
+            "url": "",
+            "type": "POD"
+        }
+    ]
+}
+
+csv file:
+filename,,podcast-slug,number,delete,no-podcast,private,hoerid
+"""
+
+
+
+
 class Command(BaseCommand):
     args = ''
     help = ''
