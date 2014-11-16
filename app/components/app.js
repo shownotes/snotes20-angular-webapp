@@ -281,6 +281,13 @@ angular
   })
   .run(function ($rootScope, $state) {
     $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
+      if(error.status === 403) {
+        if(toState.name == "document-edit") {
+          $state.go("document-readonly", toParams);
+          return;
+        }
+      }
+
       if(error.status === 404 || error.status === 403) {
         $state.go(error.status + "");
       } else {
