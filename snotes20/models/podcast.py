@@ -54,14 +54,14 @@ class Podcast(Importable):
     mums = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="mum_podcasts")
 
     def __str__(self):
-        try:
-            return "Podcast {} ({})".format(self.title, self.slug)
-        except models.ObjectDoesNotExist:
-            return "Podcast no slug!"
+        return "Podcast {} ({})".format(self.title, self.slug)
 
     @property
     def slug(self):
-        return str(self.slugs.latest())
+        try:
+            return str(self.slugs.latest())
+        except PodcastSlug.DoesNotExist:
+            return None
 
     @property
     def num_episodes(self):
