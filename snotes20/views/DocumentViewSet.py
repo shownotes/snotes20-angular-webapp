@@ -80,11 +80,17 @@ class DocumentViewSet(viewsets.ViewSet):
 
     def retrieve(self, request, pk=None):
         type = request.QUERY_PARAMS.get('type')
+        mode = 'edit' if 'edit' in request.QUERY_PARAMS else 'view'
 
         if type == 'byepisode':
             doc, resp = get_doc_by_episode(request)
         else:
             doc, resp = get_doc(request, pk)
+
+        if mode == 'edit' and not request.user.has_perm('o_edit_document', doc):
+            raise PermissionDenied()
+        elif mode == 'view' and not request.user.has_perm('o_view_document', doc):
+            raise PermissionDenied()
 
         if resp.status_code == 200 and request.user.is_authenticated() and 'edit' in request.QUERY_PARAMS:
             editor = editors.EditorFactory.get_editor(doc.editor)
