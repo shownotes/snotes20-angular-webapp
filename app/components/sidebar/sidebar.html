@@ -50,12 +50,8 @@
                                value=""
                                title="Wiederhole dein Passwort" />
                     </div>
-                    <div class="form-check" ng-show="loginform.mode == 'register'">
-                        <input type="checkbox"
-                               id="checkrules"
-                               value="checkrules"
-                               required />
-                        <label for="checkrules">Ich akzeptiere die <a href="/rules/">Regeln</a>.</label>
+                    <div class="form-input">
+                        <p>Ich akzeptiere die <a href="/rules/">Regeln</a>.</p>
                     </div>
                     <div class="pwreset" ng-show="loginform.errors.loginfailed">Hast du dein <a href="#" ng-click="requestPwReset()">Passwort vergessen</a>?</div>
                     <div ng-show="pwresetdone">Überprüfe dein Mail-Postfach.</div>
