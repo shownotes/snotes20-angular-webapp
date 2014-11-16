@@ -18,7 +18,7 @@ valid_exts = ('jpg', 'jpeg', 'png',)
 def f(instance, filename):
     ext = filename.split('.')[-1]
 
-    if ext not in valid_exts:
+    if ext.lower() not in valid_exts:
         raise Exception('invalid extension')
 
     return 'covers/{}.{}'.format(str(uuid.uuid4()), ext)
