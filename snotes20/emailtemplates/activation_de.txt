@@ -1,8 +1,11 @@
 Hallo {{ username }}!
 
-Um dein Shownot.es-Konto zu aktivieren, klicke bitte auf folgenden Link:
+Jemand mit deiner E-Mail-Adresse hat ein Konto auf shownot.es registriert.
+
+Wenn das Konto aktivieren möchtest, klicke bitte auf folgenden Link:
 {{ siteurl }}/user/activate/{{ username }}/{{ token }}/
 
-Danke!
+Andernfalls kannst du diese E-Mail einfach ignorieren.
 
-- shownot.es
+Viele Grüße
+Dein shownot.es-Team
