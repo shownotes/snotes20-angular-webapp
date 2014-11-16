@@ -4,7 +4,10 @@
 
 	<div>
 		<h2>{{podcast.title}}</h2>
-		<h3>{{filterepisodes.length}} Episoden</h3>
+		<h3>{{filterepisodes.length}}
+            <span ng-if="filterepisodes.length == 1">Episode</span>
+            <span ng-if="filterepisodes.length != 1">Episoden</span>
+        </h3>
 	</div>
 
 </div>
