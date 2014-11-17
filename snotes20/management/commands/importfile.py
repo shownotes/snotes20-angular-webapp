@@ -66,6 +66,7 @@ class Command(BaseCommand):
 
         config = json.load(open(args[0], 'r'))
 
+        existingmode = config['options']['existingmode']
         nameprefix = config['options']['nameprefix']
 
         for pod in config['add_podcasts']:
@@ -177,6 +178,18 @@ class Command(BaseCommand):
 
                     try:
                         db_doc = models.Document.objects.get(name=doc_name)
+
+                        if existingmode == 'skip':
+                            print('skip (existing)')
+                            continue
+                        elif existingmode == 'delete':
+                            db_doc.remove()
+                            raise models.Document.DoesNotExist()
+                        elif existingmode == 'update':
+                            pass
+                        else:
+                            print('unknown existingmode')
+                            return
                     except models.Document.DoesNotExist:
                         db_doc = models.Document()
 
