@@ -52,6 +52,16 @@ filename,,podcast-slug,number,delete,no-podcast,private,hoerid
 """
 
 
+def clean_people_list(str):
+    str = str.replace(' und ', ', ').replace(' and ', ', ')
+    for i in str.split(','):
+        i = i.strip()
+
+        if len(i) > 0:
+            if '(@' in i:
+                i = i.replace('(@', '<@').replace(')', '>')
+            yield i
+
 
 
 class Command(BaseCommand):
@@ -139,6 +149,12 @@ class Command(BaseCommand):
                     print("[!] cannot load file")
                     continue
 
+                # cleanup common header mistakes
+                file_content = file_content.replace('\n>\n', '>\n')
+                file_content = file_content.replace('Chatlogs <http', 'Chatlogs: <http')
+                file_content = file_content.replace('Sendungsseite <http', 'Sendungsseite: <http')
+                file_content = file_content.replace('Stream <http', 'Stream: <http')
+
                 file_lines = [line.rstrip('\r') for line in file_content.split('\n')]
 
                 print("[+] file loaded got " + str(len(file_lines)) + " lines")
@@ -159,10 +175,20 @@ class Command(BaseCommand):
                 header, parse_lines = osf.parse_lines(file_lines)
                 osf_lines = osf.objectify_lines(parse_lines)
 
-                status = 'broken' if any(isinstance(line, modgrammar.ParseError) for line in osf_lines) else 'ok'
+                if header is not None:
+                    podcasters = list(clean_people_list(header.kv.get('podcaster', '')))
 
-                print(status)
+                    if 'shownoter' in header.kv:
+                        shownoters = list(clean_people_list(header.kv.get('shownoter', '')))
+                    elif 'zusammengetragen von' in header.kv:
+                        shownoters = list(clean_people_list(header.kv.get('zusammengetragen von', '')))
+                    else:
+                        shownoters = []
+                else:
+                    podcasters = []
+                    shownoters = []
 
+                print('[+] parsed, got ' + str(len(podcasters)) + ' podcasters, ' + str(len(shownoters)) + ' shownoters')
 
                 try:
                     db_pod = models.Podcast.objects.get(slugs__slug=pod)
@@ -193,6 +219,18 @@ class Command(BaseCommand):
                     except models.Document.DoesNotExist:
                         db_doc = models.Document()
                         db_meta = models.DocumentMeta()
+
+                    db_meta.save()
+
+                    for pod in podcasters:
+                        db_podcaster = models.RawPodcaster(name=pod)
+                        db_podcaster.meta = db_meta
+                        db_podcaster.save()
+
+                    for noter in shownoters:
+                        db_noter = models.Shownoter(name=noter)
+                        db_noter.save()
+                        db_meta.shownoters.add(db_noter)
 
                     db_meta.save()
 
