@@ -66,6 +66,8 @@ class Command(BaseCommand):
 
         config = json.load(open(args[0], 'r'))
 
+        nameprefix = config['options']['nameprefix']
+
         for pod in config['add_podcasts']:
             if  models.PodcastSlug.objects.all().filter(slug=pod['slug']).exists():
                 print('skipping podcast: ' + pod['slug'])
@@ -178,7 +180,7 @@ class Command(BaseCommand):
                     except models.Document.DoesNotExist:
                         db_doc = models.Document()
 
-                    db_doc.name = "pp_" + pad_name
+                    db_doc.name = nameprefix + pad_name
                     db_doc.editor = models.EDITOR_ETHERPAD
                     db_doc.meta = meta
                     db_doc.save()
