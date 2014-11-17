@@ -16,12 +16,21 @@ class PodcastSlugInline(admin.TabularInline):
 class EpisodeInline(admin.TabularInline):
     model = models.Episode
     extra = 0
-    fields = ('date', 'number', 'episode_url', 'type', 'document')
+    fields = ('date', 'number', 'episode_url', 'type', 'document', 'object_link')
+    readonly_fields = ('document', 'object_link',)
 
     formfield_overrides = {
         dmodels.CharField: {'widget': forms.TextInput(attrs={'size': '20'})},
         dmodels.URLField: {'widget': forms.TextInput(attrs={'size': '20'})},
     }
+
+    def object_link(self, obj):
+        url = reverse('admin:snotes20_episode_change', args=(obj.pk,))
+        tag = '<a href="{}">Show episode</a>'.format(url)
+        return tag
+
+    object_link.allow_tags = True
+    object_link.short_description = ''
 
 class MumInline(admin.TabularInline):
     verbose_name = "Mum"
