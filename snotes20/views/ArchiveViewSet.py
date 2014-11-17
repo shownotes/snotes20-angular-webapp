@@ -27,7 +27,7 @@ class ArchiveViewSet(viewsets.ViewSet):
                 '  WHERE "snotes20_publication"."id" IS NOT NULL'
                 '  ORDER BY "snotes20_publication"."create_date" DESC'
                 ') AS subb '
-                'LIMIT 15;'
+                'LIMIT ' + str(settings.ARCHIVE_RECENT_COUNT) + ';'
             )
         else:
             qry = models.Podcast.objects.filter(episodes__publications__isnull=False).distinct('id')
