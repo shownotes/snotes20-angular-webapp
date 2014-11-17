@@ -69,9 +69,10 @@ class Command(BaseCommand):
         existingmode = config['options']['existingmode']
         nameprefix = config['options']['nameprefix']
 
+        print("Add podcasts")
         for pod in config['add_podcasts']:
             if  models.PodcastSlug.objects.all().filter(slug=pod['slug']).exists():
-                print('skipping podcast: ' + pod['slug'])
+                print('skip already present: ' + pod['slug'])
                 continue
 
             db_pod = models.Podcast()
@@ -87,15 +88,18 @@ class Command(BaseCommand):
             db_pod.slugs.add(db_slug)
             db_pod.save()
 
+            print('[+] added: ' + pod['slug'])
+
+        print("[ ] Add slugs")
         for slug in config['add_slugs']:
             if  models.PodcastSlug.objects.all().filter(slug=slug['added']).exists():
-                print('skipping slug: ' + slug['added'])
+                print('[?] skip already present: ' + slug['added'])
                 continue
 
             try:
                 db_pod = models.Podcast.objects.get(slugs__slug=slug['existing'])
             except models.Podcast.DoesNotExist:
-                print('couldn\'t add slug: ' + slug['added'] + ' podcast not found')
+                print('[?] cannot add : ' + slug['added'] + ', existing slug not found')
                 continue
 
             db_slug = models.PodcastSlug(slug=slug['added'], podcast=db_pod)
@@ -104,7 +108,10 @@ class Command(BaseCommand):
             db_pod.slugs.add(db_slug)
             db_pod.save()
 
+            print('[+] added: ' + slug['added'])
 
+
+        print("[ ] Add episodes")
         with open(config['csv_file']) as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             next(reader, None)
@@ -123,36 +130,31 @@ class Command(BaseCommand):
 
                 hoerid = row[7]
 
-                print('[ ] File: ' + file + ' ')
-
-                print('  - loading: ', end='')
+                print('[ ] Importing: ' + pad_name)
 
                 try:
                     with open(full_file, 'r') as ff:
                         file_content = ff.read()
                 except:
-                    print("fail")
+                    print("[!] cannot load file")
                     continue
 
                 file_lines = [line.rstrip('\r') for line in file_content.split('\n')]
 
+                print("[+] file loaded got " + str(len(file_lines)) + " lines")
+
                 if config['exclude']['deleted'] and is_deleted:
-                    print('skip (deleted)')
+                    print('[?] skip (deleted)')
                     continue
                 if config['exclude']['private'] and is_private:
-                    print('skip (private)')
+                    print('[?] skip (private)')
                     continue
                 if config['exclude']['nopodcast'] and not is_podcast:
-                    print('skip (no podcast)')
+                    print('[?] skip (no podcast)')
                     continue
                 if pod in config['exluded_podcasts']:
-                    print('skip (excluded podcast)')
+                    print('[?] skip (excluded podcast)')
                     continue
-
-                print('ok')
-
-
-                print('  - parsing: ', end='')
 
                 header, parse_lines = osf.parse_lines(file_lines)
                 osf_lines = osf.objectify_lines(parse_lines)
@@ -162,12 +164,10 @@ class Command(BaseCommand):
                 print(status)
 
 
-                print('  - importing: ', end='')
-
                 try:
                     db_pod = models.Podcast.objects.get(slugs__slug=pod)
                 except models.Podcast.DoesNotExist:
-                    print('[!] couldn\'t find podcast: ' + pod)
+                    print('[!] cannot find podcast: ' + pod)
                     return
 
                 with transaction.atomic():
@@ -180,7 +180,7 @@ class Command(BaseCommand):
                         db_doc = models.Document.objects.get(name=doc_name)
 
                         if existingmode == 'skip':
-                            print('skip (existing)')
+                            print('[?] skip (existing)')
                             continue
                         elif existingmode == 'delete':
                             db_doc.remove()
@@ -188,7 +188,7 @@ class Command(BaseCommand):
                         elif existingmode == 'update':
                             pass
                         else:
-                            print('unknown existingmode')
+                            print('[!] unknown existingmode, aborting import')
                             return
                     except models.Document.DoesNotExist:
                         db_doc = models.Document()
@@ -216,4 +216,4 @@ class Command(BaseCommand):
 
                     db_ep.save()
 
-                print('ok')
+                print('[+] imported')
