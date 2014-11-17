@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 
 class Shownoter(models.Model):
-    name = models.CharField(max_length=30, null=True, blank=True)
+    name = models.CharField(max_length=150, null=True, blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
 
     def shown_name(self):

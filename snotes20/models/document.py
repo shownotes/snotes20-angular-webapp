@@ -40,7 +40,7 @@ class DocumentMeta(models.Model):
 
 class RawPodcaster(models.Model):
     meta = models.ForeignKey(DocumentMeta, related_name="podcasters")
-    name = models.CharField(max_length=30, validators=[MinLengthValidator(2)])
+    name = models.CharField(max_length=150, validators=[MinLengthValidator(2)])
 
 
 class Document(models.Model):
