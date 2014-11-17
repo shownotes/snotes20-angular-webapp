@@ -152,7 +152,7 @@ class Command(BaseCommand):
                 print('ok')
 
 
-                print('  - loading: ', end='')
+                print('  - parsing: ', end='')
 
                 header, parse_lines = osf.parse_lines(file_lines)
                 osf_lines = osf.objectify_lines(parse_lines)
