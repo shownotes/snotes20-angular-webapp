@@ -171,19 +171,19 @@ class Command(BaseCommand):
                     return
 
                 with transaction.atomic():
-                    meta = models.DocumentMeta()
-                    meta.save()
 
                     doc_name = "pp_" + pad_name
 
                     try:
                         db_doc = models.Document.objects.get(name=doc_name)
+                        db_meta = db_doc.meta
 
                         if existingmode == 'skip':
                             print('[?] skip (existing)')
                             continue
                         elif existingmode == 'delete':
                             db_doc.remove()
+                            db_meta.remove()
                             raise models.Document.DoesNotExist()
                         elif existingmode == 'update':
                             pass
@@ -192,10 +192,13 @@ class Command(BaseCommand):
                             return
                     except models.Document.DoesNotExist:
                         db_doc = models.Document()
+                        db_meta = models.DocumentMeta()
+
+                    db_meta.save()
 
                     db_doc.name = nameprefix + pad_name
                     db_doc.editor = models.EDITOR_ETHERPAD
-                    db_doc.meta = meta
+                    db_doc.meta = db_meta
                     db_doc.save()
 
                     editor = editors.EditorFactory.get_editor(db_doc.editor)
