@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction
 
 from osf import OSFLine
 
@@ -37,6 +37,14 @@ class OSFTag(models.Model):
 
     def __str__(self):
         return "#" + self.name + " (#" + self.short + ")"
+
+    def absorb_tag_as_short(self, tag):
+        self.short = tag.name
+
+        with transaction.atomic():
+            self.save()
+            OSFNote.tags.through.objects.filter(osftag_id=tag.pk).exclude(osftag_id=self.pk).update(osftag_id=self.pk)
+            tag.remove()
 
 
 class OSFNote(models.Model):
