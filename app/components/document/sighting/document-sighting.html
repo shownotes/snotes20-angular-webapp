@@ -13,9 +13,9 @@
 		<span ng-click="editorMode = 'edit'" ng-class="{ active: (editorMode != 'edit') }">Bearbeiten</span>
 	</h3>
 
-	<div class="editor">
-		<document-editor document="doc" ng-if="editorMode == 'edit'"></document-editor>
-		<document-render document="doc" show-formats="true" ng-if="editorMode == 'preview'"></document-render>
+	<div class="editor sighting-editor">
+		<document-editor class="editor" document="doc" ng-show="editorMode == 'edit'"></document-editor>
+		<document-render class="preview" document="doc" show-formats="true" ng-show="editorMode == 'preview'"></document-render>
 	</div>
 </div>
 

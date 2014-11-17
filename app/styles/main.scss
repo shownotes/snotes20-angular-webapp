@@ -968,6 +968,16 @@ nav li > input[type="checkbox"] {
 	color: gray;
 	font-size: 0.65em !important;
 }
+.sighting-editor {
+	.preview .output,
+	.editor iframe {
+		height: 350px;
+	}
+
+	.preview .output {
+		overflow-y: scroll;
+	}
+}
 .document-header > * {
 	width: 50%;
 }

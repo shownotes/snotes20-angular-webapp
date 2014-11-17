@@ -12,6 +12,6 @@
         <hr />
     </div>
 
-    <div ng-if="format().type == 'html'" class="document-{{format().name}}" ng-bind-html="content"></div>
-    <pre ng-if="format().type == 'osf' || format().type == 'plain'">{{content}}</pre>
+    <div ng-if="format().type == 'html'" class="output document-{{format().name}}" ng-bind-html="content"></div>
+    <pre ng-if="format().type == 'osf' || format().type == 'plain'"class="output">{{content}}</pre>
 </div>
