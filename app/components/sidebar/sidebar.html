@@ -71,10 +71,15 @@
     </ul>
 </nav>
 
-<nav class="menu">
+<nav class="menu" ng-controller="SidebarSearchCrtl">
     <ul>
         <li class="search" title="Suche">
-            <label for="search"><span class="icon-search"></span></label><input type="search" id="search" value="" placeholder="Suche &hellip;" />
+            <label for="search"><span class="icon-search"></span></label><!--
+            --><input type="search"
+                      id="search"
+                      placeholder="Suche &hellip;"
+                      ng-model="searchTerm"
+                      ng-enter="submitSearch()" />
         </li>
         <li title="Sendungen">
             <a href="/archive/">
