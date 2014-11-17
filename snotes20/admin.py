@@ -4,7 +4,7 @@ import django.forms as forms
 import django.db.models as dmodels
 from django.core.urlresolvers import reverse
 
-from rules.contrib.admin import ObjectPermissionsModelAdmin
+from django_extensions.admin import ForeignKeyAutocompleteAdmin
 
 import snotes20.models as models
 from snotes20.reverseadmins import ReverseOneToOneAdmin, ReverseOneToOneAdminForm
@@ -79,8 +79,12 @@ class PublicationInline(admin.StackedInline):
         return False
 
 @admin.register(models.Episode)
-class EpisodeAdmin(admin.ModelAdmin):
+class EpisodeAdmin(ForeignKeyAutocompleteAdmin):
     inlines = (PublicationInline,)
+    related_search_fields = {
+        'podcast': ('title',),
+        'document': ('name',),
+    }
     fieldsets = (
         (None, {
             'fields': ('podcast', 'number', 'type', 'episode_url', 'cover')
