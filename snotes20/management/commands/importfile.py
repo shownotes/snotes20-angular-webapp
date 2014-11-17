@@ -120,15 +120,18 @@ class Command(BaseCommand):
 
                 hoerid = row[7]
 
-                with open(full_file, 'r') as ff:
-                    file_content = ff.read()
-
-                file_lines = [line.rstrip('\r') for line in file_content.split('\n')]
-
                 print('[ ] File: ' + file + ' ')
 
-
                 print('  - loading: ', end='')
+
+                try:
+                    with open(full_file, 'r') as ff:
+                        file_content = ff.read()
+                except:
+                    print("fail")
+                    continue
+
+                file_lines = [line.rstrip('\r') for line in file_content.split('\n')]
 
                 if config['exclude']['deleted'] and is_deleted:
                     print('skip (deleted)')
