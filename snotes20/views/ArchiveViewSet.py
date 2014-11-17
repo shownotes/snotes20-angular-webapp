@@ -32,7 +32,7 @@ class ArchiveViewSet(viewsets.ViewSet):
         else:
             qry = models.Podcast.objects.filter(episodes__publications__isnull=False).distinct('id')
 
-        data = serializers.PodcastSerializer(qry, many=True).data
+        data = serializers.SubPodcastSerializer(qry, many=True).data
 
         return Response(data)
 

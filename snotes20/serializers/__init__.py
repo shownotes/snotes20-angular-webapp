@@ -1,5 +1,6 @@
 from .podcast import PodcastSerializer, EpisodeSerializer
 from .podcast import BasePodcastSerializer, BaseEpisodeSerializer
+from .podcast import SubPodcastSerializer, SubEpisodeSerializer
 from .publication import PublicationSerializer, PublicationRequestSerializer
 from .document import DocumentSerializer, ChatMessageSerializer
 from .user import NUserSerializer, NUserRegisterSerializer
