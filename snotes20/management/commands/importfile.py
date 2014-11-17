@@ -172,7 +172,7 @@ class Command(BaseCommand):
 
                 with transaction.atomic():
 
-                    doc_name = "pp_" + pad_name
+                    doc_name = nameprefix + pad_name
 
                     try:
                         db_doc = models.Document.objects.get(name=doc_name)
@@ -196,7 +196,7 @@ class Command(BaseCommand):
 
                     db_meta.save()
 
-                    db_doc.name = nameprefix + pad_name
+                    db_doc.name = pad_name
                     db_doc.editor = models.EDITOR_ETHERPAD
                     db_doc.meta = db_meta
                     db_doc.save()
