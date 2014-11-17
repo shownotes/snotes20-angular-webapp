@@ -28,6 +28,10 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:9000',
 )
 
+ALLOWED_HOSTS = [
+    'localhost'
+]
+
 EDITORS = {
     'EP': {
       "secret": "fooooo",

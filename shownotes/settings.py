@@ -138,7 +138,6 @@ TEMPLATE_DIRS = (
 
 
 # for CORS-Headers via CorsMiddleware
-ALLOWED_HOSTS = []
 CORS_ALLOW_CREDENTIALS = True
 
 
