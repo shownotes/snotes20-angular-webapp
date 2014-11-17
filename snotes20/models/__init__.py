@@ -10,5 +10,6 @@ from .state import DocumentState, DocumentStateError
 from .state import OSFDocumentState, OSFNote, OSFTag
 from .state import TextDocumentState
 from .publication import Publication, PublicationRequest, Podcaster
+from .showoter import Shownoter
 from .nuser import NUser, NUserSocialType, NUserSocial, NUserEmailToken
 from .importer import ImporterLog, ImporterDatasourceLog, ImporterJobLog

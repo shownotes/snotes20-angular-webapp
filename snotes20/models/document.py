@@ -9,6 +9,7 @@ from django.db.models.signals import post_delete
 from django_extensions.db.fields import PostgreSQLUUIDField
 
 from .state import DocumentState, TextDocumentState
+from .showoter import Shownoter
 import snotes20.editors as editors
 
 EDITOR_ETHERPAD  = 'EP'
@@ -28,7 +29,7 @@ CONTENTTYPE_CHOICES = (
 
 class DocumentMeta(models.Model):
     id = PostgreSQLUUIDField(primary_key=True, auto=True)
-    shownoters = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
+    shownoters = models.ManyToManyField(Shownoter, blank=True)
 
     def __str__(self):
         try:

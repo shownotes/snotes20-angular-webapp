@@ -109,12 +109,14 @@ class DocumentViewSet(viewsets.ViewSet):
     @action(methods=['POST', 'DELETE'])
     def contributed(self, request, pk=None):
         document = get_object_or_404(models.Document, pk=pk)
-        exists = any(noter.username == request.user.username for noter in document.meta.shownoters.all())
+        exists = document.meta.shownoters.filter(user=request.user).exists()
 
         if request.method == 'POST' and not exists:
-            document.meta.shownoters.add(request.user)
+            shownoter = models.Shownoter(user=request.user)
+            shownoter.save()
+            document.meta.shownoters.add(shownoter)
         elif request.method == 'DELETE' and exists:
-            document.meta.shownoters.remove(request.user)
+            document.meta.shownoters.filter(user=request.user).delete()
 
         return Response(status=status.HTTP_202_ACCEPTED)
 
@@ -175,17 +177,21 @@ class DocumentViewSet(viewsets.ViewSet):
         if not request.user.has_perm('o_publish_episode', episode):
             raise PermissionDenied()
 
+        user = None
+
         try:
             if 'name' in request.DATA:
-                shownoter = models.NUser.objects.get(username=request.DATA['name'])
+                user = models.NUser.objects.get(username=request.DATA['name'])
             else:
-                shownoter = models.NUser.objects.get(id=request.DATA['id'])
+                user = models.NUser.objects.get(id=request.DATA['id'])
         except models.NUser.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         if request.method == 'DELETE':
-            document.meta.shownoters.remove(shownoter)
+            document.meta.shownoters.filter(user=user).delete()
         elif request.method == 'POST':
+            shownoter = models.Shownoter(user=user)
+            shownoter.save()
             document.meta.shownoters.add(shownoter)
 
         return Response(status=status.HTTP_202_ACCEPTED)

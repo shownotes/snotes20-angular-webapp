@@ -4,6 +4,7 @@ from django.conf import settings
 from django_extensions.db.fields import PostgreSQLUUIDField
 
 from .podcast import Episode
+from .showoter import Shownoter
 from .state import DocumentState, TextDocumentState
 
 
@@ -25,7 +26,7 @@ class PubBase(models.Model):
 class Publication(PubBase):
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="created_publications")
     episode = models.ForeignKey(Episode, related_name="publications")
-    shownoters = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='contributed_publications')
+    shownoters = models.ManyToManyField(Shownoter, blank=True, related_name='contributed_publications')
     podcasters = models.ManyToManyField(Podcaster, blank=True, related_name='contributed_publications')
     preliminary = models.BooleanField(default=False)
     state = models.OneToOneField(DocumentState, related_name="publication")
