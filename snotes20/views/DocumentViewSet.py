@@ -279,13 +279,13 @@ class DocumentViewSet(viewsets.ViewSet):
             try:
                 data = source.state.osfdocumentstate.to_dict()
             except models.OSFDocumentState.DoesNotExist:
-                raise PermissionDenied()
+                return Response(status=status.HTTP_503_SERVICE_UNAVAILABLE)
         elif type == 'raw':
             data  = source.raw_state.text
         elif type == 'osf':
             data = None
         else:
-            raise PermissionDenied()
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
         response = Response({'data': data}, status=status.HTTP_200_OK)
         return response
