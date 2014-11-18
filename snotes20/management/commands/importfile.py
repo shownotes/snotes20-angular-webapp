@@ -194,7 +194,7 @@ class Command(BaseCommand):
                             episodepage = None
 
                     raw_starttime = header.kv.get('starttime', None)
-                    if raw_starttime is not None:
+                    if raw_starttime is not None and len(raw_starttime) > 0:
                         raw_starttime = raw_starttime.replace('Okt', 'Oct') # stupid germans
                         try:
                             starttime = dateutil.parser.parse(raw_starttime)
