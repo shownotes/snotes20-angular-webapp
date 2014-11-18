@@ -18,19 +18,29 @@ class ArchiveViewSet(viewsets.ViewSet):
 
         if type == 'recent':
             qry = models.Podcast.objects.raw(
-                'SELECT DISTINCT ON ("id") * '
+                'SELECT DISTINCT ON ("id", pub_create) * '
+                'FROM ('
+                '  SELECT "snotes20_podcast".*, snotes20_publication.create_date AS pub_create'
+                '  FROM "snotes20_podcast"'
+                '  INNER JOIN "snotes20_episode" ON ("snotes20_podcast"."id" = "snotes20_episode"."podcast_id")'
+                '  INNER JOIN "snotes20_publication" ON ("snotes20_episode"."id" = "snotes20_publication"."episode_id")'
+                '  WHERE "snotes20_publication"."id" IS NOT NULL'
+                ') AS subb '
+                'ORDER BY pub_create DESC '
+                'LIMIT ' + str(settings.ARCHIVE_RECENT_COUNT) + ';'
+            )
+        else:
+            qry = models.Podcast.objects.raw(
+                'SELECT DISTINCT ON ("id", "title") * '
                 'FROM ('
                 '  SELECT "snotes20_podcast".*'
                 '  FROM "snotes20_podcast"'
                 '  INNER JOIN "snotes20_episode" ON ("snotes20_podcast"."id" = "snotes20_episode"."podcast_id")'
                 '  INNER JOIN "snotes20_publication" ON ("snotes20_episode"."id" = "snotes20_publication"."episode_id")'
                 '  WHERE "snotes20_publication"."id" IS NOT NULL'
-                '  ORDER BY "snotes20_publication"."create_date" DESC'
                 ') AS subb '
-                'LIMIT ' + str(settings.ARCHIVE_RECENT_COUNT) + ';'
+                'ORDER BY title, id;'
             )
-        else:
-            qry = models.Podcast.objects.filter(episodes__publications__isnull=False).distinct('id')
 
         data = serializers.SubPodcastSerializer(qry, many=True).data
 
