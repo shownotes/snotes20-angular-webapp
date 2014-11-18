@@ -216,6 +216,15 @@ class Command(BaseCommand):
                     starttime = None
                     episodepage = None
 
+
+                # try shownoters without header
+                if len(shownoters) == 0:
+                    for l in file_lines:
+                        if l.lower().startswith('zusammengetragen von:'):
+                            shownoters = list(clean_people_list(l.split(':', 2)[1]))
+                            break
+
+
                 print('[+] parsed, got ' + str(len(podcasters)) + ' podcasters, ' + str(len(shownoters)) + ' shownoters')
 
                 try:
