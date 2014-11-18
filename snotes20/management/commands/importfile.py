@@ -65,6 +65,12 @@ def clean_people_list(str):
             yield i
 
 
+def try_header_value(header, keys, default):
+    for k in keys:
+        if k in header.kv:
+            return header.kv[k]
+    return default
+
 
 class Command(BaseCommand):
     args = ''
@@ -205,6 +211,8 @@ class Command(BaseCommand):
                         shownoters = list(clean_people_list(header.kv.get('zusammengetragen von', '')))
                     else:
                         shownoters = []
+
+                    episodetitle = try_header_value(header, ['episodetitle', 'title', 'titel'], None)
                 else:
                     podcasters = []
                     shownoters = []
@@ -275,6 +283,7 @@ class Command(BaseCommand):
                     db_ep.number = number
                     db_ep.episode_url = episodepage
                     db_ep.date = starttime
+                    db_ep.title = episodetitle
 
                     if len(hoerid) > 0:
                         db_ep.source = models.SOURCE_HOERSUPPE
