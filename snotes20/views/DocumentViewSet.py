@@ -8,8 +8,8 @@ from django.core.validators import ValidationError
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from rest_framework.decorators import action, list_route
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny
+from rest_framework.decorators import action, list_route, detail_route
 
 import snotes20.serializers as serializers
 import snotes20.models as models
@@ -250,7 +250,7 @@ class DocumentViewSet(viewsets.ViewSet):
             data = serializers.ChatMessageSerializer(msgs, many=True).data
             return Response(data, status=status.HTTP_200_OK)
 
-    @action(methods=['POST'])
+    @detail_route(methods=['POST'], permission_classes=(AllowAny,))
     def text(self, request, pk=None):
         document = get_object_or_404(models.Document, pk=pk)
 
