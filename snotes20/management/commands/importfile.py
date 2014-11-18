@@ -206,12 +206,8 @@ class Command(BaseCommand):
 
                     podcasters = list(clean_people_list(header.kv.get('podcaster', '')))
 
-                    if 'shownoter' in header.kv:
-                        shownoters = list(clean_people_list(header.kv.get('shownoter', '')))
-                    elif 'zusammengetragen von' in header.kv:
-                        shownoters = list(clean_people_list(header.kv.get('zusammengetragen von', '')))
-                    else:
-                        shownoters = []
+                    raw_shownoters = try_header_value(header, ['shownoter', 'zusammengetragen von'], '')
+                    shownoters = list(clean_people_list(raw_shownoters))
 
                     episodetitle = try_header_value(header, ['episodetitle', 'title', 'titel'], None)
                 else:
