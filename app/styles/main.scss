@@ -777,6 +777,10 @@ nav li > input[type="checkbox"] {
 	&.live {
 		background-color: #a64040;
 	}
+	&.report {
+		background-color: #eee;
+		font-size: .8em;
+	}
 }
 
 /* Form wrapper */
