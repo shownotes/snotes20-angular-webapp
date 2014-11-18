@@ -21,7 +21,7 @@
 		<th>Podcaster</th>
 		<th>Shownoter</th>
 	</tr>
-	<tr ng-repeat="ep in filterepisodes = (podcast.episodes | filter:hasPub())">
+	<tr ng-repeat="ep in (filterepisodes = (podcast.episodes | filter:hasPub()) | orderBy:'number':true)">
 		<td><a ui-sref="view-episode({ podcast: podcast.slug, number: ep.number })">{{ep.number}} <span ng-show="ep.title">- {{ep.title}}</span></a></td>
 		<td>{{ep.date | date:'medium'}}</td>
 		<td>{{getPub(ep).podcasters.length}}</td>
