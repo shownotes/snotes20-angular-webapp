@@ -9,6 +9,8 @@ import modgrammar
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 
+import dateutil.parser
+
 import snotes20.models as models
 import snotes20.editors as editors
 import snotes20.contenttypes as contenttypes
@@ -176,6 +178,25 @@ class Command(BaseCommand):
                 osf_lines = osf.objectify_lines(parse_lines)
 
                 if header is not None:
+                    episodepage = header.kv.get('episodepage', None)
+
+                    if episodepage is not None:
+                        if episodepage.startswith('<http') and episodepage.endswith('>'):
+                            episodepage = episodepage[1:-1]
+
+                        if not episodepage.startswith('http'):
+                            episodepage = None
+
+                    raw_starttime = header.kv.get('starttime', None)
+                    if raw_starttime is not None:
+                        raw_starttime = raw_starttime.replace('Okt', 'Oct') # stupid germans
+                        try:
+                            starttime = dateutil.parser.parse(raw_starttime)
+                        except:
+                            print("[!] cannot parse date: " + raw_starttime)
+                    else:
+                        starttime = None
+
                     podcasters = list(clean_people_list(header.kv.get('podcaster', '')))
 
                     if 'shownoter' in header.kv:
@@ -187,6 +208,8 @@ class Command(BaseCommand):
                 else:
                     podcasters = []
                     shownoters = []
+                    starttime = None
+                    episodepage = None
 
                 print('[+] parsed, got ' + str(len(podcasters)) + ' podcasters, ' + str(len(shownoters)) + ' shownoters')
 
@@ -250,6 +273,8 @@ class Command(BaseCommand):
                     db_ep.podcast = db_pod
                     db_ep.document = db_doc
                     db_ep.number = number
+                    db_ep.episode_url = episodepage
+                    db_ep.date = starttime
 
                     if len(hoerid) > 0:
                         db_ep.source = models.SOURCE_HOERSUPPE

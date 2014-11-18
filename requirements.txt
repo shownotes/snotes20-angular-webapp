@@ -10,5 +10,6 @@ rabbitpy
 etherpad_lite
 rules
 pillow
+python-dateutil==2.0
 Django==1.7.1
 
