@@ -199,6 +199,7 @@ class Command(BaseCommand):
                         try:
                             starttime = dateutil.parser.parse(raw_starttime)
                         except:
+                            starttime = None
                             print("[!] cannot parse date: " + raw_starttime)
                     else:
                         starttime = None
