@@ -12,12 +12,15 @@ class EtherpadEditor(AbstractEditor):
         self.client = EtherpadLiteClient(
             base_params={'apikey':self.secret},
             base_url=self.apiurl,
-            api_version="1.2.10"
+            api_version="1.2.12"
         )
 
     def _get_authorid_for_user(self, user):
         name = user.username
-        return self.client.createAuthorIfNotExistsFor(authorMapper=name, name=name)["authorID"]
+        color = user.color
+        if color is not None and len(color) > 0:
+            color = '#' + color
+        return self.client.createAuthorIfNotExistsFor(authorMapper=name, name=name, color=color)["authorID"]
 
     def _get_groupid_for_document(self, document):
         if isinstance(document, str):
