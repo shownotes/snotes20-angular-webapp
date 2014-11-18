@@ -11,6 +11,9 @@ class Shownoter(models.Model):
         except:
             return self.name
 
+    def __str__(self):
+        return self.shown_name()
+
     def save(self, **kwargs):
         name = self.name
 
