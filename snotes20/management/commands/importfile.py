@@ -215,6 +215,7 @@ class Command(BaseCommand):
                     shownoters = []
                     starttime = None
                     episodepage = None
+                    episodetitle = None
 
 
                 # try shownoters without header
