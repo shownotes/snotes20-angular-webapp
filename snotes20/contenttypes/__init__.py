@@ -1,16 +1,27 @@
 import snotes20.models as models
 import snotes20.editors as editors
 
-from .osf import handle as osf
-from .txt import handle as txt
+from .osf import handle as osf_handle
+from .osf import prep as osf_prep
+from .txt import handle as txt_handle
+from .txt import prep as txt_prep
+
 
 def prep_state(doc):
     editor = editors.EditorFactory.get_editor(doc.editor)
     text = editor.get_document_text(doc)
 
+    if doc.type == models.CONTENTTYPE_TXT:
+        handle_prep = txt_prep(text)
+    elif doc.type == models.CONTENTTYPE_OSF:
+        handle_prep = osf_prep(text)
+    else:
+        raise Exception()
+
     return {
         'text': text,
-        'type': doc.type
+        'type': doc.type,
+        'handle_prep': handle_prep
     }
 
 
@@ -21,12 +32,12 @@ def get_state(prepped):
     text = prepped['text']
     type = prepped['type']
 
-    raw_state = txt(text)
+    raw_state = txt_handle(text)
 
     if type == models.CONTENTTYPE_TXT:
         state = raw_state
     elif type == models.CONTENTTYPE_OSF:
-        state = osf(text)
+        state = osf_handle(prepped['handle_prep'])
     else:
         raise Exception()
 

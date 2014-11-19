@@ -44,15 +44,22 @@ def add_osf_note(state, line, parent=None):
             add_osf_note(state, nnote, note)
 
 
-def handle(text):
-    state = models.OSFDocumentState()
-
+def prep(text):
     header, p_lines = osf.parse_lines(text.split('\n'))
     o_lines = osf.objectify_lines(p_lines)
 
+    return {
+        'header': header,
+        'p_lines': p_lines,
+        'o_lines': o_lines
+    }
+
+
+def handle(prepped):
+    state = models.OSFDocumentState()
     state.save()
 
-    for line in o_lines:
+    for line in prepped['o_lines']:
         add_osf_note(state, line)
 
     return state
