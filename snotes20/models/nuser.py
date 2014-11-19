@@ -5,7 +5,7 @@ from django.db import models
 from django.core.mail import send_mail
 from django.core import validators
 from django.utils import timezone
-from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator, ValidationError
 from django.template import Context
 from django.template.loader import render_to_string
 from django.conf import settings
@@ -14,6 +14,25 @@ from django.contrib.auth import login, authenticate
 
 def get_random_color():
     return hex(random.getrandbits(28))[2:8].upper()
+
+
+def get_color_luminosity(color):
+    # based on etherpad-lite (apache)
+    # https://github.com/ether/etherpad-lite/blob/7b9fd81284a6e2191d007769c899907ea3f64232/src/static/js/colorutils.js#L111-L115
+    c = [
+        int(color[0:2], 16) / 255,
+        int(color[2:4], 16) / 255,
+        int(color[4:6], 16) / 255
+    ]
+
+    return c[0] * 0.30 + c[1] * 0.59 + c[2] * 0.11
+
+
+def validate_user_color(color):
+    lum = get_color_luminosity(color)
+
+    if lum < 0.5:
+        raise ValidationError('color too dark')
 
 
 class NUser(AbstractBaseUser, PermissionsMixin):
@@ -26,7 +45,10 @@ class NUser(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField('date_joined', default=timezone.now)
     date_login = models.DateTimeField('date_login', null=True, blank=True)
     color = models.CharField(max_length=6, default=get_random_color,
-                             validators=[RegexValidator(regex='^[A-F0-9]{6}$', message='No color', code='nocolor')])
+                             validators=[
+                                 RegexValidator(regex='^[A-F0-9]{6}$', message='No color', code='nocolor'),
+                                 validate_user_color
+                             ])
 
     migrated = models.BooleanField(default=True)
     old_password = models.CharField(max_length=500, null=True, blank=True, default=None)
