@@ -32,7 +32,7 @@ class OSFDocumentState(DocumentState):
 
 class OSFTag(models.Model):
     name = models.CharField(max_length=50, unique=True, db_index=True)
-    short = models.CharField(max_length=20, unique=True, db_index=True)
+    short = models.CharField(max_length=20, null=True, blank=True, unique=True, db_index=True)
     description = models.CharField(max_length=200)
 
     def __str__(self):
