@@ -22,7 +22,7 @@ angular.module('snotes30App')
           { name: 'audacity', type: 'plain', caption: 'Audacity' },
           { name: 'chapter',  type: 'plain', caption: 'Kapitel' },
           { name: 'raw',      type: 'plain', caption: 'Original' },
-          { name: 'osf',      type: 'osf',   caption: 'OSF' }
+          { name: 'osf',      type: 'plain', caption: 'OSF' }
         ];
 
         if (!$scope.formatName) {
@@ -78,7 +78,6 @@ angular.module('snotes30App')
 
           switch($scope.formatName) {
             case 'raw': type = 'raw';  break;
-            case 'osf': type = 'osf';  break;
             default:    type = 'json'; break;
           }
 
