@@ -52,7 +52,9 @@ angular.module('snotes30App')
 
         $scope.content = "";
 
-        var nunjucksenv = new nunjucks.Environment();
+        var nunjucksenv = new nunjucks.Environment(undefined, {
+          autoescape: true
+        });
 
         // http://stackoverflow.com/a/10073788
         function pad(n, width, z) {
