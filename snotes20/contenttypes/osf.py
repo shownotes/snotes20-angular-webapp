@@ -26,13 +26,16 @@ def add_osf_note(state, line, parent=None):
         error.save()
     else:
         note = models.OSFNote(
-            state=state,
-            parent=parent,
             timestamp=line.time,
             title=line.text,
             url=line.link,
             order=line._line
         )
+
+        if parent is None:
+            note.state = state
+        else:
+            note.parent = parent
 
         note.save()
         note.tags.add(*[find_or_create_osf_tag(tag) for tag in line.tags])

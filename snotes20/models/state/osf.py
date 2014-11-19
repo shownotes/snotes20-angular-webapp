@@ -48,7 +48,7 @@ class OSFTag(models.Model):
 
 
 class OSFNote(models.Model):
-    state = models.ForeignKey(OSFDocumentState, related_name="shownotes")
+    state = models.ForeignKey(OSFDocumentState, related_name="shownotes", null=True, blank=True)
     parent = models.ForeignKey('self', related_name="shownotes", null=True, blank=True)
     order = models.IntegerField()
     timestamp = models.BigIntegerField(null=True)
