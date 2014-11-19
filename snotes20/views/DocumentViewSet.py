@@ -247,6 +247,8 @@ class DocumentViewSet(viewsets.ViewSet):
             except:
                 return Response([], status=status.HTTP_200_OK)
 
+            msgs = msgs.order_by('order')
+
             data = serializers.ChatMessageSerializer(msgs, many=True).data
             return Response(data, status=status.HTTP_200_OK)
 
