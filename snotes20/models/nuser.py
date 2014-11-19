@@ -13,7 +13,14 @@ from django.contrib.auth import login, authenticate
 
 
 def get_random_color():
-    return hex(random.getrandbits(28))[2:8].upper()
+    # close enough to fast..
+    while True:
+        cc = hex(random.getrandbits(28))[2:8].upper()
+        try:
+            validate_user_color(cc)
+            return cc
+        except:
+            pass
 
 
 def get_color_luminosity(color):
