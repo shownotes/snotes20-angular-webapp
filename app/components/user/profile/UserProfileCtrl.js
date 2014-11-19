@@ -52,7 +52,6 @@ angular.module('snotes30App')
     };
 
     $scope.saveBioColor = function () {
-
       patchMe({
         'color': $scope.getColor(),
         'bio': $scope.user.bio
