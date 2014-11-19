@@ -138,6 +138,7 @@ class UserViewSet(viewsets.ViewSet):
         serialized = NUserSerializer(user, data=data, partial=True)
 
         if serialized.is_valid():
+            serialized.object.full_clean()
             serialized.save()
             return Response(status=status.HTTP_202_ACCEPTED)
         else:
