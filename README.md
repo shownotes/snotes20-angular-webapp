@@ -9,6 +9,8 @@ $ virtualenv venv
 $ . venv/bin/activate
 $ pip install -r requirements.txt
 $ python manage.py migrate
+$ python manage.py loaddata OSFTag.yaml
+$ python manage.py loaddata NUserSocialType.yaml
 $ python manage.py createsuperuser
 ```
 

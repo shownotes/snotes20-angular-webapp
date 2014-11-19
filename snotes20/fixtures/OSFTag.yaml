@@ -1,0 +1,50 @@
+- model: snotes20.OSFTag
+  pk: 1
+  fields:
+    name: chapter
+    short: c
+- model: snotes20.OSFTag
+  pk: 2
+  fields:
+    name: quote
+    short: q
+- model: snotes20.OSFTag
+  pk: 3
+  fields:
+    name: glossary
+    short: g
+- model: snotes20.OSFTag
+  pk: 4
+  fields:
+    name: topic
+    short: t
+- model: snotes20.OSFTag
+  pk: 5
+  fields:
+    name: revision
+    short: r
+- model: snotes20.OSFTag
+  pk: 6
+  fields:
+    name: link
+    short: l
+- model: snotes20.OSFTag
+  pk: 7
+  fields:
+    name: video
+    short: v
+- model: snotes20.OSFTag
+  pk: 8
+  fields:
+    name: audio
+    short: a
+- model: snotes20.OSFTag
+  pk: 9
+  fields:
+    name: image
+    short: i
+- model: snotes20.OSFTag
+  pk: 10
+  fields:
+    name: prediction
+    short: p

@@ -10,6 +10,7 @@ rabbitpy
 etherpad_lite
 rules
 pillow
+pyyaml==3.11
 python-dateutil==2.0
 Django==1.7.1
 

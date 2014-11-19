@@ -1,0 +1,12 @@
+- model: snotes20.NUserSocialType
+  pk: twitter
+  fields:
+    human_name: Twitter
+- model: snotes20.NUserSocialType
+  pk: appnet
+  fields:
+    human_name: App.net
+- model: snotes20.NUserSocialType
+  pk: flattr
+  fields:
+    human_name: Flattr
