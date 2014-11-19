@@ -41,6 +41,9 @@ angular.module('snotes30App')
     };
 
     $scope.getColor = function () {
+      if(!$scope.user)
+        return "000000";
+
       var color = $scope.user.color;
 
       if(color[0] === "#")
