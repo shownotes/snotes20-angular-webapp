@@ -13,7 +13,8 @@
 		<textarea placeholder="Erzähl etwas über dich. Was ist dein Lieblingspodcast?" ng-model="user.bio"></textarea>
 
 		<p>Deine Farbe im Editor:
-			<spectrum-colorpicker ng-model="user.color" format="hex"></spectrum-colorpicker>
+			<spectrum-colorpicker ng-model="user.color" format="'hex'"></spectrum-colorpicker>
+			<span ng-hide="colorOkay()">Diese Farbe ist leider zu dunkel.</span>
 		</p>
 
 		<input type="submit" value="Änderungen speichern" ng-click="saveBioColor()" />

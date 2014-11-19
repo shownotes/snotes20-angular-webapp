@@ -23,14 +23,36 @@ angular.module('snotes30App')
     $scope.colorbio = {};
     $scope.socials = {};
 
-    $scope.saveBioColor = function () {
+    $scope.luminosity = function(color) {
+      // based on etherpad-lite (apache)
+      // https://github.com/ether/etherpad-lite/blob/7b9fd81284a6e2191d007769c899907ea3f64232/src/static/js/colorutils.js#L111-L115
+
+      var c = [
+        parseInt(color.substr(0, 2), 16) / 255,
+        parseInt(color.substr(2, 2), 16) / 255,
+        parseInt(color.substr(4, 2), 16) / 255
+      ];
+
+      return c[0] * 0.30 + c[1] * 0.59 + c[2] * 0.11;
+    };
+
+    $scope.colorOkay = function () {
+      return $scope.luminosity($scope.getColor()) >= 0.5;
+    };
+
+    $scope.getColor = function () {
       var color = $scope.user.color;
 
       if(color[0] === "#")
         color = color.substr(1).toUpperCase();
 
+      return color;
+    };
+
+    $scope.saveBioColor = function () {
+
       patchMe({
-        'color': color,
+        'color': $scope.getColor(),
         'bio': $scope.user.bio
       }, $scope.colorbio, 'colorbio');
     };
