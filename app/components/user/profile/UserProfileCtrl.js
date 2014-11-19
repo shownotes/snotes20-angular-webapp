@@ -14,8 +14,7 @@ angular.module('snotes30App')
       var stat = actionStatusGlueService.fac(statobj);
       me.patch(obj, { action: action })
         .then(stat.resolve, stat.reject)
-        .then(reloadMe)
-        .finally(stat.reset());
+        .finally(stat.reset);
     };
 
     reloadMe();
