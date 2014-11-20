@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('snotes30App')
-.controller('DocumentSightingCtrl', function ($scope, $rootScope, $q, $state, doc, covers, DocumentService) {
+.controller('DocumentSightingCtrl', function ($scope, $rootScope, $q, $state, doc, covers, DocumentService, PodcastService) {
   $scope.doc = doc;
   $scope.covers = covers;
   $scope.selectedCover = $scope.covers[0];
@@ -22,6 +22,10 @@ angular.module('snotes30App')
   $scope.epnumber = doc.episode.number;
 
   $scope.editorMode = 'preview';
+
+  PodcastService.getNumbers(doc.episode.podcast).then(function (numbers) {
+    $scope.oldNumbers = numbers;
+  });
 
   function updateDocument() {
     return DocumentService.getByName(doc.name).then(function (doc) {
