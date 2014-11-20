@@ -653,6 +653,9 @@ nav .caption {
 nav.account .caption {
 	width: 10em;
 }
+nav.migrateWarning {
+	background-color: #ffff00;
+}
 
 /* Sidebar Form */
 #toggle-form:checked + .account-wrapper {
