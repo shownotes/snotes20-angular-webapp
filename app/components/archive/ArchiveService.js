@@ -5,7 +5,8 @@ angular.module('snotes30App')
   var archive = Restangular.all('archive');
 
   this.getList = function () {
-    return archive.getList()
+    return archive.getList();
+  };
 
   this.getFullList = function () {
     return archive.getList({type: 'full'});
@@ -17,5 +18,5 @@ angular.module('snotes30App')
 
   this.search = function (words) {
     return archive.customPOST({words: words}, 'search');
-  }
+  };
 });
