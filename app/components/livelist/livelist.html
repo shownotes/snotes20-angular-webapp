@@ -40,26 +40,30 @@
 
 <p>Die meisten dieser Termine stammen aus dem <a href="http://hoersuppe.de/kalender/">Hörsuppe-Kalender</a>. &hearts;</p>
 
+
+
 <div class="box-wrapper">
-    <p>Willst du Shownotes für einen Podcast schreiben, der nicht in dieser Liste steht? Kein Problem! Ist auch ganz
-    einfach: suche den richtigen Podcast, gib eine Episodennummer ein und ab geht die Post.<br>
-    Falls den Podcast deiner Wahl nicht finden solltest, <a href="#">melde dich bitte bei uns</a>.
-    </p>
+	<div class="form-wrapper">
+		<h3>Neues Dokument anlegen</h3>
+		<p>
+			Möchtest du Shownotes für einen Podcast schreiben, der nicht in der Liste steht? Kein Problem! Suche den richtigen Podcast, gib eine Episodennummer ein und schon kann es losgehen.<br />
+			Falls du den Podcast deiner Wahl nicht finden solltest, <a href="mailto:team@shownot.es">melde dich bitte bei uns</a>.
+		</p>
+		<angucomplete-alt id="podcast"
+			                  placeholder="Podcast"
+			                  pause="100"
+			                  selected-object="nonlive.selectedPodcast"
+			                  local-data="nonlive.podcasts"
+			                  search-fields="title,slug"
+			                  title-field="title"
+			                  minlength="1"></angucomplete-alt>
+
+		<p class="podcast-counter">Die letzten Episodennummern in diesem Podcast waren: <number-list numbers="nonlive.oldNumbers"></number-list>.</p>
+		<div class="input-group">
+			<input type="text" id="episode" placeholder="Episodennummer" ng-model="nonlive.number">
+			<input type="button" value="Erstellen" ng-click="createNonLive()">
+		</div>
+	</div>
 </div>
-
-<label for="podcast">Podcast:</label>
-<angucomplete-alt id="podcast"
-                  placeholder=""
-                  pause="100"
-                  selected-object="nonlive.selectedPodcast"
-                  local-data="nonlive.podcasts"
-                  search-fields="title,slug"
-                  title-field="title"
-                  minlength="1"></angucomplete-alt>
-
-<p>Die letzten Episodennummern in diesem Podcast waren: <number-list numbers="nonlive.oldNumbers"></number-list>.</p>
-<label for="episode">Episode:</label> <input type="text" id="episode" ng-model="nonlive.number">
-
-<input type="button" value="Erstellen" ng-click="createNonLive()">
 
 <snotes-footer></snotes-footer>

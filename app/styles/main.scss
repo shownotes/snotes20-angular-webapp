@@ -765,6 +765,9 @@ nav li > input[type="checkbox"] {
 .box-wrapper textarea {
 	background-color: #fefefe;
 }
+.podcast-counter {
+	margin-top: 1em;
+}
 .statuslabel {
 	background-color: #666;
 	color: #fefefe;
@@ -953,7 +956,8 @@ nav li > input[type="checkbox"] {
   }
 }
 .document-header,
-.sighting-wrapper {
+.sighting-wrapper,
+.livelist-wrapper {
 	display: -webkit-box;
 	display: -moz-box;
 	display: -ms-flexbox;
@@ -962,10 +966,12 @@ nav li > input[type="checkbox"] {
 	-webkit-flex-flow: row;
 	flex-direction: row;
 }
-.sighting-wrapper > * {
+.sighting-wrapper > *,
+.livelist-wrapper > * {
 	width: 50%;
 }
-.sighting-wrapper > *:first-child {
+.sighting-wrapper > *:first-child,
+.livelist-wrapper > *:first-child {
 	margin-right: 2em;
 }
 .sighting-wrapper h2+h3 {
