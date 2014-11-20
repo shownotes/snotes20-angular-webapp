@@ -29,11 +29,12 @@ def find_doc_name(prefix, sep='-'):
     raise Exception()
 
 
-def create_doc_from_episode(request, episode_pk):
+def create_doc_from_episode(request, episode_pk, number):
     if episode_pk is None:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
     episode = get_object_or_404(models.Episode, pk=episode_pk)
+    episode.number = number
 
     today = datetime.now()
 
@@ -75,14 +76,13 @@ def create_doc_from_nolive(request):
     with transaction.atomic():
         episode = models.Episode(
             podcast=podcast,
-            number=number,
             creator=request.user,
             type=models.TYPE_PODCAST
         )
 
         episode.save()
 
-        return create_doc_from_episode(request, episode.pk)
+        return create_doc_from_episode(request, episode.pk, number)
 
 
 def get_doc_impl(document):
@@ -116,7 +116,7 @@ class DocumentViewSet(viewsets.ViewSet):
             raise PermissionDenied()
 
         if type == 'fromepisode':
-            return create_doc_from_episode(request, request.DATA.get('episode', None))
+            return create_doc_from_episode(request, request.DATA.get('episode', None), request.DATA.get('number', None))
         elif type == 'nonlive':
             return create_doc_from_nolive(request)
         else:
