@@ -1198,6 +1198,11 @@ img.cover {
 	opacity: 1;
 }
 
+/* Read-only */
+.output {
+	margin-top: 1em;
+}
+
 /* Read-only archive */
 .document-list h2,
 .document-block h2 {
@@ -1237,7 +1242,7 @@ img.cover {
 	line-height: 1.25;
 	margin-right: 1em;
 }
-.document-block dd span {
+.document-block dd {
 	line-height: 2.5;
 }
 .document-block span {
