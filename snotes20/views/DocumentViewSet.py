@@ -16,13 +16,12 @@ import snotes20.models as models
 import snotes20.editors as editors
 import snotes20.contenttypes as contenttypes
 
-def create_doc_from_episode(request):
-    if 'episode' not in request.DATA:
-        raise PermissionDenied()
-    if not request.user.is_authenticated():
-        raise PermissionDenied()
 
-    episode = get_object_or_404(models.Episode, pk=request.DATA['episode'])
+def create_doc_from_episode(request, episode_pk):
+    if episode_pk is None:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    episode = get_object_or_404(models.Episode, pk=episode_pk)
 
     today = datetime.now()
 
@@ -44,6 +43,27 @@ def create_doc_from_episode(request):
         episode.save()
 
     return Response({'name': doc.name}, status=status.HTTP_201_CREATED)
+
+
+def create_doc_from_nolive(request):
+    if 'podcast' not in request.DATA or 'number' not in request.DATA:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    number = request.DATA['number']
+
+    podcast = get_object_or_404(models.Podcast, pk=request.DATA['podcast'])
+
+    with transaction.atomic():
+        episode = models.Episode(
+            podcast=podcast,
+            number=number,
+            creator=request.user,
+            type=models.TYPE_PODCAST
+        )
+
+        episode.save()
+
+        return create_doc_from_episode(request, episode.pk)
 
 
 def get_doc_impl(document):
@@ -73,10 +93,15 @@ class DocumentViewSet(viewsets.ViewSet):
     def create(self, request):
         type = request.QUERY_PARAMS.get('type')
 
-        if type == 'fromepisode':
-            return create_doc_from_episode(request)
-        else:
+        if not request.user.is_authenticated():
             raise PermissionDenied()
+
+        if type == 'fromepisode':
+            return create_doc_from_episode(request, request.DATA.get('episode', None))
+        elif type == 'nonlive':
+            return create_doc_from_nolive(request)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
     def retrieve(self, request, pk=None):
         type = request.QUERY_PARAMS.get('type')
