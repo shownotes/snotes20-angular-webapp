@@ -19,6 +19,7 @@ angular
     'angularSpectrumColorpicker',
     'cgBusy',
     'btford.socket-io',
+    'angucomplete-alt',
     'restangular'
   ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider, CONFIG) {

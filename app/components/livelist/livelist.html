@@ -40,4 +40,26 @@
 
 <p>Die meisten dieser Termine stammen aus dem <a href="http://hoersuppe.de/kalender/">Hörsuppe-Kalender</a>. &hearts;</p>
 
+<div class="box-wrapper">
+    <p>Willst du Shownotes für einen Podcast schreiben, der nicht in dieser Liste steht? Kein Problem! Ist auch ganz
+    einfach: suche den richtigen Podcast, gib eine Episodennummer ein und ab geht die Post.<br>
+    Falls den Podcast deiner Wahl nicht finden solltest, <a href="#">melde dich bitte bei uns</a>.
+    </p>
+</div>
+
+<label for="podcast">Podcast:</label>
+<angucomplete-alt id="podcast"
+                  placeholder=""
+                  pause="100"
+                  selected-object="selectedPodcast"
+                  local-data="podcasts"
+                  search-fields="title,slug"
+                  title-field="title"
+                  minlength="1"></angucomplete-alt>
+
+<p>Die letzten Episodennummern in diesem Podcast waren: <b>133</b>, <b>51</b> und <b>61</b>.</p>
+<label for="episode">Episode:</label> <input type="text" id="episode">
+
+<input type="button" value="Erstellen">
+
 <snotes-footer></snotes-footer>
