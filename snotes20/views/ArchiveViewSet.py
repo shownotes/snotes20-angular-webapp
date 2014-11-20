@@ -44,7 +44,7 @@ class ArchiveViewSet(viewsets.ViewSet):
                 'ORDER BY title, id;'
             )
 
-        data = serializers.SubPodcastSerializer(qry, many=True).data
+        data = serializers.MinimalPodcastSerializer(qry, many=True).data
 
         return Response(data)
 

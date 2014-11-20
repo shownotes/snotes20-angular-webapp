@@ -25,6 +25,11 @@ class BasePodcastSerializer(ModelSerializer):
                   'type', 'deleted', 'approved', 'create_date', 'num_episodes', 'episodes')
 
 
+class MinimalPodcastSerializer(BasePodcastSerializer):
+    class Meta(BasePodcastSerializer.Meta):
+        fields = ('id', 'slug', 'creator', 'title')
+
+
 class SubPodcastSerializer(BasePodcastSerializer):
     class Meta(BasePodcastSerializer.Meta):
         fields = list(set(BasePodcastSerializer.Meta.fields) - {'episodes',})
