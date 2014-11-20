@@ -1,4 +1,4 @@
-from .podcast import PodcastSerializer, EpisodeSerializer
+from .podcast import PodcastSerializer, EpisodeSerializer, MinimalEpisodeSerializer
 from .podcast import BasePodcastSerializer, BaseEpisodeSerializer
 from .podcast import SubPodcastSerializer, SubEpisodeSerializer
 from .publication import PublicationSerializer, PublicationRequestSerializer

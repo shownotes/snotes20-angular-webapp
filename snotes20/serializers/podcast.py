@@ -32,7 +32,11 @@ class SubPodcastSerializer(BasePodcastSerializer):
 class EpisodeSerializer(BaseEpisodeSerializer):
     podcast = SubPodcastSerializer()
 
+class MinimalEpisodeSerializer(BaseEpisodeSerializer):
+    podcast = SubPodcastSerializer()
 
+    class Meta(BaseEpisodeSerializer.Meta):
+        fields = ('id', 'creator', 'number', 'date', 'canceled', 'type', 'create_date', 'stream', 'document', 'podcast')
 
 class SubEpisodeSerializer(BaseEpisodeSerializer):
     class Meta(BaseEpisodeSerializer.Meta):

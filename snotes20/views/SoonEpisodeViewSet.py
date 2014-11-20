@@ -19,4 +19,4 @@ class SoonEpisodeViewSet(viewsets.ViewSet):
         episodes = models.Episode.objects.filter(Q(date__lt=tomorrow) & (Q(date__gt=today) | Q(date__gt=yesterday) & Q(document__isnull=False)))\
                                  .order_by('date')[:10]
 
-        return Response(serializers.EpisodeSerializer(episodes, many=True).data)
+        return Response(serializers.MinimalEpisodeSerializer(episodes, many=True).data)
