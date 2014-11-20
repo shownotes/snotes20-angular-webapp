@@ -10,7 +10,7 @@ angular.module('snotes30App')
 
   this.getCovers = function (podcast) {
     return podcasts.customGET((podcast.slug || podcast) + '/covers');
-  }
+  };
 
   this.getNumbers = function (podcast) {
     return podcasts.customGET((podcast.slug || podcast) + '/numbers');
