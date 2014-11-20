@@ -30,8 +30,8 @@ angular.module('snotes30App')
     return documents.customPOST(null, name + '/text', params);
   };
 
-  this.createFromEpisode = function (episode) {
-    return documents.post({ episode: episode.id }, { type: 'fromepisode' });
+  this.createFromEpisode = function (episode, number) {
+    return documents.post({ episode: episode.id, number: number }, { type: 'fromepisode' });
   };
 
   this.createNonLive = function (podcast, number) {
