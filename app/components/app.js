@@ -59,7 +59,12 @@ angular
       .state('livelist', {
         url: '/',
         templateUrl: 'components/livelist/livelist.html',
-        controller: 'LiveListCtrl'
+        controller: 'LiveListCtrl',
+        resolve: {
+          'episodes': ['Restangular', function (Restangular) {
+            return Restangular.all('soonepisodes').getList();
+          }]
+        }
       })
       .state('document-edit', {
         url: '/doc/:name/edit/',

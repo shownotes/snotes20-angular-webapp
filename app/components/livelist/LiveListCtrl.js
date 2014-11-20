@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('LiveListCtrl', function ($scope, $state, $timeout, Restangular, DocumentService, ArchiveService, PodcastService) {
-    $scope.episodes = [];
+  .controller('LiveListCtrl', function ($scope, $state, $timeout, DocumentService, ArchiveService, PodcastService, episodes) {
+    $scope.episodes = episodes;
     $scope.newDoc = {
       'number': ""
     };
@@ -14,12 +14,6 @@ angular.module('snotes30App')
     ArchiveService.getFullList().then(function (podcasts) {
       $scope.nonlive.podcasts = podcasts;
     });
-
-    Restangular.all('soonepisodes').getList().then(
-      function (episodes) {
-        $scope.episodes = episodes;
-      }
-    );
 
     $scope.isPast = function (ep) {
       var today = new Date().setHours(0,0,0,0);
