@@ -11,8 +11,8 @@ class AuthViewSet(viewsets.ViewSet):
     permission_classes = ()
 
     def list(self, request):
-        if request.user.is_authenticated() or request.user is models.NUser and request.user.is_authenticated_raw():
-            return Response(data={'user': {'username': request.user.username}}, status=200)
+        if request.user.is_authenticated() or (request.user is models.NUser and request.user.is_authenticated_raw()):
+            return Response(data={'user': {'username': request.user.username, 'migrated': request.user.migrated}}, status=200)
         else:
             return Response(status=401)
 
