@@ -29,6 +29,8 @@ class ArchiveViewSet(viewsets.ViewSet):
                 'ORDER BY pub_create DESC '
                 'LIMIT ' + str(settings.ARCHIVE_RECENT_COUNT) + ';'
             )
+        elif type == 'full':
+            qry = models.Podcast.objects.all()
         else:
             qry = models.Podcast.objects.raw(
                 'SELECT DISTINCT ON ("id", "title") * '
