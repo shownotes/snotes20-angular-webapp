@@ -1,5 +1,6 @@
 from datetime import datetime
 import time
+import string
 
 from django.shortcuts import get_object_or_404
 from django.db import transaction
@@ -17,6 +18,17 @@ import snotes20.editors as editors
 import snotes20.contenttypes as contenttypes
 
 
+def find_doc_name(prefix, sep='-'):
+    if not models.Document.objects.filter(name=prefix).exists():
+        return prefix
+
+    for letter in range(1, 26):
+        name = prefix + sep + letter
+        if not models.Document.objects.filter(name=name).exists():
+            return name
+    raise Exception()
+
+
 def create_doc_from_episode(request, episode_pk):
     if episode_pk is None:
         return Response(status=status.HTTP_400_BAD_REQUEST)
@@ -27,7 +39,14 @@ def create_doc_from_episode(request, episode_pk):
 
     doc = models.Document()
 
-    doc.name = episode.podcast.slug + '-' + today.strftime('%Y-%m-%d-%H-%M-%S')
+    doc.name = episode.podcast.slug + '-'
+
+    if episode.number is not None:
+        doc.name += episode.number
+    else:
+        doc.name += today.strftime('%Y-%m-%d')
+        doc.name = find_doc_name(doc.name)
+
     doc.editor = models.EDITOR_ETHERPAD
     doc.creator = request.user
 
