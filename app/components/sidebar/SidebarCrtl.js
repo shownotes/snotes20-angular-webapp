@@ -49,11 +49,11 @@ angular.module('snotes30App')
         };
 
         if(!user.migrated) {
-          $location.url('/user/upgrade');
+          $location.url('/user/upgrade/');
         }
 
         var url = $location.url();
-        if(url.indexOf('/user/activate') === 0 || url == '/user/registration') {
+        if(url.indexOf('/user/activate/') === 0 || url == '/user/registration/') {
           $location.url('/');
         }
 
