@@ -40,3 +40,18 @@ class PodcastViewSet(viewsets.ViewSet):
         data = serializers.CoverSerializer(covers, many=True).data
 
         return Response(data)
+
+
+    @action(methods=["GET"])
+    def numbers(self, request, pk=None):
+        podcast = get_object_or_404(models.Podcast, slugs__slug=pk)
+
+        # http://stackoverflow.com/a/8502570/2486196
+        episodes = models.Episode.objects.raw(
+            "SELECT id, number FROM snotes20_episode "
+            "WHERE podcast_id='" + podcast.id + "' AND number IS NOT NULL "
+            "ORDER BY NULLIF(regexp_replace(number, E'\\D', '', 'g'), '')::int DESC "
+            "LIMIT 3"
+        )
+
+        return Response([ep.number for ep in list(episodes)])
