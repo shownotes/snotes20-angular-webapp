@@ -488,6 +488,9 @@ button:disabled:active {
 .actionStatus > * {
 	font-weight: bold;
 }
+.FlattrButton {
+	vertical-align: middle;
+}
 
 /* Links */
 a:link,
@@ -1281,7 +1284,10 @@ ul.iconlist {
 .iconlist span:first-child {
 	color: #999;
 	font-size: 2em;
-	margin-right: .5em;
+	width: 10%;
+}
+.iconlist div {
+	width: 95%;
 }
 .iconlist h3 {
 	margin-bottom: 0;
@@ -1492,7 +1498,7 @@ footer a:hover {
 		min-width: 17em;
 		position: absolute;
 		border-left: none;
-		box-shadow: 0 0.1em .25em 0.1em rgba(0, 0, 0, 0.3);
+		box-shadow: 0 0.1em .25em 0.1em rgba(0, 0, 0, .3);
 		z-index: 1000;
 	}
 	.account .button {
@@ -1516,6 +1522,10 @@ footer a:hover {
 	}
 	.content {
 		min-width: 25em;
+	}
+	.iconlist span:first-child {
+		width: 5%;
+		margin-right: 5%;
 	}
 	.padlist tr > th:nth-child(3),
 	.padlist tr > td:nth-child(3) {
