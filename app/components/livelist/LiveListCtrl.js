@@ -1,34 +1,17 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('LiveListCtrl', function ($scope, $state, $timeout, Restangular, DocumentService) {
+  .controller('LiveListCtrl', function ($scope, $state, $timeout, Restangular, DocumentService, ArchiveService) {
     $scope.episodes = [];
     $scope.newDoc = {
       'number': ""
     };
 
-    $scope.podcasts = [
-      {
-        "slug": "cre",
-        "title": "Chaosradio Express"
-      },
-      {
-        "slug": "mobilemacs",
-        "title": "Mobilemacs"
-      },
-      {
-        "slug": "1337kultur",
-        "title": "1337kultur"
-      },
-      {
-        "slug": "nsfw",
-        "title": "Not Safe For Work"
-      },
-      {
-        "slug": "nerdkunde",
-        "title": "Nerdkunde"
-      },
-    ];
+    $scope.podcasts = [];
+
+    ArchiveService.getFullList().then(function (podcasts) {
+      $scope.podcasts = podcasts;
+    });
 
     Restangular.all('soonepisodes').getList().then(
       function (episodes) {

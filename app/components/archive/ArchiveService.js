@@ -6,6 +6,9 @@ angular.module('snotes30App')
 
   this.getList = function () {
     return archive.getList()
+
+  this.getFullList = function () {
+    return archive.getList({type: 'full'});
   };
 
   this.getRecentList = function () {
