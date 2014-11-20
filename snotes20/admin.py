@@ -197,6 +197,7 @@ UserAdmin.fieldsets = (
     (UserAdmin.fieldsets[3][0], {'fields': (('date_login', 'date_joined'),)})
 )
 UserAdmin.list_display = ('username', 'email', 'is_staff')
+UserAdmin.search_fields = ('username', 'email')
 UserAdmin.readonly_fields = ('migrated',)
 UserAdmin.add_fieldsets = (
         (None, {
