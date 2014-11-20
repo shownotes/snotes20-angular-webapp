@@ -1,0 +1,6 @@
+<span><!--
+    --><span ng-if="numbers.length == 0">keine</span><!--
+    --><span ng-if="numbers.length > 0"><b>{{numbers[0]}}</b></span><!--
+    --><span ng-if="numbers.length > 2"><span ng-repeat="number in subNumbers">, <b>{{number}}</b></span></span><!--
+    --><span ng-if="numbers.length > 1"> und <b>{{numbers[numbers.length - 1]}}</b></span><!--
+--></span>

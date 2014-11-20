@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('LiveListCtrl', function ($scope, $state, $timeout, Restangular, DocumentService, ArchiveService) {
+  .controller('LiveListCtrl', function ($scope, $state, $timeout, Restangular, DocumentService, ArchiveService, PodcastService) {
     $scope.episodes = [];
     $scope.newDoc = {
       'number': ""
@@ -47,6 +47,19 @@ angular.module('snotes30App')
         $timeout(function () { angular.element("#addNumber_" + index).focus(); }, 0);
       }
     };
+
+    $scope.$watch(function (scope) {
+      return scope.nonlive.selectedPodcast;
+    },
+    function (newVal, oldVal) {
+      if(newVal) {
+        PodcastService.getNumbers(newVal.originalObject).then(function (numbers) {
+          $scope.nonlive.oldNumbers = numbers;
+        });
+      } else {
+        $scope.nonlive.oldNumbers = [];
+      }
+    });
 
     $scope.createNonLive = function () {
       var podcast = $scope.nonlive.selectedPodcast.originalObject;
