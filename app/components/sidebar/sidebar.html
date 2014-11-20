@@ -71,20 +71,11 @@
     </ul>
 </nav>
 
-<nav class="migrateWarning ng-cloak" ng-hide="!$root.currentUser || $root.currentUser.migrated">
-    <ul>
-        <li>
-            <!-- ich schau grässlich aus. mach mich schön <3 -->
-            <h3>Achtung!</h3>
-            <p>
-                Dein Account ist noch nicht auf die neue Platform umgezogen.
-            </p>
-            <p>
-                Um diese Seite vollständig nutzen zu können, <a href="/user/upgrade/">erledige das bitte</a>.
-            </p>
-        </li>
-    </ul>
-</nav>
+<div class="migrateWarning ng-cloak" ng-hide="!$root.currentUser || $root.currentUser.migrated">
+  <h3>ShowPad-Account</h3>
+  <p>Bitte <a href="/user/upgrade/">aktualisiere deine Daten</a>, um die neue Plattform vollständig nutzen zu können.</p>
+</div>
+
 
 <nav class="menu" ng-controller="SidebarSearchCrtl">
     <ul>
