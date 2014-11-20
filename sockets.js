@@ -2,6 +2,7 @@ var io;
 
 exports.init = function (conf) {
     io = require('socket.io')(conf.port, {
+      'transports': ['htmlfile', 'xhr-polling', 'jsonp-polling', 'polling']
     });
 
     io.on('connection', function(socket) {
