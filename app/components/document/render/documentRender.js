@@ -13,7 +13,7 @@ angular.module('snotes30App')
         formatName: '=?'
       },
       templateUrl: '/components/document/render/document-render.html',
-      controller: function ($scope, $interval, DocumentService) {
+      controller: function ($scope, $interval, $sce, DocumentService) {
         $scope.formats = [
           { name: 'list',     type: 'html',  caption: 'Liste' },
           { name: 'block',    type: 'html',  caption: 'Block' },
@@ -90,7 +90,7 @@ angular.module('snotes30App')
               data = nunjucksenv.render("osf_" + $scope.formatName, data);
             }
 
-            $scope.content = data;
+            $scope.content = $sce.trustAsHtml(data);
           })
         }
 
