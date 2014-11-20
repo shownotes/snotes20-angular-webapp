@@ -44,7 +44,7 @@ class ShowPadBackend(object):
             iterations = int(old_pw[1])
 
             hash1 = pbkdf2(hashlib.sha1, pw, salt, iterations, 32)
-            hash2 = bytearray.fromhex(old_pw[2])
+            hash2 = bytes.fromhex(old_pw[2])
 
             if hash1 == hash2:
                 return user

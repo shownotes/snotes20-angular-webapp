@@ -1,7 +1,7 @@
 import random
 
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, UserManager
-from django.db import models
+from django.db import models, transaction
 from django.core.mail import send_mail
 from django.core import validators
 from django.utils import timezone
@@ -91,14 +91,15 @@ class NUser(AbstractBaseUser, PermissionsMixin):
         return self.username
 
     def migrate(self, password, request=None):
-        if request is None:
-            self.set_password(password)
-        else:
-            self.set_password_keep_session(request, password)
+        with transaction.atomic():
+            self.migrated = True
+            self.old_password = None
+            self.save()
 
-        self.migrated = True
-        self.old_password = None
-        self.save()
+            if request is None:
+                self.set_password(password)
+            else:
+                self.set_password_keep_session(request, password)
 
     def set_password_keep_session(self, request, raw_password):
         self.set_password(raw_password)
