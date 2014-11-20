@@ -34,6 +34,10 @@ angular.module('snotes30App')
     return documents.post({ episode: episode.id }, { type: 'fromepisode' });
   };
 
+  this.createNonLive = function (podcast, number) {
+    return documents.post({ podcast: podcast, number: number }, { type: 'nonlive' });
+  };
+
   this.setNumber = function (doc, number) {
     return doc.customPOST({ number: number }, doc.name + '/number');
   };

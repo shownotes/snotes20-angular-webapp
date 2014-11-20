@@ -51,15 +51,15 @@
 <angucomplete-alt id="podcast"
                   placeholder=""
                   pause="100"
-                  selected-object="selectedPodcast"
-                  local-data="podcasts"
+                  selected-object="nonlive.selectedPodcast"
+                  local-data="nonlive.podcasts"
                   search-fields="title,slug"
                   title-field="title"
                   minlength="1"></angucomplete-alt>
 
 <p>Die letzten Episodennummern in diesem Podcast waren: <b>133</b>, <b>51</b> und <b>61</b>.</p>
-<label for="episode">Episode:</label> <input type="text" id="episode">
+<label for="episode">Episode:</label> <input type="text" id="episode" ng-model="nonlive.number">
 
-<input type="button" value="Erstellen">
+<input type="button" value="Erstellen" ng-click="createNonLive()">
 
 <snotes-footer></snotes-footer>

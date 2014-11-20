@@ -7,10 +7,12 @@ angular.module('snotes30App')
       'number': ""
     };
 
-    $scope.podcasts = [];
+    $scope.nonlive = {
+      podcasts: []
+    };
 
     ArchiveService.getFullList().then(function (podcasts) {
-      $scope.podcasts = podcasts;
+      $scope.nonlive.podcasts = podcasts;
     });
 
     Restangular.all('soonepisodes').getList().then(
@@ -48,4 +50,11 @@ angular.module('snotes30App')
         $timeout(function () { angular.element("#addNumber_" + index).focus(); }, 0);
       }
     };
+
+    $scope.createNonLive = function () {
+      var podcast = $scope.nonlive.selectedPodcast.originalObject;
+      DocumentService.createNonLive(podcast.id, $scope.nonlive.number).then(function (doc) {
+        $scope.openDoc(doc.name);
+      });
+    }
   });
