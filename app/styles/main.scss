@@ -789,6 +789,7 @@ nav li > input[type="checkbox"] {
 	&.report {
 		background-color: #eee;
 		font-size: .8em;
+		white-space: nowrap;
 	}
 }
 
@@ -945,6 +946,9 @@ nav li > input[type="checkbox"] {
 .cover-header h2 + h3 {
 	margin: 0 0 .8em 0;
 }
+.cover-header iframe {
+	margin-top: 1em;
+}
 .namelist {
   span.delete {
 	color: #40a662;
@@ -960,7 +964,8 @@ nav li > input[type="checkbox"] {
 }
 .document-header,
 .sighting-wrapper,
-.livelist-wrapper {
+.livelist-wrapper,
+.readonly-wrapper {
 	display: -webkit-box;
 	display: -moz-box;
 	display: -ms-flexbox;
@@ -970,11 +975,13 @@ nav li > input[type="checkbox"] {
 	flex-direction: row;
 }
 .sighting-wrapper > *,
-.livelist-wrapper > * {
+.livelist-wrapper > *,
+.readonly-wrapper {
 	width: 50%;
 }
 .sighting-wrapper > *:first-child,
-.livelist-wrapper > *:first-child {
+.livelist-wrapper > *:first-child,
+.readonly-wrapper > *:first-child {
 	margin-right: 2em;
 }
 .sighting-wrapper h2+h3 {
@@ -1201,6 +1208,12 @@ img.cover {
 /* Read-only */
 .output {
 	margin-top: 1em;
+}
+
+/* Publication list */
+.publist li.active a:link,
+.publist li.active a:visited {
+	color: #111;
 }
 
 /* Read-only archive */

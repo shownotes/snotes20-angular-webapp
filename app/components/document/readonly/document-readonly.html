@@ -1,26 +1,31 @@
-<div class="cover-header">
+<div class="readonly-wrapper">
 
-	<a ui-sref="archive-podcast({ podcast: episode.podcast.slug })">
-		<media-image alt="cover" class="cover" path="episode.cover.file || episode.podcast.cover.file"></media-image>
-    </a>
+	<div class="cover-header">
 
-	<div>
-		<h2>{{episode.podcast.title}} {{episode.number}}</h2>
-		<h3>{{episode.date | date:'medium'}}</h3>
-		<a href="{{currentUrl}}edit/">Bearbeiten</a>
-		<a class="statuslabel report" href="#">Problem melden</a>
+		<a ui-sref="archive-podcast({ podcast: episode.podcast.slug })">
+			<media-image alt="cover" class="cover" path="episode.cover.file || episode.podcast.cover.file"></media-image>
+		</a>
+
+		<div>
+			<h2>{{episode.podcast.title}} {{episode.number}}</h2>
+			<h3>{{episode.date | date:'medium'}}</h3>
+			<a href="{{currentUrl}}edit/">Bearbeiten</a>
+			<a class="statuslabel report" href="#">Problem melden</a>
+			<script id='fbmmapi'>(function(i){var f,s=document.getElementById(i);f=document.createElement('iframe');f.src='//api.flattr.com/button/view/?uid=Shownotes&button=compact&url='+encodeURIComponent(document.URL);f.title='Flattr';f.height=20;f.width=110;f.style.borderWidth=0;s.parentNode.insertBefore(f,s);})('fbmmapi');</script>
+		</div>
+
 	</div>
 
-</div>
+	<ul class="publist">
+		<li ng-class="{ active: (pub === undefined) }">
+			<a ui-sref="document-readonly-pub({ name: doc.name, pub: undefined })">live</a>
+		</li>
+		<li ng-repeat="pub in episode.publications" ng-class="{ active: (pub === $index) }">
+			<a ui-sref="document-readonly-pub({ name: doc.name, pub: $index })">{{pub.create_date | date:'medium'}}</a>
+		</li>
+	</ul>
 
-<ul>
-    <li ng-class="{ active: (pub === undefined) }">
-        <a ui-sref="document-readonly-pub({ name: doc.name, pub: undefined })">live</a>
-    </li>
-    <li ng-repeat="pub in episode.publications" ng-class="{ active: (pub === $index) }">
-        <a ui-sref="document-readonly-pub({ name: doc.name, pub: $index })">{{pub.create_date | date:'medium'}}</a>
-    </li>
-</ul>
+</div>
 
 <document-render document="doc" show-formats="true" publication="pub" refresh="pub === undefined"></document-render>
 
