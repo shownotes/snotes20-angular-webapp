@@ -41,6 +41,7 @@ def update_document(doc, sigh):
             pub.creator = models.NUser.objects.get(pk=1)
             pub.preliminary = True
             pub.create_date = datetime.datetime(2000, 1, 1)
+            pub.episode = doc.episode
             pub.save()
 
 
