@@ -44,9 +44,7 @@ angular.module('snotes30App')
         $scope.user.username,
         $scope.user.password
       ).then(function (user) {
-        $rootScope.currentUser = {
-          username: $scope.user.username
-        };
+        $rootScope.currentUser = user;
 
         if(!user.migrated) {
           $location.url('/user/upgrade/');
