@@ -8,6 +8,7 @@ $ git checkout srv
 $ virtualenv venv
 $ . venv/bin/activate
 $ pip install -r requirements.txt
+   # create local_settings.py (see below)
 $ python manage.py migrate
 $ python manage.py loaddata OSFTag.yaml
 $ python manage.py loaddata NUserSocialType.yaml
