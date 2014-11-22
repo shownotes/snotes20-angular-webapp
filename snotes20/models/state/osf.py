@@ -53,7 +53,7 @@ class OSFNote(models.Model):
     order = models.IntegerField()
     timestamp = models.BigIntegerField(null=True)
     title = models.TextField()
-    url = models.URLField(null=True)
+    url = models.URLField(null=True, max_length=500)
     tags = models.ManyToManyField(OSFTag, related_name="notes")
 
     def to_dict(self, level):
