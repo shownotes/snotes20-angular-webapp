@@ -21,7 +21,7 @@ class UserViewSet(viewsets.ViewSet):
         if serialized.is_valid():
             user = get_user_model().objects.create_user(
                 email=serialized.init_data['email'],
-                username=serialized.init_data['username'],
+                username=serialized.init_data['username'].lower(),
                 password=serialized.init_data['password']
             )
             token = user.add_email_token(user.email)
