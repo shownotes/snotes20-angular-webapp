@@ -55,6 +55,10 @@ class HoersuppeDataSource(AbstractDataSource):
         episodes = []
 
         for ep in h_episodes:
+            if len(ep.podcast) == 0:
+                logger.warn("skipped episode %s (%s), no podcast given", ep.id, ep.title)
+                continue
+
             try:
                 podcast = models.Podcast.objects.get(slugs__slug=ep.podcast)
             except models.Podcast.DoesNotExist:
