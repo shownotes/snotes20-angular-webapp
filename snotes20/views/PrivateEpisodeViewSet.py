@@ -22,5 +22,5 @@ class PrivateEpisodeViewSet(viewsets.ViewSet):
         if request.QUERY_PARAMS.get('secret', None) != settings.PRIVATE_API_SECRET:
             return Response([])
 
-        episodes = models.Episode.objects.all()
+        episodes = models.Episode.objects.exclude(document__isnull=True)
         return Response(MinimalEpisodeSerializer(episodes, many=True).data)
