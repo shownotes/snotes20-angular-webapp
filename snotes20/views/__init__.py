@@ -6,3 +6,4 @@ from .ImporterLogs import ImporterLogViewSet
 from .EditorViewSet import EditorViewSet
 from .ArchiveViewSet import ArchiveViewSet
 from .PodcastViewSet import PodcastViewSet
+from .PrivateEpisodeViewSet import PrivateEpisodeViewSet

@@ -17,6 +17,7 @@ router.register(r'importerlogs', views.ImporterLogViewSet, base_name='importerlo
 router.register(r'editors', views.EditorViewSet, base_name='editors')
 router.register(r'archive', views.ArchiveViewSet, base_name='archive')
 router.register(r'podcasts', views.PodcastViewSet, base_name='podcasts')
+router.register(r'pepisodes', views.PrivateEpisodeViewSet, base_name='pepsidoes')
 
 urlpatterns = patterns('',
     url(r'^', include(router.urls)),
