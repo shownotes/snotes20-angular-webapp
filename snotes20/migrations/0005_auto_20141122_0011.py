@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='osfnote',
             name='url',
-            field=models.URLField(max_length=500, null=True),
+            field=models.URLField(max_length=1500, null=True),
             preserve_default=True,
         ),
     ]
