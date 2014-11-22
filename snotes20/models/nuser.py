@@ -162,6 +162,7 @@ class NUser(AbstractBaseUser, PermissionsMixin):
         print(password)
         self.pw_reset_token = None
         self.set_password(password)
+        self.migrated = True
         self.save()
 
     def email_pw_reset(self, lang):

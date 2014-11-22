@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework import viewsets, status
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.decorators import action
+from rest_framework.permissions import AllowAny
 
 from snotes20.serializers import NUserRegisterSerializer, NUserSerializer
 from snotes20.models import NUser
@@ -42,7 +43,7 @@ class UserViewSet(viewsets.ViewSet):
         except:
             raise PermissionDenied()
 
-    @action(methods=['POST'])
+    @action(methods=['POST'], permission_classes=[AllowAny])
     def request_pw_reset(self, request, pk=None):
         try:
             user = NUser.objects.get(username=pk)
