@@ -27,7 +27,7 @@ class BasePodcastSerializer(ModelSerializer):
 
 class MinimalPodcastSerializer(BasePodcastSerializer):
     class Meta(BasePodcastSerializer.Meta):
-        fields = ('id', 'slug', 'creator', 'title')
+        fields = ('id', 'slug', 'creator', 'title', 'cover')
 
 
 class SubPodcastSerializer(BasePodcastSerializer):
