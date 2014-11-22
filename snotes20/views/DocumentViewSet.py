@@ -296,7 +296,7 @@ class DocumentViewSet(viewsets.ViewSet):
             data = serializers.ChatMessageSerializer(msgs, many=True).data
             return Response(data, status=status.HTTP_200_OK)
 
-    @detail_route(methods=['POST'], permission_classes=(AllowAny,))
+    @detail_route(methods=['POST', 'GET'], permission_classes=(AllowAny,))
     def text(self, request, pk=None):
         document = get_object_or_404(models.Document, pk=pk)
 
