@@ -7,12 +7,20 @@ from rest_framework import viewsets, status
 
 import snotes20.models as models
 
+
+def get_user_resp_from_user(user):
+    return {
+        'username': user.username,
+        'migrated': user.migrated
+    }
+
+
 class AuthViewSet(viewsets.ViewSet):
     permission_classes = ()
 
     def list(self, request):
         if request.user.is_authenticated() or (request.user is models.NUser and request.user.is_authenticated_raw()):
-            return Response(data={'user': {'username': request.user.username, 'migrated': request.user.migrated}}, status=200)
+            return Response(data={'user': get_user_resp_from_user(request.user)}, status=200)
         else:
             return Response(status=401)
 
@@ -27,7 +35,7 @@ class AuthViewSet(viewsets.ViewSet):
                 login(request, user)
                 user.date_login = datetime.now()
                 user.save()
-                return Response(data={'migrated': user.migrated}, status=200)
+                return Response(data=get_user_resp_from_user(user), status=200)
             else:
                 return Response(status=401)
         else:
