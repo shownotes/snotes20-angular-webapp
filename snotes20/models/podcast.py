@@ -45,6 +45,7 @@ class Podcast(Importable):
     cover = models.ForeignKey(Cover, related_name="podcasts", null=True, blank=True)
     description = models.TextField()
     url = models.URLField()
+    feed = models.URLField(null=True, blank=True)
     stream = models.CharField(max_length=100, null=True, blank=True)
     chat = models.CharField(max_length=100, null=True, blank=True)
     type = models.CharField(max_length=3, choices=TYPE_CHOICES)

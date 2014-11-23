@@ -46,7 +46,7 @@ class PodcastAdmin(admin.ModelAdmin):
     readonly_fields = ('slug',)
     fieldsets = (
         (None, {
-            'fields': ('slug', 'title', 'description', 'url', 'type', 'cover')
+            'fields': ('slug', 'title', 'description', 'url', 'feed', 'type', 'cover')
         }),
         ('Live', {
             'fields': ('stream', 'chat')
