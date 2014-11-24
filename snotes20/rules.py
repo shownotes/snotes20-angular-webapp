@@ -3,7 +3,7 @@ import rules
 
 @rules.predicate
 def can_publish_podcast(user, podcast):
-    if user.has_perm('publish_episode'):
+    if user.has_perm('snotes20.publish_episode'):
         return True
     if podcast.mums.filter(id=user.id).exists():
         return True
