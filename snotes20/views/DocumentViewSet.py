@@ -11,6 +11,7 @@ from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny
 from rest_framework.decorators import action, list_route, detail_route
+from django.core.cache import cache
 
 import snotes20.serializers as serializers
 import snotes20.models as models
@@ -299,39 +300,51 @@ class DocumentViewSet(viewsets.ViewSet):
     @detail_route(methods=['POST', 'GET'], permission_classes=(AllowAny,))
     def text(self, request, pk=None):
         document = get_object_or_404(models.Document, pk=pk)
+        source = document
 
         type = 'osf'
-
-        source = document
 
         if 'type' in request.QUERY_PARAMS:
             type = request.QUERY_PARAMS['type']
 
         if 'pub' in request.QUERY_PARAMS:
             pub = request.QUERY_PARAMS['pub']
-
-            if pub == 'newest':
-                source = document.episode.publications.order_by('create_date')[:1][0]
-            else:
-                try:
-                    num = int(pub)
-                    source = document.episode.publications.order_by('create_date')[num:num + 1][0]
-                except IndexError:
-                    return Response(status=status.HTTP_404_NOT_FOUND)
-                except ValueError:
-                    return Response(status=status.HTTP_400_BAD_REQUEST)
-
-        if type == 'json':
-            try:
-                data = source.state.osfdocumentstate.to_dict()
-            except models.OSFDocumentState.DoesNotExist:
-                return Response(status=status.HTTP_503_SERVICE_UNAVAILABLE)
-        elif type == 'raw':
-            data  = source.raw_state.text
-        elif type == 'osf':
-            data = None
         else:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            pub = None
+
+        cache_key = 'doctext_' + document.name
+
+        if pub is not None:
+            cache_key += '_' + pub
+
+        data = cache.get(cache_key)
+
+        if data is None:
+            if pub is not None:
+                if pub == 'newest':
+                    source = document.episode.publications.order_by('create_date')[:1][0]
+                else:
+                    try:
+                        num = int(pub)
+                        source = document.episode.publications.order_by('create_date')[num:num + 1][0]
+                    except IndexError:
+                        return Response(status=status.HTTP_404_NOT_FOUND)
+                    except ValueError:
+                        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+            if type == 'json':
+                try:
+                    data = source.state.osfdocumentstate.to_dict()
+                except models.OSFDocumentState.DoesNotExist:
+                    return Response(status=status.HTTP_503_SERVICE_UNAVAILABLE)
+            elif type == 'raw':
+                data  = source.raw_state.text
+            elif type == 'osf':
+                data = None
+            else:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+
+            cache.set(cache_key, data, 1)
 
         response = Response({'data': data}, status=status.HTTP_200_OK)
         return response
