@@ -49,7 +49,10 @@
 
 	<div class="container">
 		<section class="sidebar" ng-include="'components/sidebar/sidebar.html'"></section>
-		<section class="content" ui-view></section>
+		<section class="content cccontent" ui-view></section>
+		<section class="content ng-hide navigation_loading">
+			<img class="navigation_loading" src="images/shownotes-signet.svg" alt="shownot.es" title="shownot.es" />
+		</section>
 	</div>
 
 	<!-- build:js scripts/vendor.js -->

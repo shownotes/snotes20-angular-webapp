@@ -306,6 +306,22 @@ angular
         console.log(error);
       }
     });
+
+    var loadingTimeouts = [];
+
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+      loadingTimeouts.push(setTimeout(function () {
+        angular.element(".cccontent").addClass("ng-hide");
+        angular.element("section.navigation_loading").removeClass("ng-hide");
+      }, 200));
+    });
+
+    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+      while(loadingTimeouts.length > 0) clearTimeout(loadingTimeouts.pop());
+
+      angular.element(".cccontent").removeClass("ng-hide");
+      angular.element("section.navigation_loading").addClass("ng-hide");
+    });
   })
   .value('cgBusyDefaults',{
     message:'Doing magic!',

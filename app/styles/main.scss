@@ -307,6 +307,27 @@ hr {
 	color: #a64040;
 }
 
+/* loading screen */
+img.navigation_loading {
+	height: 30vh;
+	opacity: 0.5;
+	margin: 0 auto;
+	display: block;
+	margin-top: calc(50vh - 20vh);
+
+	-webkit-animation:spin 1.5s linear infinite;
+	-moz-animation:spin 1.5s linear infinite;
+	animation:spin 1.5s linear infinite;
+
+	-webkit-transform-origin: 15vh 15.756302521vh;
+	-moz-transform-origin: 15vh 15.756302521vh;
+	transform-origin: 15vh 15.756302521vh;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
 /* Tooltips */
 *[data-tooltip]:after {
 	content: attr(data-tooltip);
