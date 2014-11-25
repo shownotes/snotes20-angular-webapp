@@ -202,7 +202,7 @@ module.exports = function (grunt) {
     wiredep: {
       app: {
         src: ['<%= yeoman.app %>/index.html'],
-        exclude: [ /handlebars/, /fira/ ],
+        exclude: [ /handlebars/, /fira/, /nunjucks/ ],
         ignorePath: new RegExp('^<%= yeoman.app %>/')
       },
       sass: {
