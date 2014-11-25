@@ -81,6 +81,7 @@ class PublicationInline(admin.StackedInline):
 @admin.register(models.Episode)
 class EpisodeAdmin(ForeignKeyAutocompleteAdmin):
     inlines = (PublicationInline,)
+    search_fields = ('number', 'document__name', 'podcast__slugs__slug')
     related_search_fields = {
         'podcast': ('title',),
         'document': ('name',),
@@ -143,6 +144,7 @@ class DocumentAdminForm(ReverseOneToOneAdminForm):
 @admin.register(models.Document)
 class DocumentAdmin(ReverseOneToOneAdmin):
     form = DocumentAdminForm
+    search_fields = ('name',)
     rels = (('episode', 'document'),)
 
 @admin.register(models.Publication)
