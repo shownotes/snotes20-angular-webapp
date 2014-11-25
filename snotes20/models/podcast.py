@@ -96,6 +96,7 @@ class Episode(Importable):
     document = models.OneToOneField(Document, null=True, blank=True, unique=True, on_delete=models.SET_NULL)
 
     class Meta:
+        unique_together = ('podcast', 'number')
         permissions = (
             ("publish_episode", "publish"),
         )
