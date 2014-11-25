@@ -125,7 +125,7 @@ module.exports = function (grunt) {
             https: false,
             xforward: false,
             headers: {
-              "host": "new.shownot.es"
+              'host': 'new.shownot.es'
             }
           }
         ]
