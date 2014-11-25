@@ -195,7 +195,7 @@ class NUserCreationForm(UserCreationForm):
 UserAdmin.fieldsets = (
     (UserAdmin.fieldsets[0][0], {'fields': ('username', 'password', 'migrated', 'is_active', 'is_staff')}),
     (UserAdmin.fieldsets[1][0], {'fields': ('email', 'color')}),
-    (UserAdmin.fieldsets[2][0], {'fields': ('groups',)}),
+    (UserAdmin.fieldsets[2][0], {'fields': ('groups', 'user_permissions')}),
     (UserAdmin.fieldsets[3][0], {'fields': (('date_login', 'date_joined'),)})
 )
 UserAdmin.list_display = ('username', 'email', 'is_staff')
