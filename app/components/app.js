@@ -270,13 +270,18 @@ angular
     });
 
     function delayHttp() {
-      $httpProvider.responseInterceptors.push(["$q", "$timeout", function ($q, $timeout) {
-        return function (promise) {
-          var defer = $q.defer();
-          $timeout(function () { promise.then(defer.resolve, defer.reject); }, 700);
-          return defer.promise;
+      // http://stackoverflow.com/a/25688395/2486196
+      $httpProvider.interceptors.push(function($q, $timeout) {
+        return {
+          'response': function(response) {
+            var defer = $q.defer();
+            $timeout(function() {
+              defer.resolve(response);
+            }, 2300);
+            return defer.promise;
+          }
         };
-      }]);
+      });
     }
 
     //delayHttp();
