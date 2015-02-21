@@ -1,18 +1,17 @@
-<h2>Die kollaborative Plattform für Sendungsnotizen</h2>
+<h2 translate="DOCUMENT_LIVE_TITLE"></h2>
 
 <div class="box-wrapper">
-	<p>Willkommen! Hier siehst du, welche Podcast-Aufzeichnungen wann beginnen. Um live bei den Sendungsnotizen zu helfen,
-		<span ng-hide="$root.currentUser">logge dich bitte ein und klicke dann</span>
-		<span ng-hide="!$root.currentUser">klicke</span>
-	auf <strong>Erstellen</strong> oder <strong>Mitschreiben</strong>.
-	<a href='/faq/'>Hast du noch Fragen?</a></p>
+	<p>{{ 'DOCUMENT_LIVE_WELCOME' | translate }}
+		<span ng-hide="$root.currentUser" translate="DOCUMENT_LIVE_LOGIN"></span>
+		<span ng-hide="!$root.currentUser" translate="DOCUMENT_LIVE_CLICK"></span>
+	{{ 'DOCUMENT_LIVE_JOIN' | translate }}</p>
 </div>
 
 <table class="padlist">
 	<tr>
-		<th>Startzeit</th>
-		<th>Podcast</th>
-		<th>Kürzel</th>
+		<th translate="DOCUMENT_LIVE_STARTTIME"></th>
+		<th translate="DOCUMENT_LIVE_PODCAST"></th>
+		<th translate="DOCUMENT_LIVE_ABBR"></th>
 		<th></th>
 	</tr>
 	<tr ng-repeat="ep in episodes" ng-class="{ past: isPast(ep) }">
@@ -22,8 +21,8 @@
 		<td>
 			<div ng-show="setNumber == ep" class="number-wrapper">
 				<input type="text" placeholder="Nummer" id="addNumber_{{$index}}" ng-model="newDoc.number" />
-				<input type="button" value="Erstellen" ng-click="create($index)" />
-				<input type="button" value="Später" ng-click="create($index, true)" />
+				<input type="button" value="{{ 'DOCUMENT_LIVE_CREATE' | translate }}" ng-click="create($index)" />
+				<input type="button" value="{{ 'DOCUMENT_LIVE_LATER' | translate }}" ng-click="create($index, true)" />
 			</div>
 			<div ng-hide="setNumber == ep">
 				<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create($index)" ng-disabled="!$root.currentUser" />

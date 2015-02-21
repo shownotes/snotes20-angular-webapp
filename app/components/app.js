@@ -20,9 +20,10 @@ angular
     'cgBusy',
     'btford.socket-io',
     'angucomplete-alt',
-    'restangular'
+    'restangular',
+    'pascalprecht.translate'
   ])
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider, CONFIG) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider, CONFIG, $translateProvider) {
 
     function getDocResolvers (edit) {
       return {
@@ -285,6 +286,15 @@ angular
     }
 
     //delayHttp();
+
+    //i18n
+    $translateProvider
+      .useStaticFilesLoader({
+        prefix: 'languages/lang_',
+        suffix: '.json'
+      })
+      .preferredLanguage('de_DE');    
+
   })
   .run(function ($cookies, Restangular) {
     Restangular.addFullRequestInterceptor(function(element, operation, what, url, headers, query) {

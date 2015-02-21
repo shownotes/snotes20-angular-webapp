@@ -11,7 +11,7 @@
             <label class="toggle" for="toggle-form" title="Mein Account">
                 <span class="arrow" ng-class="{true: 'icon-arrow-up', false: 'icon-arrow-down'}[loginform.status === 'down']" ng-show="loginform.status === 'down'"></span>
                 <span class="icon-user"></span>
-                <span class="caption" ng-show="!$root.currentUser" ng-cloak>Mein Account</span>
+                <span class="caption" ng-show="!$root.currentUser" ng-cloak translate="SIDEBAR_MYACCOUNT"></span>
                 <span class="caption" ng-show="$root.currentUser">{{$root.currentUser.username}}</span>
             </label>
             <input type="checkbox" id="toggle-form" ng-model="loginform.status" ng-true-value="'down'" ng-false-value="'up'" />
@@ -22,48 +22,48 @@
                         <form-error errors="loginform.errors.username"></form-error>
                         <input type="text"
                                ng-model="user.username"
-                               placeholder="Benutzername"
-                               value=""
-                               title="Gib deinen Benutzernamen ein"
+                               placeholder="{{ 'SIDEBAR_USERNAME' | translate }}"
+                               value="Test"
+                               title="{{ 'SIDEBAR_USERNAME_ENTER' | translate}}"
                                required />
                         <form-error errors="loginform.errors.email"></form-error>
                         <input type="email"
                                ng-model="user.email"
                                ng-show="loginform.mode == 'register'"
                                ng-required="loginform.mode == 'register'"
-                               placeholder="E-Mail-Adresse"
+                               placeholder="{{ 'SIDEBAR_EMAIL' | translate }}"
                                value=""
-                               title="Gib deine E-Mail-Adresse" />
+                               title="{{ 'SIDEBAR_EMAIL_ENTER' | translate }}" />
                         <form-error errors="loginform.errors.password"></form-error>
                         <input type="password"
                                ng-model="user.password"
-                               placeholder="Passwort"
+                               placeholder="{{ 'SIDEBAR_PASSWORD' | translate }}"
                                value=""
-                               title="Gib dein Passwort ein"
+                               title="{{ 'SIDEBAR_PASSWORD_ENTER' | translate }}"
                                required />
                         <input type="password"
                                ng-model="user.password2"
                                ng-show="loginform.mode == 'register'"
                                ng-required="loginform.mode == 'register'"
-                               placeholder="Passwort wiederholen"
+                               placeholder="{{ 'SIDEBAR_PASSWORD_REPEAT' | translate }}"
                                equals="{{user.password}}"
                                value=""
-                               title="Wiederhole dein Passwort" />
+                               title="{{ 'SIDEBAR_PASSWORD_ENTER_REPEAT' | translate }}" />
                     </div>
                     <!--<div class="form-input">
                         <p>Ich akzeptiere die <a href="/rules/">Regeln</a>.</p>
                     </div>-->
-                    <p class="pwreset" ng-show="loginform.errors.loginfailed">Hast du dein <a href="#" ng-click="requestPwReset()">Passwort vergessen</a>?</p>
-                    <p ng-show="pwresetdone">Überprüfe dein E-Mail-Postfach.</p>
+                    <p class="pwreset" ng-show="loginform.errors.loginfailed" translate="SIDEBAR_PASSWORD_LOST"></p>
+                    <p ng-show="pwresetdone" translate="SIDEBAR_CHECK_INBOX"></p>
                     <div class="form-button">
-                        <input type="{{loginform.mode === 'register' ? 'button' : 'submit'}}" value="Einloggen" ng-click="login()" />
-                        <input type="{{loginform.mode === 'login' ? 'button' : 'submit'}}" value="Registrieren" ng-click="register()" />
+                        <input type="{{loginform.mode === 'register' ? 'button' : 'submit'}}" value="{{ 'SIDEBAR_LOGIN' | translate }}" ng-click="login()" />
+                        <input type="{{loginform.mode === 'login' ? 'button' : 'submit'}}" value="{{ 'SIDEBAR_REGISTER' | translate }}" ng-click="register()" />
                     </div>
                 </form>
                 <form ng-show="$root.currentUser && loginform.status === 'down'" ng-cloak>
                     <div class="form-button">
-                        <a href="/profile/{{$root.currentUser.username}}/" ng-click="resetState()">Profil</a>
-                        <input type="button" value="Ausloggen" ng-click="logout()" />
+                        <a href="/profile/{{$root.currentUser.username}}/" ng-click="resetState()" translate="SIDEBAR_PROFILE"></a>
+                        <input type="button" value="{{ SIDEBAR_LOGOUT | translate }}" ng-click="logout()" />
                     </div>
                 </form>
             </div>
@@ -72,34 +72,34 @@
 </nav>
 
 <div class="migrateWarning ng-cloak" ng-hide="!$root.currentUser || $root.currentUser.migrated">
-  <h3>ShowPad-Account</h3>
-  <p>Bitte <a href="/user/upgrade/">aktualisiere deine Daten</a>, um die neue Plattform vollständig nutzen zu können.</p>
+  <h3 translate="SIDEBAR_SHOWPAD_ACCOUNT"></h3>
+  <p translate="SIDEBAR_SHOWPAD_TEXT"></p>
 </div>
 
 
 <nav class="menu">
     <ul>
-        <li class="search" title="Suchbegriff(e) eingeben und mit Enter bestätigen" ng-controller="SidebarSearchCtrl">
+        <li class="search" title="{{ 'SIDEBAR_SEARCH_ENTER' | translate }}" ng-controller="SidebarSearchCtrl">
             <label for="search"><span class="icon-search"></span></label><!--
             --><input type="search"
                       id="search"
-                      placeholder="Suche &hellip;"
+                      placeholder="{{ 'SIDEBAR_SEARCH' | translate }}"
                       ng-model="searchTerm"
                       ng-enter="submitSearch()" />
         </li>
-        <li title="Sendungen">
+        <li title="{{ 'SIDEBAR_SHOWS' | translate }}">
             <a href="/archive/">
-                <span class="icon-podcast"></span><span class="caption">Sendungen</span>
+                <span class="icon-podcast"></span><span class="caption" translate="SIDEBAR_SHOWS"></span>
             </a>
         </li>
-        <li title="Häufig gestellte Fragen">
+        <li title="{{ 'SIDEBAR_FAQ_TITLE' | translate }}">
             <a href="/faq/">
-                <span class="icon-info"></span><span class="caption">Häufig gestellte Fragen</span>
+                <span class="icon-info"></span><span class="caption" translate="SIDEBAR_FAQ"></span>
             </a>
         </li>
-        <li title="Community">
+        <li title="{{ 'SIDEBAR_COMMUNITY' | translate }}">
             <a href="/community/">
-                <span class="icon-bubbles"></span><span class="caption">Community</span>
+                <span class="icon-bubbles"></span><span class="caption" translate="SIDEBAR_COMMUNITY"></span>
             </a>
         </li>
         <!--
@@ -109,11 +109,16 @@
             </a>
         </li>
         -->
+      <li class="lang" title="Sprachwahl" ng-controller="LangCtrl">
+        <span>
+          <a href="" ng-click="changeLang('de_DE')">GER / </a>
+          <a href="" ng-click="changeLang('en_US')">ENG</a>   
+        </span>  
+      </li>
     </ul>
 </nav>
 
 <footer>
-    <p>Alle Sendungsnotizen stehen, soweit nicht anders vermerkt, unter der <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.de" rel="license" title="CC0 1.0 Universell (Public Domain Dedication)">CC0-Lizenz</a>.</p>
-
+    <p translate="SIDEBAR_FOOTER"></p>
     <a class="FlattrButton" style="display:block;" href="http://shownot.es/"></a>
 </footer>
