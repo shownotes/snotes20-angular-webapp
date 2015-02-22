@@ -1,13 +1,13 @@
 <div>
     <p class="namelist">
-        <span ng-hide="names.length > 0" class="empty">Noch keine</span>
+        <span ng-hide="names.length > 0" class="empty" translate="NAMELIST_NONE"></span>
         <span ng-repeat="name in names">
             {{name[nameAttr]}}
-            <span class="icon-close delete" title="Löschen" ng-click="delete(name)"></span>
+            <span class="icon-close delete" title="{{ 'NAMELIST_DELETE' | translate }}" ng-click="delete(name)"></span>
         </span>
     </p>
     <form class="input-group">
-        <input type="text" value="" placeholder="Name" ng-model="newName" />
-        <input type="submit" value="Hinzufügen" ng-click="add()" />
+        <input type="text" value="" placeholder="{{ 'NAMELIST_NAME' | translate }}" ng-model="newName" />
+        <input type="submit" value="{{ 'NAMELIST_ADD' | translate }}" ng-click="add()" />
     </form>
 </div>

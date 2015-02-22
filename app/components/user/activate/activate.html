@@ -1,21 +1,10 @@
-<h2>E-Mail-Bestätigung</h2>
-<h3>Hinweis</h3>
+<h2 translate="USER_ACTIVE_TITLE"></h2>
+<h3 translate="USER_ACTIVE_HINT"></h3>
 <div ng-show="mode == 'account'">
-	<p ng-show="success">
-		Vielen Dank, dein Account wurde freigeschaltet.<br />
-		Du kannst dich nun unter <em>&bdquo;Mein Account&ldquo;</em> einloggen.
-	</p>
-	<p ng-show="!success">
-		Dein Account konnte nicht freigeschalten werden.<br />
-		Bitte melde dich bei uns.
-	</p>
+	<p ng-show="success" translate="USER_ACTIVE_SUCCESS"></p>
+	<p ng-show="!success" translate="USER_ACTIVE_ERROR"></p>
 </div>
 <div ng-show="mode == 'email'">
-	<p ng-show="success">
-		Deine E-Mail-Adresse wurde geändert.
-	</p>
-	<p ng-show="!success">
-		Deine E-Mail-Adresse konnte nicht geändert werden.<br />
-		Bitte melde dich bei uns.
-	</p>
+	<p ng-show="success" translate="USER_ACTIVE_MAIL_CHANGED"></p>
+	<p ng-show="!success" translate="USER_ACTIVE_MAIL_ERROR"></p>
 </div>

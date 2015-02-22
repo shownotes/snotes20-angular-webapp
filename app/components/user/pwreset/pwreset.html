@@ -1,18 +1,18 @@
-<h2>Passwort ändern</h2>
-<h3>Und das nächste Mal einfach merken</h3>
+<h2 translate="USER_PROFILE_PWRESET_TITLE"></h2>
+<h3 translate="USER_PROFILE_PWRESET_HINT"></h3>
 
-<p>Hallo {{username}}! Du kannst nun dein Passwort ändern.</p>
+<p translate="USER_PROFILE_PWRESET_HELLO" translate-value="{ name: '{{username}}"></p>
 
 <div class="box-wrapper">
-	<h3>Passwort ändern</h3>
+	<h3 translate="USER_PROFILE_PWRESET_TITLE"></h3>
 
 	<form class="form-wrapper">
-		<p>Denk daran: Je länger das Passwort, umso sicherer ist es.</p>
-		<input type="password" value="" placeholder="Neues Passwort" ng-model="pwreset.password" />
-		<input type="password" value="" placeholder="Neues Passwort bestätigen" ng-model="pwreset.password2" equals="{{upgrade.password}}" />
-		<input type="submit" value="Passwort speichern" ng-click="sendPwReset()" />
-		<action-status success-text="Dein Passwort wurde erfolgreich geändert."
-					   fail-text="Bitte überprüfe noch einmal deine Angaben."
+		<p translate="USER_PROFILE_PWRESET_LENGTH"></p>
+		<input type="password" value="" placeholder="{{ 'USER_PROFILE_PWRESET_CHANGE' | translate }}" ng-model="pwreset.password" />
+		<input type="password" value="" placeholder="{{ 'USER_PROFILE_PWRESET_CONFIRM' | translate }}" ng-model="pwreset.password2" equals="{{upgrade.password}}" />
+		<input type="submit" value="{{ 'USER_PROFILE_PWRESET_SAVE' | translate }}" ng-click="sendPwReset()" />
+		<action-status success-text="{{ 'USER_PROFILE_PWRESET_SUCCESS' | translate }}"
+					   fail-text="{{ 'USER_PROFILE_PWRESET_ERROR' | translate }}"
 					   active="pwreset.active" status="pwreset.status"></action-status>
 	</form>
 </div>

@@ -53,7 +53,7 @@
                     <!--<div class="form-input">
                         <p>Ich akzeptiere die <a href="/rules/">Regeln</a>.</p>
                     </div>-->
-                    <p class="pwreset" ng-show="loginform.errors.loginfailed" translate="SIDEBAR_PASSWORD_LOST"></p>
+                    <p class="pwreset" ng-show="loginform.errors.loginfailed">{{ 'SIDEBAR_PASSWORD_LOST1' | translate }}<a href="#" ng-click="requestPwReset()">{{ 'SIDEBAR_PASSWORD_LOST2' | translate }}</a>?</p>
                     <p ng-show="pwresetdone" translate="SIDEBAR_CHECK_INBOX"></p>
                     <div class="form-button">
                         <input type="{{loginform.mode === 'register' ? 'button' : 'submit'}}" value="{{ 'SIDEBAR_LOGIN' | translate }}" ng-click="login()" />
@@ -63,7 +63,7 @@
                 <form ng-show="$root.currentUser && loginform.status === 'down'" ng-cloak>
                     <div class="form-button">
                         <a href="/profile/{{$root.currentUser.username}}/" ng-click="resetState()" translate="SIDEBAR_PROFILE"></a>
-                        <input type="button" value="{{ SIDEBAR_LOGOUT | translate }}" ng-click="logout()" />
+                        <input type="button" value="{{ 'SIDEBAR_LOGOUT' | translate }}" ng-click="logout()" />
                     </div>
                 </form>
             </div>

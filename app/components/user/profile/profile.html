@@ -1,72 +1,72 @@
-<h2>Profil bearbeiten</h2>
-<h3>Fühl dich wie zu Hause.</h3>
+<h2 translate="USER_PROFILE_TITLE"></h2>
+<h3 translate="USER_PROFILE_HOME"></h3>
 
-<p>Hallo <em>{{user.username}}</em>! Hier kannst du dein <a ui-sref="publicprofile({ username: $root.currentUser.username })">persönliches Profil</a> bearbeiten.</p>
+<p>{{ 'USER_PROFILE_HELLO1' | translate }}<em>{{user.username}}</em>!{{ 'USER_PROFILE_HELLO2' | translate }}<a ui-sref="publicprofile({ username: $root.currentUser.username })">{{ 'USER_PROFILE_HELLO3' | translate }}</p>
 
 
 <div class="box-wrapper">
-	<h3>Biographie &amp; Farbe</h3>
+	<h3 translate="USER_PROFILE_BIO"></h3>
 
-	<p>Diese Angaben sind öffentlich einsehbar.</p>
+	<p translate="USER_PROFILE_PUBLIC"></p>
 
 	<form class="form-wrapper">
-		<textarea placeholder="Erzähl etwas über dich. Was ist dein Lieblingspodcast?" ng-model="user.bio"></textarea>
+		<textarea placeholder="{{ 'USER_PROFILE_BIO_PLACEHOLDER' | translate }}" ng-model="user.bio"></textarea>
 
-		<p>Deine Farbe im Editor:
+		<p>{{ 'USER_PROFILE_COLOR' | translate }}
 			<spectrum-colorpicker ng-model="user.color" format="'hex'"></spectrum-colorpicker>
-			<span ng-hide="colorOkay()">Diese Farbe ist leider zu dunkel.</span>
+			<span ng-hide="colorOkay()" translate="USER_PROFILE_COLOR_ERROR"></span>
 		</p>
 
-		<input type="submit" value="Änderungen speichern" ng-click="saveBioColor()" />
-		<action-status  success-text="Einstellungen erfolgreich gespeichert."
-						fail-text="Bitte überprüfe noch einmal deine Angaben."
+		<input type="submit" value="{{ 'USER_PROFILE_SAVE' | translate }}" ng-click="saveBioColor()" />
+		<action-status  success-text="{{ 'USER_PROFILE_SAVE_SUCCESS' | translate }}"
+						fail-text="{{ 'USER_PROFILE_SAVE_ERROR' | translate }}"
 						active="colorbio.active" status="colorbio.status"></action-status>
 	</form>
 </div>
 
 <div class="box-wrapper">
-	<h3>Verknüpfungen</h3>
+	<h3 translate="USER_PROFILE_LINK"></h3>
 
-	<p>Diese Angaben sind öffentlich einsehbar.</p>
+	<p translate="USER_PROFILE_PUBLIC"></p>
 
 	<form class="form-wrapper">
-		<input type="text" value="" placeholder="Flattr" ng-model="user.socials['flattr']" />
-		<input type="text" value="" placeholder="App.net" ng-model="user.socials['appnet']" />
-		<input type="text" value="" placeholder="Twitter" ng-model="user.socials['twitter']" />
-		<input type="submit" value="Verknüpfungen speichern" ng-click="saveSocials()" />
-		<action-status  success-text="Verknüpfungen erfolgreich gespeichert."
-						fail-text="Bitte überprüfe noch einmal deine Angaben."
+		<input type="text" value="" placeholder="{{ 'USER_PROFILE_FLATTR' | translate }}" ng-model="user.socials['flattr']" />
+		<input type="text" value="" placeholder="{{ 'USER_PROFILE_APP' | translate }}" ng-model="user.socials['appnet']" />
+		<input type="text" value="" placeholder="{{ 'USER_PROFILE_TWITTER' | translate }}" ng-model="user.socials['twitter']" />
+		<input type="submit" value="{{ 'USER_PROFILE_LINK_SAVE' | translate }}" ng-click="saveSocials()" />
+		<action-status  success-text="{{ 'USER_PROFILE_LINK_SUCCESS' | translate }}"
+						fail-text="{{ 'USER_PROFILE_LINK_ERROR' | translate }}"
 						active="socials.active" status="socials.status"></action-status>
 	</form>
 </div>
 
 <div class="box-wrapper">
-	<h3>E-Mail-Adresse</h3>
+	<h3 translate="USER_PROFILE_MAIL_TITLE"></h3>
 
-	<p>Deine aktuelle E-Mail-Adresse lautet <strong>{{user.email}}</strong>. Sie wird nicht veröffentlicht.</p>
+	<p translate="USER_PROFILE_MAIL_TEXT" translate-values="{ mail: '{{user.email}}'}"></p>
 
 	<form class="form-wrapper">
-		<input type="email" value="" placeholder="Neue E-Mail-Adresse" ng-model="changemail.email" />
-		<input type="password" value="" placeholder="Aktuelles Passwort bestätigen" ng-model="changemail.password" />
-		<input type="submit" value="E-Mail-Adresse ändern" ng-click="changeMail()" />
-		<action-status  success-text="Bitte bestätige deine neue E-Mail-Adresse mit dem Link in deinem Posteingang."
-						fail-text="Bitte überprüfe noch einmal deine Angaben."
+		<input type="email" value="" placeholder="{{ 'USER_PROFILE_MAIL_NEW' | translate }}" ng-model="changemail.email" />
+		<input type="password" value="" placeholder="{{ 'USER_PROFILE_PASSWORD_CONFIRM' | translate }}" ng-model="changemail.password" />
+		<input type="submit" value="{{ 'USER_PROFILE_MAIL_CHANGE' | translate }}" ng-click="changeMail()" />
+		<action-status  success-text="{{ 'USER_PROFILE_MAIL_SUCCESS' | translate }}"
+						fail-text="{{ 'USER_PROFILE_MAIL_ERROR' | translate }}"
 						active="changemail.active" status="changemail.status"></action-status>
 	</form>
 </div>
 
 <div class="box-wrapper">
-	<h3>Passwort</h3>
+	<h3 translate="USER_PROFILE_PASSWORD_TITLE"></h3>
 
-	<p>Für Passwörter gilt: Je länger, desto sicherer.</p>
+	<p translate="USER_PROFILE_PASSWORD_HINT"></p>
 
 	<form class="form-wrapper">
-		<input type="password" value="" placeholder="Aktuelles Passwort bestätigen" ng-model="pwchange.password" />
-		<input type="password" value="" placeholder="Neues Passwort" ng-model="pwchange.newpassword" />
-		<input type="password" value="" placeholder="Neues Passwort wiederholen" ng-model="pwchange.newpassword2" ng-equals="{{pwchange.newpassword}}" />
-		<input type="submit" value="Passwort ändern" ng-click="changePassword()" />
-		<action-status  success-text="Passwort erfolgreich geändert."
-						fail-text="Bitte überprüfe noch einmal deine Angaben."
+		<input type="password" value="" placeholder="{{ 'USER_PROFILE_PASSWORD_CONFIRM' | translate }}" ng-model="pwchange.password" />
+		<input type="password" value="" placeholder="{{ 'USER_PROFILE_PASSWORD_NEW' | translate }}" ng-model="pwchange.newpassword" />
+		<input type="password" value="" placeholder="{{ 'USER_PROFILE_PASSWORD_REPEAT' | translate }}" ng-model="pwchange.newpassword2" ng-equals="{{pwchange.newpassword}}" />
+		<input type="submit" value="{{ 'USER_PROFILE_PASSWORD_CHANGE' | translate }}" ng-click="changePassword()" />
+		<action-status  success-text="{{ 'USER_PROFILE_PASSWORD_SUCCESS' | translate }}"
+						fail-text="{{ 'USER_PROFILE_PASSWORD_SUCCESS' | translate }}"
 						active="pwchange.active" status="pwchange.status"></action-status>
 	</form>
 </div>
