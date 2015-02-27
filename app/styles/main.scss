@@ -961,6 +961,7 @@ nav li > input[type="checkbox"] {
 	display: flex;
 	-webkit-flex-flow: row;
 	flex-direction: row;
+	flex-shrink: 0;
 }
 .cover-header > a {
 	display: block;
