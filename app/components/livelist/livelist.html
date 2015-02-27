@@ -1,56 +1,51 @@
-<h2>Die kollaborative Plattform für Sendungsnotizen</h2>
+<h2 translate="LIVE_TITLE"></h2>
 
 <div class="box-wrapper">
-	<p>Willkommen! Hier siehst du, welche Podcast-Aufzeichnungen wann beginnen. Um live bei den Sendungsnotizen zu helfen,
-		<span ng-hide="$root.currentUser">logge dich bitte ein und klicke dann</span>
-		<span ng-hide="!$root.currentUser">klicke</span>
-	auf <strong>Erstellen</strong> oder <strong>Mitschreiben</strong>.
-	<a href='/faq/'>Hast du noch Fragen?</a></p>
+	<p>
+		<span translate="LIVE_WELCOME"></span>
+		<span ng-hide="$root.currentUser" translate="LIVE_LOGIN"></span>
+		<span ng-hide="!$root.currentUser" translate="LIVE_CLICK"></span>
+		<span translate="LIVE_JOIN"></span>
+	</p>
 </div>
 
 <table class="padlist">
 	<tr>
-		<th>Startzeit</th>
-		<th>Podcast</th>
-		<th>Kürzel</th>
+		<th translate="LIVE_STARTTIME"></th>
+		<th translate="LIVE_PODCAST"></th>
+		<th translate="LIVE_ABBR"></th>
 		<th></th>
 	</tr>
 	<tr ng-repeat="ep in episodes" ng-class="{ past: isPast(ep) }">
 		<td>{{ ep.date | date : 'short' }}</td>
 		<td>{{ ep.podcast.title }}</td>
-		<td>{{ ep.number || 'noch keines' }}</td>
+		<td>{{ ep.number || 'LIVE_NO_NUMBER' | translate }}</td>
 		<td>
 			<div ng-show="setNumber == ep" class="number-wrapper">
 				<input type="text" placeholder="Nummer" id="addNumber_{{$index}}" ng-model="newDoc.number" />
-				<input type="button" value="Erstellen" ng-click="create($index)" />
-				<input type="button" value="Später" ng-click="create($index, true)" />
+				<input type="button" value="{{ 'LIVE_CREATE' | translate }}" ng-click="create($index)" />
+				<input type="button" value="{{ 'LIVE_LATER' | translate }}" ng-click="create($index, true)" />
 			</div>
 			<div ng-hide="setNumber == ep">
-				<input type="button" value="Erstellen" ng-show="!ep.document" ng-click="create($index)" ng-disabled="!$root.currentUser" />
-				<input type="button" value="Mitschreiben" ng-show="ep.document" ng-click="openDoc(ep)" />
+				<input type="button" value="{{ 'LIVE_CREATE' | translate }}" ng-show="!ep.document" ng-click="create($index)" ng-disabled="!$root.currentUser" />
+				<input type="button" value="{{ 'LIVE_WRITE' | translate }}" ng-show="ep.document" ng-click="openDoc(ep)" />
 			</div>
 		</td>
 	</tr>
 	<tr ng-show="episodes.length == 0">
-		<td colspan="4" class="nopodcasts">
-			Derzeit sind keine Sendungen eingetragen.
+		<td colspan="4" class="nopodcasts" translate="LIVE_NO_SHOWS">
 		</td>
 	</tr>
 </table>
 
-<p>Die meisten dieser Termine stammen aus dem <a href="http://hoersuppe.de/kalender/">Hörsuppe-Kalender</a>. &hearts;</p>
-
-
+<p translate="LIVE_SOUP"></p>
 
 <div class="box-wrapper">
 	<div class="form-wrapper">
-		<h3>Neues Dokument anlegen</h3>
-		<p>
-			Möchtest du Shownotes für einen Podcast schreiben, der nicht in der Liste steht? Kein Problem! Suche den richtigen Podcast, gib eine Episodennummer ein und schon kann es losgehen.<br />
-			Falls du den Podcast deiner Wahl nicht finden solltest, <a href="mailto:intern@shownot.es">melde dich bitte bei uns</a>.
-		</p>
+		<h3 translate="LIVE_NEW_TITLE"></h3>
+		<p translate="LIVE_NEW_TEXT"></p>
 		<angucomplete-alt id="podcast"
-			                  placeholder="Podcast"
+			                  placeholder="{{ 'LIVE_NEW_PLACEHOLDER' | translate }}"
 			                  pause="100"
 			                  selected-object="nonlive.selectedPodcast"
 			                  local-data="nonlive.podcasts"
@@ -58,10 +53,10 @@
 			                  title-field="title"
 			                  minlength="1"></angucomplete-alt>
 
-		<p class="podcast-counter">Die letzten Episodennummern in diesem Podcast waren: <number-list numbers="nonlive.oldNumbers"></number-list>.</p>
+		<p class="podcast-counter" translate="LIVE_OLD_NUMBERS"><number-list numbers="nonlive.oldNumbers"></number-list>.</p>
 		<div class="input-group">
-			<input type="text" id="episode" placeholder="Episodennummer" ng-model="nonlive.number">
-			<input type="button" value="Erstellen" ng-click="createNonLive()">
+			<input type="text" id="episode" placeholder="{{ 'LIVE_EPISODE_NUMBER' | translate }}" ng-model="nonlive.number">
+			<input type="button" value="{{ 'LIVE_CREATE' | translate }}" ng-click="createNonLive()">
 		</div>
 	</div>
 </div>

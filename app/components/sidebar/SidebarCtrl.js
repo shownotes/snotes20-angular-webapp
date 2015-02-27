@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('snotes30App')
-  .controller('SidebarCrtl', function ($scope, $rootScope, $cookies, $location, AuthenticationSvc, Restangular) {
+  .controller('SidebarCtrl', function ($scope, $rootScope, $cookies, $location, AuthenticationSvc, Restangular) {
 
     $scope.loginform = {
       status: 'up',

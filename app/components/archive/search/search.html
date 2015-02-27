@@ -1,10 +1,9 @@
 <h2><q>{{searchterm}}</q></h2>
-<h3>Suchergebnisse</h3>
+<h3 translate="SEARCH_RESULTS"></h3>
 
 <hr>
 
-<p ng-show="results.length == 0">
-    Es wurde leider nichts gefunden.. :(
+<p ng-show="results.length == 0" translate="SEARCH_NO_RESULTS">    
 </p>
 
 <div class="result" ng-repeat="res in results">

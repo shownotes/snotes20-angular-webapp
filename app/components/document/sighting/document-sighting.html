@@ -1,16 +1,16 @@
 <h2>
 	{{doc.episode.podcast.title}} <span class="sighting-title-number">{{doc.episode.number || '(keine Nummer)'}}</span>
-	<span class="statuslabel unknown" title="Es liegen keine Informationen von xenim vor.">Unbekannt</span>
-	<span class="statuslabel finished">Beendet</span>
-	<span class="statuslabel live">Live</span>
+	<span class="statuslabel unknown" title="{{ 'DOCUMENT_SIGHTING_NOINFO' | translate }}" translate="DOCUMENT_SIGHTING_UNKNOWN"></span>
+	<span class="statuslabel finished" translate="DOCUMENT_SIGHTING_ENDED"></span>
+	<span class="statuslabel live" translate="DOCUMENT_SIGHTING_LIVE"></span>
 </h2>
 <h3>{{doc.episode.date | date : 'medium'}}</h3>
 
 <div class="box-wrapper">
 	<h3 class="sighting-editormode">
-		<span ng-click="editorMode = 'preview'" ng-class="{ active: (editorMode != 'preview') }">Vorschau</span>
+		<span ng-click="editorMode = 'preview'" ng-class="{ active: (editorMode != 'preview') }" translate="DOCUMENT_SIGHTING_PREVIEW"></span>
 		&mdash;
-		<span ng-click="editorMode = 'edit'" ng-class="{ active: (editorMode != 'edit') }">Bearbeiten</span>
+		<span ng-click="editorMode = 'edit'" ng-class="{ active: (editorMode != 'edit') }" translate="DOCUMENT_SIGHTING_EDIT"></span>
 	</h3>
 
 	<div class="editor sighting-editor">
@@ -22,19 +22,19 @@
 <div class="sighting-wrapper">
 
 	<div class="box-wrapper">
-		<h3>Podcaster</h3>
+		<h3 translate="DOCUMENT_SIGHTING_PODCASTER"></h3>
 		<name-list names="publication.podcasters" name-attr="name" add-name="addPodcaster" del-name="delPodcaster"></name-list>
 	</div>
 
 	<div class="box-wrapper">
-		<h3>Helfer</h3>
+		<h3 translate="DOCUMENT_SIGHTING_HELPER"></h3>
 		<name-list names="doc.meta.shownoters" name-attr="name" add-name="addShownoter" del-name="delShownoter"></name-list>
 	</div>
 
 </div>
 
 <div class="box-wrapper">
-	<h3>Cover auswählen</h3>
+	<h3 translate="DOCUMENT_SIGHTING_COVER"></h3>
 
 	<div class="coverlist">
 		<span ng-repeat="cover in covers"
@@ -51,7 +51,7 @@
 
 	<hr />
 
-	<h3>Cover einbinden</h3>
+	<h3 translate="DOCUMENT_SIGHTING_EMBED_COVER"></h3>
 
 	<!--
 	<form class="form-wrapper">
@@ -62,30 +62,30 @@
 	-->
 
 	<form>
-		<input type="text" id="coverurl" ng-model="newCoverUrl" placeholder="Cover-URL eingeben" />
+		<input type="text" id="coverurl" ng-model="newCoverUrl" placeholder="{{ 'DOCUMENT_SIGHTING_COVER_URL' | translate }}" />
 	</form>
 
-	<p><strong>Wichtig:</strong> Vor dem Hochladen bitte entsprechende Erlaubnis einholen. Ein Cover sollte mindestens 150 &times; 150 Pixel groß (und quadratisch) sein.</p>
+	<p translate="DOCUMENT_SIGHTING_IMPORTANT"></p>
 
 </div>
 
 <div class="sighting-wrapper">
 
 	<div class="box-wrapper">
-		<h3>Episodennummer</h3>
+		<h3 translate="DOCUMENT_SIGHTING_EPISODE_NUMBER"></h3>
 		<p>
-			Die letzten Episodennummern in diesem Podcast waren: <number-list numbers="oldNumbers"></number-list>.
+			{{ 'DOCUMENT_SIGHTING_OLD_NUMBERS' | translate }}<number-list numbers="oldNumbers"></number-list>.
 		</p>
 		<div class="input-group">
 			<input ng-model="epnumber" type="text" />
-			<input type="submit" value="Setzen" ng-click="setEpisodeNumber()" />
+			<input type="submit" value="{{ 'DOCUMENT_SIGHTING_SET' | translate }}" ng-click="setEpisodeNumber()" />
 		</div>
 	</div>
 
 	<div class="box-wrapper">
-		<h3>Notiz</h3>
+		<h3 translate="DOCUMENT_SIGHTING_NOTE"></h3>
 		<form class="form-wrapper">
-			<textarea ng-model="publication.comment" placeholder="Bemerkungen für Podcaster / andere Sichter"></textarea>
+			<textarea ng-model="publication.comment" placeholder="{{ 'DOCUMENT_SIGHTING_COMMENT' | translate }}"></textarea>
 		</form>
 	</div>		
 
@@ -94,8 +94,8 @@
 <form class="form-wrapper">
 	<div class="form-check">
 			<input type="checkbox" id="preliminary" ng-model="publication.preliminary" value="checkrules" />
-			<label for="preliminary">Als <em>vorläufig</em> markieren</label>
+			<label for="preliminary" translate="DOCUMENT_SIGHTING_TEMPORARILY"></label>
 		</div>
-	<input type="submit" value="Version sichten" ng-click="publish()" ng-disabled="!episode.number" />
-	<span ng-show="pubFailed">Nope. :(</span>
+	<input type="submit" value="{{ 'DOCUMENT_SIGHTING_VERSION' | translate }}" ng-click="publish()" ng-disabled="!episode.number" />
+	<span ng-show="pubFailed" translate="DOCUMENT_SIGHTING_FAILED"></span>
 </form>

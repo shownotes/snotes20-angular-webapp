@@ -606,6 +606,7 @@ nav li:not(:last-child) {
 nav li > a:link,
 nav li > a:visited,
 nav li > label,
+nav li > span,
 nav .search {
 	background-color: #fefefe;
 	font-weight: bold;
@@ -625,6 +626,12 @@ nav li > label:hover {
 }
 nav li.search {
 	padding-right: 0;
+}
+nav li.lang span{
+	white-space: nowrap;
+	padding-left: 0;
+	padding-right: 0;
+	text-align: center;
 }
 nav li.search label {
 	padding: 0;

@@ -1,34 +1,32 @@
 <div ng-show="!user" class="content">
-	<h2>Fehler: Benutzer nicht gefunden</h2>
-	<h3>Hinweis</h3>
-	<p>Entschuldige, aber der gewünschte Benutzer konnte nicht gefunden werden.</p>
+	<h2 translate="PROFILE_FAILURE"></h2>
+	<h3 translate="PROFILE_HINT"></h3>
+	<p translate="PROFILE_SORRY"></p>
 </div>
 
 <div ng-show="user" class="content">
 
 	<h2>
 		{{user.username}}
-		<span class="statuslabel" ng-show="user.role == 'user'">Mitglied</span>
-		<span class="statuslabel" ng-show="user.role == 'admin'">Administrator</span>
+		<span class="statuslabel" ng-show="user.role == 'user'" translate="PROFILE_MEMBER"></span>
+		<span class="statuslabel" ng-show="user.role == 'admin'" translate="PROFILE_ADMIN"></span>
 	</h2>
-	<h3><span>war {{last_login}} online</span></h3>
+	<h3><span translate="PROFILE_LAST_LOGIN" translate-values="{ time: '{{last_login}}'}"></span></h3>
 
-	<p ng-show="user.username == currentUser.username">
-		Hallo <em>{{user.username}}</em>! Möchtest du dein <a ui-sref="user-profile">Profil bearbeiten</a>?
-	</p>
+	<p ng-show="user.username == currentUser.username">{{ 'PROFILE_HELLO1' | translate }}{{user.username}}{{ 'PROFILE_HELLO2' | translate }}<a ui-sref="user-profile">{{ 'PROFILE_HELLO3' | translate }}</a>?</p>
 
 	<div class="box-wrapper">
-		<h3>Biographie</h3>
+		<h3 translate="PROFILE_BIO"></h3>
 		<p>
 			<span ng-show="user.bio">{{user.bio}}</span>
-			<span ng-show="!user.bio">Dieses Mitglied hat noch keine Biographie angelegt.</span>
+			<span ng-show="!user.bio" translate="PROFILE_NO_BIO"></span>
 		</p>
 	</div>
 
 	<ul class="profile">
-		<li data-social="Flattr" ng-show="user.socials['flattr']"><a href="https://flattr.com/profile/{{user.socials['flattr']}}" title="{{user.username}} auf Flattr">{{user.socials['flattr']}}</a></li>
-		<li data-social="Twitter" ng-show="user.socials['twitter']"><a href="https://twitter.com/{{user.socials['twitter']}}" title="{{user.username}} auf Twitter">{{user.socials['twitter']}}</a></li>
-		<li data-social="App.net" ng-show="user.socials['appnet']"><a href="https://alpha.app.net/{{user.socials['appnet']}}" title="{{user.username}} auf App.net">{{user.socials['appnet']}}</a></li>
+		<li data-social="Flattr" ng-show="user.socials['flattr']"><a href="https://flattr.com/profile/{{user.socials['flattr']}}" title="{{ 'PROFILE_FLATTR' | translate:'{ name: user.username}' }}">{{user.socials['flattr']}}</a></li>
+		<li data-social="Twitter" ng-show="user.socials['twitter']"><a href="https://twitter.com/{{user.socials['twitter']}}" title="{{ 'PROFILE_TWITTER' | translate:{ name:'{user.username}'} }}">{{user.socials['twitter']}}</a></li>
+		<li data-social="App.net" ng-show="user.socials['appnet']"><a href="https://alpha.app.net/{{user.socials['appnet']}}" title="{{ 'PROFILE_TWITTER' | translate:{ name:'{user.username}'} }}">{{user.socials['appnet']}}</a></li>
 	</ul>
 
 </div>

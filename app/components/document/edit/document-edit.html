@@ -8,7 +8,7 @@
 
 				<div ng-show="doc.episode">
 					<h2>{{doc.episode.podcast.title}}</h2>
-					<h3><span ng-show="doc.episode.number">Episode {{doc.episode.number}},</span> {{doc.episode.date | date : 'medium'}}</h3>
+					<h3><span ng-show="doc.episode.number">{{ 'DOCUMENT_EDIT_EPISODE' | translate }} {{doc.episode.number}},</span> {{doc.episode.date | date : 'medium'}}</h3>
 				</div>
 
 				<div ng-show="!doc.episode">
@@ -18,14 +18,14 @@
 				<div class="document-actions" ng-show="doc.episode">
 
 					<form class="shownoter">
-						<input type="submit" value="Als Helfer eintragen" ng-show="!isShownoter()" ng-click="addShownoter()" />
-						<input type="submit" value="Als Helfer austragen" ng-show="isShownoter()" ng-click="delShownoter()" />
+						<input type="submit" value="{{ 'DOCUMENT_EDIT_APPLY' | translate }}" ng-show="!isShownoter()" ng-click="addShownoter()" />
+						<input type="submit" value="{{ 'DOCUMENT_EDIT_REMOVE' | translate }}" ng-show="isShownoter()" ng-click="delShownoter()" />
 					</form>
 
 					<form class="sighting">
-						<input type="submit" value="Version sichten" ng-show="canPublish" ng-click="doSighting()" />
-						<input type="submit" value="Sichtung beantragen" ng-show="!canPublish && !hasPublicationRequests()" ng-click="requestSighting()" />
-						<input type="submit" value="Sichtung beantragt" ng-show="!canPublish && hasPublicationRequests()" disabled />
+						<input type="submit" value="{{ 'DOCUMENT_EDIT_SIGHTING' | translate }}" ng-show="canPublish" ng-click="doSighting()" />
+						<input type="submit" value="{{ 'DOCUMENT_EDIT_REQUEST_SIGHTING' | translate }}" ng-show="!canPublish && !hasPublicationRequests()" ng-click="requestSighting()" />
+						<input type="submit" value="{{ 'DOCUMENT_EDIT_SIGHTING_REQUESTED' | translate }}" ng-show="!canPublish && hasPublicationRequests()" disabled />
 					</form>
 
 				</div>
@@ -34,7 +34,7 @@
 
 			<div class="shownotes-meta">
 
-				<p><strong>Podcaster</strong>:</p>
+				<p><strong translate="DOCUMENT_EDIT_PODCASTER"></strong>:</p>
 				<name-list names="doc.meta.podcasters" name-attr="name" add-name="addPodcaster" del-name="delPodcaster"></name-list>
 
 			</div>
@@ -75,8 +75,8 @@
 		</div>
 
 		<form class="chat-input">
-			<input type="text" value="" placeholder="Nachricht" ng-model="chatmsg.message" />
-			<input type="submit" value="Senden" ng-click="sendChatMsg()" />
+			<input type="text" value="" placeholder="{{ 'DOCUMENT_EDIT_CHAT_PLACEHOLDER' | translate }}" ng-model="chatmsg.message" />
+			<input type="submit" value="{{ 'DOCUMENT_EDIT_CHAT_SEND' | translate }}" ng-click="sendChatMsg()" />
 		</form>
 
 	</div>
