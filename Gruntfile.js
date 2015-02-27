@@ -120,12 +120,12 @@ module.exports = function (grunt) {
         proxies: [
           {
             context: '/api',
-            host: 'new.shownot.es',
+            host: 'shownot.es',
             port: 80,
             https: false,
             xforward: false,
             headers: {
-              'host': 'new.shownot.es'
+              'host': 'shownot.es'
             }
           }
         ]
