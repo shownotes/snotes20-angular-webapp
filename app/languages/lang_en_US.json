@@ -160,7 +160,7 @@
 	"LIVE_WELCOME": "Welcome! Here you can see at what time which podcast show is recorded. For live writing of the show notes,",
 	"LIVE_LOGIN": "please log in first and click again",
 	"LIVE_CLICK": "click",
-	"LIVE_JOIN": "on <strong>Erstellen</strong> or <strong>Mitschreiben</strong>. <a href=\"/faq/\">Are there any questions left?</a>",
+	"LIVE_JOIN": "on <strong>Create</strong> or <strong>Join</strong>. <a href=\"/faq/\">Are there any questions left?</a>",
 	"LIVE_STARTTIME": "Start time",
 	"LIVE_PODCAST": "Podcast",
 	"LIVE_ABBR": "Code",
