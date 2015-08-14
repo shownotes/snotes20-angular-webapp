@@ -21,10 +21,10 @@
 		<td>{{ ep.podcast.title }}</td>
 		<td>{{ ep.number || 'LIVE_NO_NUMBER' | translate }}</td>
 		<td>
-			<div ng-show="setNumber == ep" class="number-wrapper">
-				<input type="text" placeholder="Nummer" id="addNumber_{{$index}}" ng-model="newDoc.number" />
+			<div ng-show="setNumber == ep"><!-- class="number-wrapper"> -->
+				<input type="text" placeholder="Nummer" id="addNumber_{{$index}}" ng-model="newDoc.number" style="margin-bottom: 10px"/>
 				<input type="button" value="{{ 'LIVE_CREATE' | translate }}" ng-click="create($index)" />
-				<input type="button" value="{{ 'LIVE_LATER' | translate }}" ng-click="create($index, true)" />
+				<!--<input type="button" value="{{ 'LIVE_LATER' | translate }}" ng-click="create($index, true)" />-->
 			</div>
 			<div ng-hide="setNumber == ep">
 				<input type="button" value="{{ 'LIVE_CREATE' | translate }}" ng-show="!ep.document" ng-click="create($index)" ng-disabled="!$root.currentUser" />
