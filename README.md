@@ -8,6 +8,8 @@ $ gem install compass
 $ cd snotes20
 $ npm install
 $ bower install
+  # copy app/components/config.js.sample to config.js
+  # and adapt apiBaseUrl & mediaUrl
 ```
 
 ## Development Server

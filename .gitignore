@@ -10,3 +10,6 @@ dist
 
 # IDE
 .idea
+
+# config
+app/components/config.js
