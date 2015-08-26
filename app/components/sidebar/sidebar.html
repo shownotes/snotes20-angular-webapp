@@ -71,12 +71,6 @@
     </ul>
 </nav>
 
-<div class="migrateWarning ng-cloak" ng-hide="!$root.currentUser || $root.currentUser.migrated">
-  <h3 translate="SIDEBAR_SHOWPAD_ACCOUNT"></h3>
-  <p translate="SIDEBAR_SHOWPAD_TEXT"></p>
-</div>
-
-
 <nav class="menu">
     <ul>
         <li class="search" title="{{ 'SIDEBAR_SEARCH_ENTER' | translate }}" ng-controller="SidebarSearchCtrl">
@@ -112,8 +106,8 @@
       <li class="lang" title="Sprachwahl" ng-controller="LangCtrl">
         <span>
           <a href="" ng-click="changeLang('de_DE')">GER / </a>
-          <a href="" ng-click="changeLang('en_US')">ENG</a>   
-        </span>  
+          <a href="" ng-click="changeLang('en_US')">ENG</a>
+        </span>
       </li>
     </ul>
 </nav>

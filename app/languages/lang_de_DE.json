@@ -1,16 +1,4 @@
 {
-	"USER_UPGRADE_TITLE": "Die neue Plattform",
-	"USER_UPGRADE_HINT": "Wie aufregend!",
-	"USER_UPGRADE_HELLO": "Hallo <em>{{name}}</em>! Wie du siehst, hat sich hier einiges verändert.",
-	"USER_UPGRADE_RULES": "Da du bereits beim alten <em>ShowPad</em> einen Account hattest, möchten wir dich bitten, dein Passwort aus Sicherheitsgründen zu ändern und unsere neuen <a href=\"/rules\">Regeln</a> zu akzeptieren.",
-	"USER_UPGRADE_DATA": "Daten aktualisieren",
-	"USER_UPGRADE_PASSWORD_NEW": "Neues Passwort",
-	"USER_UPGRADE_PASSWORD_CONFIRM": "Neues Passwort bestätigen",
-	"USER_UPGRADE_PASSWORD_SAVE": "Speichern und fortfahren",
-	"USER_UPGRADE_PASSWORD_SUCCESS": "",
-	"USER_UPGRADE_PASSWORD_ERROR": "Bitte überprüfe noch einmal deine Angaben.",
-	"USER_UPGRADE_FAQ": "Bei Unklarheiten kannst du einen Blick auf die <a href=\"/faq/\">häufig gestellten Fragen</a> werfen.",
-
 	"USER_PROFILE_PWRESET_TITLE": "Passwort ändern",
 	"USER_PROFILE_PWRESET_HINT": "Und das nächste Mal einfach merken",
 	"USER_PROFILE_PWRESET_HELLO": "Hallo {{name}}! Du kannst nun dein Passwort ändern.",
@@ -70,7 +58,7 @@
 
 	"RULES_TITLE": "Regeln",
 	"RULES_TEXT": "Jedes registrierte Mitglied verpflichtet sich dazu, die folgenden Regeln zu akzeptieren:",
-	"RULES_RULES": "<li><strong>Das Obligatorische vorab: Freundlichkeit zahlt sich aus.</strong><br />Ein guter Umgangston ist selbstverständlich. Bei Unklarheiten darf jederzeit nachgefragt werden.</li><li><strong>Sendungsnotizen werden gewissenhaft mitgeschrieben.</strong><br />Inhalte dürfen nicht absichtlich verfälscht werden.</li><li><strong>Alle erstellten Inhalte werden unter der <a href=\"https://creativecommons.org/publicdomain/zero/1.0/deed.de\" rel=\"license\">CC0-Lizenz</a> veröffentlicht.</strong><br />Das heißt kurz und knapp: Sämtliche Rechte werden abgetreten &mdash; jeder kann damit tun, was er möchte.</li><li><strong>Die Mitarbeit erfolgt auf freiwilliger Basis.</strong><br />Wir bezahlen dich nicht. Eingenommene <a href=\"/donate/\">Spenden</a> kommen der Plattform zugute.</li><li><strong>Spam ist absolut verboten.</strong><br />Das gilt sowohl für den Editor und den dazugehörigen Chat, als auch für unseren IRC-Kanal und E-Mail-Verkehr.</li>",	
+	"RULES_RULES": "<li><strong>Das Obligatorische vorab: Freundlichkeit zahlt sich aus.</strong><br />Ein guter Umgangston ist selbstverständlich. Bei Unklarheiten darf jederzeit nachgefragt werden.</li><li><strong>Sendungsnotizen werden gewissenhaft mitgeschrieben.</strong><br />Inhalte dürfen nicht absichtlich verfälscht werden.</li><li><strong>Alle erstellten Inhalte werden unter der <a href=\"https://creativecommons.org/publicdomain/zero/1.0/deed.de\" rel=\"license\">CC0-Lizenz</a> veröffentlicht.</strong><br />Das heißt kurz und knapp: Sämtliche Rechte werden abgetreten &mdash; jeder kann damit tun, was er möchte.</li><li><strong>Die Mitarbeit erfolgt auf freiwilliger Basis.</strong><br />Wir bezahlen dich nicht. Eingenommene <a href=\"/donate/\">Spenden</a> kommen der Plattform zugute.</li><li><strong>Spam ist absolut verboten.</strong><br />Das gilt sowohl für den Editor und den dazugehörigen Chat, als auch für unseren IRC-Kanal und E-Mail-Verkehr.</li>",
 	"RULES_VIOLATION": "Bei Regelverstößen behalten wir uns vor, Mitglieder nach eigenem Ermessen von der Plattform auszuschließen. Weitere Informationen finden sich bei den <a href=\"/faq/\">häufig gestellten Fragen</a>.",
 
 	"IMPRINT_TITLE": "Impressum",
@@ -156,7 +144,7 @@
 	"PROFILE_TWITTER": "{{name}} auf Twitter",
 	"PROFILE_APP": "{{name}} auf App.net",
 
-	"LIVE_TITLE": "Die kollaborative Plattform für Sendungsnotizen",	
+	"LIVE_TITLE": "Die kollaborative Plattform für Sendungsnotizen",
 	"LIVE_WELCOME": "Willkommen! Hier siehst du, welche Podcast-Aufzeichnungen wann beginnen. Um live bei den Sendungsnotizen zu helfen,",
 	"LIVE_LOGIN": "logge dich bitte ein und klicke dann",
 	"LIVE_CLICK": "klicke",
@@ -243,8 +231,6 @@
 	"SIDEBAR_REGISTER": "Registrieren",
 	"SIDEBAR_LOGOUT": "Ausloggen",
 	"SIDEBAR_PROFILE": "Profil",
-	"SIDEBAR_SHOWPAD_ACCOUNT": "ShowPad-Account",
-	"SIDEBAR_SHOWPAD_TEXT": "Bitte <a href=\"/user/upgrade/\">aktualisiere deine Daten</a>, um die neue Plattform vollständig nutzen zu können.",
 	"SIDEBAR_SEARCH_ENTER": "Suchbegriff(e) eingeben und mit Enter bestätigen",
 	"SIDEBAR_SEARCH": "Suche…",
 	"SIDEBAR_SHOWS": "Sendungen",

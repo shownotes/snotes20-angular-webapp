@@ -176,11 +176,6 @@ angular
         templateUrl: 'components/user/profile/profile.html',
         controller: 'UserProfileCtrl'
       })
-      .state('user-upgrade', {
-        url: '/user/upgrade/',
-        templateUrl: 'components/user/upgrade/upgrade.html',
-        controller: 'UserUpgradeCtrl'
-      })
       .state('user-registration', {
         url: '/user/registration/',
         templateUrl: 'components/user/regcomplete/regcomplete.html'
@@ -293,7 +288,7 @@ angular
         prefix: 'languages/lang_',
         suffix: '.json'
       })
-      .preferredLanguage('de_DE');    
+      .preferredLanguage('de_DE');
 
   })
   .run(function ($cookies, Restangular) {

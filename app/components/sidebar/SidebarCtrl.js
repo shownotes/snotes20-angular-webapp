@@ -23,7 +23,7 @@ angular.module('snotes30App')
 
     function handleLoginRegister (mode, func) {
       $scope.loginform.errors = [];
-      
+
       if($scope.loginform.mode !== mode) {
         flipFormMode();
       } else if($scope.loginform.frm.$valid) {
@@ -45,10 +45,6 @@ angular.module('snotes30App')
         $scope.user.password
       ).then(function (user) {
         $rootScope.currentUser = user;
-
-        if(!user.migrated) {
-          $location.url('/user/upgrade/');
-        }
 
         var url = $location.url();
         if(url.indexOf('/user/activate/') === 0 || url == '/user/registration/') {
