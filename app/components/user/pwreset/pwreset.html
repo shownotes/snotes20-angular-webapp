@@ -9,7 +9,7 @@
 	<form class="form-wrapper">
 		<p translate="USER_PROFILE_PWRESET_LENGTH"></p>
 		<input type="password" value="" placeholder="{{ 'USER_PROFILE_PWRESET_CHANGE' | translate }}" ng-model="pwreset.password" />
-		<input type="password" value="" placeholder="{{ 'USER_PROFILE_PWRESET_CONFIRM' | translate }}" ng-model="pwreset.password2" equals="{{upgrade.password}}" />
+		<input type="password" value="" placeholder="{{ 'USER_PROFILE_PWRESET_CONFIRM' | translate }}" ng-model="pwreset.password2" equals="{{pwreset.password}}" />
 		<input type="submit" value="{{ 'USER_PROFILE_PWRESET_SAVE' | translate }}" ng-click="sendPwReset()" />
 		<action-status success-text="{{ 'USER_PROFILE_PWRESET_SUCCESS' | translate }}"
 					   fail-text="{{ 'USER_PROFILE_PWRESET_ERROR' | translate }}"
