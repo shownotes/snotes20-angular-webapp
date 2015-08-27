@@ -14,7 +14,7 @@ angular.module('snotes30App')
 
   $scope.publication = {
     episode: doc.episode.id,
-    podcasters: doc.meta.podcasters,
+    podcasters: doc.podcasters,
     comment: "",
     preliminary: false
   };
@@ -31,7 +31,7 @@ angular.module('snotes30App')
     return DocumentService.getByName(doc.name).then(function (doc) {
       $scope.doc = doc;
 
-      $scope.publication.podcasters = doc.meta.podcasters;
+      $scope.publication.podcasters = doc.podcasters;
     });
   }
 
