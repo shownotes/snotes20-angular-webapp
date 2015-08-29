@@ -15,8 +15,8 @@ angular.module('snotes30App')
       templateUrl: '/components/document/render/document-render.html',
       controller: function ($scope, $interval, $sce, DocumentService) {
         $scope.formats = [
-          { name: 'list',     type: 'html',  caption: 'Liste' },
           { name: 'block',    type: 'html',  caption: 'Block' },
+          { name: 'list',     type: 'html',  caption: 'Liste' },
           { name: 'md',       type: 'plain', caption: 'Markdown' },
           { name: 'reaper',   type: 'plain', caption: 'Reaper' },
           { name: 'audacity', type: 'plain', caption: 'Audacity' },
