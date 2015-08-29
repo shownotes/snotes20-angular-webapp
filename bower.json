@@ -12,7 +12,7 @@
     "angular-spectrum-colorpicker": "1.2.1",
     "angular-busy": "~4.1.0",
     "ngLocale": "*",
-    "osf-export-templates": "0.5.0",
+    "osf-export-templates": "0.5.1",
     "nunjucks": "https://github.com/dhendo/nunjucks.git#replace-replace",
     "restangular": "~1.4.0",
     "angular-ui-router": "~0.2.11",
