@@ -13,3 +13,4 @@ dist
 
 # config
 app/components/config.js
+app/components/config_*.js
