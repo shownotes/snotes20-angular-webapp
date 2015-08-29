@@ -318,6 +318,13 @@ module.exports = function (grunt) {
     },
 
     svgmin: {
+      options: {
+        plugins: [
+          // these break our SVGs..
+          { convertPathData: false },
+          { mergePaths: false }
+        ]
+      },
       dist: {
         files: [{
           expand: true,
