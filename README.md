@@ -8,7 +8,7 @@ $ gem install compass
 $ cd snotes20
 $ npm install
 $ bower install
-  # copy app/components/config.js.sample to config.js
+  # copy app/components/config_dev.js.sample to config_dev.js and config_dist.js
   # and adapt apiBaseUrl & mediaUrl
 ```
 
@@ -17,3 +17,16 @@ $ bower install
 ```
 $ grunt serve
 ```
+
+Note: this will use `config_dev.js`.
+
+## Building
+
+
+```
+$ grunt build
+```
+
+The resulting files are saved in the `dist/`-directory.
+
+Note: this will use `config_dist.js`, which file will **not** be minifed.

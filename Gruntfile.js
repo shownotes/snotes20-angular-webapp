@@ -425,6 +425,22 @@ module.exports = function (grunt) {
           src: [ '**/*.{eot,otf,ttf,woff}', ]
         }]
       },
+      config_dev: {
+        files: [{
+          cwd: '<%= yeoman.app %>/components',
+          dest: '.tmp/',
+          expand: true,
+          src: [ 'config_dev.js', ]
+        }]
+      },
+      config_dist: {
+        files: [{
+          cwd: '<%= yeoman.app %>/components',
+          dest: '<%= yeoman.dist %>/',
+          expand: true,
+          src: [ 'config_dist.js', ]
+        }]
+      },
       styles: {
         expand: true,
         cwd: '<%= yeoman.app %>/styles',
@@ -448,6 +464,35 @@ module.exports = function (grunt) {
       ]
     },
 
+    replace: {
+      dev: {
+        options: {
+          patterns: [
+            {
+              match: 'configfile',
+              replacement: 'config_dev.js'
+            }
+          ]
+        },
+        files: [
+          {expand: true, flatten: true, src: ['<%= yeoman.app %>/index.html'], dest: '.tmp/'}
+        ]
+      },
+      dist: {
+        options: {
+          patterns: [
+            {
+              match: 'configfile',
+              replacement: 'config_dist.js'
+            }
+          ]
+        },
+        files: [
+          {expand: true, flatten: true, src: ['<%= yeoman.dist %>/index.html'], dest: '<%= yeoman.dist %>/'}
+        ]
+      }
+    },
+
     // Test settings
     karma: {
       unit: {
@@ -466,6 +511,8 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'copy:fonts',
+      'copy:config_dev',
+      'replace:dev',
       'nunjucks:osftemplates',
       'wiredep',
       'configureProxies:livereload',
@@ -493,12 +540,14 @@ module.exports = function (grunt) {
     'autoprefixer',
     'concat',
     'ngmin',
+    'copy:config_dist',
     'copy:dist',
     'cdnify',
     'cssmin',
     'uglify',
     'filerev',
     'usemin',
+    'replace:dist',
     'htmlmin'
   ]);
 

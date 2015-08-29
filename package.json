@@ -25,6 +25,7 @@
     "grunt-ngmin": "^0.0.3",
     "grunt-nunjucks": "^0.1.4",
     "grunt-po2json-angular-translate": "0.0.3",
+    "grunt-replace": "^0.10.2",
     "grunt-svgmin": "^0.4.0",
     "grunt-usemin": "^2.1.1",
     "grunt-wiredep": "^1.7.0",
