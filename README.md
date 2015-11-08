@@ -5,7 +5,7 @@
 ```
 $ npm install -g bower grunt grunt-cli
 $ gem install compass
-$ cd snotes20
+$ cd snotes20-angular-webapp
 $ npm install
 $ bower install
   # copy app/components/config_dev.js.sample to config_dev.js and config_dist.js
