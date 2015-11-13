@@ -70,7 +70,7 @@
 
 	"RULES_TITLE": "Regeln",
 	"RULES_TEXT": "Jedes registrierte Mitglied verpflichtet sich dazu, die folgenden Regeln zu akzeptieren:",
-	"RULES_RULES": "<li><strong>Das Obligatorische vorab: Freundlichkeit zahlt sich aus.</strong><br />Ein guter Umgangston ist selbstverständlich. Bei Unklarheiten darf jederzeit nachgefragt werden.</li><li><strong>Sendungsnotizen werden gewissenhaft mitgeschrieben.</strong><br />Inhalte dürfen nicht absichtlich verfälscht werden.</li><li><strong>Alle erstellten Inhalte werden unter der <a href=\"https://creativecommons.org/publicdomain/zero/1.0/deed.de\" rel=\"license\">CC0-Lizenz</a> veröffentlicht.</strong><br />Das heißt kurz und knapp: Sämtliche Rechte werden abgetreten &mdash; jeder kann damit tun, was er möchte.</li><li><strong>Die Mitarbeit erfolgt auf freiwilliger Basis.</strong><br />Wir bezahlen dich nicht. Eingenommene <a href=\"/donate/\">Spenden</a> kommen der Plattform zugute.</li><li><strong>Spam ist absolut verboten.</strong><br />Das gilt sowohl für den Editor und den dazugehörigen Chat, als auch für unseren IRC-Kanal und E-Mail-Verkehr.</li>",	
+	"RULES_RULES": "<li><strong>Das Obligatorische vorab: Freundlichkeit zahlt sich aus.</strong><br />Ein guter Umgangston ist selbstverständlich. Bei Unklarheiten darf jederzeit nachgefragt werden.</li><li><strong>Sendungsnotizen werden gewissenhaft mitgeschrieben.</strong><br />Inhalte dürfen nicht absichtlich verfälscht werden.</li><li><strong>Alle erstellten Inhalte werden unter der <a href=\"https://creativecommons.org/publicdomain/zero/1.0/deed.de\" rel=\"license\">CC0-Lizenz</a> veröffentlicht.</strong><br />Das heißt kurz und knapp: Sämtliche Rechte werden abgetreten &mdash; jeder kann damit tun, was er möchte.</li><li><strong>Die Mitarbeit erfolgt auf freiwilliger Basis.</strong><br />Wir bezahlen dich nicht. Eingenommene <a href=\"/donate/\">Spenden</a> kommen der Plattform zugute.</li><li><strong>Spam ist absolut verboten.</strong><br />Das gilt sowohl für den Editor und den dazugehörigen Chat, als auch für unseren IRC-Kanal und E-Mail-Verkehr.</li>",
 	"RULES_VIOLATION": "Bei Regelverstößen behalten wir uns vor, Mitglieder nach eigenem Ermessen von der Plattform auszuschließen. Weitere Informationen finden sich bei den <a href=\"/faq/\">häufig gestellten Fragen</a>.",
 
 	"IMPRINT_TITLE": "Impressum",
@@ -156,7 +156,7 @@
 	"PROFILE_TWITTER": "{{name}} auf Twitter",
 	"PROFILE_APP": "{{name}} auf App.net",
 
-	"LIVE_TITLE": "Die kollaborative Plattform für Sendungsnotizen",	
+	"LIVE_TITLE": "Die kollaborative Plattform für Sendungsnotizen",
 	"LIVE_WELCOME": "Willkommen! Hier siehst du, welche Podcast-Aufzeichnungen wann beginnen. Um live bei den Sendungsnotizen zu helfen,",
 	"LIVE_LOGIN": "logge dich bitte ein und klicke dann",
 	"LIVE_CLICK": "klicke",
@@ -249,7 +249,8 @@
 	"SIDEBAR_SEARCH": "Suche…",
 	"SIDEBAR_SHOWS": "Sendungen",
 	"SIDEBAR_FAQ": "Häufig gestellte Fragen",
-	"SIDEBAR_FAQ_TITLE": "Häufig gestellte Fragen",
+  "SIDEBAR_FAQ_TITLE":"Häufig gestellte Fragen",
+	"SIDEBAR_WANDLER": "Timestamp Wandler",
 	"SIDEBAR_COMMUNITY": "Community",
 	"SIDEBAR_FOOTER": "Alle Sendungsnotizen stehen, soweit nicht anders vermerkt, unter der <a href=\"https://creativecommons.org/publicdomain/zero/1.0/deed.de\" rel=\"license\" title=\"CC0 1.0 Universell (Public Domain Dedication)\">CC0-Lizenz</a>.",
 

@@ -1,0 +1,865 @@
+<script type="text/javascript">
+var BODY;
+
+function init () {
+  BODY = document.getElementsByTagName("body")[0];
+  var adjParamEle = document.getElementById ("adjust_param");
+  if ( adjParamEle ) {
+    adjParamEle.onkeydown=feedbackMove;
+  }
+}
+
+function transformClicked() {
+  var outputInnerWrapper=document.getElementById("output_inner_wrapper");
+  if ( -1 < outputInnerWrapper.className.toLowerCase().indexOf("_out")) {
+//    outputInnerWrapper.className="output_inner_wrapper";
+  } else {
+    outputInnerWrapper.className+=" output_inner_wrapper_out";
+  }
+  setTimeout(transformAsync,1);
+  return false;
+}
+
+var adjustOption = "";
+var adjustParam = "";
+var matchRegex = undefined;
+var positiveRegex = true;
+
+function updateInputGlobals () {
+  adjustOption = document.getElementById("adjust_option").value;
+  adjustParam = document.getElementById("adjust_param").value;
+}
+
+
+
+
+
+function transformAsync() {
+  var errorMessages = "";
+
+  var srcOsf = document.getElementById("in_osf").value;
+  var dstOsf = "";
+  var dstElement = document.getElementById("out_osf");
+  updateInputGlobals ();
+  var inMatchRegex = document.getElementById("in_match_regex").value;
+  var inMatchCheck = document.getElementById("in_match_check").checked;
+  var inMatchInvert = document.getElementById("in_match_invert").checked;
+  unixReference = 0;
+  matchRegex = undefined;
+
+  try {
+
+//    nicht_existierende_funktion();
+//    var test = ("" * 4);
+
+    if ( inMatchCheck ) {
+      if (0 < inMatchRegex.length ) {
+        var regexDelim = inMatchRegex.charAt( 0 );
+        var regexPos = inMatchRegex.lastIndexOf( regexDelim );
+        if (1 < regexPos) {
+          if ( (regexPos + 2) < inMatchRegex.length ) {
+            matchRegex = new RegExp ( inMatchRegex.substring (1, regexPos), inMatchRegex.substring( regexPos + 1) );
+          } else {
+            matchRegex = new RegExp ( inMatchRegex.substring (1, regexPos));
+          }
+        }
+      }
+      if ( inMatchInvert ) {
+        positiveRegex = false;
+      } else {
+        positiveRegex = true;
+      }
+    }
+    if ( "unix" == adjustOption || "relative" == adjustOption) {
+      if ( validateUnixStamp( adjustParam ) ) {
+        unixReference = parseFloat( adjustParam );
+      } else {
+        unixReference = undefined;
+      }
+    } else if ("offset" == adjustOption) {
+  //TODO: allow for fraction offset
+      if ( adjustParam.match( /^[-+]?[0-9]+(.[0-9]{0,3})?$/ ) ) {
+        offsetSeconds = parseFloat(adjustParam);
+      } else {
+        offsetSeconds = undefined;
+      }
+    }
+
+
+    var inHead = false, inEscape = false, lineProgress = 0;
+    var allSrcLines = srcOsf.split("\n");
+    var cs = "", ci = 0;
+    var curTimestamp = "", curContinuation = 0, curText = "", curLink = "", curHashtags = new Array(), curTag = "";
+
+    var curLine = "";
+    for ( var i = 0; i < allSrcLines.length; i++) {
+       curLine = allSrcLines [i];
+       if (inHead) {
+          if ( "/HEAD" == curLine || "/HEADER" == curLine) {
+            inHead = false;
+          }
+          dstOsf += curLine + "\n";
+       } else {
+          if ( "HEAD" == curLine || "HEADER" == curLine) {
+            dstOsf += curLine + "\n";
+            inHead = true;
+          } else {
+
+             if (matchRegex && (positiveRegex ^ ! ! curLine.match( matchRegex ) ) ) {
+               dstOsf += curLine + "\n"
+               continue;
+             }
+
+            inEscape = false;
+            lineProgress = 0;
+            curTimestamp = undefined;
+            curContinuation = undefined;
+            curText = undefined;
+            curLink = undefined;
+            curHashtags = new Array();
+            curTag = "";
+
+            for ( var j = 0; j < curLine.length; j++) {
+              cs = curLine.charAt(j);
+              ci = curLine.charCodeAt(j);
+
+              switch(lineProgress) {
+                //Beginning of line
+                case 0:
+                  if ( ( 48 <= ci && 58 >= ci ) || 46 == ci ) { // "0" to "9", ":" and "."
+                    curTimestamp = cs;
+                    lineProgress = 1;
+                  //detect continuation
+                  } else if ( "-" == cs) {
+                    curContinuation = 1;
+                    lineProgress = 3;
+                  } else if ( "\t" == cs || " " == cs) {
+                    //continue
+                  //detect text
+                  } else {
+                    if ("\\" == cs) {
+                      curText = "";
+                      inEscape = true;
+                    } else {
+                      curText = cs;
+                    }
+                    lineProgress = 5;
+                  }
+                  break;
+                //Within timestamp
+                case 1:
+                  if ( ( 48 <= ci && 58 >= ci ) || 46 == ci ) { // "0" to "9", ":" and "."
+                    curTimestamp += cs;
+                  } else {
+                    //end of timestamp
+                    if ( "\t" == cs || " " == cs) {
+                      lineProgress = 2;
+                    //else we run into a word beginning with a number,
+                    //  under those circumstances reset curTimestamp
+                    //  and assign it's previous value to curText
+                    } else {
+                      if ("\\" == cs) {
+                        curText = curTimestamp;
+                        inEscape = true;
+                      } else {
+                        curText = curTimestamp + cs;
+                      }
+
+                      curTimestamp = undefined;
+                      lineProgress = 5;
+                    }
+                  }
+                  break;
+                //Past timestamp
+                case 2:
+                  //detect continuation
+                  if ("-" == cs) {
+                    curContinuation = 1;
+                    lineProgress = 3;
+                  //detect text
+                  } else if ( "\t" != cs && " " != cs) {
+                    if ("\\" == cs) {
+                      curText = "";
+                      inEscape = true;
+                    } else {
+                      curText = cs;
+                    }
+                    lineProgress = 5;
+                  }
+                  break;
+                //Within continuation
+                case 3:
+                  if ("-" == cs) {
+                    curContinuation ++;
+                  //detect end of continuation
+                  } else if ("\t" == cs || " " == cs) {
+                    lineProgress = 4;
+                  //detect text
+                  } else {
+                    if ("\\" == cs) {
+                      curText = "";
+                      inEscape = true;
+                    } else {
+                      curText = cs;
+                    }
+                    lineProgress = 5;
+                  }
+                  break;
+                //Past continuation
+                case 4:
+                  //detect text
+                  if ( "\t" != cs && " " != cs) {
+                    if ("\\" == cs) {
+                      curText = "";
+                      inEscape = true;
+                    } else {
+                      curText = cs;
+                    }
+                    lineProgress = 5;
+                  }
+                  break;
+                //Within text
+                case 5:
+                  //check if we are currently in an escape sequence,
+                  //  thusly mitigating the current character's effect
+                  if ( inEscape ) {
+                    if ("#" == cs || "<" == cs || ">" == cs || "-" == cs || ( 48 <= ci && 58 >= ci)) {
+                      curText += cs;
+                    } else {
+                      curText += "\\" + cs;
+                    }
+                    inEscape = false;
+                  } else {
+                    //check for escape sequence beginning character
+                    if ("\\" == cs) {
+                      inEscape = true;
+                    } else {
+                      //check for signifying character
+                      // if we don't find it, just add current character to text
+                      if ("<" == cs) {
+                        lineProgress = 6;
+                      } else if ("#" == cs) {
+                        lineProgress = 9;
+                      } else {
+                        curText += cs;
+                      }
+                    }
+                  }
+                  break;
+                //Found beginning of link
+                case 6:
+                  if (">" == cs) {
+                    lineProgress = 8;
+                  } else {
+                    curLink = cs;
+                    lineProgress = 7;
+                  }
+                  break;
+                //Within link
+                case 7:
+                  if (">" == cs) {
+                    lineProgress = 8;
+                  } else {
+                    curLink += cs;
+                  }
+                  break;
+                //Expecting hashtag
+                case 8:
+                  if ("#" == cs) {
+                    lineProgress = 9;
+                  }
+                  break;
+                //Within hashtag
+                case 9:
+                  //detect end of present hashtag
+                  if("\\t" == cs || " " == cs) {
+                    curHashtags.push ( curTag );
+                    curTag = "";
+                    lineProgress = 8;
+                  } else {
+                    curTag += cs;
+                  }
+                  break;
+              }
+            }
+            if ( 0 < curTag.length ) {
+              curHashtags.push( curTag );
+            }
+            curItem = new OsfItem(curTimestamp, curContinuation, curText, curLink, curHashtags);
+
+  //          dstOsf += transformOsfLine(curTimestamp, curContinuation, curText, curLink, curHashtags);
+            curItem = applyTransform ( curItem );
+            dstOsf += curItem.toOsfLine();
+
+            dstElement.value = dstOsf;
+  //DEBUG
+  //          alert("lineProgress: " + lineProgress + "\ncurTimestamp:" + curTimestamp + "\ncurContinuation:" + curContinuation + "\ncurText:" + curText + "\ncurLink:" + curLink + "\ncurHashtags:" + curHashtags.join("#"));
+  //alert("curTag:" + curTag);
+          }
+       }
+    }
+    dstElement.value = dstOsf;
+  } catch (exc) {
+    errorMessages = exc.lineNumber + ":" + exc.message;
+  }
+
+  //branch to report usage of the script to the server.  Has been disabled.
+  if ( false ) { // errorMessages && 0 < ("" + errorMessages ).length ) {
+    var ajax = new XMLHttpRequest();
+    ajax.open ('POST', 'log-wandler.php');
+
+    var dataString = "";
+    dataString += "text=" + ( encodeURIComponent ( "" + srcOsf ) );
+    dataString += "&option=" + ( encodeURIComponent ( "" +  adjustOption ) );
+    dataString += "&param=" + ( encodeURIComponent ( "" +  adjustParam ) );
+    dataString += "&regex=" + ( encodeURIComponent ( "" +  inMatchRegex ) );
+    if ( inMatchCheck ) {
+      dataString += "&use_regex=checked";
+    }
+    if ( inMatchInvert ) {
+      dataString += "&invert_regex=checked";
+    }
+    dataString += "&errors=" + ( encodeURIComponent ( "" +  errorMessages ) );
+
+    var byteString = new Uint8Array ( dataString.length );
+    for ( var i = 0; i < dataString.length; i++ ) {
+      byteString [ i ] = dataString.charCodeAt ( i ) & 255;
+    }
+
+    ajax.setRequestHeader ("Content-Type", "application/x-www-form-urlencoded");
+
+    ajax.send ( byteString );
+
+  }
+}
+
+function feedbackMove ( evt ) {
+  var keyCode = evt.keyCode;
+  if ( ! keyCode ) {
+    keyCode = evt.which;
+  }
+  // 40 is Down
+  // 38 is Up
+  // 33 is Page up
+  // 34 is Page down
+  if ( 38 == keyCode || 40 == keyCode || 33 == keyCode || 34 == keyCode ) {
+    updateInputGlobals();
+    if ( validateRelativeStamp (adjustParam) || validateUnixStamp (adjustParam) ) {
+      var adjParamEle = document.getElementById ("adjust_param");
+      var desiredOffset = 0;
+      switch (keyCode) {
+        case 38:
+          desiredOffset =   1;
+          break;
+        case 40:
+          desiredOffset =  -1;
+          break;
+        case 33:
+          desiredOffset =  60;
+          break;
+        case 34:
+          desiredOffset = -60;
+          break;
+      }
+      if (validateUnixStamp (adjustParam)) {
+        adjustParam = parseInt( adjustParam ) + desiredOffset;
+        if (0 > adjustParam) {
+          adjustParam = 0;
+        }
+      } else if (validateRelativeStamp (adjustParam)) {
+        adjustParam = formatRelativeStamp (relativeToSeconds (adjustParam) + desiredOffset );
+      }
+
+//adjustParam = parseInt( adjustParam ) - 1;
+      adjustParam = "" + adjustParam;
+      adjParamEle.value = adjustParam;
+      updateFeedback ();
+    }
+  }
+}
+function updateFeedback () {
+  updateInputGlobals();
+  var feedbackEle = document.getElementById("param_feedback");
+  if ( validateUnixStamp (adjustParam) ) {
+    feedbackEle.removeChilds ();
+    feedbackEle.appendText( ( new Date ( parseInt ( adjustParam ) * 1000 ) ).toGMTString () );
+  } else if (validateRelativeStamp) {
+    feedbackEle.removeChilds ();
+    feedbackEle.appendText( describeDuration (relativeToSeconds (adjustParam), true ) );
+  }
+
+
+
+}
+
+HTMLElement.prototype.removeChilds = function () {
+  if ( this.childNodes && 0 < this.childNodes.length ) {
+    for ( var i = this.childNodes.length - 1; i >= 0; i-- ) {
+      this.removeChild( this.childNodes [ i ] );
+    }
+  }
+}
+HTMLElement.prototype.appendText = function ( text ) {
+  if ( document ) {
+    this.appendChild ( document.createTextNode ( text ) );
+  }
+}
+
+function OsfItem (paramTimestamp, paramContinuation, paramText, paramLink, paramHashtags) {
+  this.timestamp = paramTimestamp;
+  this.continuation = paramContinuation;
+  this.text = paramText;
+  this.link = paramLink;
+  this.hashtags = paramHashtags;
+
+  this.toOsfLine = function () {
+    var out = "";
+    if ( this.timestamp ) {
+      out += this.timestamp + " ";
+    }
+    if (0 < this.continuation) {
+      out += "-".repeat(this.continuation) + " ";
+    }
+    if (this.text) {
+      out += this.text.replace(/#/g,"\\#").replace(/</g,"\\<").replace(/>/g,"\\>").replace(/^-/,"\\-");
+    }
+    if (this.link) {
+      out += "<" + this.link + ">";
+    }
+    if ( this.hashtags ) {
+      var hashtagString="";
+      for (var i = 0; i < this.hashtags.length; i++) {
+        hashtagString += " #" + this.hashtags[i];
+      }
+      if (0 < hashtagString.length) {
+        out += hashtagString;
+      }
+    }
+    out += "\n";
+    return out;
+  }
+}
+
+function applyTransform( item ) {
+  var result = item;
+  switch ( adjustOption ) {
+    case "relative":
+      result = transformRelative ( item );
+      break;
+    case "unix":
+      result = transformUnix ( item );
+      break;
+    case "offset":
+      result = transformOffset (item );
+      break;
+  }
+  return result;
+}
+
+var unixReference = undefined;
+var offsetSeconds = undefined;
+
+function transformRelative ( item ) {
+  if ( item.timestamp ) {
+    if ( validateUnixStamp ( item.timestamp ) ) {
+      item.timestamp = parseFloat(item.timestamp);
+      if ( undefined == unixReference || 0 == unixReference ) {
+        unixReference = item.timestamp;
+      }
+      if (unixReference) {
+        item.timestamp -= unixReference;
+      }
+      item.timestamp = formatRelativeStamp(item.timestamp);
+    }
+  }
+  return item;
+}
+function transformUnix ( item ) {
+  if ( item.timestamp ) {
+    if ( unixReference ) {
+      if (validateRelativeStamp( item.timestamp ) ) {
+        item.timestamp = relativeToSeconds( item.timestamp );
+        item.timestamp += unixReference;
+      }
+    }
+  }
+  return item;
+}
+function transformOffset ( item ) {
+  if ( item.timestamp ) {
+    if ( offsetSeconds ) {
+      if ( -1 < ("" + item.timestamp) . indexOf( ":" )) {
+        if (validateRelativeStamp( item.timestamp ) ) {
+          item.timestamp = relativeToSeconds( item.timestamp );
+          item.timestamp += offsetSeconds;
+        }
+        item.timestamp = formatRelativeStamp ( item.timestamp );
+      } else if (validateUnixStamp( item.timestamp ) ) {
+        item.timestamp = parseFloat( item.timestamp );
+        item.timestamp += offsetSeconds;
+      }
+    }
+  }
+  return item;
+}
+
+
+
+String.prototype.repeat = function (count) {
+  var atom=this, result="";
+  for (var i = 0; i < count; i++)
+  {
+    result+=atom;
+  }
+  return result;
+}
+
+function str_fill (str, volume, c, fillLeftSide) {
+  for ( var i = str.length; i < volume; i++ ) {
+    if (fillLeftSide) {
+      str = c + str;
+    } else {
+      str = str + c;
+    }
+  }
+  return str;
+}
+
+function validateRelativeStamp ( relativeTimestamp ) {
+  if ( relativeTimestamp.match( /^[-+]?[0-9]{2}:[0-9]{2}:[0-9]{2}(.[0-9]{0,3})?$/ ) ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+function validateUnixStamp ( unixStamp ) {
+  if ( unixStamp.match( /^[0-9]+(.[0-9]{0,3})?$/ ) ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
+function formatRelativeStamp(iSeconds) {
+  var hours = Math.floor(Math.abs(iSeconds) / 3600) % 100;
+  var minutes = Math.floor(Math.abs(iSeconds) % 3600 / 60);
+  var seconds = Math.abs(iSeconds) % 60;
+  var out = "";
+
+  if (0 > iSeconds) {
+    out = "-";
+  }
+  if (10 > hours) {
+    out += "0";
+  }
+  out += hours;
+  out += ":";
+  if (10 > minutes) {
+    out += "0";
+  }
+  out += minutes;
+  out += ":";
+  if (10 > seconds) {
+    out += "0";
+  }
+  out += seconds;
+
+  return out;
+}
+
+function describeDuration (paramSeconds, longDesc) {
+  var unitNames;
+  if (longDesc ) {
+    //unitNames = new Array (new Array ("years", "year"), new Array ("months", "month"), new Array ("weeks", "week"), new Array ("days", "day"), new Array ("hours", "hour"), new Array ("minutes", "minute"), new Array("seconds", "second"));
+    unitNames = [["Jahre", "Jahr"], ["Monate", "Monat"], ["Wochen", "Woche"], ["Tage", "Tag"], ["Stunden", "Stunde"], ["Minuten", "Minute"], ["Sekunden", "Sekunde"]];
+  } else {
+    unitNames = ["y", "m", "w", "d", "H", "M", "S"];
+  }
+  var unitDurations = [86400 * 365, 86400 * 30, 86400 * 7, 86400, 3600, 60, 1];
+  var remainingSeconds = parseInt (paramSeconds);
+  var isNegative = remainingSeconds < 0;
+  if (isNegative) {
+    remainingSeconds *= -1;
+  }
+  var strDescription = "";
+  for (var i = 0, x = 0; i < unitDurations.length; i++) {
+    x = Math.floor (remainingSeconds / unitDurations[i]);
+    if (x > 0) {
+      if (1 == x ) {
+        if (longDesc) {
+          strDescription += describeOneWordNumbers ( 1 ) + " " + unitNames[i][1] + " ";
+        } else {
+          strDescription += x + unitNames[i];
+        }
+      } else if (2 <= x) {
+        if (longDesc) {
+          strDescription += describeOneWordNumbers ( Math.floor (x) ) + " " + unitNames[i][0] + " ";
+        } else {
+          strDescription += x + unitNames[i];
+        }
+      }
+      remainingSeconds = remainingSeconds % unitDurations[i];
+    }
+  }
+  if (isNegative) {
+    if (longDesc) {
+      strDescription = "Minus " + strDescription;
+    } else {
+      strDescription = "-";
+    }
+  }
+  if (0 < strDescription.length) {
+    if (32 == strDescription.charCodeAt (strDescription.length - 1)) {
+      strDescription = strDescription.substring (0, strDescription.length - 1);
+    }
+  } else {
+    if (longDesc) {
+      //strDescription = "No duration";
+      strDescription = "Keine Zeitspanne";
+    } else {
+      strDescription = "0";
+    }
+  }
+  strDescription = makeFirstLetterUppercase( strDescription );
+  return strDescription;
+}
+function describeOneWordNumbers (paramNumber) {
+  //var numberWordsStr = new Array ("null", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety");
+  var numberWordsStr = ["null", "ein(e)", "zwei", "drei", "vier", "fuenf", "sechs", "sieben", "acht", "neun", "zehn", "elf", "zwoelf", "zwanzig", "dreissig", "vierzig", "fuenfzig", "sechzig", "siebzig", "achtzig", "neunzig"];
+  var numberWordsValue = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 20, 30, 40, 50, 60, 70, 80, 90];
+  paramNumber = parseInt (paramNumber);
+  var descStr = paramNumber + "";
+  for (var i = 0; i < numberWordsValue.length; i++ ) {
+    if (paramNumber == numberWordsValue[i]) {
+      descStr = numberWordsStr[i];
+      break;
+    }
+  }
+  return descStr;
+}
+function makeFirstLetterUppercase (paramStr) {
+  paramStr = paramStr + "";
+  if (0 < paramStr.length) {
+    return paramStr.substring (0, 1).toUpperCase() + paramStr.substring (1, paramStr.length);
+  }
+}
+
+
+function relativeToSeconds(relativeStr) {
+  relativeStr = relativeStr + "";
+  var isNegative = false;
+  if ("-" == relativeStr.charAt(0) ) {
+    relativeStr = relativeStr.substring (1);
+    isNegative = true;
+  }
+  var relParts = relativeStr.split(":");
+  var seconds = 0;
+  if ( 0 <  relParts.length ) {
+    var multiplier = 60;
+    seconds += parseFloat (relParts [ relParts.length - 1 ] );
+    for ( var i = relParts.length -2 ; i >= 0; i--) {
+      seconds += parseInt( relParts [ i ] ) * multiplier;
+      multiplier *= 60;
+    }
+  }
+  if (isNegative) {
+    seconds *= -1;
+  }
+  return seconds;
+}
+
+
+var animDirection={
+  LEFT: 0,
+  RIGHT: 1,
+  UP: 2,
+  DOWN: 3
+};
+
+</script>
+<style type="text/css">
+
+body {
+  text-align: center;
+}
+.overall_wrapper {
+  text-align: left;
+  margin: 1em auto;
+  width: 75%;
+  min-width: 10em;
+}
+.body_wrapper {
+  font-family: Sans, Sans-Serif, Arial, Helvetica, Menlo;
+}
+.form_leftside, .form_rightside {
+  float: left;
+  width: 35%;
+  min-width: 3.5em;
+  line-height: 25px;
+  background: transparent;
+}
+.form_leftside *, .form_rightside * {
+  background: transparent;
+}
+
+.output_outer_wrapper {
+  height: 30%;
+  min-height: 10em;
+}
+.output_inner_wrapper {
+  height: 0em;
+  overflow: hidden;
+}
+.output_inner_wrapper_out {
+  height: 10em;
+  overflow: visible;
+  transition: height 2s 0s;
+}
+.cleaner {
+  height: 0px;
+  width: 0px;
+  visibility: hidden;
+  overflow: hidden;
+  clear: both;
+}
+#in_osf {
+  border: 1px solid #a0a0a0;
+  border-radius: 4px;
+  padding: 1px;
+  margin-top: 2px;
+  margin-bottom: 4px;
+}
+.param_feedback {
+  font-style: italic;
+  color: #606060;
+}
+.horiz_group_outer {
+  clear: both;
+  display: box;
+  background: linear-gradient(to right, rgb(243, 243, 243) 0%, rgb(161, 161, 161) 100%);
+}
+.horiz_group_inner {
+  clear: both;
+  margin-top: 1px;
+  margin-bottom: 4px;
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  transition: border-top 400ms, border-bottom 400ms;
+}
+.horiz_group_inner:hover {
+  border-top: 1px solid #a0a0ff;
+  border-bottom: 1px solid #a0a0ff;
+  transition: border-top 400ms, border-bottom 400ms;
+}
+div.credits {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  box-shadow: 2px 2px 10px 6px #f0f0f0;
+  border: 1px solid #c0c0c0;
+  padding-left: 1px;
+  padding-bottom: 1px;
+  font-size: 10pt;
+  text-align: left;
+  background: #ffffff;
+  border-bottom-left-radius: 15px;
+  border-right: none;
+  border-top: none;
+}
+div.credits:hover {
+  border: 1px solid #909090;
+  border-right: none;
+  border-top: none;
+}
+div.credits a:link, div.credits a:visited {
+  text-decoration: none;
+  color: #000000;
+  font-style: italic;
+}
+</style>
+
+
+<div class="overall_wrapper">
+  <div class="main_wrapper">
+    <div class="head_wrapper">
+	  <h2>OSF Timestamp Wandler</h2>
+      <h3>
+        Du kannst hier OSF Timestamps/Zeitmarken halbautomatisch umwandeln lassen.<br/>
+      </h3>
+    </div>
+    <div class="body_wrapper">
+      <form class="input_wrapper" onsubmit="transformClicked(); return false;">
+        <label for="in_osf">OSF Eingabe:</label><br/>
+        <textarea id="in_osf" name="in_osf" rows="12" cols="100" placeholder='02:33:50 Holgi benutzt seit der Hermes-Doku "Das Hermes-Prinzip" kein Hermes mehr'></textarea><br/>
+        <div class="horiz_group_inner">
+        <div class="horiz_group_outer">
+          <div class="form_leftside">
+            <label for="adjust_option">Art der Umwandlung</label><br/>
+          </div>
+          <div class="form_rightside">
+            <select id="adjust_option" name="adjust_option" size="1" onchange="updateFeedback();">
+              <option value="unix">zu Unix-Timestamp</option>
+              <option value="relative">zu HH:MM:SS</option>
+              <option value="offset">Zeitversatz</option>
+            </select><br/>
+          </div>
+        </div>
+        </div>
+        <div class="cleaner"> &nbsp; </div>
+        <div class="horiz_group_inner">
+        <div class="horiz_group_outer">
+          <div class="form_leftside">
+            <label for="adjust_param">Parameter</label><br/>
+          </div>
+          <div class="form_rightside">
+            <input type="text" id="adjust_param" name="adjust_param" size="30" onchange="updateFeedback();" onkeyup="updateFeedback();" onkeypress="feedbackMove();" placeholder="1234567890" autocomplete="off" /><br/>
+            <span id="param_feedback" class="param_feedback">&nbsp; &nbsp;</span><br/>
+          </div>
+        </div>
+        </div>
+        <div class="cleaner"> &nbsp; </div>
+        <div class="horiz_group_inner">
+        <div class="horiz_group_outer">
+          <div class="form_leftside">
+            <input type="checkbox" name="in_match_check" id="in_match_check" onchange="var matreg=document.getElementById('in_match_regex'); if(this.checked) {matreg.removeAttribute('readonly'); } else {matreg.setAttribute('readonly','readonly');}" /><label for="in_match_check">Wandlung einschr&auml;nken</label><br/>
+            <input type="checkbox" name="in_match_invert" id="in_match_invert"/><label for="in_match_invert">Einschr&auml;nkung invertieren</label><br/>
+          </div>
+          <div class="form_rightside">
+            <input type="text" id="in_match_regex" name="in_match_regex" size="30" readonly="readonly" placeholder="/#r|#revision/" /><br/>
+          </div>
+        </div>
+        </div>
+        <div class="cleaner"> &nbsp; </div>
+        <div class="horiz_group_inner">
+        <div class="horiz_group_outer">
+          <div class="form_leftside">
+            <br/>
+          </div>
+          <div class="form_rightside">
+            <input type="submit" value="Umwandeln" class="submit" /><br/>
+          </div>
+        </div>
+        </div>
+        <div class="cleaner">
+          &nbsp; &nbsp;
+        </div>
+      </form>
+      <hr/>
+      <div class="output_outer_wrapper">
+        <div id="output_inner_wrapper" class="output_inner_wrapper">
+          <p>
+            Umgewandeltes:
+          </p>
+          <textarea id="out_osf" name="out_osf" rows="12" cols="100"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h3>
+    CC-BY-SA quimoniz
+  </h3>
+  <script type="text/javascript">
+    init ();
+  </script>
+</div>

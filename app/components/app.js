@@ -142,6 +142,10 @@ angular
         url: '/faq/',
         templateUrl: 'components/static/faq.html'
       })
+      .state('wandler', {
+        url: '/wandler/',
+        templateUrl: 'components/static/wandler.html'
+      })
       .state('rules', {
         url: '/rules/',
         templateUrl: 'components/static/rules.html'
@@ -293,7 +297,7 @@ angular
         prefix: 'languages/lang_',
         suffix: '.json'
       })
-      .preferredLanguage('de_DE');    
+      .preferredLanguage('de_DE');
 
   })
   .run(function ($cookies, Restangular) {

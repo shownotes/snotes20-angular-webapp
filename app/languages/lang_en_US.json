@@ -70,7 +70,7 @@
 
 	"RULES_TITLE": "Rules",
 	"RULES_TEXT": "Every registered member is in bound to accept the following rules:",
-	"RULES_RULES": "<li><strong>The mandatory first: Kindness pays off.</strong><br />A kind conversation is self-evident. Feel free to ask if there is a lack of clarity.</li><li><strong>Show notes are written conscientious.</strong><br />Content must not be falsified on purpose.</li><li><strong>All provided contents are published under the <a href=\"https://creativecommons.org/publicdomain/zero/1.0/deed.de\" rel=\"license\">CC0 license</a>.</strong><br />In a nutshell: All rights are relinquished &mdash; everyone can use it for anything they want.</li><li><strong>The participation is voluntary.</strong><br />We don't pay you. Earned <a href=\"/donate/\">donations</a> are completely used for this platform.</li><li><strong>Spam is strictly prohibited.</strong><br />This applies to the editor and the according chat as well as our IRC channel or the mailing list.</li>",	
+	"RULES_RULES": "<li><strong>The mandatory first: Kindness pays off.</strong><br />A kind conversation is self-evident. Feel free to ask if there is a lack of clarity.</li><li><strong>Show notes are written conscientious.</strong><br />Content must not be falsified on purpose.</li><li><strong>All provided contents are published under the <a href=\"https://creativecommons.org/publicdomain/zero/1.0/deed.de\" rel=\"license\">CC0 license</a>.</strong><br />In a nutshell: All rights are relinquished &mdash; everyone can use it for anything they want.</li><li><strong>The participation is voluntary.</strong><br />We don't pay you. Earned <a href=\"/donate/\">donations</a> are completely used for this platform.</li><li><strong>Spam is strictly prohibited.</strong><br />This applies to the editor and the according chat as well as our IRC channel or the mailing list.</li>",
 	"RULES_VIOLATION": "We reserve the rights to exclude members from this platform in case of a breach of rules. Further information can be found at the <a href=\"/faq/\">frequently asked questions</a>.",
 
 	"IMPRINT_TITLE": "Imprint",
@@ -149,14 +149,14 @@
 	"PROFILE_LAST_LOGIN": "was {{time}} online",
 	"PROFILE_HELLO1": "Hello ",
 	"PROFILE_HELLO2": "! Do you want to edit ",
-	"PROFILE_HELLO3": "your profile",	
+	"PROFILE_HELLO3": "your profile",
 	"PROFILE_BIO": "Biography",
 	"PROFILE_NO_BIO": "The user hasn't created a biography until now.",
 	"PROFILE_FLATTR": "{{name}} on Flattr",
 	"PROFILE_TWITTER": "{{name}} on Twitter",
 	"PROFILE_APP": "{{name}} on App.net",
 
-	"LIVE_TITLE": "The collaborative platform for show notes",	
+	"LIVE_TITLE": "The collaborative platform for show notes",
 	"LIVE_WELCOME": "Welcome! Here you can see at what time which podcast show is recorded. For live writing of the show notes,",
 	"LIVE_LOGIN": "please log in first and click again",
 	"LIVE_CLICK": "click",
@@ -249,8 +249,9 @@
 	"SIDEBAR_SEARCH": "Search…",
 	"SIDEBAR_SHOWS": "Shows",
 	"SIDEBAR_FAQ": "FAQ",
-	"SIDEBAR_FAQ_TITLE":"Frequently Asked Questions",
-	"SIDEBAR_COMMUNITY": "Community",
+  "SIDEBAR_FAQ_TITLE":"Frequently Asked Questions",
+  "SIDEBAR_WANDLER": "Timestamp Wandler",
+  "SIDEBAR_COMMUNITY": "Community",
 	"SIDEBAR_FOOTER": "All show notes are licensed under <a href=\"https://creativecommons.org/publicdomain/zero/1.0/deed.de\" rel=\"license\" title=\"CC0 1.0 Universell (Public Domain Dedication)\">CC0 license</a> unless stated otherwise.",
 
   "COMMUNITY_HEADLINE": "Community",
@@ -263,4 +264,4 @@
   "COMMUNITY_IRC_TEXT": "We are on Freenode: <a href='irc://chat.freenode.net/shownotes'>#shownotes</a>. You can use an <a href=\"https://en.wikipedia.org/wiki/Internet_Relay_Chat#Clients\">IRC-Client</a> or the <a href=\"https://kiwiirc.com/client/irc.freenode.net/shownotes\">Webchat</a> to connect to the channel.",
   "COMMUNITY_GITHUB_TITLE": "Github",
   "COMMUNITY_GITHUB_TEXT": "The whole platform is developed in public on <a href=\"https://github.com/shownotes\">GitHub</a>. Have a look at it if you want to contribute."
-}		
+}
