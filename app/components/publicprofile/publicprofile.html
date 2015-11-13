@@ -27,7 +27,9 @@
 		<li data-social="Flattr" ng-show="user.socials['flattr']"><a href="https://flattr.com/profile/{{user.socials['flattr']}}" title="{{ 'PROFILE_FLATTR' | translate:'{ name: user.username}' }}">{{user.socials['flattr']}}</a></li>
 		<li data-social="Twitter" ng-show="user.socials['twitter']"><a href="https://twitter.com/{{user.socials['twitter']}}" title="{{ 'PROFILE_TWITTER' | translate:{ name:'{user.username}'} }}">{{user.socials['twitter']}}</a></li>
 		<li data-social="App.net" ng-show="user.socials['appnet']"><a href="https://alpha.app.net/{{user.socials['appnet']}}" title="{{ 'PROFILE_TWITTER' | translate:{ name:'{user.username}'} }}">{{user.socials['appnet']}}</a></li>
-	</ul>
+    <li data-social="XMPP" ng-show="user.socials['xmpp']">{{user.socials['xmpp']}}</li>
+    <li data-social="IRC" ng-show="user.socials['irc']">{{user.socials['irc']}}</li>
+  </ul>
 
 </div>
 
