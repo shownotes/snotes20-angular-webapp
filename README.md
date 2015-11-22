@@ -2,9 +2,16 @@
 
 ## Setup
 
+### Preconditions
+- For Ubuntu 14.04:
 ```
-$ npm install -g bower grunt grunt-cli
-$ gem install compass
+$ sudo apt-get install npm ruby ruby-dev nodejs-legacy git
+```
+
+### Installation Instructions
+```
+$ sudo npm install -g bower grunt grunt-cli
+$ sudo gem install compass
 $ cd snotes20-angular-webapp
 $ npm install
 $ bower install
