@@ -17,6 +17,7 @@ angular.module('snotes30App')
   };
 
   this.search = function (words) {
+    words = words.split(' ');
     return archive.customPOST({words: words}, 'search');
   };
 });
