@@ -138,6 +138,11 @@ angular
         templateUrl: 'components/archive/search/search.html',
         controller: 'ArchiveSearchCtrl'
       })
+      .state('statistics', {
+        url: '/statistics/',
+        templateUrl: 'components/statistics/statistics.html',
+        controller: 'StatisticsCtrl'
+      })
       .state('faq', {
         url: '/faq/',
         templateUrl: 'components/static/faq.html'
