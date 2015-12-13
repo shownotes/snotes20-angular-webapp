@@ -21,7 +21,8 @@ angular
     'btford.socket-io',
     'angucomplete-alt',
     'restangular',
-    'pascalprecht.translate'
+    'pascalprecht.translate',
+    'chart'
   ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider, CONFIG, $translateProvider) {
 
@@ -141,7 +142,7 @@ angular
       .state('statistics', {
         url: '/statistics/',
         templateUrl: 'components/statistics/statistics.html',
-        controller: 'StatisticsCtrl'
+        controller: 'MainCtrl'
       })
       .state('faq', {
         url: '/faq/',
