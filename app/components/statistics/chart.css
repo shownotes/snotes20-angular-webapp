@@ -1,0 +1,11 @@
+.axis path, .axis line {
+  fill: none;
+  stroke: #999;
+  shape-rendering: crispEdges;
+}
+.tick {
+  font: 10px sans-serif;
+}
+circle {
+  fill: steelblue;
+}

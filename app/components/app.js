@@ -22,7 +22,7 @@ angular
     'angucomplete-alt',
     'restangular',
     'pascalprecht.translate',
-    'chart'
+    'myChart'
   ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider, CONFIG, $translateProvider) {
 
@@ -142,7 +142,7 @@ angular
       .state('statistics', {
         url: '/statistics/',
         templateUrl: 'components/statistics/statistics.html',
-        controller: 'MainCtrl'
+        controller: 'StatisticsCtrl'
       })
       .state('faq', {
         url: '/faq/',

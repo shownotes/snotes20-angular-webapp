@@ -3,166 +3,172 @@
 
 <head>
 
-	<title>shownot.es</title>
+  <title>shownot.es</title>
 
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link type="text/plain" rel="author" href="humans.txt" />
-	<meta name="robots" content="index, follow" />
-	<meta name="description" content="Die kollaborative Plattform für Sendungsnotizen" />
-	<base href="/">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link type="text/plain" rel="author" href="humans.txt"/>
+  <meta name="robots" content="index, follow"/>
+  <meta name="description" content="Die kollaborative Plattform für Sendungsnotizen"/>
+  <base href="/">
 
-	<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
-	<link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196">
-	<link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
-	<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-	<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-	<meta name="msapplication-TileColor" content="#40a662">
-	<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#40a662">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
 
-	<!-- build:css styles/vendor.css -->
-	<!-- bower:css -->
-	<link rel="stylesheet" href="bower_components/spectrum/spectrum.css" />
-	<link rel="stylesheet" href="bower_components/angular-busy/dist/angular-busy.css" />
-	<link rel="stylesheet" href="bower_components/angucomplete-alt/angucomplete-alt.css" />
-	<!-- endbower -->
-	<!-- endbuild -->
-	<!-- build:css(.tmp) styles/main.css -->
-	<link rel="stylesheet" type="text/css" href="styles/main.css" media="screen, print" />
-	<!-- endbuild -->
+  <!-- build:css styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/spectrum/spectrum.css"/>
+  <link rel="stylesheet" href="bower_components/angular-busy/dist/angular-busy.css"/>
+  <link rel="stylesheet" href="bower_components/angucomplete-alt/angucomplete-alt.css"/>
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" type="text/css" href="styles/main.css" media="screen, print"/>
+  <!-- endbuild -->
 </head>
 
 <body ng-app="snotes30App">
 
-	<div class="container">
-		<section class="sidebar" ng-include="'components/sidebar/sidebar.html'"></section>
-		<section class="content cccontent" ui-view></section>
-		<section class="content ng-hide navigation_loading">
-			<img class="navigation_loading" src="images/shownotes-signet.svg" alt="shownot.es" title="shownot.es" />
-		</section>
-	</div>
+<div class="container">
+  <section class="sidebar" ng-include="'components/sidebar/sidebar.html'"></section>
+  <section class="content cccontent" ui-view></section>
+  <section class="content ng-hide navigation_loading">
+    <img class="navigation_loading" src="images/shownotes-signet.svg" alt="shownot.es" title="shownot.es"/>
+  </section>
+</div>
 
-	<!-- build:js scripts/vendor.js -->
-	<!-- bower:js -->
-	<script src="bower_components/jquery/dist/jquery.js"></script>
-	<script src="bower_components/angular/angular.js"></script>
-	<script src="bower_components/angular-resource/angular-resource.js"></script>
-	<script src="bower_components/angular-cookies/angular-cookies.js"></script>
-	<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-	<script src="bower_components/angular-animate/angular-animate.js"></script>
-	<script src="bower_components/angular-route/angular-route.js"></script>
-	<script src="bower_components/spectrum/spectrum.js"></script>
-	<script src="bower_components/angular-spectrum-colorpicker/dist/angular-spectrum-colorpicker.js"></script>
-	<script src="bower_components/angular-busy/dist/angular-busy.js"></script>
-	<script src="bower_components/lodash/dist/lodash.compat.js"></script>
-	<script src="bower_components/restangular/dist/restangular.js"></script>
-	<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-	<script src="bower_components/angular-socket-io/socket.js"></script>
-	<script src="bower_components/angucomplete-alt/angucomplete-alt.js"></script>
-	<script src="bower_components/angular-translate/angular-translate.js"></script>
-	<script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-	<!-- endbower -->
-	<script src="bower_components/ngLocale/angular-locale_de-de.js"></script>
-	<script src="bower_components/socket.io-client/socket.io.js"></script>
-	<script src="bower_components/nunjucks/browser/nunjucks.js"></script>
-	<!-- endbuild -->
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/spectrum/spectrum.js"></script>
+<script src="bower_components/angular-spectrum-colorpicker/dist/angular-spectrum-colorpicker.js"></script>
+<script src="bower_components/angular-busy/dist/angular-busy.js"></script>
+<script src="bower_components/lodash/dist/lodash.compat.js"></script>
+<script src="bower_components/restangular/dist/restangular.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/angular-socket-io/socket.js"></script>
+<script src="bower_components/angucomplete-alt/angucomplete-alt.js"></script>
+<script src="bower_components/angular-translate/angular-translate.js"></script>
+<script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+<!-- endbower -->
+<script src="bower_components/ngLocale/angular-locale_de-de.js"></script>
+<script src="bower_components/socket.io-client/socket.io.js"></script>
+<script src="bower_components/nunjucks/browser/nunjucks.js"></script>
+<!-- endbuild -->
 
-	<!-- build:js({.tmp,app}) scripts/scripts.js -->
-	<script src="components/app.js"></script>
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="components/app.js"></script>
 
-    <script src="components/shared/namelist/nameList.js"></script>
+<script src="components/shared/namelist/nameList.js"></script>
 
-    <script src="components/shared/numberlist/numberList.js"></script>
+<script src="components/shared/numberlist/numberList.js"></script>
 
-    <script src="components/shared/footer/snotesfooter.js"></script>
+<script src="components/shared/footer/snotesfooter.js"></script>
 
-    <script src="components/shared/mediaImage.js"></script>
+<script src="components/shared/mediaImage.js"></script>
 
-    <script src="components/shared/enter.js"></script>
+<script src="components/shared/enter.js"></script>
 
-    <!-- start page -->
-	<script src="components/livelist/LiveListCtrl.js"></script>
+<!-- start page -->
+<script src="components/livelist/LiveListCtrl.js"></script>
 
-    <!-- sidebar -->
-    <script src="components/sidebar/SidebarCtrl.js"></script>
-    <script src="components/sidebar/SidebarSearchCtrl.js"></script>
-    <script src="components/sidebar/AuthenticationSvc.js"></script>
-	<script src="components/shared/equals.js"></script>
-	<script src="components/shared/formerror.js"></script>
-	<script src="components/sidebar/LangCtrl.js"></script>
+<!-- sidebar -->
+<script src="components/sidebar/SidebarCtrl.js"></script>
+<script src="components/sidebar/SidebarSearchCtrl.js"></script>
+<script src="components/sidebar/AuthenticationSvc.js"></script>
+<script src="components/shared/equals.js"></script>
+<script src="components/shared/formerror.js"></script>
+<script src="components/sidebar/LangCtrl.js"></script>
 
-    <!-- user -->
-    <script src="components/shared/actionstatus/actionstatus.js"></script>
-    <script src="components/shared/actionstatus/actionStatusGlue.js"></script>
+<!-- user -->
+<script src="components/shared/actionstatus/actionstatus.js"></script>
+<script src="components/shared/actionstatus/actionStatusGlue.js"></script>
 
-    <script src="components/user/profile/UserProfileCtrl.js"></script>
-    <script src="components/user/upgrade/UserUpgradeCtrl.js"></script>
-    <script src="components/user/activate/UserActivateCtrl.js"></script>
-    <script src="components/user/pwreset/UserPwResetCtrl.js"></script>
+<script src="components/user/profile/UserProfileCtrl.js"></script>
+<script src="components/user/upgrade/UserUpgradeCtrl.js"></script>
+<script src="components/user/activate/UserActivateCtrl.js"></script>
+<script src="components/user/pwreset/UserPwResetCtrl.js"></script>
 
-    <!-- public profile -->
-    <script src="components/publicprofile/PublicProfileCtrl.js"></script>
+<!-- public profile -->
+<script src="components/publicprofile/PublicProfileCtrl.js"></script>
 
-    <!-- documents -->
-    <script src="components/document/DocumentSvc.js"></script>
-    <script src="components/document/documentEditor.js"></script>
-    <script src="components/document/render/documentRender.js"></script>
+<!-- documents -->
+<script src="components/document/DocumentSvc.js"></script>
+<script src="components/document/documentEditor.js"></script>
+<script src="components/document/render/documentRender.js"></script>
 
-    <script src="components/document/edit/DocumentEditCtrl.js"></script>
-    <script src="components/document/edit/docEditChatSocket.js"></script>
+<script src="components/document/edit/DocumentEditCtrl.js"></script>
+<script src="components/document/edit/docEditChatSocket.js"></script>
 
-    <script src="components/document/readonly/DocumentReadonlyCtrl.js"></script>
-    <script src="scripts/osf-templates.js"></script>
+<script src="components/document/readonly/DocumentReadonlyCtrl.js"></script>
+<script src="scripts/osf-templates.js"></script>
 
-    <script src="components/document/sighting/DocumentSightingCtrl.js"></script>
+<script src="components/document/sighting/DocumentSightingCtrl.js"></script>
 
-    <!-- archive -->
-    <script src="components/archive/archive/ArchiveCtrl.js"></script>
-    <script src="components/archive/archive/box/PodcastArchiveBox.js"></script>
+<!-- archive -->
+<script src="components/archive/archive/ArchiveCtrl.js"></script>
+<script src="components/archive/archive/box/PodcastArchiveBox.js"></script>
 
-    <script src="components/archive/podcast/PodcastCtrl.js"></script>
+<script src="components/archive/podcast/PodcastCtrl.js"></script>
 
-    <script src="components/archive/search/ArchiveSearchCtrl.js"></script>
+<script src="components/archive/search/ArchiveSearchCtrl.js"></script>
 
-    <script src="components/archive/ArchiveService.js"></script>
-    <script src="components/archive/PodcastService.js"></script>
+<script src="components/archive/ArchiveService.js"></script>
+<script src="components/archive/PodcastService.js"></script>
 
-    <!-- admin -->
-    <script src="components/admin/importstatus/ImportStatusCtrl.js"></script>
-    <script src="components/admin/sighting/AdminSightingCtrl.js"></script>
+<!-- admin -->
+<script src="components/admin/importstatus/ImportStatusCtrl.js"></script>
+<script src="components/admin/sighting/AdminSightingCtrl.js"></script>
 
-    <!-- statistics -->
-    <script src="components/statistics/chart.js"></script>
-    <script src="components/statistics/d3/d3.js"></script>
-	<!-- endbuild -->
+<!-- statistics -->
+<script src="components/statistics/d3/d3.js" charset="UTF-8"></script>
+<script src="components/statistics/StatisticsCtrl.js"></script>
+<script src="components/statistics/chart.js"></script>
+<!-- endbuild -->
 
-  <script src="@@configfile"></script>
+<script src="@@configfile"></script>
 
-	<script type="text/javascript" src="//api.flattr.com/js/0.6/load.js?mode=auto" async onload="FlattrLoader.setup();"></script>
+<script type="text/javascript" src="//api.flattr.com/js/0.6/load.js?mode=auto" async
+        onload="FlattrLoader.setup();"></script>
 
-    <!-- Piwik -->
-    <script type="text/javascript">
-        var _paq = _paq || [];
-        _paq.push(['trackPageView']);
-        _paq.push(['enableLinkTracking']);
-        (function() {
-            var u="//shownot.es/piwik/";
-            _paq.push(['setTrackerUrl', u+'piwik.php']);
-            _paq.push(['setSiteId', 1]);
-            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-        })();
-    </script>
-    <noscript><p><img src="//shownot.es/piwik/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
-    <!-- End Piwik Code -->
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function () {
+    var u = "//shownot.es/piwik/";
+    _paq.push(['setTrackerUrl', u + 'piwik.php']);
+    _paq.push(['setSiteId', 1]);
+    var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+    g.type = 'text/javascript';
+    g.async = true;
+    g.defer = true;
+    g.src = u + 'piwik.js';
+    s.parentNode.insertBefore(g, s);
+  })();
+</script>
+<noscript><p><img src="//shownot.es/piwik/piwik.php?idsite=1" style="border:0;" alt=""/></p></noscript>
+<!-- End Piwik Code -->
 
 </body>
 
