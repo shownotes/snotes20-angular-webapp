@@ -96,7 +96,7 @@ angular.module('myChart', [])
             // Watch the data attribute of the scope
             scope.$watch('data', function(newVal, oldVal, scope) {
               // Update the chart
-              draw(svg, width, height, data);
+              draw(svg, width, height, scope.data);
             }, true);
           };
         }
