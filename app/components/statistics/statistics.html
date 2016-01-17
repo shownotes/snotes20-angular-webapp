@@ -1,5 +1,10 @@
 <h2>Statistik</h2>
 
-<div  ng-controller="StatisticsCtrl">
+<div ng-controller="StatisticsCtrl">
   <my-scatter-chart class="chart" data="logs"></my-scatter-chart>
+  <wordcloud
+    words="words"
+    on-click="myOnClickFunction(element)"
+    on-hover="myOnHoverFunction(element)">
+  </wordcloud>
 </div>

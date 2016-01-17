@@ -22,4 +22,15 @@ angular.module('snotes30App')
         $scope.moreLogs[2].push(randPoint());
         $scope.moreLogs[3].push(randPoint());
       }, 1000);
+
+      $scope.words = ["Hallo", "Test", "Lorem", "Ipsum", "Lorem", "ipsum", "dolor", "sit", "amet,", "consetetur", "sadipscing", "elitr,", "sed", "diam", "nonumy", "eirmod", "tempor", "invidunt", "ut", "labore", "et", "dolore", "magna", "aliquyam", "erat,", "sed", "diam"];
+
+      $scope.myOnClickFunction = function (element) {
+        console.log("click", element);
+      }
+
+      $scope.myOnHoverFunction = function (element) {
+        console.log("hover", element);
+      }
+
     }]);

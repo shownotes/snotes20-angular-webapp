@@ -3,7 +3,7 @@
 angular.module('myChart', [])
 
   // D3 Factory
-  .factory('d3', function() {
+  .factory('d3', function () {
 
     /* We could declare locals or other D3.js
      specific configurations here. */
@@ -13,10 +13,9 @@ angular.module('myChart', [])
 
   // Scatter Chart Directive
   .directive('myScatterChart', ["d3",
-    function(d3){
+    function (d3) {
 
       function draw(svg, width, height, data) {
-
         svg
           .attr('width', width)
           .attr('height', height);
@@ -27,10 +26,14 @@ angular.module('myChart', [])
         // Define x scale
         var xScale = d3.time.scale()
           .domain([
-            d3.min(data, function(d) { return d.time; }),
-            d3.max(data, function(d) { return d.time; })
+            d3.min(data, function (d) {
+              return d.time;
+            }),
+            d3.max(data, function (d) {
+              return d.time;
+            })
           ])
-          .range([margin, width-margin]);
+          .range([margin, width - margin]);
 
         // Define x-axis
         var xAxis = d3.svg.axis()
@@ -40,8 +43,10 @@ angular.module('myChart', [])
 
         // Define y-scale
         var yScale = d3.time.scale()
-          .domain([0, d3.max(data, function(d) { return d.visitors; })])
-          .range([margin, height-margin]);
+          .domain([0, d3.max(data, function (d) {
+            return d.visitors;
+          })])
+          .range([margin, height - margin]);
 
         // Define y-axis
         var yAxis = d3.svg.axis()
@@ -69,8 +74,12 @@ angular.module('myChart', [])
         svg.select('.data')
           .selectAll('circle').data(data)
           .attr('r', 2.5)
-          .attr('cx', function(d) { return xScale(d.time); })
-          .attr('cy', function(d) { return yScale(d.visitors); });
+          .attr('cx', function (d) {
+            return xScale(d.time);
+          })
+          .attr('cy', function (d) {
+            return yScale(d.visitors);
+          });
       }
 
       return {
@@ -78,7 +87,7 @@ angular.module('myChart', [])
         scope: {
           data: '='
         },
-        compile: function( element, attrs, transclude ) {
+        compile: function (element, attrs, transclude) {
 
           // Create a SVG root element
           var svg = d3.select(element[0]).append('svg');
@@ -91,10 +100,9 @@ angular.module('myChart', [])
           var width = 600, height = 300;
 
           // Return the link function
-          return function(scope, element, attrs) {
-
+          return function (scope, element, attrs) {
             // Watch the data attribute of the scope
-            scope.$watch('data', function(newVal, oldVal, scope) {
+            scope.$watch('data', function (newVal, oldVal, scope) {
               // Update the chart
               draw(svg, width, height, scope.data);
             }, true);
@@ -102,3 +110,4 @@ angular.module('myChart', [])
         }
       };
     }]);
+
