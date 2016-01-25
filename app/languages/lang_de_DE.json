@@ -267,5 +267,7 @@
   "COMMUNITY_IRC_TITLE": "Internet Relay Chat",
   "COMMUNITY_IRC_TEXT": "Auf Freenode sind wir im IRC-Channel <a href='irc://chat.freenode.net/shownotes'>#shownotes</a> zu finden. Du kannst dich über einen <a href=\"http://de.wikipedia.org/wiki/IRC-Client#G.C3.A4ngige_IRC-Clients\">IRC-Client</a> oder den <a href=\"https://kiwiirc.com/client/irc.freenode.net/shownotes\">Webchat</a> verbinden.",
   "COMMUNITY_GITHUB_TITLE": "Github",
-  "COMMUNITY_GITHUB_TEXT": "Die komplette Plattform wird öffentlich auf <a href=\"https://github.com/shownotes\">GitHub</a> entwickelt. Wenn du dich daran beteiligen möchtest, kannst du dort gerne vorbeischauen."
+  "COMMUNITY_GITHUB_TEXT": "Die komplette Plattform wird öffentlich auf <a href=\"https://github.com/shownotes\">GitHub</a> entwickelt. Wenn du dich daran beteiligen möchtest, kannst du dort gerne vorbeischauen.",
+
+  "SIDEBAR_STATISTICS_TITLE": "Podcast Statistiken"
 }
