@@ -269,5 +269,6 @@
   "COMMUNITY_GITHUB_TITLE": "Github",
   "COMMUNITY_GITHUB_TEXT": "Die komplette Plattform wird öffentlich auf <a href=\"https://github.com/shownotes\">GitHub</a> entwickelt. Wenn du dich daran beteiligen möchtest, kannst du dort gerne vorbeischauen.",
 
-  "SIDEBAR_STATISTICS_TITLE": "Podcast Statistiken"
+  "SIDEBAR_STATISTICS_TITLE": "Podcast Statistiken",
+  "SIDEBAR_STATISTICS": "Podcast Statistiken"
 }
