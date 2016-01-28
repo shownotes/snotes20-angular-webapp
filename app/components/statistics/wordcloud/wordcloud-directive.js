@@ -36,7 +36,6 @@ angular.module('myChart')
           if(angular.isDefined(scope.words))    words   = scope.words;
 
 
-          //TODO: Refactor String to a service
           // Skip rendering when no corrent word param is parsed
           if(angular.isDefined(scope.words) && angular.isArray(words)){
               words   = scope.words
@@ -69,7 +68,6 @@ angular.module('myChart')
           var cloudFactory = function(words){
 
 
-              // TODO: Add fill Function Binding for own function
               var fill = d3.scale.category20();
 
               d3.layout.cloud().size([width, height])
