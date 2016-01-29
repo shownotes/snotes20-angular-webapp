@@ -11,6 +11,14 @@
 	</div>
 
 </div>
+<div ng-controller="StatisticsCtrl">
+  <wordcloud
+    words="words"
+    height="100"
+    on-click="myOnClickFunction(element)"
+    on-hover="myOnHoverFunction(element)">
+  </wordcloud>
+</div>
 <!--
 <p>Durchschnitt: <strong>5 Podcaster</strong> und <strong>4 Shownoter</strong> pro Sendung</p>
 -->
