@@ -10,15 +10,14 @@ angular.module('snotes30App')
       }
 
     $scope.getPodcastWords = function (slug){
-      console.log("slug", slug);
       StatisticsService.getPodcastWordList(slug).then(function (results){
         $scope.words = results;
       });
     }
 
       $scope.myOnClickFunction = function (element) {
-        console.log("click", element.text);
         $location.url('/archive/search/?q=' + element.text);
+        $scope.$apply();
       }
 
       $scope.myOnHoverFunction = function (element) {
