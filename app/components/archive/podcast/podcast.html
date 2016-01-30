@@ -11,12 +11,10 @@
 	</div>
 
 </div>
-<div ng-controller="StatisticsCtrl">
+<div ng-controller="StatisticsCtrl" ng-init="getWords()">
   <wordcloud
     words="words"
-    height="100"
-    on-click="myOnClickFunction(element)"
-    on-hover="myOnHoverFunction(element)">
+    height="100">
   </wordcloud>
 </div>
 <!--

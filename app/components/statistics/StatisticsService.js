@@ -5,6 +5,11 @@ angular.module('snotes30App')
   var statistic = Restangular.all('statistic');
 
   this.getWordList = function () {
-    return statistic.get("wordlist");
+    return statistic.get("wordlist", "?=100");
+  };
+
+  this.getPodcastWordList = function (slug) {
+    console.log("service", slug);
+    return statistic.getList("significantwords", "podcast", slug);
   };
 });

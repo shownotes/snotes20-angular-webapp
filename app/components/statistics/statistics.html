@@ -1,9 +1,11 @@
 <h2>Statistik</h2>
 
-<div ng-controller="StatisticsCtrl">
-  <wordcloud
-    words="words"
-    on-click="myOnClickFunction(element)"
-    on-hover="myOnHoverFunction(element)">
+<div class="box-wrapper" ng-controller="StatisticsCtrl" ng-init="getWords()">
+  <p>
+    <span translate="WORDCLOUD_WELCOME"></span>
+    <wordcloud
+      words="words"
+      on-click="myOnClickFunction(element)">
   </wordcloud>
+  </p>
 </div>

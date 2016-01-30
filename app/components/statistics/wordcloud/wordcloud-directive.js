@@ -50,9 +50,8 @@ angular.module('myChart')
             });
           }
           else if (element.text().length > 0) {
-            words = element.text().split(",");
-            element.text("");
-
+            // if no words are submitted
+            return;
           }
           else {
             element.text("wordcloud: Please define some words");

@@ -269,5 +269,6 @@
   "COMMUNITY_GITHUB_TEXT": "The whole platform is developed in public on <a href=\"https://github.com/shownotes\">GitHub</a>. Have a look at it if you want to contribute.",
 
   "SIDEBAR_STATISTICS_TITLE": "Podcast Statistics",
-  "SIDEBAR_STATISTICS": "Podcast Statistics"
+  "SIDEBAR_STATISTICS": "Podcast Statistics",
+  "WORDCLOUD_WELCOME": "Following wordcloud visualizes most frequently used words of all podcasts at shownot.es"
 }

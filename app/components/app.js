@@ -142,7 +142,6 @@ angular
       .state('statistics', {
         url: '/statistics/',
         templateUrl: 'components/statistics/statistics.html',
-        controller: 'StatisticsCtrl',
         resolve: {
           'words': ['StatisticsService', function (StatisticsService){
             return StatisticsService.getWordList();
