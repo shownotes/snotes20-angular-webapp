@@ -9,6 +9,6 @@ angular.module('snotes30App')
   };
 
   this.getPodcastWordList = function (slug) {
-    return statistic.getList("significantwords", "podcast", slug);
+    return statistic.get("wordlist", "podcast", slug, "?=20");
   };
 });
