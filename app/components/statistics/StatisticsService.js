@@ -13,7 +13,7 @@ angular.module('snotes30App')
     };
 
     this.getWordListFreq = function () {
-      return statistic.get("wordfrequency", "?=100");
+      return statistic.get("wordfrequency", "?top=200");
     };
 
     this.getPodcastWordListFreq = function (slug) {

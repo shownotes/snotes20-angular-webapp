@@ -71,7 +71,7 @@ angular.module('myChart')
 
             d3.layout.cloud().size([width, height])
               .words(words.map(function (d) {
-                var freq = d["frequency"]/largest_frequency;
+                var freq = Math.sqrt(d["frequency"]/largest_frequency);
                 return {text: d["word"], size: freq * fontSize};
               }))
               .rotate(function () {
