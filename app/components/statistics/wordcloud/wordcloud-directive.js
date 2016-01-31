@@ -63,19 +63,20 @@ angular.module('myChart')
             return;
           }
 
-          // CloudFactory - so high in the sky ;)
-          // Keep the anonym functions here for readability
           var cloudFactory = function (words) {
-
 
             var fill = d3.scale.category20();
 
+            var largest_frequency = words[0]["frequency"];
+
             d3.layout.cloud().size([width, height])
               .words(words.map(function (d) {
-                return {text: d, size: Math.random() * fontSize};
+                var freq = d["frequency"]/largest_frequency;
+                return {text: d["word"], size: freq * fontSize};
               }))
               .rotate(function () {
-                return ~~(Math.random() * 2) * -90;
+                //return ~~(Math.random() * 2) * -90;
+                return (~~(Math.random() * 6) - 3) * 30;
               })
               .font(fontFamily)
               .fontSize(function (d) {

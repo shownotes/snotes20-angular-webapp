@@ -1,44 +1,45 @@
 <div class="cover-header">
 
-	<media-image alt="cover" class="cover" path="podcast.cover.file"></media-image>
+  <media-image alt="cover" class="cover" path="podcast.cover.file"></media-image>
 
-	<div>
-		<h2>{{podcast.title}}</h2>
-		<h3>{{filterepisodes.length}}
-            <span ng-if="filterepisodes.length == 1" translate="PODCAST_EPISODE"></span>
-            <span ng-if="filterepisodes.length != 1" translate="PODCAST_EPISODES"></span>
-        </h3>
-	</div>
+  <div>
+    <h2>{{podcast.title}}</h2>
+    <h3>{{filterepisodes.length}}
+      <span ng-if="filterepisodes.length == 1" translate="PODCAST_EPISODE"></span>
+      <span ng-if="filterepisodes.length != 1" translate="PODCAST_EPISODES"></span>
+    </h3>
+  </div>
+  <div ng-controller="StatisticsCtrl" ng-init="getPodcastWordsFreq()">
+    <wordcloud
+      words="words"
+      height="100"
+      width="1000">
+    </wordcloud>
+  </div>
+</div>
 
-</div>
-<div ng-controller="StatisticsCtrl" ng-init="getPodcastWords()">
-  <wordcloud
-    words="words"
-    height="100">
-  </wordcloud>
-</div>
 <!--
 <p>Durchschnitt: <strong>5 Podcaster</strong> und <strong>4 Shownoter</strong> pro Sendung</p>
 -->
 <table>
-	<tr>
-		<th translate="PODCAST_EPISODE"></th>
-		<th translate="PODCAST_DATE"></th>
-		<th translate="PODCAST_PODCASTER"></th>
-		<th translate="PODCAST_SHOWNOTER"></th>
-	</tr>
-	<tr ng-repeat="ep in (filterepisodes = (podcast.episodes | filter:hasPub()) | orderBy:'number':true)">
-		<td><a ui-sref="view-episode({ podcast: podcast.slug, number: ep.number })">
-			<span ng-hide="ep.title">{{ 'PODCAST_EPISODE' | translate }} {{ep.number}}</span>
-			<span ng-show="ep.title">{{ep.title}}</span>
-		</a></td>
-		<td>{{ep.date | date:'medium'}}</td>
-		<td>{{getPub(ep).podcasters.length}}</td>
-		<td>{{getPub(ep).shownoters.length}}</td>
-	</tr>
-	<tr ng-hide="filterepisodes.length > 0">
-		<td colspan="4" translate="PODCAST_NO_EPISODES"></td>
-	</tr>
+  <tr>
+    <th translate="PODCAST_EPISODE"></th>
+    <th translate="PODCAST_DATE"></th>
+    <th translate="PODCAST_PODCASTER"></th>
+    <th translate="PODCAST_SHOWNOTER"></th>
+  </tr>
+  <tr ng-repeat="ep in (filterepisodes = (podcast.episodes | filter:hasPub()) | orderBy:'number':true)">
+    <td><a ui-sref="view-episode({ podcast: podcast.slug, number: ep.number })">
+      <span ng-hide="ep.title">{{ 'PODCAST_EPISODE' | translate }} {{ep.number}}</span>
+      <span ng-show="ep.title">{{ep.title}}</span>
+    </a></td>
+    <td>{{ep.date | date:'medium'}}</td>
+    <td>{{getPub(ep).podcasters.length}}</td>
+    <td>{{getPub(ep).shownoters.length}}</td>
+  </tr>
+  <tr ng-hide="filterepisodes.length > 0">
+    <td colspan="4" translate="PODCAST_NO_EPISODES"></td>
+  </tr>
 </table>
 
 <snotes-footer></snotes-footer>

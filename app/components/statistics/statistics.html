@@ -1,9 +1,8 @@
 <h2>Statistik</h2>
 
-<div class="box-wrapper" ng-controller="StatisticsCtrl" ng-init="getWords()">
+<div class="box-wrapper" ng-controller="StatisticsCtrl" ng-init="getWordsFreq()">
   <p>
     <p translate="WORDCLOUD_WELCOME"></p>
-  k
     <wordcloud
       words="words"
       on-click="myOnClickFunction(element)">
