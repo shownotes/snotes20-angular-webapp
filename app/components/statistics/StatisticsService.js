@@ -5,18 +5,18 @@ angular.module('snotes30App')
     var statistic = Restangular.all('statistic');
 
     this.getWordList = function () {
-      return statistic.get("wordlist", "?=200");
+      return statistic.one("wordlist").get({top: "200"});
     };
 
     this.getPodcastWordList = function (slug) {
-      return statistic.get("wordlist", "podcast", slug, "?=20");
+      return statistic.one("wordlist", "podcast", slug).get({top: "20"});
     };
 
     this.getWordListFreq = function () {
-      return statistic.get("wordfrequency", "?top=200");
+      return statistic.one("wordfrequency").get({top: "200"});
     };
 
     this.getPodcastWordListFreq = function (slug) {
-      return statistic.get("wordfrequency", slug + "/?top=20");
+      return statistic.one("wordfrequency", slug).get({top: "20"});
     }
   });

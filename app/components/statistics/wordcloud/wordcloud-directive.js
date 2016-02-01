@@ -1,25 +1,25 @@
 'use strict';
 
 angular.module('myChart')
-  .directive('wordcloud', ['d3',function (d3) {
+  .directive('wordcloud', ['d3', function (d3) {
     return {
       restrict: 'E',
-      scope:{
-          // attributes
-          width : "@",
-          height: "@",
-          fontFamily : "@",
-          fontSize: "@",
+      scope: {
+        // attributes
+        width: "@",
+        height: "@",
+        fontFamily: "@",
+        fontSize: "@",
 
-          // Bindings
-          words: "=",
+        // Bindings
+        words: "=",
 
-          // EventCallbacks
-          onClick: "&",
-          onHover: "&"
-        },
-     link: function postLink(scope, element, attrs) {
-        scope.$watch('words',function() {
+        // EventCallbacks
+        onClick: "&",
+        onHover: "&"
+      },
+      link: function postLink(scope, element, attrs) {
+        scope.$watch('words', function () {
           // Default Values
           var width = 800;
           var height = 600;
@@ -28,14 +28,16 @@ angular.module('myChart')
           var words;
 
           // Check and set attributes, else keep then default values
+          if (angular.isDefined(attrs.fontSize)) fontSize = attrs.fontSize * 1 || 0; // !parseInt, detect wrong input
           if (angular.isDefined(attrs.width))        width = attrs.width;
-          if (angular.isDefined(attrs.height))       height = attrs.height;
+          if (angular.isDefined(attrs.height)) {
+            fontSize = Math.sqrt((attrs.height / height)) * fontSize;
+            height = attrs.height;
+          }
           if (angular.isDefined(attrs.fontFamily))   fontFamily = attrs.fontFamily;
-          if (angular.isDefined(attrs.fontSize))     fontSize = attrs.fontSize * 1 || 0; // !parseInt, detect wrong input
 
           // Check Scope
           if (angular.isDefined(scope.words))    words = scope.words;
-
 
           // Skip rendering when no corrent word param is parsed
           if (angular.isDefined(scope.words) && angular.isArray(words)) {
@@ -63,6 +65,7 @@ angular.module('myChart')
             return;
           }
 
+
           var cloudFactory = function (words) {
 
             var fill = d3.scale.category20();
@@ -71,12 +74,12 @@ angular.module('myChart')
 
             d3.layout.cloud().size([width, height])
               .words(words.map(function (d) {
-                var freq = Math.sqrt(d["frequency"]/largest_frequency);
+                var freq = Math.sqrt(d["frequency"] / largest_frequency);
                 return {text: d["word"], size: freq * fontSize};
               }))
               .rotate(function () {
                 //return ~~(Math.random() * 2) * -90;
-                return (~~(Math.random() * 6) - 3) * 30;
+                return (~~(Math.random() * 6) - 3) * 15;
               })
               .font(fontFamily)
               .fontSize(function (d) {
