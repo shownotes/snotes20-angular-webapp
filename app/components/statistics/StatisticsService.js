@@ -17,6 +17,6 @@ angular.module('snotes30App')
     };
 
     this.getPodcastWordListFreq = function (slug) {
-      return statistic.one("wordfrequency", slug).get({top: "20"});
+      return statistic.one("wordfrequency").one("podcast", slug).get({top: "20"});
     }
   });
