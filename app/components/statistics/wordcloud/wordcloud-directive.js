@@ -79,7 +79,11 @@ angular.module('myChart')
               }))
               .rotate(function () {
                 //return ~~(Math.random() * 2) * -90;
-                return (~~(Math.random() * 6) - 3) * 15;
+                if(height<200){
+                  return 0;
+                } else {
+                  return (~~(Math.random() * 6) - 3) * 15;
+                }
               })
               .font(fontFamily)
               .fontSize(function (d) {
