@@ -22,7 +22,8 @@ angular
     'angucomplete-alt',
     'restangular',
     'pascalprecht.translate',
-    'myChart'
+    'myChart',
+    'angles'
   ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider, CONFIG, $translateProvider) {
 
