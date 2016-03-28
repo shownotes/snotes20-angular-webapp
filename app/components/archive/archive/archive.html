@@ -12,8 +12,8 @@
 
 <h3 translate="ARCHIVE_ALL_SHOWS"></h3>
 
-<div ng-controller="BarCtrl">
-	    <canvas class="barchart" barchart options="options" data="chart" width="500" height="300"></canvas>
+<div ng-controller="StatisticsCtrl" ng-init="getPodcastTimeline()">
+    <canvas class="barchart" barchart options="options" data="timeline" width="500" height="300"></canvas>
 </div>
 
 <div class="archive">
