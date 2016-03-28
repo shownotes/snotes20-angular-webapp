@@ -49,10 +49,10 @@ angular.module('snotes30App')
          $scope.timeline = {
       	     datasets : [
 	         {
-	 		fillColor : "rgba(151,187,205,0)",
-                        strokeColor : "#f1c40f",
-                        pointColor : "rgba(151,187,205,0)",
-                        pointStrokeColor : "#f1c40f",      
+	 		fillColor : "#e6f7fe",
+                        strokeColor : "#b6e7fb",
+                        pointColor : "#e6f7fe",
+                        pointStrokeColor : "#b6e7fb",      
 		 }	 
 	      ]
 	 }
@@ -75,9 +75,9 @@ angular.module('snotes30App')
          $scope.timeline = {
              datasets : [
                  {
-                        fillColor : "rgba(151,187,205,0)",
+                        fillColor : "#fbedb6",
                         strokeColor : "#f1c40f",
-                        pointColor : "rgba(151,187,205,0)",
+                        pointColor : "#fbedb6",
                         pointStrokeColor : "#f1c40f",
                  }
               ]
