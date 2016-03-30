@@ -59,6 +59,11 @@ angular.module('snotes30App')
 
 	$scope.timeline.labels = labels;
 	$scope.timeline.datasets[0].data = data;
+	$scope.data = new Array();
+	$scope.data.push(data);
+	$scope.labels = labels;
+	$scope.series = ['Series A'];
+	console.log("scope", $scope);
       });
     }
 
@@ -86,5 +91,16 @@ angular.module('snotes30App')
         $scope.timeline.labels = labels;
         $scope.timeline.datasets[0].data = data;
       });
-    }	      
+    }
+
+    $scope.onClick = function (points, evt) {
+	        console.log(points[0].label, evt);
+    };
+
+    $scope.clickPodcastTimeline = function (element, barchart) {
+	console.log("felipe", element);
+	console.log("barchart", barchart);
+	console.log("scope", angles.chart);
+	
+    }	
 });

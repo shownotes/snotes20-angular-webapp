@@ -23,7 +23,7 @@ angular
     'restangular',
     'pascalprecht.translate',
     'myChart',
-    'angles'
+    'chart.js'
   ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider, CONFIG, $translateProvider) {
 
