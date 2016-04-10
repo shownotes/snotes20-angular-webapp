@@ -123,15 +123,16 @@ angular
         templateUrl: '403.html'
       })
       .state('archive', {
-        url: '/archive/',
+        url: '/archive/?period',
         templateUrl: 'components/archive/archive/archive.html',
         controller: 'ArchiveCtrl',
         resolve: {
           'recentpodcasts': ['ArchiveService', function (ArchiveService) {
             return ArchiveService.getRecentList();
           }],
-          'podcasts': ['ArchiveService', function (ArchiveService) {
-            return ArchiveService.getList();
+          'podcasts': ['StatisticsService', '$stateParams', function (StatisticsService, $stateParams) {
+            console.log('params', $stateParams);
+            return StatisticsService.getPodcasts($stateParams.period);
           }]
         }
       })

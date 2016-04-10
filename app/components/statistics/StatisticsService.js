@@ -26,5 +26,20 @@ angular.module('snotes30App')
 
     this.getEpisodeTimeline = function (slug) {
       return statistic.one("timeline").one("episode", slug).get();
+    }
+
+    this.getPodcasts = function (period) {
+      console.log("chamando servico", period);
+
+      var podcasts = statistic.one("podcast");
+      
+      if (typeof period != 'undefined') {
+        var param = {};
+	param.period = period;
+	return podcasts.get(param);
+      }
+      else {
+	return podcasts.get();      
+      }
     }    
 });
