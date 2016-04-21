@@ -1,6 +1,17 @@
 'use strict';
 
 angular.module('snotes30App')
+  .config(['ChartJsProvider', function (ChartJsProvider) {
+	 // Configure all charts
+	 ChartJsProvider.setOptions({
+	         colours: ['#b6e7fb', '#e6f7fe'],
+	         responsive: false
+	  });
+	  // Configure all line charts
+	  ChartJsProvider.setOptions('Line', {
+	         datasetFill: false
+	  });
+   }])
   .controller('StatisticsCtrl', function ($scope, $location, StatisticsService) {
 
     $scope.getWords = function () {
