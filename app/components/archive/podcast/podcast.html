@@ -19,12 +19,13 @@
 </div>
 
 <div ng-controller="StatisticsCtrl" ng-init="getEpisodeTimeline(podcast.slug)">
-    <canvas class="barchart" barchart options="options" data="timeline" width="500" height="300"></canvas>
+    <canvas  width="500" height="300" id="bar" class="chart chart-bar barchart" chart-data="data" chart-labels="labels" chart-series="series" chart-click="onClick"></canvas>
 </div>
 
 <!--
 <p>Durchschnitt: <strong>5 Podcaster</strong> und <strong>4 Shownoter</strong> pro Sendung</p>
 -->
+
 <table>
   <tr>
     <th translate="PODCAST_EPISODE"></th>
