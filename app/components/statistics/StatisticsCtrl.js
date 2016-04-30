@@ -48,7 +48,6 @@ angular.module('snotes30App')
     }
 
     $scope.getPodcastTimeline = function (label) {
-	    console.log("qual o resultado do label", label);
       StatisticsService.getPodcastTimeline().then(function (results) {
 	 var labels = new Array();
 	 var data = new Array();
@@ -58,24 +57,9 @@ angular.module('snotes30App')
 	     data.push(results[i][0]);
 	 }
 
-         $scope.timeline = {
-      	     datasets : [
-	         {
-	 		fillColor : "#e6f7fe",
-                        strokeColor : "#b6e7fb",
-                        pointColor : "#e6f7fe",
-                        pointStrokeColor : "#b6e7fb",      
-		 }	 
-	      ]
-	 }
-
-	$scope.timeline.labels = labels;
-	$scope.timeline.datasets[0].data = data;
 	$scope.data = new Array();
 	$scope.data.push(data);
 	$scope.labels = labels;
-	$scope.series = ['Series A'];
-	console.log("scope", $scope);
       });
     }
 
@@ -89,19 +73,9 @@ angular.module('snotes30App')
              data.push(results[i][0]);
          }
 
-         $scope.timeline = {
-             datasets : [
-                 {
-                        fillColor : "#fbedb6",
-                        strokeColor : "#f1c40f",
-                        pointColor : "#fbedb6",
-                        pointStrokeColor : "#f1c40f",
-                 }
-              ]
-         }
-
-        $scope.timeline.labels = labels;
-        $scope.timeline.datasets[0].data = data;
+	 $scope.data = new Array();
+	 $scope.data.push(data);
+	 $scope.labels = labels;
       });
     }
     
