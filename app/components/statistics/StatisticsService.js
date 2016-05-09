@@ -29,8 +29,6 @@ angular.module('snotes30App')
     }
 
     this.getPodcasts = function (period) {
-      console.log("chamando servico", period);
-
       var podcasts = statistic.one("podcast");
       
       if (typeof period != 'undefined') {
@@ -41,5 +39,18 @@ angular.module('snotes30App')
       else {
 	return podcasts.get();      
       }
-    }    
+    }
+
+    this.getEpisodes = function (slug, period) {
+      var episodes = statistic.one("episode");
+ 
+      if (typeof period != 'undefined') {
+          var param = {};
+          param.period = period;
+          return episodes.one(slug).get(param);
+      }
+      else {
+        return episodes.one(slug).get();
+      }
+    }      
 });

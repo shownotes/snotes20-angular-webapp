@@ -131,7 +131,6 @@ angular
             return ArchiveService.getRecentList();
           }],
           'podcasts': ['StatisticsService', '$stateParams', function (StatisticsService, $stateParams) {
-            console.log('params', $stateParams);
             return StatisticsService.getPodcasts($stateParams.period);
           }]
         }
@@ -217,12 +216,12 @@ angular
         controller: 'UserActivateCtrl'
       })
       .state('archive-podcast', {
-        url: '/:podcast/',
+        url: '/:podcast/?period',
         templateUrl: 'components/archive/podcast/podcast.html',
         resolve: {
-          'podcast': ['PodcastService', '$stateParams', function (PodcastService, $stateParams) {
-            return PodcastService.getBySlug($stateParams.podcast);
-          }]
+          'podcast': ['StatisticsService', '$stateParams', function (StatisticsService, $stateParams) {
+	      return StatisticsService.getEpisodes($stateParams.podcast, $stateParams.period);
+	   }]
         },
         controller: 'ArchivePodcastCtrl'
       })

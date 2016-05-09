@@ -79,9 +79,15 @@ angular.module('snotes30App')
       });
     }
     
-    $scope.onClick = function (points, evt) {
-      var param = (typeof points != 'undefined' && typeof points[0] != 'undefined' && typeof points[0].label != 'undefined') ? points[0].label : '';
-      $location.url('/archive/?period=' + param);
-      $scope.$apply();
+    $scope.onClickPodcasts = function (points, evt) {
+       var param = (typeof points != 'undefined' && typeof points[0] != 'undefined' && typeof points[0].label != 'undefined') ? points[0].label : '';
+       $location.url('/archive/?period=' + param);
+       $scope.$apply();
     };
+
+    $scope.onClickEpisodes = function (points, evt) {
+       var param = (typeof points != 'undefined' && typeof points[0] != 'undefined' && typeof points[0].label != 'undefined') ? points[0].label : '';
+       $location.url('/' + $scope.podcast.slug + '/?period=' + param);
+       $scope.$apply();
+    };	  
 });
