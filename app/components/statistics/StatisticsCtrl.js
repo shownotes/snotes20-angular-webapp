@@ -1,6 +1,17 @@
 'use strict';
 
 angular.module('snotes30App')
+  .config(['ChartJsProvider', function (ChartJsProvider) {
+	 // Configure all charts
+	 ChartJsProvider.setOptions({
+	         colours: ['#b6e7fb', '#e6f7fe'],
+	         responsive: false
+	  });
+	  // Configure all line charts
+	  ChartJsProvider.setOptions('Line', {
+	         datasetFill: false
+	  });
+   }])
   .controller('StatisticsCtrl', function ($scope, $location, StatisticsService) {
 
     $scope.getWords = function () {
@@ -36,4 +47,47 @@ angular.module('snotes30App')
       console.log("hover", element);
     }
 
-  });
+    $scope.getPodcastTimeline = function (label) {
+      StatisticsService.getPodcastTimeline().then(function (results) {
+	 var labels = new Array();
+	 var data = new Array();
+
+	 for (var i = 0; i < results.length; i++) {
+    	     labels.push(results[i][1]);
+	     data.push(results[i][0]);
+	 }
+
+	$scope.data = new Array();
+	$scope.data.push(data);
+	$scope.labels = labels;
+      });
+    }
+
+    $scope.getEpisodeTimeline = function (slug) {
+      StatisticsService.getEpisodeTimeline(slug).then(function (results) {
+         var labels = new Array();
+         var data = new Array();
+
+         for (var i = 0; i < results.length; i++) {
+             labels.push(results[i][1]);
+             data.push(results[i][0]);
+         }
+
+	 $scope.data = new Array();
+	 $scope.data.push(data);
+	 $scope.labels = labels;
+      });
+    }
+    
+    $scope.onClickPodcasts = function (points, evt) {
+       var param = (typeof points != 'undefined' && typeof points[0] != 'undefined' && typeof points[0].label != 'undefined') ? points[0].label : '';
+       $location.url('/archive/?period=' + param);
+       $scope.$apply();
+    };
+
+    $scope.onClickEpisodes = function (points, evt) {
+       var param = (typeof points != 'undefined' && typeof points[0] != 'undefined' && typeof points[0].label != 'undefined') ? points[0].label : '';
+       $location.url('/' + $scope.podcast.slug + '/?period=' + param);
+       $scope.$apply();
+    };	  
+});

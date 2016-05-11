@@ -12,6 +12,10 @@
 
 <h3 translate="ARCHIVE_ALL_SHOWS"></h3>
 
+<div ng-controller="StatisticsCtrl" ng-init="getPodcastTimeline()">
+    <canvas  width="500" height="300" id="bar" class="chart chart-bar barchart" chart-data="data" chart-labels="labels" chart-series="series" chart-click="onClickPodcasts"></canvas>
+</div>
+
 <div class="archive">
     <archivebox ng-repeat="pod in podcasts" pod="pod"></archivebox>
 </div>

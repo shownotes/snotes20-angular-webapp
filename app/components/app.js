@@ -22,7 +22,8 @@ angular
     'angucomplete-alt',
     'restangular',
     'pascalprecht.translate',
-    'myChart'
+    'myChart',
+    'chart.js'
   ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider, CONFIG, $translateProvider) {
 
@@ -122,15 +123,15 @@ angular
         templateUrl: '403.html'
       })
       .state('archive', {
-        url: '/archive/',
+        url: '/archive/?period',
         templateUrl: 'components/archive/archive/archive.html',
         controller: 'ArchiveCtrl',
         resolve: {
           'recentpodcasts': ['ArchiveService', function (ArchiveService) {
             return ArchiveService.getRecentList();
           }],
-          'podcasts': ['ArchiveService', function (ArchiveService) {
-            return ArchiveService.getList();
+          'podcasts': ['StatisticsService', '$stateParams', function (StatisticsService, $stateParams) {
+            return StatisticsService.getPodcasts($stateParams.period);
           }]
         }
       })
@@ -215,12 +216,12 @@ angular
         controller: 'UserActivateCtrl'
       })
       .state('archive-podcast', {
-        url: '/:podcast/',
+        url: '/:podcast/?period',
         templateUrl: 'components/archive/podcast/podcast.html',
         resolve: {
-          'podcast': ['PodcastService', '$stateParams', function (PodcastService, $stateParams) {
-            return PodcastService.getBySlug($stateParams.podcast);
-          }]
+          'podcast': ['StatisticsService', '$stateParams', function (StatisticsService, $stateParams) {
+	      return StatisticsService.getEpisodes($stateParams.podcast, $stateParams.period);
+	   }]
         },
         controller: 'ArchivePodcastCtrl'
       })

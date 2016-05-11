@@ -30,13 +30,14 @@
 
   <!-- build:css styles/vendor.css -->
   <!-- bower:css -->
-  <link rel="stylesheet" href="bower_components/spectrum/spectrum.css"/>
-  <link rel="stylesheet" href="bower_components/angular-busy/dist/angular-busy.css"/>
-  <link rel="stylesheet" href="bower_components/angucomplete-alt/angucomplete-alt.css"/>
+  <link rel="stylesheet" href="bower_components/spectrum/spectrum.css" />
+  <link rel="stylesheet" href="bower_components/angular-busy/dist/angular-busy.css" />
+  <link rel="stylesheet" href="bower_components/angucomplete-alt/angucomplete-alt.css" />
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
   <link rel="stylesheet" type="text/css" href="styles/main.css" media="screen, print"/>
+  <link rel="stylesheet" href="components/statistics/barchart/bar.css"/>
   <!-- endbuild -->
 </head>
 
@@ -143,11 +144,17 @@
 <script src="components/statistics/d3/d3.js" charset="UTF-8"></script>
 <script src="components/statistics/StatisticsService.js" charset="UTF-8"></script>
 <script src="components/statistics/StatisticsCtrl.js" charset="UTF-8"></script>
-<script src="components/statistics/chart.js"></script>
+<script src="components/statistics/chart-bw.js"></script>
 
 <!-- worcloud -->
 <script src="components/statistics/wordcloud/d3-wordcloud-decorator.js"></script>
 <script src="components/statistics/wordcloud/wordcloud-directive.js"></script>
+
+<!-- barchart -->
+<script src="components/statistics/barchart/Chart.min.js"></script>
+<script src="components/statistics/barchart/angular-chart.min.js"></script>
+<!--<script src="components/statistics/barchart/angles.js"></script>-->
+<script src="components/statistics/BarCtrl.js"></script>
 
 <!-- endbuild -->
 
